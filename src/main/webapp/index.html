@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="ords" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="ords" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="ords" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="ords" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome to ORDS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/buttons.css">
+</head>
+<body>
+	
+	<div class="pageContainer">
+    <div class="containergradient project-summary">
+            
+	
+	
+	<div class="header">
+	  <h1 class="site-title">
+	    <a href="#/">ORDS</a>
+	  </h1>
+	    <div class="header-panel search-box">
+	    <form action="ProjectQueryServlet" method="post">
+	    <div>
+			<input class="invisibleElement" name="projectRequestType" type="text" value="viewOrdsProjects">
+			<input name="searchTerms" class="required" type="text" value="" maxlength="200">
+			<input name="viewOrdsProjectsForm" type="submit" value="Search ORDS projects">
+	    </div>
+	</form>
+	  </div>
+	    <div class="header-panel user-info">
+		<!-- TODO Replace this with a template calling GET /user/ -->
+	    <div class="user">
+	      <span class="user-label">You are logged in as:</span>
+	      <a href="/ordsProjectNode/preferences.jsp">
+	      <span class="username">Scott Wilson</span>
+	      </a>
+	    </div>
+	   <div class="user-actions">
+	    <a class="logout" href="/ordsFrontEnd/logout.jsp"><span>Log out</span></a>
+	   </div>
+	   </div>
+	<a id="ox-link" href="http://www.ox.ac.uk">University of Oxford</a>
+	<div class="clear"></div>
+	</div>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+	<div id="main">
+  	   <div ng-view></div>
+	   {{ message }}
+	</div>
+	
+	
+	<div id="container">
+		<div class="footer">
+	        <a href="http://www.it.ox.ac.uk/legal/privacy/">
+	            Privacy
+	        </a> | 
+	        <a href="http://ords.ox.ac.uk/documentation.xml">
+	            Help
+	        </a> | 
+	        <a href="/ordsProjectNode/about.jsp">
+	            About us
+	        </a> | 
+	        <a href="mailto:ords@it.ox.ac.uk">
+	            Contact us
+	        </a>
+	          <div>University of Oxford</div>
+	          <div>Current Version: 1.0.16 - 4759</div>
+		</div>
+	</div>
+	
+</div> <!-- div.main closes -->
+</div> <!-- div.pageContainer closes -->
+
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/angular-route.min.js"></script>
+  <script src="app.js"></script>
+  <script src="components/projectlist/projectlist.js"></script>
+  <script src="components/stats/stats.js"></script>
+  <script src="components/dblist/dblist.js"></script>
+  <script src="components/login/login.js"></script>
+  <script src="components/welcome/welcome.js"></script>
+</body>
+</html>
