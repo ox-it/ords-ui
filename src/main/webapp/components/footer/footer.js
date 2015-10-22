@@ -1,9 +1,9 @@
 angular.module( "ords" ).directive(
-	'login', 
+	'footer', 
 	function() {
   	  	return {
     		controller: function() {},
-    		templateUrl: '/components/login/login.html'
+    		templateUrl: '/components/footer/footer.html'
   	  	}
 	}
 );
