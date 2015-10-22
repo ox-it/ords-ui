@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="style/buttons.css">
+  <link rel="stylesheet" href="style/forms.css">
 </head>
 <body>
 	
@@ -20,40 +21,30 @@
 	
 	
 	<div class="header">
-	  <h1 class="site-title">
-	    <a href="#/">ORDS</a>
-	  </h1>
+	    <h1 class="site-title"><a href="#/">ORDS</a></h1>
 	    <div class="header-panel search-box">
-	    <form action="ProjectQueryServlet" method="post">
-	    <div>
-			<input class="invisibleElement" name="projectRequestType" type="text" value="viewOrdsProjects">
-			<input name="searchTerms" class="required" type="text" value="" maxlength="200">
-			<input name="viewOrdsProjectsForm" type="submit" value="Search ORDS projects">
-	    </div>
-	</form>
-	  </div>
-	    <div class="header-panel user-info">
-		<!-- TODO Replace this with a template calling GET /user/ -->
-	    <div class="user">
-	      <span class="user-label">You are logged in as:</span>
-	      <a href="/ordsProjectNode/preferences.jsp">
-	      <span class="username">Scott Wilson</span>
-	      </a>
-	    </div>
-	   <div class="user-actions">
-	    <a class="logout" href="/ordsFrontEnd/logout.jsp"><span>Log out</span></a>
-	   </div>
-	   </div>
-	<a id="ox-link" href="http://www.ox.ac.uk">University of Oxford</a>
-	<div class="clear"></div>
+		    <form action="ProjectQueryServlet" method="post">
+			    <div>
+					<input class="invisibleElement" name="projectRequestType" type="text" value="viewOrdsProjects">
+					<input name="searchTerms" class="required" type="text" value="" maxlength="200">
+					<input name="viewOrdsProjectsForm" type="submit" value="Search ORDS projects">
+			    </div>
+		    </form>
+		</div>
+		<profile></profile>
+		<a id="ox-link" href="http://www.ox.ac.uk">University of Oxford</a>
+		<div class="clear"></div>
 	</div>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-	<div id="main">
+	<div class="main">
+		
+		<div ng-show="showMessage" class="message">{{message}}</div>
+		
   	   <div ng-view></div>
-	   {{ message }}
+	   
 	</div>
 	
 	
@@ -81,11 +72,16 @@
 
   <script src="lib/angular.min.js"></script>
   <script src="lib/angular-route.min.js"></script>
+
   <script src="app.js"></script>
+  <!-- Controllers -->
+  <script src="views/project/project.js"></script>
+  <!-- Components -->
   <script src="components/projectlist/projectlist.js"></script>
   <script src="components/stats/stats.js"></script>
   <script src="components/dblist/dblist.js"></script>
   <script src="components/login/login.js"></script>
   <script src="components/welcome/welcome.js"></script>
+  <script src="components/profile/profile.js"></script>
 </body>
 </html>

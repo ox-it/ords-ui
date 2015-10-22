@@ -1,0 +1,151 @@
+
+
+.invisibleElement {
+/*	display: none;
+*/
+}
+
+
+.formItem {
+	margin: 0.5em ;
+	text-align: left;
+
+}
+
+
+/* form button areas (submit, cancel etc) */
+
+
+div.form-buttons {
+  
+  clear: both;
+  padding: 1em 0px;
+  text-align: right;
+  width: 42em;
+}
+
+#confirm-delete div.form-buttons {
+  
+  text-align: center;
+  width: auto;
+
+}
+
+
+
+/* ----------- ordsFormStyle ----------- */
+
+
+.main form.process{
+    :#ebf4fb;
+        margin:0 auto;
+
+    padding:14px;
+
+}
+.main form.process .important{
+    color:#fbb302;
+    font-size: 2em;
+}
+.main form.process h1 {
+    font-weight:bold;
+    margin-bottom:8px;
+}
+.main form.process p{
+    font-size:11px;
+    color:#666666;
+    margin-bottom:20px;
+    border-bottom:solid 1px #b7ddf2;
+    padding-bottom:10px;
+}
+.main form label{
+    color: #333;
+    display:block;
+    text-align:right;
+    width: 47%;
+    padding: 10px 1%;
+    float:left;
+    
+}
+
+
+.main form label .small{
+
+display: block;
+font-size: 0.8em;
+    clear: both;
+}
+
+
+
+
+.main form .explanation{
+    color: #666;
+    display:block;
+    float: right;
+    font-size:0.9em;
+    font-weight:normal;
+    margin-top: 0.3em;
+    text-align:right;
+width: 20em;
+}
+
+
+.main form.process input{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    margin:2px 0 20px 10px;
+    width: 30em;
+    
+  
+    
+}
+
+.main form.process select{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    width: 30em;
+    margin:2px 0 20px 10px;
+}
+.main form.process textarea{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    width: 30em;
+    margin:2px 0 20px 10px;
+}
+.main form.process button{
+/*    clear:both;
+    width:125px;
+    height:31px;
+    background:#666666;
+    text-align:center;
+    line-height:31px;
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:bold;
+*/
+}
+
+.main form.process .invalid input,
+.main form.process .invalid select,
+.main form.process .invalid textarea {
+    border: solid 1px red;
+}
+
+
+
+.main form.process input[type="checkbox"] {
+
+
+width: 1em;
+
+
+}
+
+

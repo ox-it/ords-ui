@@ -1,0 +1,14 @@
+	 <div class="header-panel user-info">
+		 <div ng-switch on="loggedIn">
+			<div ng-switch-when="yes">			
+				 <div class="user">
+				 	<span class="user-label">You are logged in as:</span> <a href="/ordsProjectNode/preferences.jsp"><span class="username">{{user.name}}</span></a>
+				 </div>
+				<div class="user-actions">
+					<a class="logout" href="/ordsFrontEnd/logout.jsp"><span>Log out</span></a>
+				</div>
+		   	</div>
+			<div ng-switch-default>
+			</div>
+   		</div>
+   </div>
