@@ -16,72 +16,32 @@
 <body>
 	
 	<div class="pageContainer">
-    <div class="containergradient project-summary">
-            
-	
-	
-	<div class="header">
-	    <h1 class="site-title"><a href="#/">ORDS</a></h1>
-	    <div class="header-panel search-box">
-		    <form action="ProjectQueryServlet" method="post">
-			    <div>
-					<input class="invisibleElement" name="projectRequestType" type="text" value="viewOrdsProjects">
-					<input name="searchTerms" class="required" type="text" value="" maxlength="200">
-					<input name="viewOrdsProjectsForm" type="submit" value="Search ORDS projects">
-			    </div>
-		    </form>
-		</div>
-		<profile></profile>
-		<a id="ox-link" href="http://www.ox.ac.uk">University of Oxford</a>
-		<div class="clear"></div>
-	</div>
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-	<div class="main">
-		
-		<div ng-show="showMessage" class="message">{{message}}</div>
-		
-  	   <div ng-view></div>
-	   
-	</div>
-	
-	
-	<div id="container">
-		<div class="footer">
-	        <a href="http://www.it.ox.ac.uk/legal/privacy/">
-	            Privacy
-	        </a> | 
-	        <a href="http://ords.ox.ac.uk/documentation.xml">
-	            Help
-	        </a> | 
-	        <a href="/ordsProjectNode/about.jsp">
-	            About us
-	        </a> | 
-	        <a href="mailto:ords@it.ox.ac.uk">
-	            Contact us
-	        </a>
-	          <div>University of Oxford</div>
-	          <div>Current Version: 1.0.16 - 4759</div>
-		</div>
-	</div>
-	
-</div> <!-- div.main closes -->
-</div> <!-- div.pageContainer closes -->
+    	<div class="containergradient project-summary">
+			<header></header>
+			<div class="main">
+				<div ng-show="showMessage" class="message">{{message}}</div>
+				 <div class="homepage">
+					<welcome></welcome>
+					<login></login>
+					<stats></stats>
+				</div> <!-- .homepage closes -->
+			</div>
+			<div id="container">
+				<footer></footer>
+			</div>
+		</div> <!-- div.main closes -->
+	</div> <!-- div.pageContainer closes -->
 
   <script src="lib/angular.min.js"></script>
   <script src="lib/angular-route.min.js"></script>
 
   <script src="app.js"></script>
-  <!-- Controllers -->
-  <script src="views/project/project.js"></script>
   <!-- Components -->
-  <script src="components/projectlist/projectlist.js"></script>
   <script src="components/stats/stats.js"></script>
-  <script src="components/dblist/dblist.js"></script>
   <script src="components/login/login.js"></script>
   <script src="components/welcome/welcome.js"></script>
   <script src="components/profile/profile.js"></script>
+  <script src="components/header/header.js"></script>
+  <script src="components/footer/footer.js"></script>
 </body>
 </html>
