@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="ords" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="ords" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="ords" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="ords" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome to ORDS</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="/style/buttons.css">
+  <link rel="stylesheet" href="/style/forms.css">
+</head>
+<body>
+	<div class="pageContainer">
+	    <div class="containergradient project-summary">
+			<header></header>
+			<div class="main">
+				<div ng-show="showMessage" class="message">{{message}}</div>
+		  		<div ng-view></div>
+			</div>
+			<div id="container">
+				<footer></footer>
+			</div>
+		</div> <!-- div.main closes -->
+	</div> <!-- div.pageContainer closes -->
+
+  <script src="/lib/angular.min.js"></script>
+  <script src="/lib/angular-route.min.js"></script>
+  <script src="/lib/angular-resource.min.js"></script>
+	
+  <script src="app.js"></script>
+	
+  <!-- Controllers -->
+  <script src="views/project.js"></script>
+  
+  <!-- Components -->
+  <script src="components/projectlist/projectlist.js"></script>
+  
+  <!-- General Components -->
+  <script src="/components/stats/stats.js"></script>
+  <script src="/components/dblist/dblist.js"></script>
+  <script src="/components/profile/profile.js"></script>
+  <script src="/components/header/header.js"></script>
+  <script src="/components/footer/footer.js"></script>
+  <script src="/components/welcome/welcome.js"></script>
+</body>
+</html>
