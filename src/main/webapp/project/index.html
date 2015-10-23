@@ -12,14 +12,18 @@
   <link rel="stylesheet" href="/style/style.css">
   <link rel="stylesheet" href="/style/buttons.css">
   <link rel="stylesheet" href="/style/forms.css">
+  <link rel="stylesheet" href="/lib/angular-growl.min.css">
+  <link rel="stylesheet" href="/style/alert.css">
 </head>
 <body>
 	<div class="pageContainer">
 	    <div class="containergradient project-summary">
 			<header></header>
+			<div class="alerts">
+				<div growl inline="true" limit-messages="1"></div>
+			</div>
 			<div class="main">
-				<div ng-show="showMessage" class="message">{{message}}</div>
-		  		<div ng-view></div>
+		  		<div ng-view autoscroll="true"></div>
 			</div>
 			<div id="container">
 				<footer></footer>
@@ -30,13 +34,12 @@
   <script src="/lib/angular.min.js"></script>
   <script src="/lib/angular-route.min.js"></script>
   <script src="/lib/angular-resource.min.js"></script>
+  <script src="/lib/angular-growl.min.js"></script>
 	
+  <!-- Project App main -->
   <script src="app.js"></script>
-	
-  <!-- Controllers -->
-  <script src="views/project.js"></script>
   
-  <!-- Components -->
+  <!-- Project Components -->
   <script src="components/projectlist/projectlist.js"></script>
   
   <!-- General Components -->
