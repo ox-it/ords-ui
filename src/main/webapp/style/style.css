@@ -13,7 +13,7 @@ color: #555;
 	overflow-y: auto;
 }
 
-
+.ng-cloak { display:none;}
 
 
 
