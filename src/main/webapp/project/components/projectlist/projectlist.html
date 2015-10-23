@@ -8,7 +8,7 @@
             
         <a class="button create" href="#/newproject"> Create new project</a>
     
-        <div class="panel project" ng-repeat="project in projects">
+        <div class="panel project" ng-repeat="project in projects track by project.projectId">
             <h4>
                 <a href="#/project/{{project.projectId}}">{{project.name}}</a>
             </h4>

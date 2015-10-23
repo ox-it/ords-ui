@@ -58,10 +58,22 @@ var ords = angular.module('ords', ['ngRoute','ngResource', 'angular-growl'])
 	//
 	// Project Controllers
 	//
-	.controller('mainController', function ($scope, $routeParams, Project) {
+	.controller('mainController', function ($rootScope, $scope, $routeParams, Project, $interval) {
 		$scope.refresh = function(){
-			$scope.projects = Project.query(); 	
+			Project.query({}, function(data){
+				$rootScope.projects = data;
+			});
 		}
+		
+		var autoUpdate = $interval($scope.refresh, 10000);
+
+		// Cancel interval on page changes
+		$scope.$on('$destroy', function(){
+		    if (angular.isDefined(autoUpdate)) {
+		        $interval.cancel(autoUpdate);
+		        autoUpdate = undefined;
+		    }
+		});
 	})
 	
 	.controller('projectController', function ($scope, $routeParams, Project) {
@@ -76,7 +88,7 @@ var ords = angular.module('ords', ['ngRoute','ngResource', 'angular-growl'])
 	    $scope.submitNewProject=function(){
 			Project.save($scope.fields,
 				function(){
-					$rootScope.projects = Project.query();
+					$scope.refresh();
 					growl.success("Project successfully created");
 					$location.path("/");
 				},
