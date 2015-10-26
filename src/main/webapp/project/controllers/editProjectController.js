@@ -9,7 +9,7 @@ ords.controller(
 				//
 				Project.update({id:$scope.project.projectId}, $scope.project,
 					function(){
-						$scope.refresh();
+						$scope.$emit('projectUpdate',[]);
 						growl.success("Project successfully updated");
 						$location.path("/");
 					},

@@ -3,7 +3,7 @@ angular.module( "ords" ).directive(
 	function() {
   	  	return {
     		controller: function(){},
-    		templateUrl: 'components/projectlist/projectlist.html'
+    		templateUrl: 'project/components/projectlist/projectlist.html'
   	  	}
 	}
 );

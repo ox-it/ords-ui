@@ -1,12 +1,21 @@
 'use strict';
 
-ords.controller('mainController', function ($rootScope, $scope, $routeParams, Project, $interval) {
+ords.controller('projectsController', function ($rootScope, $scope, Project, $interval) {
+		
+		$rootScope.$on('projectUpdate', function(){
+			Project.query(
+				{}, 
+				function(data){
+					$rootScope.projects = data;
+				}
+			);
+		});
 		
 		$scope.refresh = function(){
 			Project.query({}, function(data){
 				$rootScope.projects = data;
 			});
-		}
+		};
 		
 		var autoUpdate = $interval($scope.refresh, 10000);
 
@@ -18,4 +27,4 @@ ords.controller('mainController', function ($rootScope, $scope, $routeParams, Pr
 		    }
 		});
 	}
-)
+);

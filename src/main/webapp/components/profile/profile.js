@@ -2,7 +2,7 @@ angular.module( "ords" ).directive(
 	'profile', 
 	function() {
   	  	return {
-    		controller:  'mainController',
+    		controller:  function(){},
     		templateUrl: '/components/profile/profile.html'
   	  	}
 	}
