@@ -19,11 +19,7 @@
     	<div class="containergradient project-summary">
 			<header></header>
 			<div class="main">
-				 <div class="homepage">
-					<welcome></welcome>
-					<login></login>
-					<stats></stats>
-				</div> <!-- .homepage closes -->
+				<div ng-view autoscroll="true"></div>
 			</div>
 			<div id="container">
 				<footer></footer>
@@ -35,7 +31,11 @@
   <script src="lib/angular-route.min.js"></script>
   <script src="/lib/angular-resource.min.js"></script>
 
+
+  <!-- Controllers -->
   <script src="app.js"></script>
+  <script src="controllers/searchcontroller.js"></script>		
+	
   <!-- Components -->
   <script src="components/stats/stats.js"></script>
   <script src="components/login/login.js"></script>

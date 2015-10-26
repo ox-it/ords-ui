@@ -1,11 +1,10 @@
 	<div class="header">
 	    <h1 class="site-title"><a href="#/">ORDS</a></h1>
 	    <div class="header-panel search-box">
-		    <form action="ProjectQueryServlet" method="post">
+		    <form name="searchForm" id="searchForm" ng-submit='search()' >
 			    <div>
-					<input class="invisibleElement" name="projectRequestType" type="text" value="viewOrdsProjects">
-					<input name="searchTerms" class="required" type="text" value="" maxlength="200">
-					<input name="viewOrdsProjectsForm" type="submit" value="Search ORDS projects">
+					<input ng-model="query" name="query" class="required" type="text" value="" maxlength="200">
+					<input type="submit" value="Search ORDS projects">
 			    </div>
 		    </form>
 		</div>

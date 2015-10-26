@@ -1,0 +1,50 @@
+<div class="breadcrumbs-wrapper">
+	<span class="breadcrumbs youarehere">Search Results</span>
+</div>
+
+<h1>ORDS Project List</h1>
+	<p><span ng-show="results.$resolved">There are {{results.length}} project(s) that have been marked as open and completely satisfy your search criteria (if entered)</span><span ng-hide="results.$resolved">Loading…</span></p>
+
+ <div class="homepage">
+	
+
+	
+	<div class="informationBubble">
+	     <table class="fullWidthTable">
+            <tbody>
+				<tr>
+				    <th style="width: 200px">Project Name</th>
+				    <th style="width: 200px">Description</th>
+				    <th style="width: 200px">Project Owner</th>
+				    <th style="width: 80px">Contact</th>
+				    <th style="width: 400px">Public Datasets</th>
+				</tr>
+				
+				<tr ng-hide="results.$resolved">
+					<td colspan="5" class=“icon-loader spin”>Loading…</td>
+				</tr>
+				
+				<tr ng-show="results.$resolved" ng-repeat="project in results track by project.projectId">
+		    		<td>
+				        {{project.name}}
+				    </td>
+				    <td>
+				        {{project.description}}
+				    </td>
+				    <td>
+				        {{project.user.name}}
+				    </td>
+				    <td>
+				            <div>
+				                <a href="TODO">Contact {{project.user.name}}</a>
+				            </div>
+				    </td>
+				    <td>TODO datasets</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<stats></stats>
+
+</div> <!-- .homepage closes -->
