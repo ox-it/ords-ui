@@ -1,6 +1,6 @@
 'use strict';
 
-var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngMessages'])
+var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination'])
 
 	//
 	// Project REST Resources
@@ -28,9 +28,9 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	        $routeProvider
 
 	            // Home page for login
-	            .when('/login', {
-	                templateUrl : 'views/home.html',
-	                controller  : function(){}
+	            .when('/projects', {
+	                templateUrl : 'project/views/home.html',
+	                controller  : 'projectsController'
 	            })
 			
 	            // Search results
@@ -41,8 +41,8 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				
 	            // Home page with projects list
 	            .when('/', {
-	                templateUrl : 'project/views/home.html',
-	                controller  : 'projectsController'
+	                templateUrl : 'views/home.html',
+	                controller  : 'mainController'
 	            })
 
 	            // Project Details
@@ -74,24 +74,29 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		//
 		// Init
 		//
-		.run(function($rootScope,$location, User, Project) {
-			//
-			// If we're not logged in, redirect to login
-			//		
-			$rootScope.user = User.get(
-				 function successCallback() { 
-					$rootScope.loggedIn="yes"
-		 			//
-		 			// Load initial projects
-		 			//
-		 			$rootScope.projects = Project.query(); 
-					$location.path("/"); 
-				 }, 
-				 function errorCallback() { 
-					 $location.path("/login"); 
-				 }				
-			);
-		});
+		.controller('mainController', function($rootScope,$location, User, Project) {
+			
+				//
+				// If we're not logged in, redirect to login
+				//		
+				$rootScope.user = User.get(
+					 function successCallback() { 
+						$rootScope.loggedIn="yes"
+			 			//
+			 			// Load initial projects
+			 			//
+			 			$rootScope.projects = Project.query(); 
+						$location.path("/projects"); 
+					 }, 
+					 function errorCallback() { 
+						 $rootScope.loggedIn="no"
+						 $location.path("/"); 
+					 }				
+				);
+			
+		})
 
 ;
+
+
 	

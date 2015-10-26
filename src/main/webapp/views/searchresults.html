@@ -24,7 +24,7 @@
 					<td colspan="5" class=“icon-loader spin”>Loading…</td>
 				</tr>
 				
-				<tr ng-show="results.$resolved" ng-repeat="project in results track by project.projectId">
+				<tr ng-show="results.$resolved" dir-paginate="project in results | itemsPerPage: 10 track by project.projectId">
 		    		<td>
 				        {{project.name}}
 				    </td>
@@ -44,6 +44,8 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<div ng-show="results.$resolved"><dir-pagination-controls template-url="/lib/pagination.tpl.html"></dir-pagination-controls></div>
 	
 	<stats></stats>
 
