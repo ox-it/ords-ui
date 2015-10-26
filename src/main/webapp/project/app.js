@@ -1,12 +1,16 @@
 'use strict';
 
-var ords = angular.module('ords', ['ngRoute','ngResource', 'angular-growl'])
+var ords = angular.module('ords', ['ngRoute','ngResource', 'angular-growl', 'ngMessages'])
 
 	//
 	// Project REST Resources
 	//
-	.factory('Project', function( $resource ) {
-		return $resource('/project-api/project/:id');
+	.factory('Project', function( $resource ) {		
+		return $resource(
+			'/project-api/project/:id/', 
+			null,
+			{'update': { method:'PUT' }}
+		)
 	})
 
 	.factory('User', function( $resource ) {
@@ -41,6 +45,12 @@ var ords = angular.module('ords', ['ngRoute','ngResource', 'angular-growl'])
 	                templateUrl : 'views/newproject.html',
 	                controller  : 'newProjectController'				
 				})
+				
+	            // Edit Project Details
+	            .when('/editproject/:id', {
+	                templateUrl : 'views/editproject.html',
+	                controller  : 'editProjectController'
+	            })
 			
 				// Invite User
 			
@@ -54,54 +64,6 @@ var ords = angular.module('ords', ['ngRoute','ngResource', 'angular-growl'])
 			
 				;
 	    })
-	
-	//
-	// Project Controllers
-	//
-	.controller('mainController', function ($rootScope, $scope, $routeParams, Project, $interval) {
-		$scope.refresh = function(){
-			Project.query({}, function(data){
-				$rootScope.projects = data;
-			});
-		}
-		
-		var autoUpdate = $interval($scope.refresh, 10000);
-
-		// Cancel interval on page changes
-		$scope.$on('$destroy', function(){
-		    if (angular.isDefined(autoUpdate)) {
-		        $interval.cancel(autoUpdate);
-		        autoUpdate = undefined;
-		    }
-		});
-	})
-	
-	.controller('projectController', function ($scope, $routeParams, Project) {
-		$scope.project = Project.get({ id: $routeParams.id });
-	})
-
-	.controller('newProjectController', function ($rootScope, $scope, $http, $location, Project, growl) {
-	
-		//
-		// Submit fields in new project form to create a new project
-		//
-	    $scope.submitNewProject=function(){
-			Project.save($scope.fields,
-				function(){
-					$scope.refresh();
-					growl.success("Project successfully created");
-					$location.path("/");
-				},
-				function(){
-					growl.error("There was a problem creating the project");
-					$location.path("/");
-				}
-			);    
-	     }
-	
-	})
-
-
 	//
 	// Init
 	//
