@@ -20,6 +20,14 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 			{'lookup': { method: 'GET'}}
 		);
 	})
+	
+	//
+	// Configure alerts
+	//
+	.config(['growlProvider', function(growlProvider) {
+	  growlProvider.globalTimeToLive(5000);
+	  growlProvider.globalDisableCountDown(true);
+	}])
 
 	//
 	// configure  routes
@@ -69,33 +77,6 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		
 				;
 	    })
-
-	
-		//
-		// Init
-		//
-		.controller('mainController', function($rootScope,$location, User, Project) {
-			
-				//
-				// If we're not logged in, redirect to login
-				//		
-				$rootScope.user = User.get(
-					 function successCallback() { 
-						$rootScope.loggedIn="yes"
-			 			//
-			 			// Load initial projects
-			 			//
-			 			$rootScope.projects = Project.query(); 
-						$location.path("/projects"); 
-					 }, 
-					 function errorCallback() { 
-						 $rootScope.loggedIn="no"
-						 $location.path("/"); 
-					 }				
-				);
-			
-		})
-
 ;
 
 

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="style/buttons.css">
   <link rel="stylesheet" href="style/forms.css">
+  <link rel="stylesheet" href="style/alert.css">
   <link rel="stylesheet" href="style/pagination.css">
 </head>
 <body>
@@ -19,6 +20,9 @@
 	<div class="pageContainer">
     	<div class="containergradient project-summary">
 			<header></header>
+			<div class="alerts">
+				<div growl inline="true" limit-messages="1"></div>
+			</div>
 			<div class="main">
 				<div ng-view autoscroll="true"></div>
 			</div>
@@ -37,7 +41,8 @@
 
   <!-- Controllers -->
   <script src="app.js"></script>
-  <script src="controllers/searchcontroller.js"></script>		
+  <script src="controllers/searchcontroller.js"></script>	
+  <script src="controllers/maincontroller.js"></script>		
 	
   <!-- Components -->
   <script src="components/stats/stats.js"></script>
