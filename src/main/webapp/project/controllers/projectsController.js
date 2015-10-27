@@ -2,15 +2,6 @@
 
 ords.controller('projectsController', function ($rootScope, $scope, Project, $interval) {
 		
-		$rootScope.$on('projectUpdate', function(){
-			Project.query(
-				{}, 
-				function(data){
-					$rootScope.projects = data;
-				}
-			);
-		});
-		
 		$scope.refresh = function(){
 			Project.query({}, function(data){
 				$rootScope.projects = data;

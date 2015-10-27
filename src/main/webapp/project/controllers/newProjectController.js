@@ -8,7 +8,9 @@ ords.controller('newProjectController', function ($rootScope, $scope, $http, $lo
 			Project.save(
 			    $scope.project,
 				function(){
-					$scope.$emit('projectUpdate',[]);
+					Project.query({}, function(data){
+						$rootScope.projects = data;
+					});
 					growl.success("Project successfully created");
 					$location.path("/");
 				},

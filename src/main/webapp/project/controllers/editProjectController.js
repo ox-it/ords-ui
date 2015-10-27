@@ -9,7 +9,9 @@ ords.controller(
 				//
 				Project.update({id:$scope.project.projectId}, $scope.project,
 					function(){
-						$scope.$emit('projectUpdate',[]);
+						Project.query({}, function(data){
+							$rootScope.projects = data;
+						});
 						growl.success("Project successfully updated");
 						$location.path("/");
 					},
