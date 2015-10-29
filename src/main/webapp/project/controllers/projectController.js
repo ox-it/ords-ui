@@ -17,6 +17,7 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 		Member.delete({ id: $routeParams.id, roleid: id},
 			function(){
 				growl.success("Project member removed");
+				$scope.members = Member.query({ id: $routeParams.id });
 			},
 			function(){
 				growl.error("There was a problem removing this project member");				
