@@ -7,8 +7,6 @@
 
 <p>{{project.description}}</p>
 
-
-
 <div class="informationBubble">
 	<div class="rightFloat">
 		<a class="button" href="#/views/project/adddatabase/{{project.projectId}}">Add new ORDS database</a>
@@ -17,11 +15,41 @@
     <databases></databases>
 </div>
 
-<members></members>
+<!-- Project Members -->
+<div class="informationBubble">
+    <div class="rightFloat">
+        <div>
+            <a class="button" href="#/addmember/{{project.projectId}}">Add new member</a>
+        </div>
+	</div>
+
+	<h2>Project Members</h2>
+	
+	<table class="fullWidthTable">
+    	<tbody>
+			<tr>
+		        <th style="width: 200px">Member name</th>
+		        <th style="width: 200px">Role</th>
+		        <th style="width: 200px">Edit</th>
+		        <th style="width: 200px">Delete</th>
+    		</tr>
+
+		    <tr ng-repeat="member in members | orderBy:'name' track by member.id">
+		        <td>{{member.name}}</td>
+		        <td>{{member.role}}</td>
+
+		        <!-- Buttons -->
+		        <td><a class="button" ng-click="editMember(member.id)">Edit project member</a></td>
+		        <td><a class="button" ng-really-message="Are you sure you want to remove this member?" ng-really-click="removeMember(member.id)">Remove member</a></td>
+		    </tr>
+		</tbody>
+	</table>
+</div>
+		
 
 <div class="informationBubble">
     <div class="rightFloat">
-        <a class="button" href="#/editproject/{{project.projectId}}">Edit project details</a>
+        <a ng-show="project.canEdit" class="button" href="#/editproject/{{project.projectId}}">Edit project details</a>
         <a class="button" href="#/views/project/audit/{{project.projectId}}">View audit record</a>
     </div>
     
