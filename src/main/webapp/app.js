@@ -23,7 +23,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	
 	.factory('Member', function( $resource, User ) {
 		
-		var Member =  $resource('/project-api/project/:id/role/:roleid');
+		var Member =  $resource('/project-api/project/:id/role/:roleid', null, {'update': { method:'PUT' }});
 		
 		Member.prototype.name = "";
 		
@@ -32,10 +32,10 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 			if (this.name !== "") return this.name;
 			var that = this;
 			User.lookup( {name: this.principalName}, function(user){
-				console.log(user.name);
 				that.name = user.name;
 			} 
 			);
+			this.name = "loading ...";
 		};
 		
 		return Member;
@@ -130,7 +130,13 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	                templateUrl : 'project/views/editproject.html',
 	                controller  : 'editProjectController'
 	            })
-				
+
+				// Edit Member Form
+				.when('/project/:projectId/member/:memberId', {
+	                templateUrl : 'project/views/editmember.html',
+	                controller  : 'editMemberController'				
+				})
+								
 				// New Member Form
 				.when('/newmember/:id', {
 	                templateUrl : 'project/views/newmember.html',
