@@ -39,8 +39,8 @@
 		        <td>{{member.role}}</td>
 
 		        <!-- Buttons -->
-		        <td><a class="button" href="#/project/{{project.projectId}}/member/{{member.id}}">Edit project member</a></td>
-		        <td><a class="button" ng-really-message="Are you sure you want to remove this member?" ng-really-click="removeMember(member.id)">Remove member</a></td>
+		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" href="#/project/{{project.projectId}}/member/{{member.id}}">Edit project member</a></td>
+		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" ng-really-message="Are you sure you want to remove this member?" ng-really-click="removeMember(member.id)">Remove member</a></td>
 		    </tr>
 		</tbody>
 	</table>
