@@ -13,7 +13,9 @@ ords.controller('editProjectController', function ($rootScope, $scope, $location
 			//
 			// Update existing project
 			//
-			Project.update({id:$scope.project.projectId}, $scope.project,
+			Project.update(
+				{id:$scope.project.projectId}, 
+				$scope.project,
 				function(){
 					Project.query({}, function(data){
 						$rootScope.projects = data;
