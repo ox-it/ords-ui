@@ -21,6 +21,51 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		);
 	})
 	
+	.factory('Member', function( $resource ) {
+		return $resource('/project-api/project/:id/role/:roleid'
+		);
+	})
+	
+	//
+	// A "really?" handler to confirm actions
+	// Usage: Add attributes: ng-really-message="Are you sure"? ng-really-click="takeAction()" function
+	// See: https://gist.github.com/asafge/7430497
+	//
+	.directive('ngReallyClick', [function() {
+	    return {
+	        restrict: 'A',
+	        link: function(scope, element, attrs) {
+	            element.bind('click', function() {
+	                var message = attrs.ngReallyMessage;
+	                if (message && confirm(message)) {
+	                    scope.$apply(attrs.ngReallyClick);
+	                }
+	            });
+	        }
+	    }
+	}])
+	
+	//
+	// Service that checks if user is currently authenticated
+	//
+	.factory('AuthService', function ($rootScope, $location, User){
+		var svc = {};
+		svc.check = function(){
+			if ($rootScope.loggedIn !== "yes"){
+				$rootScope.user = User.get(
+					 function successCallback() { 
+						$rootScope.loggedIn="yes"
+					 }, 
+					 function errorCallback() { 
+						 $rootScope.loggedIn="no"
+						 $location.path("/"); 
+					 }				
+				);
+			}
+		};
+		return svc;
+	})
+	
 	//
 	// Configure alerts
 	//
@@ -70,6 +115,12 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	                templateUrl : 'project/views/editproject.html',
 	                controller  : 'editProjectController'
 	            })
+				
+				// New Member Form
+				.when('/newmember/:id', {
+	                templateUrl : 'project/views/newmember.html',
+	                controller  : 'newMemberController'				
+				})
 		
 				.otherwise({
 					redirectTo: '/'
