@@ -34,8 +34,8 @@
 		        <th style="width: 200px">Delete</th>
     		</tr>
 
-		    <tr ng-repeat="member in members | orderBy:'name' track by member.id">
-		        <td>{{member.name}}</td>
+		    <tr ng-repeat="member in members track by member.id">
+		        <td>{{member.getName()}}</td>
 		        <td>{{member.role}}</td>
 
 		        <!-- Buttons -->

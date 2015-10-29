@@ -21,9 +21,24 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		);
 	})
 	
-	.factory('Member', function( $resource ) {
-		return $resource('/project-api/project/:id/role/:roleid'
-		);
+	.factory('Member', function( $resource, User ) {
+		
+		var Member =  $resource('/project-api/project/:id/role/:roleid');
+		
+		Member.prototype.name = "";
+		
+		Member.prototype.getName = function () {
+			
+			if (this.name !== "") return this.name;
+			var that = this;
+			User.lookup( {name: this.principalName}, function(user){
+				console.log(user.name);
+				that.name = user.name;
+			} 
+			);
+		};
+		
+		return Member;
 	})
 	
 	//
