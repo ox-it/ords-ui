@@ -1,4 +1,11 @@
-ords.controller('newProjectController', function ($rootScope, $scope, $http, $location, Project, growl) {
+ords.controller('newProjectController', function ($rootScope, $scope, $location, Project, AuthService, growl) {
+	
+	//
+	// This page doesm't make sense to view
+	// without being logged in, so redirect
+	// back to the home view
+	//
+	AuthService.check();
 
 	//
 	// Submit fields in new project form to create a new project
