@@ -3,7 +3,7 @@ angular.module( "ords" ).directive(
 	function() {
   	  	return {
     		controller: 'searchController',
-    		templateUrl: '/components/header/header.html'
+    		templateUrl: 'components/header/header.html'
   	  	}
 	}
 );

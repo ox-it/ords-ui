@@ -3,7 +3,7 @@ angular.module( "ords" ).directive(
 	function() {
   	  	return {
     		controller: function() {},
-    		templateUrl: '/components/footer/footer.html'
+    		templateUrl: 'components/footer/footer.html'
   	  	}
 	}
 );
