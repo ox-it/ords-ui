@@ -63,17 +63,42 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	//
 	// Service that checks if user is currently authenticated
 	//
-	.factory('AuthService', function ($rootScope, $location, User){
+	.factory('AuthService', function ($rootScope, $location, User, Project){
 		var svc = {};
 		svc.check = function(){
 			if ($rootScope.loggedIn !== "yes"){
 				$rootScope.user = User.get(
 					 function successCallback() { 
 						$rootScope.loggedIn="yes"
+						 if ($location.path() === "/"){
+							 
+			 	 			//
+			 	 			// Load initial projects
+			 	 			//
+			 	 			Project.query({}, function(data){
+			 	 				$rootScope.projects = data;
+			 	 			});
+			 				$location.path("/projects"); 
+						 }
 					 }, 
-					 function errorCallback() { 
-						 $rootScope.loggedIn="no"
-						 $location.path("/"); 
+					 function errorCallback(response) {
+						 
+						 //
+						 // If we have a 401, we aren't logged in...
+						 //
+						 if (response.status === 401){
+							 $rootScope.loggedIn="no"
+							 $location.path("/"); 
+						 }
+
+						 
+						 //
+						 // If we have a 404, we're logged in, but haven't registered yet
+						 //
+						 if (response.status === 404){
+							 $rootScope.loggedIn="no"
+							 $location.path("/register");  
+						 }
 					 }				
 				);
 			}
@@ -95,7 +120,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	.config(function($routeProvider) {
 	        $routeProvider
 
-	            // Home page for login
+	            // Home page
 	            .when('/projects', {
 	                templateUrl : 'project/views/home.html',
 	                controller  : 'projectsController'
@@ -107,7 +132,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	                controller  : 'searchController'
 	            })
 				
-	            // Home page with projects list
+	            // Home page for login
 	            .when('/', {
 	                templateUrl : 'views/home.html',
 	                controller  : 'mainController'
@@ -138,9 +163,22 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				})
 								
 				// New Member Form
-				.when('/newmember/:id', {
+				.when('/project/:id/newmember', {
 	                templateUrl : 'project/views/newmember.html',
 	                controller  : 'newMemberController'				
+				})
+				
+				// New User Registration Form
+				.when('/register', {
+	                templateUrl : 'views/register.html',
+	                controller  : 'registerController'				
+				})
+				
+				
+				// Email verification
+				.when('/verify/:code', {
+	                templateUrl : 'views/verify.html',
+	                controller  : 'verifyController'				
 				})
 		
 				.otherwise({
