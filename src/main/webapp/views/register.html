@@ -1,0 +1,44 @@
+<div class="homepage">
+	<welcome></welcome>
+
+
+	<div id="ordsFormStyle" class="ordsForm">
+        <h1>Register to Use the ORDS</h1>
+        <p>Please enter your details below to register for the ORDS</p>
+        <form ng-submit="register()" name="registrationForm" id="registrationForm">
+
+			<div class="formItem">
+			    <label for="signupName">
+					Name <span class="important">*</span>
+					<span class="explanation">Your name in the form you would like it to appear within the ORDS system</span>
+				</label>
+			    <input ng-model = "user.name" ng-minlength="2" ng-maxlength="255" required type="text" id="signupName" name="signupName">
+			</div>
+			
+		    <div ng-messages="registrationForm.signupName.$error" class="formItem" role="alert">
+		      <div ng-message="required" class="alert alert-warning">You need to provide a name</div>
+		      <div ng-message="minlength" class="alert alert-warning">Your name is too short</div>
+		      <div ng-message="maxlength" class="alert alert-warning">Your name is too long</div>
+		    </div>
+
+
+			<div class="formItem">
+			    <label for="description">
+					Email address  <span class="important">*</span>
+					<span class="explanation">This is where notifications relating to your ORDS account will be sent. For members of the University of Oxford, this should normally be your Oxford email address. </span>
+				</label>
+			    <input ng-model = "user.email" required type="email" id="signupEmail" name="signupEmail">
+			</div>
+			
+		    <div ng-messages="registrationForm.signupEmail.$error" class="formItem" role="alert">
+		      <div ng-message="required" class="alert alert-warning">You need to provide an email address</div>
+		      <div ng-message="email" class="alert alert-warning">You need to provide a valid email address</div>
+		    </div>
+
+            <button name="submit" type="submit">Register</button>
+        </form>
+    </div>
+
+
+	<stats></stats>
+</div> <!-- .homepage closes -->
