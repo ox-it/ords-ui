@@ -19,11 +19,11 @@ ords.controller('newProjectController', function ($rootScope, $scope, $location,
 						$rootScope.projects = data;
 					});
 					growl.success("Project successfully created");
-					$location.path("/");
+					$location.path("/projects");
 				},
 				function(){
 					growl.error("There was a problem creating the project");
-					$location.path("/");
+					$location.path("/projects");
 				}
 			);    
 		} else {
