@@ -3,6 +3,15 @@
 var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext'])
 
 	//
+	// Setup the gettext() function
+	//
+	.run(function (gettextCatalog) {
+	    gettextCatalog.setCurrentLanguage('en');
+		//gettextCatalog.debug = true;
+		//gettextCatalog.showTranslatedMarkers = true;
+	})
+
+	//
 	// Project REST Resources
 	//
 	.factory('Project', function( $resource ) {		
@@ -21,18 +30,16 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		);
 	})
 	
-	.run(function (gettextCatalog) {
-	    gettextCatalog.setCurrentLanguage('en');
-		//gettextCatalog.debug = true;
-		//gettextCatalog.showTranslatedMarkers = true;
-	})
-	
 	.factory('Member', function( $resource, User ) {
 		
 		var Member =  $resource('/project-api/project/:id/role/:roleid', null, {'update': { method:'PUT' }});
 		
 		Member.prototype.name = "";
 		
+		//
+		// The "name" property of a Member is held by the User resource
+		// so we have to load that asynchronously from the REST API
+		//
 		Member.prototype.getName = function () {
 			
 			if (this.name !== "") return this.name;
