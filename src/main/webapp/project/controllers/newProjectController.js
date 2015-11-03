@@ -1,4 +1,4 @@
-ords.controller('newProjectController', function ($rootScope, $scope, $location, Project, AuthService, growl) {
+ords.controller('newProjectController', function ($rootScope, $scope, $location, Project, AuthService, growl, gettextCatalog) {
 	
 	//
 	// This page doesm't make sense to view
@@ -18,16 +18,20 @@ ords.controller('newProjectController', function ($rootScope, $scope, $location,
 					Project.query({}, function(data){
 						$rootScope.projects = data;
 					});
-					growl.success("Project successfully created");
+					growl.success(  gettextCatalog.getString("ProPost201") );
 					$location.path("/projects");
 				},
-				function(){
-					growl.error("There was a problem creating the project");
+				function(response){
+					
+					if (response.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };
+					if (response.status === 400){ growl.error(  gettextCatalog.getString("ProPost400") ) };
+					if (response.status === 403){ growl.error(  gettextCatalog.getString("Gen403") ) };
+					
 					$location.path("/projects");
 				}
 			);    
 		} else {
-			growl.error("The project details aren't correct; check you've provided a project name and description.");
+			growl.error(  gettextCatalog.getString("ProPost400") );
 		}
 	}
 

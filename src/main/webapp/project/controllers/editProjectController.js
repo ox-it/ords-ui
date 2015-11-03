@@ -1,4 +1,4 @@
-ords.controller('editProjectController', function ($rootScope, $scope, $location, $routeParams, AuthService, Project, growl) {
+ords.controller('editProjectController', function ($rootScope, $scope, $location, $routeParams, AuthService, Project, growl, gettextCatalog) {
 		
 	//
 	// This page doesm't make sense to view
@@ -20,17 +20,23 @@ ords.controller('editProjectController', function ($rootScope, $scope, $location
 					Project.query({}, function(data){
 						$rootScope.projects = data;
 					});
-					growl.success("Project successfully updated");
+					growl.success( gettextCatalog.getString("ProPut200") );
 					$location.path("/");
 				},
-				function(){
-					growl.error("There was a problem saving your changes to the project");
+				function(response){
+					
+					if (response.status === 400){ growl.error(  gettextCatalog.getString("ProPut400") ) };
+					if (response.status === 403){ growl.error(  gettextCatalog.getString("Gen403") ) };
+					if (response.status === 404){ growl.error(  gettextCatalog.getString("ProPut404") ) };
+					if (response.status === 410){ growl.error(  gettextCatalog.getString("Gen410") ) };
+					if (response.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };
+					
 					$location.path("/");
 				}
 		
 			);
 		} else {
-			growl.error("The project details aren't correct; check you've provided a project name and description.")
+			growl.error( gettextCatalog.getString("ProPut400"))
 		}
 	}
 });
