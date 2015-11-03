@@ -21,10 +21,26 @@ msgstr "The project you are trying to work with has been deleted. To restore the
 msgid "Gen500"
 msgstr "Internal problem while performing this action - please contact support.".
 
-#
-# User Verification
-#
+msgid "Gen401"
+msgstr "Your session has expired. Please log in again." 
 
+#
+# User Registration
+#
+msgid "UserPost200"
+msgstr "You have successfully registered to use the ORDS. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message." 
+
+msgid "UserPost400"
+msgstr "Problem occurred during registration." 
+
+msgid "UserPost409"
+msgstr ""
+"There was a problem with your registration details"
+"There is already a registered user with the email address %s."
+
+#
+# User Email Verification
+#
 msgid "Verify200"
 msgstr "Thanks for confirming your email address. You can now use the ORDS" 
 
@@ -63,13 +79,13 @@ msgstr "Unable to find original project in the database - please contact support
 # Delete
 
 msgid "ProDelete200"
-msgstr "Project deleted." 
+msgstr "Project deleted successfully." 
 
 msgid "ProDelete400"
-msgstr "There was a problem deleting the project." 
+msgstr "Unable to delete project." 
 
 msgid "ProDelete404"
-msgstr "There was a problem deleting the project as it couldn't be found." 
+msgstr "Unable to find the project to delete it." 
 
 msgid "ProDelete410"
 msgstr "The project had already been deleted." 
@@ -465,65 +481,9 @@ msgid "Uti003"
 msgstr ""
 "There has been a problem preparing the data." 
 
-msgid "Fpg001"
-msgstr ""
-"Sorry - I don't understand that request. Please try something different." 
-"This is likely a coding error."
-
-msgid "Fpg002"
-msgstr ""
-"You are not authorised to do that." 
-"The action you have just tried to perform requires a higher permission level than the one you currently have for this project."
-"If you believe you should be able to perform this action, please contact the project owner to discuss adjusting your permissions."
-
-msgid "Fpg003"
-msgstr "An unknown error occurred while trying to perform that action."
-
-msgid "Fpg004"
-msgstr "Your session has expired. Please log in again." 
 
 msgid "Fpc001"
 msgstr "Unknown user." 
-
-msgid "Fpc002"
-msgstr "Internal problem accessing resources." 
-
-msgid "Fpc003"
-msgstr "Internal problem accessing project details." 
-
-msgid "Fpc004"
-msgstr "Unable to find the project to delete it." 
-
-msgid "Fpc005"
-msgstr "Project deleted successfully." 
-
-msgid "Fpc006"
-msgstr "Unable to delete project." 
-
-msgid "Fpl001"
-msgstr "Problem occurred during registration." 
-
-msgid "Fpl002"
-msgstr ""
-"You have successfully registered to use the ORDS. An email has been sent to the address you supplied." 
-"Please verify your account by clicking the link in this message." 
-
-msgid "Fpl003"
-msgstr ""
-"There was a problem with your registration details"
-"There is already a registered user with the email address %s."
-
-msgid "Fpp001"
-msgstr ""
-"Unknown user. Are you sure you have registered?" 
-
-msgid "Fpp002"
-msgstr ""
-"Project created successfully." 
-
-msgid "Fpp003"
-msgstr ""
-"Internal error creating project." 
 
 msgid "Fpp001"
 msgstr ""
@@ -532,7 +492,6 @@ msgstr ""
 msgid "Fpp005"
 msgstr ""
 "You have not yet verified your email address. A new email has been sent to you." 
-
 
 msgid "Rst001"
 msgstr ""

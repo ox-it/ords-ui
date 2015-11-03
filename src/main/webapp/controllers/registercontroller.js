@@ -1,4 +1,4 @@
-ords.controller('registerController', function($rootScope, $scope, $location, User, growl) {
+ords.controller('registerController', function($rootScope, $scope, $location, User, growl, gettextCatalog) {
 	
 	//
 	// Submit fields in new project form to create a new project
@@ -8,11 +8,16 @@ ords.controller('registerController', function($rootScope, $scope, $location, Us
 			User.save(
 			    $scope.user,
 				function(){
-					growl.success("Registration submitted - check your email for your verification link");
+					growl.success( gettextCatalog.getString("UserPost200") );
 					$location.path("/");
 				},
-				function(){
-					growl.error("There was a problem with your registration");
+				function(response){
+					
+					if (response.status === 400) { growl.error( gettextCatalog.getString("UserPost400") ) };
+					if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
+					if (response.status === 409) { growl.error( gettextCatalog.getString("UserPost409") ) };
+					if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
+					
 					$location.path("/");
 				}
 			);    
