@@ -9,6 +9,9 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 	//
 	AuthService.check();
 	
+	//
+	// Process a request to remove a project member
+	//
 	$scope.removeMember = function(id){
 		Member.delete({ id: $routeParams.id, roleid: id},
 			function(){
@@ -27,7 +30,13 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 
 	}
 	
+	//
+	// Get the current Project
+	//
 	$scope.project = Project.get({ id: $routeParams.id });
 	
+	//
+	// Get the Members of the current Project
+	//
 	$scope.members = Member.query({ id: $routeParams.id });
 });

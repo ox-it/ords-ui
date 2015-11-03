@@ -9,6 +9,9 @@ ords.controller('projectsController', function ($rootScope, $scope, AuthService,
 	//
 	AuthService.check();
 	
+	//
+	// Process a request to Delete a Project
+	//
 	$scope.delete = function(id){
 		Project.delete(
 			{id: id},
@@ -27,9 +30,21 @@ ords.controller('projectsController', function ($rootScope, $scope, AuthService,
 
 	}
 	
+	//
+	// Get the current user's Projects
+	//
 	$scope.refresh = function(){
 		Project.query({}, function(data){
 			$rootScope.projects = data;
 		});
 	};
+	
+	//
+	// If the user navigates directly to this page, we may
+	// not already have a list of projects, so we need to 
+	// fetch them.
+	//
+	if ($rootScope.projects == null){
+		$scope.refresh();
+	}
 });

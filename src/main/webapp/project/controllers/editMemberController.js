@@ -9,9 +9,19 @@ ords.controller('editMemberController', function ($scope, $location, $routeParam
 	//
 	AuthService.check();
 	
+	//
+	// Get the current Project
+	//
 	$scope.project = Project.get({ id: $routeParams.projectId });
+	
+	//
+	// Get the current Member
+	//
 	$scope.member = Member.get({ id: $routeParams.projectId, roleid: $routeParams.memberId });
 	
+	//
+	// Process the PUT to modify the Member
+	//
 	$scope.editMember = function(){
 		Member.update(
 			{id:$scope.project.projectId, roleid: $scope.member.id},
