@@ -8,7 +8,7 @@
             
         <a class="button create" href="#/newproject"> Create new project</a>
     
-        <div class="panel project" ng-repeat="project in projects | orderBy:'name' track by project.projectId ">
+        <div class="panel project"  dir-paginate="project in projects | orderBy:'name' | itemsPerPage: 5  track by project.projectId ">
             <h4>
                 <a href="#/project/{{project.projectId}}">{{project.name}}</a>
             </h4>
@@ -23,6 +23,8 @@
                 <div class="clear"></div>
             </div><!-- .project closes -->
             <br>
-        </div>
+        </div>		
 	</div>
+	<div ng-show="projects.$resolved"><dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls></div>
+	
 </div>
