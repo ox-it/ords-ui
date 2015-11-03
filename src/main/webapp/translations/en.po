@@ -22,6 +22,16 @@ msgid "Gen500"
 msgstr "Internal problem while performing this action - please contact support.".
 
 #
+# User Verification
+#
+
+msgid "Verify200"
+msgstr "Thanks for confirming your email address. You can now use the ORDS" 
+
+msgid "Verify400"
+msgstr "There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+
+#
 # Project REST actions - messages
 #
 
