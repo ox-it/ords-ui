@@ -1,6 +1,6 @@
 'use strict';
 
-var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination'])
+var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext'])
 
 	//
 	// Project REST Resources
@@ -19,6 +19,12 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 			null,
 			{'lookup': { method: 'GET'}}
 		);
+	})
+	
+	.run(function (gettextCatalog) {
+	    gettextCatalog.setCurrentLanguage('en');
+		//gettextCatalog.debug = true;
+		//gettextCatalog.showTranslatedMarkers = true;
 	})
 	
 	.factory('Member', function( $resource, User ) {
@@ -110,7 +116,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	// Configure alerts
 	//
 	.config(['growlProvider', function(growlProvider) {
-	  growlProvider.globalTimeToLive(5000);
+	  growlProvider.globalTimeToLive(10000);
 	  growlProvider.globalDisableCountDown(true);
 	}])
 
@@ -187,6 +193,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		
 				;
 	    })
+	
 ;
 
 
