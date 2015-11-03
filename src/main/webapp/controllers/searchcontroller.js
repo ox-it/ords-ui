@@ -2,6 +2,9 @@
 
 ords.controller('searchController', function ($scope, $location, Project, User) {
 	
+	//
+	// Search for projects
+	//
 	$scope.search = function(){
 		$scope.results = Project.query({ q: $scope.searchForm.query.$modelValue },
 			function(){
