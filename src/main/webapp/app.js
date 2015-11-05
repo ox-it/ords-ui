@@ -21,6 +21,10 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 			{'update': { method:'PUT' }}
 		)
 	})
+	
+	.factory('Statistics', function( $resource ) {		
+		return $resource('/api/1.0/statistics')
+	})
 
 	.factory('User', function( $resource ) {
 		return $resource(
