@@ -17,7 +17,7 @@
                     {{project.description}}
                 </div><!-- .inner-child closes -->
                 <div class="project-piece actions">
-					<a ng-show="project.canEdit" class="button create" href="#/editproject/{{project.projectId}}">Edit</a>
+					<a ng-show="project.canEdit" class="button create" href="#/project/{{project.projectId}}/edit">Edit</a>
 					<a ng-show="project.canDelete" class="button delete" ng-really-message="Are you sure you want to delete this project?" ng-really-click="delete(project.projectId)">Delete</a>
                 </div><!-- .project-piece actions closes -->
                 <div class="clear"></div>

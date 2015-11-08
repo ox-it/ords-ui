@@ -21,7 +21,7 @@ ords.controller('editProjectController', function ($rootScope, $scope, $location
 						$rootScope.projects = data;
 					});
 					growl.success( gettextCatalog.getString("ProPut200") );
-					$location.path("/");
+					$location.path("/project/"+$scope.project.projectId);
 				},
 				function(response){
 					

@@ -25,6 +25,10 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	.factory('Statistics', function( $resource ) {		
 		return $resource('/api/1.0/statistics')
 	})
+	
+	.factory('Audit', function( $resource ) {		
+		return $resource('/api/1.0/audit/project/:id')
+	})
 
 	.factory('User', function( $resource ) {
 		return $resource(
@@ -168,9 +172,15 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				})
 				
 	            // Edit Project Details
-	            .when('/editproject/:id', {
+	            .when('/project/:id/edit', {
 	                templateUrl : 'project/views/editproject.html',
 	                controller  : 'editProjectController'
+	            })
+				
+	            // Project Audit
+	            .when('/project/:id/audit', {
+	                templateUrl : 'project/views/audit.html',
+	                controller  : 'auditController'
 	            })
 
 				// Edit Member Form

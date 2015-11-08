@@ -1,0 +1,35 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<span class="breadcrumbs youarehere">Audit</span>
+</div>
+
+<h1>Project: {{project.name}}</h1>
+
+<p>{{project.description}}</p>
+
+<div class="informationBubble">
+	    <table>
+			
+		<thead>
+		    <tr>
+		        <th>Audit Operation</th>
+		        <th>Time</th>
+		        <th>Actor</th>
+		        <th>Message</th>
+		    </tr>
+		</thead>     
+
+		<tbody ng-show="audits.$resolved">
+			<tr dir-paginate="audit in audits | orderBy:'auditId' | itemsPerPage: 20  track by audit.auditId ">
+			    <td>{{audit.auditType}}</td>
+			    <td>{{audit.timeOfOperation | date:'medium'}}</td>
+			    <td>{{audit.userId}}</td>
+			    <td>{{audit.message}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div ng-show="projects.$resolved"><dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls></div>
+	
+</div>
