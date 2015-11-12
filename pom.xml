@@ -19,7 +19,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>OrdsUI</finalName>
+    <finalName>app</finalName>
   </build>
   <artifactId>ui</artifactId>
   <name>ords-ui</name>
