@@ -122,6 +122,14 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 						 }
 					 }				
 				);
+			} else {	
+				//
+				// If we are already logged in, bypass the front page and
+				// view the projects page
+				//
+				if ($location.path() === "/"){
+					$location.path("/projects"); 
+				}
 			}
 		};
 		return svc;
