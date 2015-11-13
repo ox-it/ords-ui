@@ -16,7 +16,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	//
 	.factory('Project', function( $resource ) {		
 		return $resource(
-			'/project-api/project/:id/', 
+			'/api/1.0/project/:id/', 
 			null,
 			{'update': { method:'PUT' }}
 		)
