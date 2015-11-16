@@ -1,0 +1,62 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<span class="breadcrumbs youarehere">Add member</span>
+</div>
+
+<h1>Add New Member to Project</h1>
+
+<p>All project members are able to view and query data within the project. Depending on the role assigned to them, members may also be able to create, edit, and delete databases, and change the role of other members.</p>
+
+<div class="message" ng-show="isInvite">
+    This email address isn't currently registered with ORDS. Would you like to send the user an invitation to register?
+</div>
+<div class="message" ng-show="isInvite">
+ If you believe that this user is already registered with ORDS, please check that the email address is the one used when registering. (Some users may have multiple addresses or aliases - a departmental address and a college one, for example.) If the problem persists, please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
+</div>
+
+<form class="process" ng-submit="newMember()" ng-hide="isInvite">
+		
+	<div class="formItem">
+	    <label for="addNewUserFormEmail">Email address  <span class="important">*</span><span class="small">Please use the address that the new project member used when registering with ORDS. If you add someone who has not yet registered, you will be able to invite them to join ORDS.</span></label>
+	    <input type="text" ng-model = "member.principalName" id="addNewUserFormEmail" name="addNewUserFormEmail" value="">
+	</div>
+	
+	<div class="formItem">
+	    <label for="editableRoleList">Required role<span class="small">Please specify the new permission level for this member <br> 
+			<a href="http://help.it.ox.ac.uk/research/ords/howto02#ORDS-roles" target="_blank">More information about ORDS roles</a></span></label>
+	    <select ng-model = "member.role" name="editableRoleList" id="editableRoleList"> 
+	        <option value="viewer">Viewer</option> 
+	        <option value="contributor">Contributor</option> 
+	        <option value="projectadministrator">Project Administrator</option> 
+	    </select>
+	</div>
+		
+    <div class="form-buttons">
+        <button name="cancel" type="submit">Cancel</button>
+        <button name="submit" class="go-go-go" type="submit">Save changes</button>
+    </div>
+</form>
+
+<form class="process" ng-submit="newInvitation()" ng-show="isInvite">
+	
+	<div class="formItem">
+	    <label for="addNewUserFormEmail">Email address  <span class="important">*</span><span class="small">Please use the address that the new project member used when registering with ORDS. If you add someone who has not yet registered, you will be able to invite them to join ORDS.</span></label>
+	    <input type="text" ng-model = "invitation.principalName" id="addNewUserFormEmail" name="addNewUserFormEmail" value="">
+	</div>
+	
+	<div class="formItem">
+	    <label for="editableRoleList">Required role<span class="small">Please specify the new permission level for this member <br> 
+			<a href="http://help.it.ox.ac.uk/research/ords/howto02#ORDS-roles" target="_blank">More information about ORDS roles</a></span></label>
+	    <select ng-model = "invitation.roleRequired" name="editableRoleList" id="editableRoleList"> 
+	        <option value="viewer">Viewer</option> 
+	        <option value="contributor">Contributor</option> 
+	        <option value="projectadministrator">Project Administrator</option> 
+	    </select>
+	</div>
+
+    <div class="form-buttons">
+        <button name="cancel" type="submit">Cancel</button>
+        <button name="submit" class="go-go-go" type="submit">Save changes</button>
+    </div>
+</form>
