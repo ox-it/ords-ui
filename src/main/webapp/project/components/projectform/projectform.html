@@ -5,11 +5,11 @@
     <input ng-model="project.name" ng-minlength="2" ng-maxlength="255" required type="text" id="projectName" name="projectName" property="projectName">
 </div>
 
-    <div ng-messages="projectForm.projectName.$error" class="formItem" role="alert">
-      <div ng-message="required" class="alert alert-warning">You did not enter a name for the project</div>
-      <div ng-message="minlength" class="alert alert-warning">Your project name is too short</div>
-      <div ng-message="maxlength" class="alert alert-warning">Your project name is too long</div>
-    </div>
+<div ng-messages="projectForm.projectName.$error" class="formItem" role="alert">
+  <div ng-message="required" class="alert alert-warning">You did not enter a name for the project</div>
+  <div ng-message="minlength" class="alert alert-warning">Your project name is too short</div>
+  <div ng-message="maxlength" class="alert alert-warning">Your project name is too long</div>
+</div>
 
 
 <div class="formItem">
@@ -17,6 +17,9 @@
     <textarea ng-model="project.description" required rows="5" id="description" name="description"></textarea>
 </div>
 
+<div ng-messages="projectForm.description.$error" class="formItem" role="alert">
+  <div ng-message="required" class="alert alert-warning">You must provide a description</div>
+</div>
 
 <div class="formItem">
     <label for="startDate">Start date<span class="explanation">The date the project started</span></label>
