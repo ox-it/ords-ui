@@ -30,6 +30,10 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		return $resource('/api/1.0/audit/project/:id')
 	})
 
+	.factory('Invitation', function( $resource ) {		
+		return $resource('/api/1.0/project/:id/invitation/:inviteId')
+	})
+
 	.factory('User', function( $resource ) {
 		return $resource(
 			'/api/1.0/user/:id',
@@ -43,7 +47,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	
 	.factory('Member', function( $resource, User ) {
 		
-		var Member =  $resource('/project-api/project/:id/role/:roleid', null, {'update': { method:'PUT' }});
+		var Member =  $resource('/api/1.0/project/:id/role/:roleid', null, {'update': { method:'PUT' }});
 		
 		Member.prototype.name = "";
 		
@@ -87,7 +91,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	//
 	// Service that checks if user is currently authenticated
 	//
-	.factory('AuthService', function ($rootScope, $location, User, Project){
+	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project){
 		var svc = {};
 		svc.check = function(){
 			if ($rootScope.loggedIn !== "yes"){
@@ -111,7 +115,7 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 						 // If we have a 401, we aren't logged in...
 						 //
 						 if (response.status === 401){
-							 $rootScope.loggedIn="no"
+							 $rootScope.loggedIn="no";
 							 $location.path("/"); 
 						 }
 
@@ -120,8 +124,10 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 						 // If we have a 404, we're logged in, but haven't registered yet
 						 //
 						 if (response.status === 404){
-							 $rootScope.loggedIn="no"
-							 $location.path("/register");  
+							 $rootScope.loggedIn="no";
+							 if (!$routeParams.code){
+ 							 	$location.path("/register");  							 	
+							 }
 						 }
 					 }				
 				);
@@ -223,6 +229,12 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				.when('/verify/:code', {
 	                templateUrl : 'views/verify.html',
 	                controller  : 'verifyController'				
+				})
+				
+				// Invite code verification
+				.when('/invite/:code', {
+	                templateUrl : 'views/invite.html',
+	                controller  : 'inviteController'				
 				})
 		
 				.otherwise({
