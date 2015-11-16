@@ -32,9 +32,12 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 
 	.factory('User', function( $resource ) {
 		return $resource(
-			'/api/1.0/user/',
+			'/api/1.0/user/:id',
 			null,
-			{'lookup': { method: 'GET'}}
+			{
+				'lookup': { method: 'GET' },
+			 	'update': { method: 'PUT' }
+		 	}
 		);
 	})
 	
@@ -165,6 +168,12 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	            .when('/', {
 	                templateUrl : 'views/home.html',
 	                controller  : 'mainController'
+	            })
+				
+	            // User page 
+	            .when('/profile', {
+	                templateUrl : 'views/profile.html',
+	                controller  : 'profileController'
 	            })
 
 	            // Project Details

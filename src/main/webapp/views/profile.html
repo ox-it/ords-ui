@@ -1,0 +1,75 @@
+<h1>User Preferences for {{user.name}}</h1>
+
+<div id="ordsFormStyle" class="ordsForm">
+	<form ng-submit="updateProfile()" name="profileForm" id="profileForm">
+		
+	    <div class="formItem">
+	        <label for="username">Your name in the form you would like it to appear within the ORDS system <span class="important">*</span></label>
+	        <input type="text" ng-minlength="2" ng-maxlength="200" required id="username" name="username" ng-model="user.name">
+	    </div>
+		
+	    <div ng-messages="profileForm.username.$error" class="formItem" role="alert">
+	      <div ng-message="required" class="alert alert-warning">You must provide a name</div>
+	      <div ng-message="minlength" class="alert alert-warning">Your name is too short</div>
+	      <div ng-message="maxlength" class="alert alert-warning">Your name is too long</div>
+	    </div>
+		
+	    <div class="formItem">
+	        <label for="emailAddress">Email address  <span class="important">*</span></label>
+	        <input type="email" required id="emailAddress" name="emailAddress" ng-model="user.email">
+	    </div>
+		
+	    <div ng-messages="profileForm.emailAddress.$error" class="formItem" role="alert">
+		      <div ng-message="required" class="alert alert-warning">You need to provide an email address</div>
+		      <div ng-message="email" class="alert alert-warning">You need to provide a valid email address</div>
+	    </div>
+		
+        <div class="formItem">
+            <label for="addip">Add your current IP address for ODBC access</label>
+            <input type="checkbox" name="addip" id="addip" value="">
+        </div>
+        
+        <div class="formItem">
+            <label for="odbcpassword">Change ODBC Password </label>
+            <input type="password" id="odbcpassword" name="odbcpassword">
+        </div>
+        
+        <div class="formItem">
+            <label for="odbcpasswordconfirm">Confirm ODBC Password </label>
+            <input type="password" id="confirmodbcpassword" name="confirmodbcpassword">
+        </div>
+    
+	    <button name="submit" type="submit">Save changes</button>
+	</form>
+<div>
+	
+    <h2>ODBC</h2>
+    <p>If ODBC access is enabled, it is possible for project members to view, edit, and query project data via an ODBC (Open Database Connectivity) connection. This allows users to access data stored in the ORDS via another database application (Microsoft Access, for example), or via a custom-built Web front-end. This can provide a way of combining the advantages of multiple systems. </p><p> For more information about the ORDS and ODBC connections, visit the <a href="http://help.it.ox.ac.uk/research/ords/odbc" target="_blank">IT Services help site</a>. If you need help setting up an ODBC connection, please contact the ORDS help desk by emailing <a href="mailto:ords@it.ox.ac.uk?Subject=ODBC%20connections%20in%20ORDS">ords@it.ox.ac.uk</a>.</p><p>When creating an ODBC connection using an external client, you need to ensure that SSL is set to allow (i.e. on). Your username is displayed below and your password may be reset on this page if you don't know it.</p>
+    
+        
+    <h3>ODBC Connection Information</h3>
+    <p><label>ODBC Connection userid: {{user.odbcuser}}</label></p>
+    <p>Please note that your ODBC username is based on your registered email address without any non alpha-numeric characters</p>
+    <table>
+        <tbody><tr>
+            <th style="width: 200px">Project Name</th>
+            <th style="width: 200px">Server</th>
+            <th style="width: 200px">Port</th>
+            <th style="width: 200px">ORDS Name : Database Name</th>
+        </tr>
+        
+        <tr>
+            <td>{{project.name}</td>
+            <td>ODBC access not allowed for this project</td>
+            
+        </tr>
+        
+        <tr>
+            <td>TEST - 19thC Professions</td>
+            <td>ords-application-database-04.ords.ox.ac.uk</td>
+            <td>5432</td>
+            <td></td>
+            
+        </tr>
+    </tbody>
+</table>

@@ -34,9 +34,7 @@ msgid "UserPost400"
 msgstr "Problem occurred during registration." 
 
 msgid "UserPost409"
-msgstr ""
-"There was a problem with your registration details"
-"There is already a registered user with the email address %s."
+msgstr "There was a problem with your registration details: there is already a registered user with the email address %s."
 
 #
 # User Email Verification
@@ -46,6 +44,15 @@ msgstr "Thanks for confirming your email address. You can now use the ORDS"
 
 msgid "Verify400"
 msgstr "There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+
+#
+# User Profile
+#
+msgid "UserPut200"
+msgstr "Profile updated." 
+
+msgid "UserPut400"
+msgstr "A problem occurred while updating your profile - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
 
 #
 # Project REST actions - messages
@@ -115,6 +122,9 @@ msgstr "There was a problem removing this project member"
 
 msgid "MemDelete404"
 msgstr "Unable to remove member as unable to find in database - please contact support." 
+
+msgid "MemDelete403"
+msgstr "You are not authorised to remove the user for this project." 
 
 #
 # Project Upgrade Actions
@@ -272,12 +282,6 @@ msgid "Con016"
 msgstr ""
 "ORDS could not find the database to delete it." 
 "ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
-
-msgid "Con017"
-msgstr "The user was successfully removed." 
-
-msgid "Con018"
-msgstr "You are not authorised to remove the user for this project." 
 
 msgid "Con019"
 msgstr "Unable to delete database." 
