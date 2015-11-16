@@ -1,8 +1,5 @@
 ords.controller('registerController', function($rootScope, $scope, $location, User, growl, gettextCatalog) {
 	
-	//
-	// Submit fields in new project form to create a new project
-	//
 	$scope.register=function(){
 		if ($scope.registrationForm.$valid) {
 			User.save(
