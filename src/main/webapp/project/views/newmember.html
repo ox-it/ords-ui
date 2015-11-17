@@ -42,7 +42,7 @@
 	
 	<div class="formItem">
 	    <label for="addNewUserFormEmail">Email address  <span class="important">*</span><span class="small">Please use the address that the new project member used when registering with ORDS. If you add someone who has not yet registered, you will be able to invite them to join ORDS.</span></label>
-	    <input type="text" ng-model = "invitation.principalName" id="addNewUserFormEmail" name="addNewUserFormEmail" value="">
+	    <input type="text" ng-model = "invitation.email" id="addNewUserFormEmail" name="addNewUserFormEmail" value="">
 	</div>
 	
 	<div class="formItem">
@@ -57,6 +57,6 @@
 
     <div class="form-buttons">
         <button name="cancel" type="submit">Cancel</button>
-        <button name="submit" class="go-go-go" type="submit">Save changes</button>
+        <button name="submit" class="go-go-go" type="submit">Send Invitation</button>
     </div>
 </form>
