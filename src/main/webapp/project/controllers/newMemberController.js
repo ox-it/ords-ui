@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('newMemberController', function ($scope, $location, $routeParams, AuthService, Project, User, Member, growl, gettextCatalog, Invitation) {
+ords.controller('newMemberController', function ($rootScope, $scope, $location, $routeParams, AuthService, Project, User, Member, growl, gettextCatalog, Invitation) {
 	
 	//
 	// This page doesm't make sense to view
@@ -23,10 +23,7 @@ ords.controller('newMemberController', function ($scope, $location, $routeParams
 	// Process the POST to create the Member
 	//
 	$scope.newMember = function(){
-		
-		console.log("newMember called");
-		
-		
+				
 		//
 		// Check the user specified exists - if not, we want to show the Invite page instead
 		//
@@ -38,7 +35,8 @@ ords.controller('newMemberController', function ($scope, $location, $routeParams
 			function(response){
 				if (response.status === 404){
 					$scope.isInvite = true;
-					$scope.invitation = $scope.member;
+					$scope.invitation = {};
+					$scope.invitation.email = $scope.member.principalName;
 					$scope.invitation.roleRequired = $scope.member.role;
 				}
 			}
@@ -47,24 +45,25 @@ ords.controller('newMemberController', function ($scope, $location, $routeParams
 
 	}
 	
+	//
+	// Actually add the member to the project
+	//
 	$scope.createNewMember = function(){
-		
-		console.log("createNewMember called");
-		
+				
 		Member.save(
 			{
 				id:$scope.project.projectId
 			},
 			$scope.member,
 			function(){
-				growl.success( gettextCatalog.getString("MemPut200") );
+				growl.success( gettextCatalog.getString("MemPost200") );
 				$location.path("#/project/"+$scope.project.projectId);
 			},
 			function(response){
 				
-				if (response.status === 400) { growl.error( gettextCatalog.getString("MemPut400") ) };
+				if (response.status === 400) { growl.error( gettextCatalog.getString("MemPost400") ) };
 				if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
-				if (response.status === 404) { growl.error( gettextCatalog.getString("MemPut404") ) };
+				if (response.status === 404) { growl.error( gettextCatalog.getString("MemPost404") ) };
 				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };
 				if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 				
@@ -74,10 +73,13 @@ ords.controller('newMemberController', function ($scope, $location, $routeParams
 		);
 	}
 	
+	//
+	// Create a new invitation request
+	//
 	$scope.newInvitation = function(){
-		console.log("newInvite called");
 		
 		$scope.invitation.projectId = $scope.project.projectId;
+		$scope.invitation.sender = $rootScope.user.name;
 		
 		Invitation.save(
 			{
