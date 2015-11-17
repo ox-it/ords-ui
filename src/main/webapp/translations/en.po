@@ -101,6 +101,17 @@ msgstr "The project had already been deleted."
 # Project Member REST actions - messages
 #
 
+# Create
+
+msgid "MemPost200"
+msgstr "The user has been added to the project"
+
+msgid "MemPost400"
+msgstr "Unable to add member."
+
+msgid "MemPost404"
+msgstr "Unable to find original project in the database - please contact support." 
+
 # Update
 
 msgid "MemPut200"
@@ -148,6 +159,18 @@ msgid "Pro011"
 msgstr "A project with this name already exists. Pick a different name."
 
 #
+# Invites
+#
+msgid "InvPost200"
+msgstr "ORDS has sent an invitation to this email address."
+
+msgid "InvPost400"
+msgstr "ORDS was unable to send an invitation to this email address."
+
+msgid "InvPost404"
+msgstr "ORDS was unable to send an invitation to this email address."
+
+#
 # Other Project Messages
 #
 msgid "Pro010"
@@ -161,9 +184,6 @@ msgstr "This email address isn't currently registered with ORDS. Would you like 
 
 msgid "Pro018"
 msgstr "Unable to comply. Perhaps this user is already associated with the project?"
-
-msgid "Pro022"
-msgstr "ORDS has sent an invitation to this email address." 
 
 msgid "Pro023"
 msgstr "There has been a problem with your request. Please ensure the email you specified is valid, and if the problem persists then contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
