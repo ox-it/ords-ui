@@ -15,13 +15,19 @@
             <div class="inner-child">
                 <div class="project-piece description">
                     {{project.description}}
-                </div><!-- .inner-child closes -->
+                </div>
+				
+                <div ng-show="{{project.trialProject}}" class="project-piece description">
+                    This is a trial project. 
+                </div>
+				
+				
                 <div class="project-piece actions">
 					<a ng-show="project.canEdit" class="button create" href="#/project/{{project.projectId}}/edit">Edit</a>
 					<a ng-show="project.canDelete" class="button delete" ng-really-message="Are you sure you want to delete this project?" ng-really-click="delete(project.projectId)">Delete</a>
                 </div><!-- .project-piece actions closes -->
                 <div class="clear"></div>
-            </div><!-- .project closes -->
+            </div>
             <br>
         </div>		
 	</div>
