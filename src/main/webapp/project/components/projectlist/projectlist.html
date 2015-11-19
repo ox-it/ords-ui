@@ -7,7 +7,7 @@
         <h3>You are involved in {{projects.length}} projects</h3>
             
         <a class="button create" href="#/newproject"> Create new project</a>
-    
+    	<p class="panel"></p>
         <div class="panel project"  dir-paginate="project in projects | orderBy:'name' | itemsPerPage: 5  track by project.projectId ">
             <h4>
                 <a href="#/project/{{project.projectId}}">{{project.name}}</a>
