@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('projectController', function ($scope, $routeParams, AuthService, Project, User, Member, growl, gettextCatalog) {
+ords.controller('projectController', function ($scope, $routeParams, AuthService, Project, ProjectDatabase, Group, User, Member, growl, gettextCatalog) {
 	
 	//
 	// This page doesm't make sense to view
@@ -39,4 +39,23 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 	// Get the Members of the current Project
 	//
 	$scope.members = Member.query({ id: $routeParams.id });
+	
+	//
+	// Get the Databases of the current Project
+	//
+	$scope.databases = [];
+	ProjectDatabase.query(
+		{ id: $routeParams.id },
+		function(response){
+
+			for (var i = 0; i < response.length; i++){
+				//
+				// Add the ProjectDatabase to scope
+				//
+				var database = response[i];			
+				database.db = Group.get({id: database.databaseId});
+				$scope.databases.push(database);
+			}
+		}
+	);
 });
