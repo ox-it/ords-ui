@@ -43,8 +43,7 @@
     <input ng-model="project.odbc" type="checkbox" name="odbcSet" id="odbcSet" value="odbc">
 </div>
             <div class="form-buttons">
-                <button name="cancel" type="submit">Cancel</button>
-                
+                    <button name="cancel" type="submit" ng-click="#/projects/">Cancel</button>
                     <button name="submit" type="submit" ng-disabled="projectForm.$invalid">Save</button>
                 
             </div>
