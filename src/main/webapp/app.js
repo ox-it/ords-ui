@@ -26,6 +26,18 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		return $resource('/api/1.0/statistics')
 	})
 	
+	.factory('Group', function( $resource ) {		
+		return $resource('/api/1.0/group/group/:id/')
+	})
+	
+	.factory('Databases', function( $resource ) {		
+		return $resource('/api/1.0/group/group/:id/database')
+	})
+	
+	.factory('ProjectDatabase', function( $resource ) {		
+		return $resource('/api/1.0/project/:id/database/:databaseId')
+	})
+	
 	.factory('Audit', function( $resource ) {		
 		return $resource('/api/1.0/audit/project/:id')
 	})
@@ -217,6 +229,19 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	                templateUrl : 'project/views/newmember.html',
 	                controller  : 'newMemberController'				
 				})
+				
+				// New Database
+				.when('/project/:id/newdatabase', {
+	                templateUrl : 'project/views/newdatabase.html',
+	                controller  : 'newDatabaseController'				
+				})
+				
+				//  Database Page
+				.when('/project/:id/:databaseId', {
+	                templateUrl : 'database/views/database.html',
+	                controller  : 'databaseController'				
+				})
+				
 				
 				// New User Registration Form
 				.when('/register', {
