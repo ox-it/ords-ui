@@ -3,17 +3,13 @@
 	    <tr>
 	        <th>Name </th>
 	        <th>Description</th>
-	        <th>No. of database versions</th>
-	        <th>Data Integrity</th>
 	    </tr>
 	</thead>
 
 	<tbody>
 		<tr ng-repeat="database in databases">
-		    <td>{{database.name}}</td>
-		    <td>{{database.description}}</td>
-		    <td>{{database.versions}}</td>
-		    <td>{{database.integrity}}</td>
+		    <td><a href="#/project/{{project.projectId}}/{{database.projectDatabaseId}}">{{database.db.dbName}}</a></td>
+		    <td>{{database.db.dbDescription}}</td>
 		</tr>
 	</tbody>
 </table>
