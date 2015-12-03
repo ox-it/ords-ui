@@ -8,8 +8,8 @@
 
 	<tbody>
 		<tr ng-repeat="database in databases">
-		    <td><a href="#/project/{{project.projectId}}/{{database.projectDatabaseId}}">{{database.db.dbName}}</a></td>
-		    <td>{{database.db.dbDescription}}</td>
+		    <td><a href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}">{{database.dbName}}</a></td>
+		    <td>{{database.dbDescription}}</td>
 		</tr>
 	</tbody>
 </table>

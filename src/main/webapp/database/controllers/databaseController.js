@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, Group, ProjectDatabase, Databases, User, growl, gettextCatalog) {
+ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, ProjectDatabase, User, growl, gettextCatalog) {
 	
 	//
 	// This page doesn't make sense to view
@@ -14,71 +14,51 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	// Get the current Project
 	//
 	$scope.project = Project.get({ id: $routeParams.id });
-
-	//
-	// Get the current "Database"
-	//
-	//$scope.group = Group.get({ id: $routeParams.databaseId})
 	
 	//
-	// Get the project database
-	//
+	// Get the Project Database
+	//	
 	ProjectDatabase.get(
 		{id:$routeParams.id, databaseId: $routeParams.databaseId },
-		function(response){
+		function(response){	
+			$scope.database = response;
+			//
+			// Physical Databases
+			//					
+			for (var i = 0; i < $scope.database.databaseVersions.length; i++){
+				
+				//
+				// MAIN
+				//
+				if ($scope.database.databaseVersions[i].databaseType === "MAIN"){
+					$scope.main = $scope.database.databaseVersions[i];
+				}
+	
+				//
+				// MILESTONE
+				//
+				if ($scope.database.databaseVersions[i].databaseType === "MILESTONE"){
+					$scope.milestone = $scope.database.databaseVersions[i];
+				}
+	
+				//
+				// TEST
+				//
+				if ($scope.database.databaseVersions[i].databaseType === "TEST"){
+					$scope.test = $scope.database.databaseVersions[i];
+				}
+			}
+			
 			
 			//
-			// Logical Database (Group)
+			// Indicate everything is now loaded
 			//
-			$scope.group = Group.get(
-				{id: response.databaseId},
-				function(response){
-					
-					//
-					// Physical Databases
-					//
-					$scope.databases = Databases.query(
-						{id: response.logicalDatabaseId},
-						function(response){							
-							for (var i = 0; i < $scope.databases.length; i++){
-								
-								//
-								// MAIN
-								//
-								if ($scope.databases[i].databaseType === "MAIN"){
-									$scope.main = $scope.databases[i];
-								}
-					
-								//
-								// MILESTONE
-								//
-								if ($scope.databases[i].databaseType === "MILESTONE"){
-									$scope.milestone = $scope.databases[i];
-								}
-					
-								//
-								// TEST
-								//
-								if ($scope.databases[i].databaseType === "TEST"){
-									$scope.test = $scope.databases[i];
-								}
-							}
-						}
-					);
-					
-					//
-					// Indicate everything is now loaded
-					//
-					$q.all([
-					    $scope.databases.$promise,
-					    $scope.project.$promise,
-						$scope.group.$promise
-					]).then(function() { 
-					    $scope.allLoaded = true;
-					});
-					
-				}
-			);
+			$q.all([
+			    $scope.database.$promise,
+			    $scope.project.$promise,
+			]).then(function() { 
+			    $scope.allLoaded = true;
+			});
 		}
 	);
 	

@@ -30,10 +30,6 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		return $resource('/api/1.0/group/group/:id/')
 	})
 	
-	.factory('Databases', function( $resource ) {		
-		return $resource('/api/1.0/group/group/:id/database')
-	})
-	
 	.factory('ProjectDatabase', function( $resource ) {		
 		return $resource('/api/1.0/project/:id/database/:databaseId')
 	})
