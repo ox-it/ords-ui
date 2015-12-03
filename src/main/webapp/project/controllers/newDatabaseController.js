@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('newDatabaseController', function ($rootScope, $scope, $location, $routeParams, AuthService, Project, Group, ProjectDatabase, User, growl, gettextCatalog) {
+ords.controller('newDatabaseController', function ($rootScope, $scope, $location, $routeParams, AuthService, Project, ProjectDatabase, User, growl, gettextCatalog) {
 	
 	//
 	// This page doesn't make sense to view
@@ -25,34 +25,12 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 		$scope.group.databaseType = "relational";
 		$scope.group.numberOfPhysicalDatabases = 0;
 		
-		Group.save(
+		ProjectDatabase.save(
+			{
+				id:$scope.project.projectId
+			},
 			$scope.group, 
 			function(response){
-				$scope.newProjectDatabase(response);
-			},
-			function(response){
-				
-				if (response.status === 400) { growl.error( gettextCatalog.getString("GroupPost400") ) };
-				if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
-				if (response.status === 404) { growl.error( gettextCatalog.getString("GroupPost404") ) };
-				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };
-				if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
-				
-				$location.path("#/project/"+$scope.project.projectId);
-			}
-		);
-		
-	}
-	
-	$scope.newProjectDatabase = function(response){
-		$scope.projectDatabase = {};
-		$scope.projectDatabase.projectId = $scope.project.projectId;
-		$scope.projectDatabase.databaseId = response.logicalDatabaseId;
-		
-		ProjectDatabase.save(
-			{id: $scope.projectDatabase.projectId},
-			$scope.projectDatabase, 
-			function(){
 				growl.success( gettextCatalog.getString("ProDbPost201") );
 				$location.path("#/project/"+$scope.project.projectId);
 			},
@@ -67,6 +45,7 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 				$location.path("#/project/"+$scope.project.projectId);
 			}
 		);
+		
 	}
 
 });
