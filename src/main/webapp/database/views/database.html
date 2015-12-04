@@ -22,7 +22,7 @@
 	</table>
 
 	<a class="button delete" ng-really-message="Are you sure you want to delete this database? Please note that this action cannot be undone: once the database has been deleted, there is no way to restore it. In addition to the main database version, any test or milestone versions you have created will also be deleted at the same time, as will any datasets created for this database." ng-really-click="deleteDatabase()">Delete database</a>              
-	<a class="button" href="#/database/{{group.logicalDatabaseId}}/edit">Edit database details</a>
+	<a class="button" href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}/edit">Edit database details</a>
 </div>
 
 

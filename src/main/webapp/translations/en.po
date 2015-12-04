@@ -170,17 +170,54 @@ msgstr "ORDS was unable to send an invitation to this email address."
 msgid "InvPost404"
 msgstr "ORDS was unable to send an invitation to this email address."
 
+
+#
+# Project Database REST messages
+#
+
+# POST
+
+msgid "ProDbPost201"
+msgstr "Empty database added successfully."
+
+msgid "ProDbPost400"
+msgstr "Unable to add new empty database."
+
+msgid "ProDbPost404"
+msgstr "Unable to add new empty database."
+
+# DELETE
+
+msgid "ProDbDelete200"
+msgstr "Database successfully deleted." 
+
+msgid "ProDbDelete403"
+msgstr "You are not authorised to remove the database for this project." 
+
+msgid "ProDbDelete404"
+msgstr "ORDS could not find the database to delete it." 
+"ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
+
+msgid "ProDbDelete404"
+msgstr "Unable to delete database." 
+
+# PUT
+
+msgid "ProDbPut200"
+msgstr "Database information edited successfully."
+
+msgid "ProDbPut400"
+msgstr "Unable to save changes;  please check whether the information you provided was valid."
+
+msgid "ProDbPut404"
+msgstr "ORDS could not find the database to update it." 
+"ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
+
 #
 # Other Project Messages
 #
 msgid "Pro010"
 msgstr "Unable to find that user in the database." 
-
-msgid "Pro016"
-msgstr "This email address isn't currently registered with ORDS. Would you like to send the user an invitation to register?" 
-"If you believe that this user is already registered with ORDS, please check that the email address is the one used when registering. "
-"(Some users may have multiple addresses or aliases - a departmental address and a college one, for example.)"
-" If the problem persists, please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pro018"
 msgstr "Unable to comply. Perhaps this user is already associated with the project?"
@@ -190,8 +227,6 @@ msgstr "There has been a problem with your request. Please ensure the email you 
 
 msgid "Pro024"
 msgstr "The email address you entered is invalid. Email addresses must be in the format user@domain"
-
-
 
 #
 # Databases
@@ -249,8 +284,7 @@ msgid "Dat015"
 msgstr "Your database will be uploaded." 
 "You will be notified by email when the process has completed."
 
-msgid "Dat016"
-msgstr "Database information edited successfully" 
+
 
 msgid "Con001"
 msgstr "Test database version successfully copied to main." 
@@ -289,22 +323,8 @@ msgstr "The record has been successfully deleted."
 msgid "Con012"
 msgstr "Unable to delete the record." 
 
-msgid "Con013"
-msgstr "You are not authorised to remove the database for this project." 
-
 msgid "Con014"
 msgstr "Unable to find your user." 
-
-msgid "Con015"
-msgstr "Database successfully deleted." 
-
-msgid "Con016"
-msgstr ""
-"ORDS could not find the database to delete it." 
-"ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
-
-msgid "Con019"
-msgstr "Unable to delete database." 
 
 msgid "Con020"
 msgstr "Database version deleted from ORDS." 
@@ -348,12 +368,6 @@ msgstr "Test database version created."
 
 msgid "Dat005"
 msgstr "There has been an internal error creating the test database version." 
-
-msgid "Dat006"
-msgstr "Unable to add new empty database." 
-
-msgid "Dat007"
-msgstr "Empty database added successfully." 
 
 msgid "Dat008"
 msgstr "Database updated successfully." 

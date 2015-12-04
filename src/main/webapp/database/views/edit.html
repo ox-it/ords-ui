@@ -1,0 +1,12 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<a href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}">{{database.dbName}}</a>
+	<span class="breadcrumbs youarehere">Edit database details</span>
+</div>
+              
+<h1>Edit Database Details: {{database.dbName}}</h1>
+
+<p>Use this page to make changes to your database's metadata</p>
+
+<databaseForm></databaseForm>

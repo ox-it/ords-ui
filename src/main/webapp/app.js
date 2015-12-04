@@ -31,7 +31,11 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	})
 	
 	.factory('ProjectDatabase', function( $resource ) {		
-		return $resource('/api/1.0/project/:id/database/:databaseId')
+		return $resource(
+			'/api/1.0/project/:id/database/:databaseId',
+			null,
+			{'update': { method:'PUT' }}
+		)
 	})
 	
 	.factory('Audit', function( $resource ) {		
@@ -228,13 +232,19 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				
 				// New Database
 				.when('/project/:id/newdatabase', {
-	                templateUrl : 'project/views/newdatabase.html',
-	                controller  : 'newDatabaseController'				
+	                templateUrl : 'database/views/new.html',
+	                controller  : 'databaseController'				
 				})
 				
 				//  Database Page
 				.when('/project/:id/:databaseId', {
 	                templateUrl : 'database/views/database.html',
+	                controller  : 'databaseController'				
+				})
+				
+				//  Edit Database Page
+				.when('/project/:id/:databaseId/edit', {
+	                templateUrl : 'database/views/edit.html',
 	                controller  : 'databaseController'				
 				})
 				
