@@ -32,7 +32,7 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 			$scope.group, 
 			function(response){
 				growl.success( gettextCatalog.getString("ProDbPost201") );
-				$location.path("#/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId);
 			},
 			function(response){
 				
@@ -42,7 +42,7 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };
 				if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 				
-				$location.path("#/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId);
 			}
 		);
 		
