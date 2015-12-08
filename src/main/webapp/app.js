@@ -43,7 +43,13 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	})
 
 	.factory('Invitation', function( $resource ) {		
-		return $resource('/api/1.0/project/:id/invitation/:inviteId')
+		return $resource(
+			'/api/1.0/project/:id/invitation/:inviteId',
+			null,
+			{
+			 	'update': { method: 'PUT' }
+		 	}
+		)
 	})
 
 	.factory('User', function( $resource ) {
@@ -266,6 +272,12 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				.when('/invite/:code', {
 	                templateUrl : 'views/invite.html',
 	                controller  : 'inviteController'				
+				})
+				
+				// Edit an invitation
+				.when('/project/:id/invite/:inviteId/edit', {
+					templateUrl : 'project/views/editinvitation.html',
+					controller: 'inviteController'
 				})
 		
 				.otherwise({

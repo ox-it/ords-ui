@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('projectController', function ($scope, $routeParams, AuthService, Project, ProjectDatabase, User, Member, growl, gettextCatalog) {
+ords.controller('projectController', function ($scope, $routeParams, AuthService, Project, ProjectDatabase, User, Member, Invitation, growl, gettextCatalog) {
 	
 	//
 	// This page doesm't make sense to view
@@ -13,7 +13,8 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 	// Process a request to remove a project member
 	//
 	$scope.removeMember = function(id){
-		Member.delete({ id: $routeParams.id, roleid: id},
+		Member.delete(
+			{ id: $routeParams.id, roleid: id},
 			function(){
 				growl.success( gettextCatalog.getString("MemDelete200") );
 				$scope.members = Member.query({ id: $routeParams.id });
@@ -30,6 +31,24 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 
 	}
 	
+	$scope.removePendingMember = function(id){
+		Invitation.delete(
+			{ id: $routeParams.id, inviteId: id},
+			function(){
+				growl.success( gettextCatalog.getString("InvDelete200") );
+				$scope.pending = Invitation.query({ id: $routeParams.id });
+			},
+			function(response){
+			
+				if (response.status === 400){ growl.error(  gettextCatalog.getString("InvDelete400") ) };
+				if (response.status === 403){ growl.error(  gettextCatalog.getString("InvDelete403") ) };
+				if (response.status === 404){ growl.error(  gettextCatalog.getString("InvDelete404") ) };
+				if (response.status === 410){ growl.error(  gettextCatalog.getString("Gen410") ) };
+				if (response.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };	
+			}
+		);
+	}
+	
 	//
 	// Get the current Project
 	//
@@ -39,6 +58,11 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 	// Get the Members of the current Project
 	//
 	$scope.members = Member.query({ id: $routeParams.id });
+	
+	//
+	// Get the Invitees (pending members) of the current Project
+	//
+	$scope.pending = Invitation.query({ id: $routeParams.id });
 	
 	//
 	// Get the Databases of the current Project

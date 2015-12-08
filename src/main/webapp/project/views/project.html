@@ -44,6 +44,28 @@
 		    </tr>
 		</tbody>
 	</table>
+	
+	<h2>Pending Project Members</h2>
+	
+	<table class="fullWidthTable">
+    	<tbody>
+			<tr>
+		        <th style="width: 200px">Member name</th>
+		        <th style="width: 200px">Role</th>
+		        <th style="width: 200px">Edit</th>
+		        <th style="width: 200px">Delete</th>
+    		</tr>
+
+		    <tr ng-repeat="pendingMember in pending track by pendingMember.email">
+		        <td>{{pendingMember.email}}</td>
+		        <td>{{pendingMember.roleRequired}}</td>
+
+		        <!-- Buttons -->
+		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" href="#/project/{{project.projectId}}/invite/{{pendingMember.id}}/edit">Edit project member</a></td>
+		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" ng-really-message="Are you sure you want to remove this member?" ng-really-click="removePendingMember(pendingMember.id)">Remove member</a></td>
+		    </tr>
+		</tbody>
+	</table>
 </div>
 		
 

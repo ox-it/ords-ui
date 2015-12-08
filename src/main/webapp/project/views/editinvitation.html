@@ -1,0 +1,25 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<span class="breadcrumbs youarehere">Edit member</span>
+</div>
+
+<h1>Edit Member: {{invite.email}}</h1>
+
+<p>Here you can alter this project member's permissions</p>
+
+<form class="process" ng-submit="editInvitation()">
+    <div class="formItem">
+        <label for="editableRoleList">Required role<span class="small">Please specify the new permission level for this member <br> 
+			<a href="http://help.it.ox.ac.uk/research/ords/howto02#ORDS-roles" target="_blank">More information about ORDS roles</a></span></label>
+        <select ng-model = "invite.roleRequired" name="editableRoleList" id="editableRoleList"> 
+            <option value="viewer">Viewer</option> 
+            <option value="contributor">Contributor</option> 
+            <option value="projectadministrator">Project Administrator</option> 
+        </select>
+    </div>
+    <div class="form-buttons">
+        <button name="cancel" type="submit">Cancel</button>
+        <button name="submit" class="go-go-go" type="submit">Save changes</button>
+    </div>
+</form>
