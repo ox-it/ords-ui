@@ -28,7 +28,7 @@ ords.controller('editMemberController', function ($scope, $location, $routeParam
 			$scope.member,
 			function(){
 				growl.success( gettextCatalog.getString("MemPut200") );
-				$location.path("#/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId);
 			},
 			function(response){
 				
@@ -38,7 +38,7 @@ ords.controller('editMemberController', function ($scope, $location, $routeParam
 				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };
 				if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 				
-				$location.path("#/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId);
 			}
 	
 		);
