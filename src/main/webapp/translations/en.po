@@ -161,6 +161,8 @@ msgstr "A project with this name already exists. Pick a different name."
 #
 # Invites
 #
+
+# Create
 msgid "InvPost200"
 msgstr "ORDS has sent an invitation to this email address."
 
@@ -170,6 +172,28 @@ msgstr "ORDS was unable to send an invitation to this email address."
 msgid "InvPost404"
 msgstr "ORDS was unable to send an invitation to this email address."
 
+# Delete
+msgid "InvDelete200"
+msgstr "Project member successfully deleted."
+
+msgid "InvDelete400"
+msgstr "There was a problem removing this project member."
+
+msgid "InvDelete403"
+msgstr "You are not authorised to remove the user for this project."
+
+msgid "InvDelete404"
+msgstr "Unable to remove member as unable to find in database - please contact support."
+
+# Update
+msgid "InvPut200"
+msgstr "Member details updated. The project member's authorisation has been updated"
+
+msgid "InvPut400"
+msgstr "Unable to update the members details."
+
+msgid "InvPut404"
+msgstr "Unable to find original project in the database - please contact support." 
 
 #
 # Project Database REST messages
