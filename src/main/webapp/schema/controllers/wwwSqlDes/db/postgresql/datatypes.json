@@ -1,0 +1,153 @@
+{
+    "groups": {
+        "numeric": {
+            "label": "Numeric",
+            "color": "rgb(238,238,170)"
+        },
+        "character": {
+            "label": "Character",
+            "color": "rgb(255,200,200)"
+        },
+        "datetime": {
+            "label": "Date & Time",
+            "color": "rgb(200,255,200)"
+        },
+        "misc": {
+            "label": "Miscellaneous",
+            "color": "rgb(200,200,255)"
+        }
+            
+    },
+    "types": {
+        "INTEGER": {
+            "group": "numeric",
+            "label": "Integer",
+            "length": false,
+            "sql": "INTEGER",
+            "name": "INTEGER",
+            "re": "INT",
+            "quote": "",
+            "basic": true
+        },   
+        "BIGINT": {
+            "group": "numeric",
+            "label": "Big Integer",
+            "length": false,
+            "sql": "BIGINT",
+            "name": "BIGINT",
+            "re": "BIGINT",
+            "quote": "",
+            "basic": false
+        },   
+        "DECIMAL": {
+            "group": "numeric",
+            "label": "Decimal",
+            "length": true,
+            "sql": "DECIMAL",
+            "name": "DECIMAL",
+            "re": "NUMERIC",
+            "quote": "",
+            "basic": true 
+        },   
+        "REAL": {
+            "group": "numeric",
+            "label": "Single Precision",
+            "length": false,
+            "sql": "REAL",
+            "name": "REAL",
+            "re": "REAL",
+            "quote": "",
+            "basic": false
+        },   
+        "DOUBLE PRECISION": {
+            "group": "numeric",
+            "label": "Double Precision",
+            "length": false,
+            "sql": "DOUBLE PRECISION",
+            "name": "DOUBLE PRECISION",
+            "re": "DOUBLE",
+            "quote": "",
+            "basic": false
+        },   
+        "CHAR": {
+            "group": "character",
+            "label": "Char",
+            "length": true,
+            "sql": "CHAR",
+            "name": "CHAR",
+            "re": "CHAR",
+            "quote": "'",
+            "basic": false
+        },   
+        "VARCHAR": {
+            "group": "character",
+            "label": "Varchar",
+            "length": true,
+            "sql": "VARCHAR",
+            "name": "VARCHAR",
+            "re": "CHARACTER VARYING",
+            "quote": "'",
+            "basic": false
+        },   
+        "TEXT": {
+            "group": "character",
+            "label": "Text",
+            "length": false,
+            "sql": "TEXT",
+            "name": "TEXT",
+            "re": "TEXT",
+            "quote": "'",
+            "basic": true
+        },   
+        "DATE": {
+            "group": "datetime",
+            "label": "Date",
+            "length": false,
+            "sql": "DATE",
+            "name": "DATE",
+            "re": "DATE",
+            "quote": "'",
+            "basic": false
+        },   
+        "TIME": {
+            "group": "datetime",
+            "label": "Time",
+            "length": true,
+            "sql": "TIME",
+            "name": "TIME",
+            "re": "TIME",
+            "quote": "'",
+            "basic": false
+        },   
+        "TIMESTAMP": {
+            "group": "datetime",
+            "label": "Timestamp",
+            "length": true,
+            "sql": "TIMESTAMP",
+            "name": "TIMESTAMP",
+            "re": "TIMESTAMP",
+            "quote": "'",
+            "basic": false
+        },   
+        "BOOLEAN": {
+            "group": "misc",
+            "label": "Boolean",
+            "length": false,
+            "sql": "BOOLEAN",
+            "name": "BOOLEAN",
+            "re": "BOOLEAN",
+            "quote": "'",
+            "basic": false
+        },   
+        "BYTEA": {
+            "group": "misc",
+            "label": "Binary Data",
+            "length": true,
+            "sql": "BYTEA",
+            "name": "BYTEA",
+            "re": "BYTEA",
+            "quote": "'",
+            "basic": false
+        }   
+    }
+}

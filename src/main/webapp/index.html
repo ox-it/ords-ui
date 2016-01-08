@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--[if IE 6]><link rel="stylesheet" type="text/css" href="schema/controllers/wwwSqlDes/styles/ie6.css" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" type="text/css" href="schema/controllers/wwwSqlDes/styles/ie7.css" /><![endif]-->
 <!--[if lt IE 7]>      <html lang="en" ng-app="ords" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="ords" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="ords" class="no-js lt-ie9"> <![endif]-->
@@ -14,6 +16,8 @@
   <link rel="stylesheet" href="style/forms.css">
   <link rel="stylesheet" href="style/alert.css">
   <link rel="stylesheet" href="style/pagination.css">
+  <link rel="stylesheet" type="text/css" href="schema/controllers/wwwSqlDes/styles/style.css" media="all" />     
+  <link rel="stylesheet" type="text/css" href="schema/controllers/wwwSqlDes/styles/print.css" media="print" />
 </head>
 <body>
 	
@@ -46,6 +50,7 @@
   
   <!-- Controllers -->
   <script src="app.js"></script>
+  <script src="services.js"></script>
   <script src="controllers/searchcontroller.js"></script>	
   <script src="controllers/maincontroller.js"></script>		
   <script src="controllers/registercontroller.js"></script>		
@@ -77,9 +82,15 @@
   <script src="project/controllers/newDatabaseController.js"></script>
   
   <!-- Database Components and Controllers -->
-  <script src="database/controllers/databaseController.js"></script>	  
-  <script src="database/components/databaseform/databaseform.js"></script>	  
-
+  <script src="database/controllers/databaseController.js"></script>
+  
+  <!-- Schema Designer Controllers -->
+  <script src="schema/controllers/schemaController.js"></script>
+  <script src="schema/controllers/wwwSqlDes/js/oz.js"></script>
+  <script src="schema/controllers/wwwSqlDes/js/config.js"></script>
+  <script src="schema/controllers/wwwSqlDes/js/promise-4.0.0.js"></script>
+  <script src="schema/controllers/wwwSqlDes/js/wwwsqldesigner.js"></script>
+  
   
 </body>
 </html>

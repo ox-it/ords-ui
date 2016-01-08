@@ -1,6 +1,6 @@
 'use strict';
 
-var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext'])
+var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext'])
 
 	//
 	// Setup the gettext() function
@@ -11,81 +11,6 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 		//gettextCatalog.showTranslatedMarkers = true;
 	})
 
-	//
-	// Project REST Resources
-	//
-	.factory('Project', function( $resource ) {		
-		return $resource(
-			'/api/1.0/project/:id/', 
-			null,
-			{'update': { method:'PUT' }}
-		)
-	})
-	
-	.factory('Statistics', function( $resource ) {		
-		return $resource('/api/1.0/statistics')
-	})
-	
-	.factory('Group', function( $resource ) {		
-		return $resource('/api/1.0/group/group/:id/')
-	})
-	
-	.factory('ProjectDatabase', function( $resource ) {		
-		return $resource(
-			'/api/1.0/project/:id/database/:databaseId',
-			null,
-			{'update': { method:'PUT' }}
-		)
-	})
-	
-	.factory('Audit', function( $resource ) {		
-		return $resource('/api/1.0/audit/project/:id')
-	})
-
-	.factory('Invitation', function( $resource ) {		
-		return $resource(
-			'/api/1.0/project/:id/invitation/:inviteId',
-			null,
-			{
-			 	'update': { method: 'PUT' }
-		 	}
-		)
-	})
-
-	.factory('User', function( $resource ) {
-		return $resource(
-			'/api/1.0/user/:id',
-			null,
-			{
-				'lookup': { method: 'GET' },
-			 	'update': { method: 'PUT' }
-		 	}
-		);
-	})
-	
-	.factory('Member', function( $resource, User ) {
-		
-		var Member =  $resource('/api/1.0/project/:id/role/:roleid', null, {'update': { method:'PUT' }});
-		
-		Member.prototype.name = "";
-		
-		//
-		// The "name" property of a Member is held by the User resource
-		// so we have to load that asynchronously from the REST API
-		//
-		Member.prototype.getName = function () {
-			
-			if (this.name !== "") return this.name;
-			var that = this;
-			User.lookup( {name: this.principalName}, function(user){
-				that.name = user.name;
-			} 
-			);
-			this.name = "loading ...";
-		};
-		
-		return Member;
-	})
 	
 	//
 	// A "really?" handler to confirm actions
@@ -106,61 +31,6 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	    }
 	}])
 	
-	//
-	// Service that checks if user is currently authenticated
-	//
-	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project){
-		var svc = {};
-		svc.check = function(){
-			if ($rootScope.loggedIn !== "yes"){
-				$rootScope.user = User.get(
-					 function successCallback() { 
-						$rootScope.loggedIn="yes"
-						 if ($location.path() === "/"){
-							 
-			 	 			//
-			 	 			// Load initial projects
-			 	 			//
-			 	 			Project.query({}, function(data){
-			 	 				$rootScope.projects = data;
-			 	 			});
-			 				$location.path("/projects"); 
-						 }
-					 }, 
-					 function errorCallback(response) {
-						 
-						 //
-						 // If we have a 401, we aren't logged in...
-						 //
-						 if (response.status === 401){
-							 $rootScope.loggedIn="no";
-							 $location.path("/"); 
-						 }
-
-						 
-						 //
-						 // If we have a 404, we're logged in, but haven't registered yet
-						 //
-						 if (response.status === 404){
-							 $rootScope.loggedIn="no";
-							 if (!$routeParams.code){
- 							 	$location.path("/register");  							 	
-							 }
-						 }
-					 }				
-				);
-			} else {	
-				//
-				// If we are already logged in, bypass the front page and
-				// view the projects page
-				//
-				if ($location.path() === "/"){
-					$location.path("/projects"); 
-				}
-			}
-		};
-		return svc;
-	})
 	
 	//
 	// Configure alerts
@@ -238,19 +108,13 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 				
 				// New Database
 				.when('/project/:id/newdatabase', {
-	                templateUrl : 'database/views/new.html',
-	                controller  : 'databaseController'				
+	                templateUrl : 'project/views/newdatabase.html',
+	                controller  : 'newDatabaseController'				
 				})
 				
 				//  Database Page
 				.when('/project/:id/:databaseId', {
 	                templateUrl : 'database/views/database.html',
-	                controller  : 'databaseController'				
-				})
-				
-				//  Edit Database Page
-				.when('/project/:id/:databaseId/edit', {
-	                templateUrl : 'database/views/edit.html',
 	                controller  : 'databaseController'				
 				})
 				
@@ -274,10 +138,10 @@ var ords = angular.module('ords',['ngRoute', 'ngResource', 'angular-growl', 'ngM
 	                controller  : 'inviteController'				
 				})
 				
-				// Edit an invitation
-				.when('/project/:id/invite/:inviteId/edit', {
-					templateUrl : 'project/views/editinvitation.html',
-					controller: 'inviteController'
+				// Database Schema Designer
+				.when('/schema/:physicalDatabaseId/:projectDatabaseId/:instance/:server', {
+					templateUrl : 'schema/views/designer.html',
+					controller	: 'schemaController'
 				})
 		
 				.otherwise({

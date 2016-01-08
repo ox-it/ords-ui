@@ -222,7 +222,7 @@ msgid "ProDbDelete404"
 msgstr "ORDS could not find the database to delete it." 
 "ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
 
-msgid "ProDbDelete404"
+msgid "ProDbDelete405"
 msgstr "Unable to delete database." 
 
 # PUT
@@ -378,38 +378,51 @@ msgstr "Problem obtaining database."
 msgid "Con028"
 msgstr "The database has been deleted. However, ORDS encountered a problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened." 
 
-msgid "Dat001"
+msgid "Dat016"
 msgstr "Milestone database version created." 
 
-msgid "Dat002"
+msgid "Dat017"
 msgstr "Internal data error." 
 
-msgid "Dat003"
+msgid "Dat018"
 msgstr "Unable to create milestone database version due to internal error." 
 
-msgid "Dat004"
+msgid "Dat019"
 msgstr "Test database version created." 
 
-msgid "Dat005"
+msgid "Dat020"
 msgstr "There has been an internal error creating the test database version." 
 
-msgid "Dat008"
+msgid "Dat021"
 msgstr "Database updated successfully." 
 
-msgid "Dat009"
+msgid "Dat022"
 msgstr "Internal error while trying to update the database." 
 
-msgid "Dat010"
+msgid "Dat023"
 msgstr "Internal error while trying to upload the database." 
 
-msgid "Dat011"
+msgid "Dat024"
 msgstr ""
 "The upload process is underway." 
 "You will be sent an email the process of uploading your database is complete."
 
-msgid "Dat012"
+msgid "Dat025"
 msgstr ""
-"Database problem" 
+"Database problem"
+
+
+msgid "Dat026"
+msgstr "Unable to create database because of bad or corrupt data - please report this error to an administrator"
+
+msgid "Dat027"
+msgstr "Unable to create database because of an internal naming conflict - please report this error to an administrator"
+
+msgid "Dat028"
+msgstr "Unable to create staging database because of bad or corrupt data - please report this error to an administrator"
+
+msgid "Dat029"
+msgstr "Unable to create staging database becuase of an internal naming conflict - please report this error to an administrator"
 
 msgid "Log001"
 msgstr ""

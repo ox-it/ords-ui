@@ -22,7 +22,7 @@
 	</table>
 
 	<a class="button delete" ng-really-message="Are you sure you want to delete this database? Please note that this action cannot be undone: once the database has been deleted, there is no way to restore it. In addition to the main database version, any test or milestone versions you have created will also be deleted at the same time, as will any datasets created for this database." ng-really-click="deleteDatabase()">Delete database</a>              
-	<a class="button" href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}/edit">Edit database details</a>
+	<a class="button" href="#/database/{{group.logicalDatabaseId}}/edit">Edit database details</a>
 </div>
 
 
@@ -43,7 +43,7 @@
 		 <div ng-hide="main">
 			 <p>You haven't uploaded a database yet.</p>
 			 <div><a class="button" href="">Upload existing database</a></div>
-			 <div><a class="button" href="">Create new database</a></div>
+			 <div><a class="button" href="#/schema/0/{{database.logicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">Create new database</a></div>
 	 	</div>
 	 
 		 <div ng-show="main">
@@ -55,7 +55,7 @@
 			 </div>
                         
 		    <div>
-		        <a class="ovalbutton" href="">View and edit database structure</a>
+		        <a class="ovalbutton" href="#/schema/{{main.physicalDatabaseId}}/{{main.logicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View and edit database structure</a>
 		    </div>
 
 		    <div>
