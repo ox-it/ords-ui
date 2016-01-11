@@ -140,7 +140,7 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 				
 				// Database Schema Designer
 				.when('/schema/:physicalDatabaseId/:projectDatabaseId/:instance/:server', {
-					templateUrl : 'schema/views/designer.html',
+					templateUrl : 'schema-designer/views/designer.html',
 					controller	: 'schemaController'
 				})
 		
