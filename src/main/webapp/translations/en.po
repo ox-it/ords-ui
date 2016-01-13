@@ -424,6 +424,12 @@ msgstr "Unable to create staging database because of bad or corrupt data - pleas
 msgid "Dat029"
 msgstr "Unable to create staging database becuase of an internal naming conflict - please report this error to an administrator"
 
+msgid "Dat030"
+msgstr "No database of that name found!"
+
+msgid "Dat403"
+mststr "You are not authorized to access this database"
+
 msgid "Log001"
 msgstr ""
 "Unable to log you in with those credentials. Sorry." 
