@@ -44,7 +44,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		);
 	})
 	
-	.factory('Database', function( $resource ) {
+	.factory('DatabaseStructure', function( $resource ) {
 		return $resource('/api/1.0/structure/:databaseId/:instance',
 			null,
 			{
@@ -52,8 +52,8 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 			}
 		);
 	})
-	
-	.factory('Staging', function( $resource ) {
+		
+	.factory('DatabaseStructureStaging', function( $resource ) {
 		return $resource('/api/1.0/structure/:databaseId/:instance/staging',
 			null,
 			{

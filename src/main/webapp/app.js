@@ -139,11 +139,35 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 				})
 				
 				// Database Schema Designer
-				.when('/schema/:physicalDatabaseId/:projectDatabaseId/:instance/:server', {
+				.when('/schema/:projectId/:projectDatabaseId/:physicalDatabaseId/:instance/:server', {
 					templateUrl : 'schema-designer/views/designer.html',
 					controller	: 'schemaController'
 				})
-		
+				
+				// Database Explorer
+				.when('/database-explorer/:projectId/:projectDatabaseId/:projectDatabaseName/:physicalDatabaseId/:instance/:server', {
+					templateUrl : 'database-explorer/views/explorer.html',
+					controller	: 'explorerController'
+				})
+				
+				// Query Builder
+				.when('/query-builder/:physicalDatabaseId/:projectDatabaseId/:instance/:server', {
+	        		templateUrl	: 'query-builder/views/builder.html',
+	        		controller : 'queryBuilderController'
+				})
+				
+				// SQL Query
+				.when('/sql-query/:physicalDatabaseId/:projectDatabaseId/:instance/:server', {
+						templateUrl : 'sql-query/views/query.html',
+						controller : 'sqlQueryController'
+				})
+				
+				// table view
+				.when('/table-view', {
+					templateUrl : 'table-view/views/tableView.html',
+					controller : 'tableViewController'
+				})
+				
 				.otherwise({
 					redirectTo: '/'
 				})

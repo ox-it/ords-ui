@@ -5,15 +5,20 @@
 var dbId = 0;
 var dbInstance = "";
 var designer = null;
+var projectDatabaseId = 0;
+var projectId = 0;
 
-ords.controller('schemaController', function ($scope, $routeParams, Database, Staging, AuthService, growl, gettextCatalog ) {
+ords.controller('schemaController', function ($scope, $routeParams, DatabaseStructure, DatabaseStructureStaging, AuthService, growl, gettextCatalog ) {
 
 	AuthService.check();
 	dbInstance = $routeParams.instance;
+	projectDatabaseId = $routeParams.projectDatabaseId;
+	projectId = $routeParams.projectId;
+	
 	
 	$scope.staging = function () {
 		var params = {databaseId:dbId, instance:$routeParams.instance};
-		Staging.clone(
+		DatabaseStructureStaging.clone(
 			params,
 			{},
 			function(){
@@ -37,7 +42,7 @@ ords.controller('schemaController', function ($scope, $routeParams, Database, St
 	if ( $routeParams.physicalDatabaseId == 0 ) {
 		// we need to create a database
 		var databaseRequest = {databaseName:'not used', databaseServer:$routeParams.server, groupId:$routeParams.projectDatabaseId};
-		Database.create(
+		DatabaseStructure.create(
 			{databaseId:0, instance: $routeParams.instance},
 			databaseRequest,
 			function(data){

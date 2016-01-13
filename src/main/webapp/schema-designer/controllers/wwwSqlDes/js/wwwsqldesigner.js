@@ -1759,7 +1759,10 @@ SQL.IO.prototype.quit = function(e) {
                 e.target.parentNode.submit();
             }
         );
-    } 
+    }
+    var databasePageURL = protocol+"//"+host+"/app/#/project/"+projectId+"/"+projectDatabaseId;
+	window.location.assign(databasePageURL);
+    
 }
 
 SQL.IO.prototype.quicksave = function(e) {
