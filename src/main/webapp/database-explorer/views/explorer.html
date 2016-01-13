@@ -1,0 +1,20 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<a href="#/project/{{project.projectId}}/{{logicalDatabaseId}}">{{logicalDatabaseName}}</a>
+	<span class="breadcrumbs youarehere">View, Edit and Query Data</span>
+</div>
+<div class="panel two-up db-list">
+<ul>
+	<li ng-repeat="(key,val) in tableList.tables">
+		<p>{{key}}</p>
+	</li>
+</ul>
+</div>
+
+
+<div class=" two-up options">
+<div><a class="button" href="">View previously saved datasets</a></div>
+<div><a class="button" href="">Query data using query builder</a></div>
+<div><a class="button" href="">Query data using SQL</a></div>
+</div>
