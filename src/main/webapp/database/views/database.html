@@ -43,7 +43,7 @@
 		 <div ng-hide="main">
 			 <p>You haven't uploaded a database yet.</p>
 			 <div><a class="button" href="">Upload existing database</a></div>
-			 <div><a class="button" href="#/schema/0/{{database.logicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">Create new database</a></div>
+			 <div><a class="button" href="#/schema/{{project.projectId}}/{{database.logicalDatabaseId}}/0/MAIN/{{project.dbServerPublicAddress}}">Create new database</a></div>
 	 	</div>
 	 
 		 <div ng-show="main">
