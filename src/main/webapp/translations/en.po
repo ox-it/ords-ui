@@ -55,6 +55,12 @@ msgid "UserPut400"
 msgstr "A problem occurred while updating your profile - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
 
 #
+# Contact a project owner
+#
+msgid "ContactPost200"
+msgstr "Your message has been sent to the project owner." 
+
+#
 # Project REST actions - messages
 #
 

@@ -32,6 +32,10 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	.factory('Invitation', function( $resource ) {		
 		return $resource('/api/1.0/project/:id/invitation/:inviteId')
 	})
+	
+	.factory('Contact', function( $resource ) {		
+		return $resource('/api/1.0/user/contact')
+	})
 
 	.factory('User', function( $resource ) {
 		return $resource(

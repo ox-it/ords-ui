@@ -58,6 +58,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                controller  : 'searchController'
 	            })
 				
+	            // Contact a project owner
+	            .when('/contact/:id', {
+	                templateUrl : 'views/contact.html',
+	                controller  : 'searchController'
+	            })
+				
 	            // Home page for login
 	            .when('/', {
 	                templateUrl : 'views/home.html',

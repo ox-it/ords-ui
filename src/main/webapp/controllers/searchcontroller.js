@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('searchController', function ($scope, $location, Project, User) {
+ords.controller('searchController', function ($scope, $location, Project, User, Contact, $routeParams, growl, gettextCatalog) {
 	
 	//
 	// Search for projects
@@ -16,6 +16,41 @@ ords.controller('searchController', function ($scope, $location, Project, User) 
 		);
 		if ($location.path() != "/search")
 			$location.path("/search");
+	}
+	
+	//
+	// If there is a project id, get the project
+	//
+	if ($routeParams.id) {
+		$scope.project = Project.get(
+			{id: $routeParams.id},
+			function(){
+				$scope.owner = User.lookup({name: $scope.project.owner});
+			}
+		);
+	};
+	
+	//
+	// Send a contact request
+	//
+	$scope.contact = function(){
+		if ($scope.contactForm.$valid) {
+			$scope.contactRequest.project = $scope.project.name;
+			$scope.contactRequest.userId = $scope.owner.userId;
+			Contact.save(
+				$scope.contactRequest,
+				function(){
+					growl.success( gettextCatalog.getString("ContactPost200") );
+					$location.path("/");
+				},
+				function(response){
+					if (response.status === 400) { growl.error( gettextCatalog.getString("ContactPost400") ) };
+					if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
+					if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
+					$location.path("/");
+				}
+			)
+		}
 	}
 }
 );
