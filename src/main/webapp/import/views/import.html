@@ -1,0 +1,11 @@
+  <div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<a href="#/project/{{project.projectId}}/{{logicalDatabaseId}}">{{logicalDatabaseName}}</a>
+	<span class="breadcrumbs youarehere">Upload database or csv file</span>
+</div>
+<div ng-controller = "importController">
+	<input type="file" file-model="myFile"/>
+	<button ng-click="uploadFile()">Upload</button>
+</div>
+<p>{{errorMsg}}</p>

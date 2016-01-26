@@ -30,21 +30,21 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 				//
 				// MAIN
 				//
-				if ($scope.database.databaseVersions[i].databaseType === "MAIN"){
+				if ($scope.database.databaseVersions[i].entityType === "MAIN"){
 					$scope.main = $scope.database.databaseVersions[i];
 				}
 	
 				//
 				// MILESTONE
 				//
-				if ($scope.database.databaseVersions[i].databaseType === "MILESTONE"){
+				if ($scope.database.databaseVersions[i].entityType === "MILESTONE"){
 					$scope.milestone = $scope.database.databaseVersions[i];
 				}
 	
 				//
 				// TEST
 				//
-				if ($scope.database.databaseVersions[i].databaseType === "TEST"){
+				if ($scope.database.databaseVersions[i].entityType === "TEST"){
 					$scope.test = $scope.database.databaseVersions[i];
 				}
 			}

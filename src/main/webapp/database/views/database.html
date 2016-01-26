@@ -42,7 +42,7 @@
 	 
 		 <div ng-hide="main">
 			 <p>You haven't uploaded a database yet.</p>
-			 <div><a class="button" href="">Upload existing database</a></div>
+			 <div><a class="button" href="#/import/{{project.projectId}}/{{database.logicalDatabaseId}}/{{project.dbServerPublicAddress}}">Upload existing database</a></div>
 			 <div><a class="button" href="#/schema/{{project.projectId}}/{{database.logicalDatabaseId}}/0/MAIN/{{project.dbServerPublicAddress}}">Create new database</a></div>
 	 	</div>
 	 
@@ -50,9 +50,9 @@
 			 <p><label>Original file name</label>: {{main.fileName}}</p>
 		     <p><label>Original file size</label>: {{main.fileSize}}</p>
 			 
-			 <div ng-show="main.databaseType == 'CSV'">
+			 <!-- <div ng-show="main.databaseType == 'CSV'">
 		        <a class="ovalbutton" href="">Upload another CSV file as a new table</a>
-			 </div>
+			 </div> -->
                         
 		    <div>
 		        <a class="ovalbutton" href="#/schema/{{project.projectId}}/{{main.logicalDatabaseId}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View and edit database structure</a>

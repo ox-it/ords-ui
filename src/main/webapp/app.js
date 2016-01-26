@@ -155,6 +155,11 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 					templateUrl : 'database-explorer/views/explorer.html',
 					controller	: 'explorerController'
 				})
+				
+				// Database upload (Import)
+				.when('/import/:projectId/:projectDatabaseId/:server', {
+					templateUrl : 'import/views/import.html'
+				})
 								
 				.otherwise({
 					redirectTo: '/'
