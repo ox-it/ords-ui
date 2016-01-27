@@ -102,7 +102,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	//
 	// Service that checks if user is currently authenticated
 	//
-	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project){
+	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project, growl, gettextCatalog){
 		var svc = {};
 		svc.check = function(){
 			if ($rootScope.loggedIn !== "yes"){
@@ -117,6 +117,13 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 			 	 			Project.query({}, function(data){
 			 	 				$rootScope.projects = data;
 			 	 			});
+							
+							//
+							// Check if the user needs email verification
+							//
+							if ($rootScope.user.status == "PENDING_EMAIL_VERIFICATION"){
+								growl.warning("PENDING_EMAIL_VERIFICATION");
+							}
 			 				$location.path("/projects"); 
 						 }
 					 }, 
