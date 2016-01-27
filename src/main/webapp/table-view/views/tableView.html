@@ -1,0 +1,14 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<a href="#/project/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}">{{projectDatabase.dbName}}</a>
+	<span class="breadcrumbs youarehere">Table View</span>
+</div>
+<table>
+	<tr>
+		<th ng-repeat="column in tableData.columnsByIndex">{{column.columnName}}</th>
+	</tr>
+	<tr ng-repeat="row in tableData.rows">
+		<td ng-repeat="column in tableData.columnsByIndex">{{row.cell[column.columnName].value}}</td>
+	</tr>
+</table>

@@ -160,6 +160,13 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 				.when('/import/:projectId/:projectDatabaseId/:server', {
 					templateUrl : 'import/views/import.html'
 				})
+				
+				// Table view result
+				
+				.when('/table/:projectId/:projectDatabaseId/:physicalDatabaseId/:instance/:queryType/:query', {
+					templateUrl : 'table-view/views/tableView.html',
+					controller  : 'tableViewController'
+				})
 								
 				.otherwise({
 					redirectTo: '/'

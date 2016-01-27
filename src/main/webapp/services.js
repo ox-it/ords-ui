@@ -67,6 +67,14 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		);
 	})
 	
+	.factory('TableList', function( $resource ) {
+		return $resource('/api/1.0/database/:databaseId/:instance/tabledata/:tableName')
+	})
+	
+	.factory('DoQuery', function( $resource ) {
+		return $resource('/api/1.0/database/:databaseId/:instance/query')
+	})
+	
 	.factory('Member', function( $resource, User ) {
 		
 		var Member =  $resource('/api/1.0/project/:id/role/:roleid', null, {'update': { method:'PUT' }});

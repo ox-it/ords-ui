@@ -8,6 +8,8 @@ ords.controller('explorerController', function ($scope, $routeParams, DatabaseSt
 	
 	$scope.logicalDatabaseId = $routeParams.projectDatabaseId;
 	$scope.logicalDatabaseName = $routeParams.projectDatabaseName;
+	$scope.physicalDatabaseId = $routeParams.physicalDatabaseId;
+	$scope.instance = $routeParams.instance;
 	
 	var pathParams = {databaseId:$routeParams.physicalDatabaseId, instance:$routeParams.instance};
 	

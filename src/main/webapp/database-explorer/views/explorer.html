@@ -7,11 +7,10 @@
 <div class="panel two-up db-list">
 <ul>
 	<li ng-repeat="(key,val) in tableList.tables">
-		<p>{{key}}</p>
+		<p><a href="#/table/{{project.projectId}}/{{logicalDatabaseId}}/{{physicalDatabaseId}}/{{instance}}/table/{{key}}">{{key}}</a></p>
 	</li>
 </ul>
 </div>
-
 
 <div class=" two-up options">
 <div><a class="button" href="">View previously saved datasets</a></div>
