@@ -1,0 +1,30 @@
+<div class="homepage">
+	<welcome></welcome>
+
+
+	<div id="ordsFormStyle" class="ordsForm">
+        <h1>Log in to ORDS</h1>
+        <p>Please enter your details below to log in to ORDS</p>
+        <form ng-submit="login()" name="loginForm" id="loginForm">
+
+			<div class="formItem">
+			    <label for="username">
+					User Name <span class="important">*</span>
+					<span class="explanation">Your user name; this is usually an email address</span>
+				</label>
+			    <input ng-model = "user.name" ng-minlength="2" ng-maxlength="200" required type="text" id="username" name="username">
+			</div>
+
+			<div class="formItem">
+			    <label for="description">
+					Password <span class="important">*</span>
+				</label>
+			    <input ng-model = "user.password" required type="password" id="password" name="password">
+			</div>
+            <button name="submit" type="submit">Log in</button>
+        </form>
+    </div>
+
+
+	<stats></stats>
+</div> <!-- .homepage closes -->

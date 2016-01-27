@@ -70,6 +70,18 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                controller  : 'mainController'
 	            })
 				
+	            // login
+	            .when('/login', {
+	                templateUrl : 'views/login.html',
+	                controller  : 'loginController'
+	            })
+				
+	            // Sign up
+	            .when('/signup', {
+	                templateUrl : 'views/signup.html',
+	                controller  : 'loginController'
+	            })
+				
 	            // User page 
 	            .when('/profile', {
 	                templateUrl : 'views/profile.html',
