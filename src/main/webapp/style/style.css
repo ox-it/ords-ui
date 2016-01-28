@@ -143,7 +143,6 @@ h1.site-title a{
 
 a#ox-link {
 
-  background: transparent url("images/logos/ox_brand4_rev_rect.gif") no-repeat 0px 0px;
   float: left;
   display: block;
   height: 55px;
@@ -704,6 +703,37 @@ padding: 0 0.3em ;
 	opacity: 1;
 }
 
+
+
+.filterArea {
+	width:auto;
+	background-color: #dddddd;
+	border: 1px solid #999999;
+	padding: 2em;
+	border-radius: 12px;
+}
+
+
+
+.contDiv {width:874px;}
+.headerDiv {width:875px; overflow: hidden;}
+.bottomDiv {width:875px; height: 400px; overflow: scroll; }
+.bottomDiv tbody:nth-child(odd) {background: #aaaaaa}
+
+
+.tdFixed {  
+	background-color: #f1f1f1;
+	min-width:140px;
+	width: 140px;
+}
+
+.tdScroll {  
+	background-color: #fafafa;
+	border: 1px solid #eaeaea;
+	padding: 0.3em;
+	min-width:140px;
+	width: 140px;
+}
 
 
 /* data tables */

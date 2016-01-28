@@ -179,6 +179,13 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 					templateUrl : 'table-view/views/tableView.html',
 					controller  : 'tableViewController'
 				})
+				
+				// Table row editor
+				
+				.when('/row/:projectId/:projectDatabaseId/:physicalDatabaseId/:instance/:tableName/:primaryKey/:primaryKeyValue',{
+					templateUrl : 'table-view/row-editor/views/rowEditor.html',
+					controller  : 'rowEditorController'
+				})
 								
 				.otherwise({
 					redirectTo: '/'

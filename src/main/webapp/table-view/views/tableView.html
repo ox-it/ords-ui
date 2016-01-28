@@ -2,13 +2,53 @@
 	<a href="#/">My Projects</a>
 	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
 	<a href="#/project/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}">{{projectDatabase.dbName}}</a>
-	<span class="breadcrumbs youarehere">Table View</span>
+	<span class="breadcrumbs youarehere">{{tableName}}</span>
 </div>
+<!-- pagination -->
 <table>
-	<tr>
-		<th ng-repeat="column in tableData.columnsByIndex">{{column.columnName}}</th>
-	</tr>
-	<tr ng-repeat="row in tableData.rows">
-		<td ng-repeat="column in tableData.columnsByIndex">{{row.cell[column.columnName].value}}</td>
-	</tr>
+<tr>
+	<td ng-if="startRow > 1"><button class="button" ng-click="loadPrevious()">Previous</button></td>
+	<td>Records #:{{startRow}} to {{lastRow}} of {{maxRows}}</td>
+	<td ng-if="lastRow < maxRows"><button class="button" ng-click="loadNext()">Next</button></td>
+	<td>Page: {{pagePosition}} of {{pages}}</td>
+	<td>Go to record: <input type="text" ng-model="newStart" ng-focus="startFrom()"/></td>
+</tr>
 </table>
+<div class="contDiv">
+	<div class="headerDiv">
+		<table width="875" class="data-table" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex" ng-click="orderKey(column)">{{column.columnName}}</td>
+					<td class="tdFixed" style="width:100px;">Functions</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+	<div class="bottomDiv" fix-on-scroll fixed-div=".headerDiv">
+		<table>
+			<tbody>
+				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy">
+					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex"><input type="text" value="{{row.cell[column.columnName].value}}"/></td>
+					<td class="tdScroll" style="min-width:100px; width:100px;"><img src="images/delete_icon.png" alt="Delete Row" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)"/>&nbsp;&nbsp;<a href="#/row"><img src="images/pencil.png" alt="Edit Row"/></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<p><div><a class="button"  href="">Add Row</a></div></p>
+<div class=filterArea>Filter: 
+<select ng-model="filterField">
+<option ng-repeat="column in tableData.columnsByIndex">{{column.columnName}}</option>
+</select>
+<select ng-model="filterType">
+	<option value="is">is</option>
+	<option value="is not">is not</option>
+	<option value="like">like</option>
+	<option value="contains">contains</option>
+	<option value="is NULL">is NULL</option>
+</select>
+<input ng-model="filterValue"/>
+</div>
