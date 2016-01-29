@@ -10,6 +10,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #
+# Generic User Messages
+#
+msgid "PENDING_EMAIL_VERIFICATION"
+msgstr "You have successfully registered to use the ORDS, but still need to verify your account. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message."
+
+
+#
+# Password-based login messages
+#
+msgid "Login200"
+msgstr "Login successful"
+
+msgid "Login401"
+msgstr "Invalid user name or password"
+
+msgid "Login400"
+msgstr "Invalid user name or password"
+
+#
 # Generic REST messages
 #
 msgid "Gen403"
