@@ -1,4 +1,4 @@
-ords.controller('loginController', function($scope, $http, $location, User, growl, gettextCatalog) {
+ords.controller('loginController', function($rootScope, $scope, $http, $location, User, Project, growl, gettextCatalog) {
 		
 	$scope.login = function(){
 		
@@ -21,6 +21,14 @@ ords.controller('loginController', function($scope, $http, $location, User, grow
 		    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(
 			function successCallback(response){
+				
+ 	 			//
+ 	 			// Load initial projects
+ 	 			//
+ 	 			Project.query({}, function(data){
+ 	 				$rootScope.projects = data;
+ 	 			});
+				
 				growl.success( gettextCatalog.getString("Login200") );
 				$location.path("/");
 			},
