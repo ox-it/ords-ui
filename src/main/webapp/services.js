@@ -122,12 +122,6 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 			 	 				$rootScope.projects = data;
 			 	 			});
 							
-							//
-							// Check if the user needs email verification
-							//
-							if ($rootScope.user.status == "PENDING_EMAIL_VERIFICATION"){
-								growl.warning("PENDING_EMAIL_VERIFICATION");
-							}
 			 				$location.path("/projects"); 
 						 }
 					 }, 
