@@ -138,6 +138,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 				$scope.filterField = op;
 				$scope.filterValue = "";
 				$scope.filterType = "is";
+				$scope.primaryKey = results.primaryKeys[0];
+				
 			},
 			function(error) {
 				$scope.handleError(error);

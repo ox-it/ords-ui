@@ -1,0 +1,18 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<a href="#/project/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}">{{projectDatabase.dbName}}</a>
+	<span class="breadcrumbs youarehere">Edit Row for: {{tableName}}</span>
+</div>
+
+<form class="process" id="rowForm" name="rowForm" ng-submit='saveRow()' novalidate>
+	<div class="formItem" ng-repeat="column in tableData.columnsByIndex">
+	    <label for="{{column.columnName}}">{{column.columnName}}</label>
+	    <input ng-model="{{column.columnName}}" ng-minlength="2" ng-maxlength="255" required type="text" id="{{column.columnName}}" name="{{column.columnName}}" property="{{column.columnName}}">
+	</div>
+	<div class="form-buttons">
+	        <button name="cancel" type="submit" ng-click="#/table/{{project.projectId}}/{{logicalDatabaseId}}/{{physicalDatabaseId}}/{{instance}}/table/{{tableName}}">Cancel</button>
+	        <button name="submit" type="submit" ng-disabled="projectForm.$invalid">Save</button>
+	    
+	</div>
+</form>
