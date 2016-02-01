@@ -114,6 +114,27 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 			break;
 		}
 	};
+	
+	$scope.setupFromResults = function(results) {
+		$scope.tableData = results;
+		$scope.startRow = results.currentRow;
+		if ( results.numberOfRowsInEntireTable < $scope.numberOfRows + $scope.startRow ) {
+			$scope.lastRow = results.numberOfRowsInEntireTable;
+		}
+		else {
+			$scope.lastRow = $scope.startRow + $scope.numberOfRows;
+		}
+		$scope.maxRows = results.numberOfRowsInEntireTable;
+		$scope.pages =  Math.ceil($scope.maxRows / $scope.numberOfRows);
+		$scope.pagePosition = Math.ceil($scope.startRow / $scope.numberOfRows);
+		$scope.newStart = $scope.startRow;
+		var op = results.columnsByIndex[0].columnName;
+		$scope.orderProp = op;
+		$scope.filterField = op;
+		$scope.filterValue = "";
+		$scope.filterType = "is";
+		$scope.primaryKey = results.primaryKeys[0];		
+	}
 
 
 	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
@@ -121,24 +142,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 		TableList.get(
 			params,
 			function(results) {
-				$scope.tableData = results;
-				$scope.startRow = results.currentRow;
-				if ( results.numberOfRowsInEntireTable < $scope.numberOfRows + $scope.startRow ) {
-					$scope.lastRow = results.numberOfRowsInEntireTable;
-				}
-				else {
-					$scope.lastRow = $scope.startRow + $scope.numberOfRows;
-				}
-				$scope.maxRows = results.numberOfRowsInEntireTable;
-				$scope.pages =  Math.ceil($scope.maxRows / $scope.numberOfRows);
-				$scope.pagePosition = Math.ceil($scope.startRow / $scope.numberOfRows);
-				$scope.newStart = $scope.startRow;
-				var op = results.columnsByIndex[0].columnName;
-				$scope.orderProp = op;
-				$scope.filterField = op;
-				$scope.filterValue = "";
-				$scope.filterType = "is";
-				$scope.primaryKey = results.primaryKeys[0];
+				$scope.setupFromResults(results);
 				
 			},
 			function(error) {
@@ -153,7 +157,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 		DoQuery.get(
 			params,
 			function(results) {
-				$scope.tableData = results;
+				$scope.setupFromResults(results);
 			},
 			function(error) {
 				$scope.handleError(error);
@@ -161,7 +165,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 		)
 	};
 
-
+	$scope.queryType = $routeParams.queryType;
 	if ( $routeParams.queryType == "table" ) {
 		$scope.tableName = $routeParams.query;
 		$scope.tablelist($routeParams.physicalDatabaseId, 

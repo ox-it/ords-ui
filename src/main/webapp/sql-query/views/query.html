@@ -1,0 +1,45 @@
+<div class="breadcrumbs-wrapper">
+	<a href="#/">My Projects</a>
+	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+	<a href="#/project/{{project.projectId}}/{{logicalDatabaseId}}">{{logicalDatabaseName}}</a>
+	<a href="#/database-explorer/{{project.projectId}}/{{logicalDatabaseId}}/{{logicalDatabaseName}}/{{physicalDatabaseId}}/{{instance}}/{{server}}">View, Edit, Query Data</a>
+	<span class="breadcrumbs youarehere">Create Query</span>
+</div>
+<h1>{{pageHeading}}{{logicalDatabaseName}}</h1>
+<p ng-bind-html="queryAdvice"/>
+<form>
+	<fieldset id="sqlFields">
+        <label class="sqllabel" for="select">SELECT</label>
+        <textarea class="sqlinput" name="select" id="selectinput"></textarea>
+        <p class="sqlhelp">{{selectAdvice}}</p>
+        
+        <label class="sqllabel" for="from">FROM</label>
+        <textarea class="sqlinput" name="from" id="frominput"></textarea>
+        <p class="sqlhelp">{{fromAdvice}}</p>
+        
+        <label class="sqllabel" for="where">WHERE</label>
+        <textarea class="sqlinput" name="where" id="whereinput"></textarea>
+        <p class="sqlhelp">{{whereAdvice}}</p>
+        
+        <label class="sqllabel" for="groupby">GROUP BY</label>
+        <textarea class="sqlinput" name="groupby" id="groupbyinput"></textarea>
+        <p class="sqlhelp">{{groupByAdvice}}</p>
+        
+        <label class="sqllabel" for="orderby">ORDER BY</label>
+        <textarea class="sqlinput" name="orderby" id="orderbyinput"></textarea>
+        <p class="sqlhelp">{{orderByAdvice}}</p>
+        
+        <label class="sqllabel" for="limit">LIMIT</label>
+        <textarea class="sqlinput" name="limit" id="limitinput"></textarea>
+        <p class="sqlhelp">{{limitAdvice}}</p>
+        
+        <label class="sqllabel" for="offset">OFFSET</label>
+        <textarea class="sqlinput" name="offset" id="offsetinput"></textarea>
+        <p class="sqlhelp">{{offsetAdvice}}</p>
+
+    </fieldset>
+</form>
+<p>
+<button class="button" ng-click="submitQuery()">Submit</button>
+<button class="button" ng-click="clearQuery()">Clear</button>
+</p>

@@ -2,8 +2,10 @@
 	<a href="#/">My Projects</a>
 	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
 	<a href="#/project/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}">{{projectDatabase.dbName}}</a>
-	<span class="breadcrumbs youarehere">{{tableName}}</span>
+	<span class="breadcrumbs youarehere">Data Viewer</span>
 </div>
+<h1 ng-if="queryType=='table'">Table Name: {{tableName}}</h1>
+<h1 ng-if="queryType=='SQL'">Query: {{theQuery}}</h1>
 <!-- pagination -->
 <table>
 <tr>

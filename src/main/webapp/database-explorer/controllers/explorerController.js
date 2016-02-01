@@ -10,6 +10,7 @@ ords.controller('explorerController', function ($scope, $routeParams, DatabaseSt
 	$scope.logicalDatabaseName = $routeParams.projectDatabaseName;
 	$scope.physicalDatabaseId = $routeParams.physicalDatabaseId;
 	$scope.instance = $routeParams.instance;
+	$scope.server = $routeParams.server;
 	
 	var pathParams = {databaseId:$routeParams.physicalDatabaseId, instance:$routeParams.instance};
 	

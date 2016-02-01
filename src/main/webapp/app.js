@@ -168,6 +168,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 					controller	: 'explorerController'
 				})
 				
+				// SQL Query
+				.when('/sql-query/:projectId/:projectDatabaseId/:projectDatabaseName/:physicalDatabaseId/:instance/:server',{
+					templateUrl : 'sql-query/views/query.html',
+					controller  : 'sqlQueryController'
+				})
+				
 				// Database upload (Import)
 				.when('/import/:projectId/:projectDatabaseId/:server', {
 					templateUrl : 'import/views/import.html'
@@ -186,6 +192,8 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 					templateUrl : 'table-view/row-editor/views/rowEditor.html',
 					controller  : 'rowEditorController'
 				})
+				
+				
 								
 				.otherwise({
 					redirectTo: '/'

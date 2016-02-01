@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, ProjectDatabase, User, growl, gettextCatalog) {
+ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, ProjectDatabase, DatabaseStructure, User, growl, gettextCatalog) {
 	
 	//
 	// This page doesn't make sense to view
@@ -13,54 +13,54 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	//
 	// Get the current Project
 	//
+	$scope.id = $routeParams.id;
 	$scope.project = Project.get({ id: $routeParams.id });
 	
+	$scope.logicalDatabaseId = $routeParams.databaseId;
 	//
-	// Get the Project Database
+	// Get the Project Databases function
 	//	
-	ProjectDatabase.get(
-		{id:$routeParams.id, databaseId: $routeParams.databaseId },
-		function(response){	
-			$scope.database = response;
-			//
-			// Physical Databases
-			//					
-			for (var i = 0; i < $scope.database.databaseVersions.length; i++){
-				
+	$scope.getProjectDatabases = function () {
+		ProjectDatabase.get(
+			{id:$scope.id, databaseId: $scope.logicalDatabaseId },
+			function(response){	
+				$scope.database = response;
 				//
-				// MAIN
-				//
-				if ($scope.database.databaseVersions[i].entityType === "MAIN"){
-					$scope.main = $scope.database.databaseVersions[i];
+				// Physical Databases
+				//					
+				for (var i = 0; i < $scope.database.databaseVersions.length; i++){
+					
+					//
+					// MAIN
+					//
+					if ($scope.database.databaseVersions[i].entityType === "MAIN"){
+						$scope.main = $scope.database.databaseVersions[i];
+					}
+					//
+					// MILESTONE
+					//
+					if ($scope.database.databaseVersions[i].entityType === "MILESTONE"){
+						$scope.milestone = $scope.database.databaseVersions[i];
+					}
+					//
+					// TEST
+					//
+					if ($scope.database.databaseVersions[i].entityType === "TEST"){
+						$scope.test = $scope.database.databaseVersions[i];
+					}
 				}
-	
 				//
-				// MILESTONE
+				// Indicate everything is now loaded
 				//
-				if ($scope.database.databaseVersions[i].entityType === "MILESTONE"){
-					$scope.milestone = $scope.database.databaseVersions[i];
-				}
-	
-				//
-				// TEST
-				//
-				if ($scope.database.databaseVersions[i].entityType === "TEST"){
-					$scope.test = $scope.database.databaseVersions[i];
-				}
+				$q.all([
+				    $scope.database.$promise,
+				    $scope.project.$promise,
+				]).then(function() { 
+				    $scope.allLoaded = true;
+				});
 			}
-			
-			
-			//
-			// Indicate everything is now loaded
-			//
-			$q.all([
-			    $scope.database.$promise,
-			    $scope.project.$promise,
-			]).then(function() { 
-			    $scope.allLoaded = true;
-			});
-		}
-	);
+		);
+	};
 	
 	
 	//
@@ -68,13 +68,17 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	//
 	$scope.deleteDatabase = function(){
 		
-		//
-		// Delete the ProjectDatabase
-		//
-		
-		//
-		// Delete the Group
-		//
+		for ( var dbVersion in $scope.database.databaseVersions ) {
+			var params = {databaseId:dbVersion.physicalDatabaseId, instance: dbVersion.entityType};
+			DatabaseStructure.delete(params);
+		}
+		var params = {id:$scope.project.projectId, databaseId:$scope.database.logicalDatabaseId};
+		ProjectDatabase.delete(
+			params,
+			function(result) {
+				$scope.getProjectDatabases();
+			}
+		);
 		
 	}
 	
@@ -82,6 +86,13 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	// Delete phystical DBs
 	//
 	$scope.deleteMainDatabase = function(){
+		var params = {databaseId:$scope.main.physicalDatabaseId, instance: "MAIN"};
+		DatabaseStructure.delete(
+			params,
+			function(result) {
+				$scope.getProjectDatabases();
+			}
+		);
 		
 	}
 	
@@ -89,7 +100,13 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	// Delete milestone DB
 	//
 	$scope.deleteMilestoneDatabase = function(){
-		
+		var params = {databaseId:$scope.milestone.physicalDatabaseId, instance: "MILESTONE"};
+		DatabaseStructure.delete(
+			params,
+			function(result) {
+				$scope.getProjectDatabases();
+			}
+		);		
 	}
 	
 	//
@@ -99,12 +116,69 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 		
 	}
 	
+	
+	$scope.deleteTestDatabase = function() {
+		var params = {databaseId:$scope.test.physicalDatabaseId, instance: "TEST"};
+		DatabaseStructure.delete(
+			params,
+			function(result) {
+				$scope.getProjectDatabases();
+			}
+		);
+		
+	}
+	
 	//
 	// Set current MAIN as MILESTONE
 	//
 	$scope.setAsMilestoneVersion = function(){
-		
-	}
+		var params = {databaseId:$scope.main.physicalDatabaseId, instance: "MILESTONE"};
+		var databaseRequest = {databaseName:'not used', databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
+		DatabaseStructure.create(
+			params,
+			databaseRequest,
+			function(result) {
+				$scope.getProjectDatabases();
+			},
+			function(error) {
+				growl("error"); // TODO
+			}
+		);
+	};
 	
+	
+	$scope.setMainAsTestVersion = function() {
+		var params = {databaseId:$scope.main.physicalDatabaseId, instance: "TEST"};
+		var databaseRequest = {databaseName:'not used', databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
+		DatabaseStructure.create(
+			params,
+			databaseRequest,
+			function(result) {
+				$scope.getProjectDatabases();
+			},
+			function(error) {
+				growl("error"); // TODO
+			}
+		);
+		
+	};
+	
+	
+	$scope.mergeTestToMain = function() {
+		var params={databaseId:$scope.test.physicalDatabaseId,instance:"TEST"};
+		DatabaseStructure.put(
+			params,
+			databaseRequest,
+			function(result) {
+				$scope.getProjectDatabases();
+			},
+			function(error) {
+				growl("error"); // TODO
+			}	
+		);
+	};
+	
+	
+	$scope.getProjectDatabases();
 	
 });

@@ -1,20 +1,22 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: en.po"
-"Last-Translator: \n"
+"Project-Id-Version: en.poLast-Translator:\n"
 "Language-Team: \n"
-"Language: English (UK)\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.6\n"
 
 #
 # Generic User Messages
 #
 msgid "PENDING_EMAIL_VERIFICATION"
 msgstr "You have successfully registered to use the ORDS, but still need to verify your account. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message."
-
 
 #
 # Password-based login messages
@@ -38,19 +40,19 @@ msgid "Gen410"
 msgstr "The project you are trying to work with has been deleted. To restore the project, please contact support."
 
 msgid "Gen500"
-msgstr "Internal problem while performing this action - please contact support.".
+msgstr "Internal problem while performing this action - please contact support.\""
 
 msgid "Gen401"
-msgstr "Your session has expired. Please log in again." 
+msgstr "Your session has expired. Please log in again."
 
 #
 # User Registration
 #
 msgid "UserPost200"
-msgstr "You have successfully registered to use the ORDS. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message." 
+msgstr "You have successfully registered to use the ORDS. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message."
 
 msgid "UserPost400"
-msgstr "Problem occurred during registration." 
+msgstr "Problem occurred during registration."
 
 msgid "UserPost409"
 msgstr "There was a problem with your registration details: there is already a registered user with the email address %s."
@@ -59,75 +61,70 @@ msgstr "There was a problem with your registration details: there is already a r
 # User Email Verification
 #
 msgid "Verify200"
-msgstr "Thanks for confirming your email address. You can now use the ORDS" 
+msgstr "Thanks for confirming your email address. You can now use the ORDS"
 
 msgid "Verify400"
-msgstr "There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 #
 # User Profile
 #
 msgid "UserPut200"
-msgstr "Profile updated." 
+msgstr "Profile updated."
 
 msgid "UserPut400"
-msgstr "A problem occurred while updating your profile - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "A problem occurred while updating your profile - please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 #
 # Contact a project owner
 #
 msgid "ContactPost200"
-msgstr "Your message has been sent to the project owner." 
+msgstr "Your message has been sent to the project owner."
 
 #
 # Project REST actions - messages
 #
-
 # Create
 msgid "ProPost201"
-msgstr "The project was successfully created." 
+msgstr "The project was successfully created."
 
 msgid "ProPost400"
-msgstr "There has been a problem with your input. Please ensure all fields are filled in correctly." 
+msgstr "There has been a problem with your input. Please ensure all fields are filled in correctly."
 
 # Get
-
 msgid "ProGet400"
 msgstr "Unable to get project details."
 
 msgid "ProGet404"
-msgstr "Unable to find original project in the database - please contact support." 
+msgstr "Unable to find original project in the database - please contact support."
 
 # Update
 msgid "ProPut400"
 msgstr "Unable to update project details. Make sure that the name and description fields contain at least 2 characters."
 
 msgid "ProPut200"
-msgstr "The project was successfully edited." 
+msgstr "The project was successfully edited."
 
 msgid "ProPut404"
-msgstr "Unable to find original project in the database - please contact support." 
+msgstr "Unable to find original project in the database - please contact support."
 
 # Delete
-
 msgid "ProDelete200"
-msgstr "Project deleted successfully." 
+msgstr "Project deleted successfully."
 
 msgid "ProDelete400"
-msgstr "Unable to delete project." 
+msgstr "Unable to delete project."
 
 msgid "ProDelete404"
-msgstr "Unable to find the project to delete it." 
+msgstr "Unable to find the project to delete it."
 
 msgid "ProDelete410"
-msgstr "The project had already been deleted." 
+msgstr "The project had already been deleted."
 
 #
 # Project Member REST actions - messages
 #
-
 # Create
-
 msgid "MemPost200"
 msgstr "The user has been added to the project"
 
@@ -135,10 +132,9 @@ msgid "MemPost400"
 msgstr "Unable to add member."
 
 msgid "MemPost404"
-msgstr "Unable to find original project in the database - please contact support." 
+msgstr "Unable to find original project in the database - please contact support."
 
 # Update
-
 msgid "MemPut200"
 msgstr "Member details updated. The project member's authorisation has been updated"
 
@@ -146,10 +142,9 @@ msgid "MemPut400"
 msgstr "Unable to update the members details."
 
 msgid "MemPut404"
-msgstr "Unable to find original project in the database - please contact support." 
+msgstr "Unable to find original project in the database - please contact support."
 
 # Delete
-
 msgid "MemDelete200"
 msgstr "Project member removed"
 
@@ -157,28 +152,28 @@ msgid "MemDelete400"
 msgstr "There was a problem removing this project member"
 
 msgid "MemDelete404"
-msgstr "Unable to remove member as unable to find in database - please contact support." 
+msgstr "Unable to remove member as unable to find in database - please contact support."
 
 msgid "MemDelete403"
-msgstr "You are not authorised to remove the user for this project." 
+msgstr "You are not authorised to remove the user for this project."
 
 #
 # Project Upgrade Actions
 #
 msgid "Pro025"
-msgstr "A full project request has already been sent for this project" 
+msgstr "A full project request has already been sent for this project"
 
 msgid "Pro026"
 msgstr "A full project request has been sent for this project. You will be notified in due course."
 
 msgid "Pro027"
-msgstr "This project is already a full project" 
+msgstr "This project is already a full project"
 
 #
 # Form Validation
 #
 msgid "Pro006"
-msgstr "Error: You cannot use '___' in project metadata." 
+msgstr "Error: You cannot use '___' in project metadata."
 
 msgid "Pro011"
 msgstr "A project with this name already exists. Pick a different name."
@@ -186,7 +181,6 @@ msgstr "A project with this name already exists. Pick a different name."
 #
 # Invites
 #
-
 # Create
 msgid "InvPost200"
 msgstr "ORDS has sent an invitation to this email address."
@@ -218,14 +212,12 @@ msgid "InvPut400"
 msgstr "Unable to update the members details."
 
 msgid "InvPut404"
-msgstr "Unable to find original project in the database - please contact support." 
+msgstr "Unable to find original project in the database - please contact support."
 
 #
 # Project Database REST messages
 #
-
 # POST
-
 msgid "ProDbPost201"
 msgstr "Empty database added successfully."
 
@@ -236,22 +228,19 @@ msgid "ProDbPost404"
 msgstr "Unable to add new empty database."
 
 # DELETE
-
 msgid "ProDbDelete200"
-msgstr "Database successfully deleted." 
+msgstr "Database successfully deleted."
 
 msgid "ProDbDelete403"
-msgstr "You are not authorised to remove the database for this project." 
+msgstr "You are not authorised to remove the database for this project."
 
 msgid "ProDbDelete404"
-msgstr "ORDS could not find the database to delete it." 
-"ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
+msgstr "ORDS could not find the database to delete it.ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
 
 msgid "ProDbDelete405"
-msgstr "Unable to delete database." 
+msgstr "Unable to delete database."
 
 # PUT
-
 msgid "ProDbPut200"
 msgstr "Database information edited successfully."
 
@@ -259,20 +248,19 @@ msgid "ProDbPut400"
 msgstr "Unable to save changes;  please check whether the information you provided was valid."
 
 msgid "ProDbPut404"
-msgstr "ORDS could not find the database to update it." 
-"ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
+msgstr "ORDS could not find the database to update it.ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
 
 #
 # Other Project Messages
 #
 msgid "Pro010"
-msgstr "Unable to find that user in the database." 
+msgstr "Unable to find that user in the database."
 
 msgid "Pro018"
 msgstr "Unable to comply. Perhaps this user is already associated with the project?"
 
 msgid "Pro023"
-msgstr "There has been a problem with your request. Please ensure the email you specified is valid, and if the problem persists then contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "There has been a problem with your request. Please ensure the email you specified is valid, and if the problem persists then contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pro024"
 msgstr "The email address you entered is invalid. Email addresses must be in the format user@domain"
@@ -280,162 +268,146 @@ msgstr "The email address you entered is invalid. Email addresses must be in the
 #
 # Databases
 #
-
 msgid "Dat001"
-msgstr "Internal error accessing database information." 
+msgstr "Internal error accessing database information."
 
 msgid "Dat002"
-msgstr "Unable to get table details." 
-"Null table name."
+msgstr "Unable to get table details.Null table name."
 
 msgid "Dat003"
-msgstr "Record added successfully." 
+msgstr "Record added successfully."
 
 msgid "Dat004"
-msgstr ""
-"ORDS is unable to add that record. Please ensure that the data you are entering is consistent with the database schema"
-" (for example, Integer fields can only contain whole numbers, and some fields may have a maximum size specified). "
-"If the problem persists, please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "ORDS is unable to add that record. Please ensure that the data you are entering is consistent with the database schema (for example, Integer fields can only contain whole numbers, and some fields may have a maximum size specified). If the problem persists, please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Dat005"
-msgstr "Error determining starting record." 
+msgstr "Error determining starting record."
 
 msgid "Dat006"
-msgstr "Problem with user input." 
+msgstr "Problem with user input."
 
 msgid "Dat007"
-msgstr "Milestone database version successfully created." 
+msgstr "Milestone database version successfully created."
 
 msgid "Dat008"
-msgstr "Test database version successfully created." 
+msgstr "Test database version successfully created."
 
 msgid "Dat009"
-msgstr "Empty database successfully created." 
+msgstr "Empty database successfully created."
 
 msgid "Dat010"
 msgstr "Unable to get specific internal information."
 
 msgid "Dat011"
-msgstr "Data saved." 
+msgstr "Data saved."
 
 msgid "Dat012"
-msgstr "Problem updating data in table." 
+msgstr "Problem updating data in table."
 
 msgid "Dat013"
-msgstr "Problem obtaining database." 
+msgstr "Problem obtaining database."
 
 msgid "Dat014"
-msgstr ""
-"Too many records for trial." 
-"This is a trial project - you cannot add so many records to it."
+msgstr "Too many records for trial.This is a trial project - you cannot add so many records to it."
 
 msgid "Dat015"
-msgstr "Your database will be uploaded." 
-"You will be notified by email when the process has completed."
-
-
+msgstr "Your database will be uploaded.You will be notified by email when the process has completed."
 
 msgid "Con001"
-msgstr "Test database version successfully copied to main." 
+msgstr "Test database version successfully copied to main."
 
 msgid "Con002"
-msgstr "Unable to copy test database version to main due to internal error." 
+msgstr "Unable to copy test database version to main due to internal error."
 
 msgid "Con003"
-msgstr "Unable to copy test database version to main due to internal SQL error." 
+msgstr "Unable to copy test database version to main due to internal SQL error."
 
 msgid "Con004"
-msgstr ""
-"Database successfully copied to milestone version." 
+msgstr "Database successfully copied to milestone version."
 
 msgid "Con005"
-msgstr "Unable to copy to milestone database version due to internal cloning error." 
+msgstr "Unable to copy to milestone database version due to internal cloning error."
 
 msgid "Con006"
-msgstr "Database successfully copied to test version." 
+msgstr "Database successfully copied to test version."
 
 msgid "Con007"
-msgstr "Unable to copy to test database version due to internal cloning error." 
+msgstr "Unable to copy to test database version due to internal cloning error."
 
 msgid "Con008"
-msgstr "Internal error getting dataset id." 
+msgstr "Internal error getting dataset id."
 
 msgid "Con009"
-msgstr "The dataset was successfully deleted." 
+msgstr "The dataset was successfully deleted."
 
 msgid "Con010"
-msgstr "Unable to find the table from which to delete records." 
+msgstr "Unable to find the table from which to delete records."
 
 msgid "Con011"
-msgstr "The record has been successfully deleted." 
+msgstr "The record has been successfully deleted."
 
 msgid "Con012"
-msgstr "Unable to delete the record." 
+msgstr "Unable to delete the record."
 
 msgid "Con014"
-msgstr "Unable to find your user." 
+msgstr "Unable to find your user."
 
 msgid "Con020"
-msgstr "Database version deleted from ORDS." 
+msgstr "Database version deleted from ORDS."
 
 msgid "Con021"
-msgstr "Unable to delete project user." 
+msgstr "Unable to delete project user."
 
 msgid "Con022"
-msgstr "Unable to copy to milestone database version due to internal error." 
+msgstr "Unable to copy to milestone database version due to internal error."
 
 msgid "Con023"
-msgstr "Internal error creating the main database version." 
+msgstr "Internal error creating the main database version."
 
 msgid "Con024"
-msgstr "ORDS could not find any database versions to delete." 
-"ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
+msgstr "ORDS could not find any database versions to delete.ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
 
 msgid "Con025"
-msgstr "Unable to create test database version." 
+msgstr "Unable to create test database version."
 
 msgid "Con026"
 msgstr "Unable to get internal details. Invalid opd."
 
 msgid "Con027"
-msgstr "Problem obtaining database." 
+msgstr "Problem obtaining database."
 
 msgid "Con028"
-msgstr "The database has been deleted. However, ORDS encountered a problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened." 
+msgstr "The database has been deleted. However, ORDS encountered a problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
 
 msgid "Dat016"
-msgstr "Milestone database version created." 
+msgstr "Milestone database version created."
 
 msgid "Dat017"
-msgstr "Internal data error." 
+msgstr "Internal data error."
 
 msgid "Dat018"
-msgstr "Unable to create milestone database version due to internal error." 
+msgstr "Unable to create milestone database version due to internal error."
 
 msgid "Dat019"
-msgstr "Test database version created." 
+msgstr "Test database version created."
 
 msgid "Dat020"
-msgstr "There has been an internal error creating the test database version." 
+msgstr "There has been an internal error creating the test database version."
 
 msgid "Dat021"
-msgstr "Database updated successfully." 
+msgstr "Database updated successfully."
 
 msgid "Dat022"
-msgstr "Internal error while trying to update the database." 
+msgstr "Internal error while trying to update the database."
 
 msgid "Dat023"
-msgstr "Internal error while trying to upload the database." 
+msgstr "Internal error while trying to upload the database."
 
 msgid "Dat024"
-msgstr ""
-"The upload process is underway." 
-"You will be sent an email the process of uploading your database is complete."
+msgstr "The upload process is underway.You will be sent an email the process of uploading your database is complete."
 
 msgid "Dat025"
-msgstr ""
-"Database problem"
-
+msgstr "Database problem"
 
 msgid "Dat026"
 msgstr "Unable to create database because of bad or corrupt data - please report this error to an administrator"
@@ -452,449 +424,388 @@ msgstr "Unable to create staging database becuase of an internal naming conflict
 msgid "Dat030"
 msgstr "No database of that name found!"
 
-msgid "Dat403"
-mststr "You are not authorized to access this database"
-
 msgid "Log001"
-msgstr ""
-"Unable to log you in with those credentials. Sorry." 
+msgstr "Unable to log you in with those credentials. Sorry."
 
 msgid "Log002"
-msgstr ""
-"There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Sql001"
-msgstr ""
-"Internal error." 
+msgstr "Internal error."
 
 msgid "Sql002"
-msgstr ""
-"Schema updated successfully." 
+msgstr "Schema updated successfully."
 
 msgid "Pdu001"
-msgstr ""
-"There has been an internal problem doing this. Null items." 
+msgstr "There has been an internal problem doing this. Null items."
 
 msgid "Pdu002"
-msgstr ""
-"Bad file name - try again (click the -Choose File- button to select the database)." 
+msgstr "Bad file name - try again (click the -Choose File- button to select the database)."
 
 msgid "Pdu003"
-msgstr ""
-"Internal error trying to create the database. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Internal error trying to create the database. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pdu004"
-msgstr ""
-"Unable to fix the schema." 
+msgstr "Unable to fix the schema."
 
 msgid "Pdu005"
-msgstr ""
-"General processing error. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "General processing error. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pdu006"
-msgstr ""
-"Unable to create database. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Unable to create database. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pdu007"
-msgstr ""
-"Unable to configure system. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Unable to configure system. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pdu008"
-msgstr ""
-"Unable to generate data files. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Unable to generate data files. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pdu009"
-msgstr ""
-"Unable to get the required details from the database - please contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Unable to get the required details from the database - please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Pdu010"
-msgstr ""
-"This has already been imported. Nothing to do. This is likely a coding error." 
+msgstr "This has already been imported. Nothing to do. This is likely a coding error."
 
 msgid "Pdu011"
-msgstr ""
-"Unable to get the required details of the database - please contact the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened." 
+msgstr "Unable to get the required details of the database - please contact the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened."
 
 msgid "Pdu012"
-msgstr ""
-"There has been a problem importing your database. Perhaps there has been some sort of data corruption, or the data format is not supported in ORDS? For help identifying the problem, please contact the ORDS help desk by emailing ords@it.ox.ac.uk" 
+msgstr "There has been a problem importing your database. Perhaps there has been some sort of data corruption, or the data format is not supported in ORDS? For help identifying the problem, please contact the ORDS help desk by emailing ords@it.ox.ac.uk"
 
 msgid "Pdu013"
-msgstr ""
-"There has been a problem importing the database and/or its data into ORDS. The trace is appended here to help you assess what the problems might be." 
+msgstr "There has been a problem importing the database and/or its data into ORDS. The trace is appended here to help you assess what the problems might be."
 
 msgid "Pdu014"
-msgstr "Your project is currently marked as a trial project - this database is too big for trial projects."
-"Please select a smaller database, or contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Your project is currently marked as a trial project - this database is too big for trial projects.Please select a smaller database, or contact the ORDS help desk by emailing ords@it.ox.ac.uk."
+
+msgid "Sqe001"
+msgstr "Build a Query Database Name:"
+
+msgid "Sqe002"
+msgstr ""
+"This page will allow you to construct database queries using SQL. \n"
+"Type each clause of the SQL statement into the appropriate field below. \n"
+"\n"
+"There's no need to enter the SQL command that appears immediately before the field (e.g. SELECT, FROM, etc.): the ORDS will supply this automatically (and will delete it if it is entered). \n"
+"\n"
+"Pre-written SQL queries can be pasted into the SELECT field: the ORDS will divide the query into its component parts and distribute it appropriately. \n"
+"\n"
+"You can also simply start typing a complete SQL statement in the SELECT field: if the ORDS detects that you have entered a command that belongs in another field, it will move you there automatically. \n"
+"\n"
+"If you would like to learn more about how to construct SQL queries, there are plenty of books and online guides available. A brief overview can be found in the ORDS documentation at  http://help.it.ox.ac.uk/research/ords/howto07#Querying-using-sql, and W3schools.com offers a helpful SQL tutorial at http://www.w3schools.com/sql. \n"
+"\n"
+"If you would like to save a copy of the results of your query, you can export the results as a CSV file. For full projects, project owners, administrators, and contributors can also save the results as an ORDS dataset."
+
+msgid "Sqe003"
+msgstr "Enter the names of the fields you wish to display the contents of, separated by commas. Enclose field names containing spaces or upper case letters in \"double quotes\". An asterisk (*) can be used to represent all the fields in a table."
+
+msgid "Sqe004"
+msgstr ""
+"Enter the table name(s). Enclose table names containing spaces or upper case letters in \"double quotes\".\n"
+" If there are multiple tables, you will also need to include a JOIN clause. See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_join.asp for more information."
+
+msgid "Sqe005"
+msgstr "(Optional) WHERE statements are used to specify that only records meeting certain criteria should be included. Enclose text strings in 'single quotes'. See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_where.asp for more about WHERE clauses."
+
+msgid "Sqe006"
+msgstr "(Optional) See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_groupby.asp for more about GROUP BY clauses."
+
+msgid "Sqe007"
+msgstr "(Optional) See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_orderby.asp for more about ORDER BY clauses."
+
+msgid "Sqe008"
+msgstr "(Optional) See the PostgreSQL documentation at http://www.postgresql.org/docs/9.1/static/queries-limit.html for more about LIMIT clauses."
+
+msgid "Sqe009"
+msgstr "(Optional) See the PostgreSQL documentation at http://www.postgresql.org/docs/9.1/static/queries-limit.html for more about OFFSET clauses."
 
 msgid "Tvs001"
-msgstr "Internal database error." 
+msgstr "Internal database error. "
 
 msgid "Tvs002"
-msgstr "Unable to produce data for export." 
+msgstr "Unable to produce data for export."
 
 msgid "Tvs003"
-msgstr "Problem getting data for the CSV file." 
+msgstr "Problem getting data for the CSV file."
 
 msgid "Tvs004"
-msgstr "Dataset exported successfully." 
+msgstr "Dataset exported successfully."
 
 msgid "Tvs005"
-msgstr "Internal error getting project details." 
+msgstr "Internal error getting project details."
 
 msgid "Tvs006"
-msgstr "Unable to get data for dataset." 
+msgstr "Unable to get data for dataset."
 
 msgid "Tvs007"
-msgstr "Please enter a name for the dataset." 
+msgstr "Please enter a name for the dataset."
 
 msgid "Tvs008"
-msgstr "Please enter a query for the dataset." 
+msgstr "Please enter a query for the dataset."
 
 msgid "Tvs009"
-msgstr "Please enter a description for the dataset." 
+msgstr "Please enter a description for the dataset."
 
 msgid "Tvs010"
-msgstr "Your dataset has been saved." 
+msgstr "Your dataset has been saved."
 
 msgid "Tvs011"
-msgstr "Problem creating the static dataset." 
+msgstr "Problem creating the static dataset."
 
 msgid "Tvs012"
-msgstr "Problem storing the static dataset." 
+msgstr "Problem storing the static dataset."
 
 msgid "Tvs013"
-msgstr "Dataset edited successfully." 
+msgstr "Dataset edited successfully."
 
 msgid "Tvs014"
-msgstr "For security reasons, only SELECT queries are allowed through this interface." 
+msgstr "For security reasons, only SELECT queries are allowed through this interface."
 
 msgid "Tvs015"
-msgstr "Success." 
+msgstr "Success."
 
 msgid "Tvs016"
-msgstr ""
-"Datasets cannot be saved for trial projects. If you would like to request an upgrade to full project status, please click the 'Request full project' button on the project page, or contact the ORDS help desk by emailing ords@it.ox.ac.uk." 
+msgstr "Datasets cannot be saved for trial projects. If you would like to request an upgrade to full project status, please click the 'Request full project' button on the project page, or contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
 msgid "Uti001"
-msgstr "Unable to access file from the database." 
+msgstr "Unable to access file from the database."
 
 msgid "Uti002"
-msgstr ""
-"File download successful." 
+msgstr "File download successful."
 
 msgid "Uti003"
-msgstr ""
-"There has been a problem preparing the data." 
-
+msgstr "There has been a problem preparing the data."
 
 msgid "Fpc001"
-msgstr "Unknown user." 
+msgstr "Unknown user."
 
 msgid "Fpp001"
-msgstr ""
-"Unknown user. Are you sure you have registered?" 
+msgstr "Unknown user. Are you sure you have registered?"
 
 msgid "Fpp005"
-msgstr ""
-"You have not yet verified your email address. A new email has been sent to you." 
+msgstr "You have not yet verified your email address. A new email has been sent to you."
 
 msgid "Rst001"
-msgstr ""
-"Database with id %s does not exist" 
+msgstr "Database with id %s does not exist"
 
 msgid "Rst002"
-msgstr ""
-"There is no %s instance for database %s" 
+msgstr "There is no %s instance for database %s"
 
 msgid "Rst003"
-msgstr ""
-"Database deletion failed, attempted to delete the database %s, which doesn't exist." 
+msgstr "Database deletion failed, attempted to delete the database %s, which doesn't exist."
 
 msgid "Rst004"
-msgstr ""
-"Changes to database %s saved successfully." 
+msgstr "Changes to database %s saved successfully."
 
 msgid "Rst005"
-msgstr ""
-"There is no table in %s called %s" 
+msgstr "There is no table in %s called %s"
 
 msgid "Rst006"
-msgstr ""
-"Cannot create table %s a table with that name already exists" 
+msgstr "Cannot create table %s a table with that name already exists"
 
 msgid "Rst007"
-msgstr ""
-"Table %s created successfully" 
+msgstr "Table %s created successfully"
 
 msgid "Rst008"
-msgstr ""
-"Table %s renamed to %s" 
+msgstr "Table %s renamed to %s"
 
 msgid "Rst009"
-msgstr ""
-"Cannot rename table %s table does not exist" 
+msgstr "Cannot rename table %s table does not exist"
 
 msgid "Rst010"
-msgstr ""
-"Cannot rename table to %s there is already a table with that name" 
+msgstr "Cannot rename table to %s there is already a table with that name"
 
 msgid "Rst011"
-msgstr ""
-"Table %s deleted successfully" 
+msgstr "Table %s deleted successfully"
 
 msgid "Rst012"
-msgstr ""
-"Cannot delete table %s table does not exist" 
+msgstr "Cannot delete table %s table does not exist"
 
 msgid "Rst013"
-msgstr ""
-"There is no field in %s called %s" 
+msgstr "There is no field in %s called %s"
 
 msgid "Rst014"
-msgstr ""
-"There is no table in %s called %s" 
+msgstr "There is no table in %s called %s"
 
 msgid "Rst015"
-msgstr ""
-"No datatype supplied for the new field" 
+msgstr "No datatype supplied for the new field"
 
 msgid "Rst016"
-msgstr ""
-"Field %s created successfully" 
+msgstr "Field %s created successfully"
 
 msgid "Rst017"
-msgstr ""
-"Cannot field in table %s table doesn't exist" 
+msgstr "Cannot field in table %s table doesn't exist"
 
 msgid "Rst018"
-msgstr ""
-"Cannot create field %s in table %s a field with that name already exists." 
+msgstr "Cannot create field %s in table %s a field with that name already exists."
 
 msgid "Rst019"
-msgstr ""
-"Field %s renamed to %s successfully" 
+msgstr "Field %s renamed to %s successfully"
 
 msgid "Rst020"
-msgstr ""
-"Field %s now nullable" 
+msgstr "Field %s now nullable"
 
 msgid "Rst021"
-msgstr ""
-"Field %s no longer nullable" 
+msgstr "Field %s no longer nullable"
 
 msgid "Rst022"
-msgstr ""
-"Data type for %s changed to %s" 
+msgstr "Data type for %s changed to %s"
 
 msgid "Rst023"
-msgstr ""
-"Default value removed from %s" 
+msgstr "Default value removed from %s"
 
 msgid "Rst024"
-msgstr ""
-"Default value for %s set to %s" 
+msgstr "Default value for %s set to %s"
 
 msgid "Rst025"
-msgstr ""
-"Request must specify at least one of newName, notnull, datatype, defaultValue or autoIncrement" 
+msgstr "Request must specify at least one of newName, notnull, datatype, defaultValue or autoIncrement"
 
 msgid "Rst026"
-msgstr ""
-"Cannot modify field in table %s table doesn't exist" 
+msgstr "Cannot modify field in table %s table doesn't exist"
 
 msgid "Rst027"
-msgstr ""
-"Cannot modify field %s field doesn't exist in table %s" 
+msgstr "Cannot modify field %s field doesn't exist in table %s"
 
 msgid "Rst028"
-msgstr ""
-"Cannot rename field to %s field with that name already exists in table %s" 
+msgstr "Cannot rename field to %s field with that name already exists in table %s"
 
 msgid "Rst029"
-msgstr ""
-"Field %s successfully deleted from %s" 
+msgstr "Field %s successfully deleted from %s"
 
 msgid "Rst030"
-msgstr ""
-"Cannot delete field from table %s table does not exist" 
+msgstr "Cannot delete field from table %s table does not exist"
 
 msgid "Rst031"
-msgstr ""
-"Cannot delete field %s from table %s field does not exist" 
+msgstr "Cannot delete field %s from table %s field does not exist"
 
 msgid "Rst032"
-msgstr ""
-"There is no index for %s called %s" 
+msgstr "There is no index for %s called %s"
 
 msgid "Rst033"
-msgstr ""
-"There is no table in %s called %s" 
+msgstr "There is no table in %s called %s"
 
 msgid "Rst034"
-msgstr ""
-"Index '%s' created successfully" 
+msgstr "Index '%s' created successfully"
 
 msgid "Rst035"
-msgstr ""
-"At least one field must be specified" 
+msgstr "At least one field must be specified"
 
 msgid "Rst036"
-msgstr ""
-"Cannot create index on table %s table does not exist" 
+msgstr "Cannot create index on table %s table does not exist"
 
 msgid "Rst037"
-msgstr ""
-"Cannot create index %s on table %s there is already a index with that name." 
+msgstr "Cannot create index %s on table %s there is already a index with that name."
 
 msgid "Rst038"
-msgstr ""
-"newName must be specified" 
+msgstr "newName must be specified"
 
 msgid "Rst039"
-msgstr ""
-"Cannot rename index on table %s table does not exist" 
+msgstr "Cannot rename index on table %s table does not exist"
 
 msgid "Rst040"
-msgstr ""
-"Index %s renamed to %s" 
+msgstr "Index %s renamed to %s"
 
 msgid "Rst041"
-msgstr ""
-"Cannot rename index %s on table %s index does not exist" 
+msgstr "Cannot rename index %s on table %s index does not exist"
 
 msgid "Rst042"
-msgstr ""
-"Cannot rename index to %s a index with that name already exists on table %s" 
+msgstr "Cannot rename index to %s a index with that name already exists on table %s"
 
 msgid "Rst043"
-msgstr ""
-"Index %s removed from %s" 
+msgstr "Index %s removed from %s"
 
 msgid "Rst044"
-msgstr ""
-"Cannot remove index from table %s table does not exist" 
+msgstr "Cannot remove index from table %s table does not exist"
 
 msgid "Rst045"
-msgstr ""
-"Cannot remove index %s from table %s index does not exist" 
+msgstr "Cannot remove index %s from table %s index does not exist"
 
 msgid "Rst046"
-msgstr ""
-"There is no constraint for %s called %s" 
+msgstr "There is no constraint for %s called %s"
 
 msgid "Rst047"
-msgstr ""
-"There is no table in %s called %s" 
+msgstr "There is no table in %s called %s"
 
 msgid "Rst048"
-msgstr ""
-"Constraint '%s' created successfully" 
+msgstr "Constraint '%s' created successfully"
 
 msgid "Rst049"
-msgstr ""
-"At least one refColumn must be specified to create a foreign key" 
+msgstr "At least one refColumn must be specified to create a foreign key"
 
 msgid "Rst050"
-msgstr ""
-"refTable must be specified to create a foreign key" 
+msgstr "refTable must be specified to create a foreign key"
 
 msgid "Rst051"
-msgstr ""
-"A checkExpression must be specified when no constraint type is specified" 
+msgstr "A checkExpression must be specified when no constraint type is specified"
 
 msgid "Rst052"
-msgstr ""
-"Cannot create constraint on table %s table does not exist" 
+msgstr "Cannot create constraint on table %s table does not exist"
 
 msgid "Rst053"
-msgstr ""
-"Cannot create constraint %s on table %s there is already a constraint with that name." 
+msgstr "Cannot create constraint %s on table %s there is already a constraint with that name."
 
 msgid "Rst054"
-msgstr ""
-"Constraint %s renamed to %s" 
+msgstr "Constraint %s renamed to %s"
 
 msgid "Rst055"
-msgstr ""
-"Cannot rename constraint on table %s table does not exist" 
+msgstr "Cannot rename constraint on table %s table does not exist"
 
 msgid "Rst056"
-msgstr ""
-"Cannot rename constraint %s on table %s constraint does not exist" 
+msgstr "Cannot rename constraint %s on table %s constraint does not exist"
 
 msgid "Rst057"
-msgstr ""
-"Cannot rename constraint to %s a constraint with that name already exists on table %s" 
+msgstr "Cannot rename constraint to %s a constraint with that name already exists on table %s"
 
 msgid "Rst058"
-msgstr ""
-"Constraint %s removed from %s" 
+msgstr "Constraint %s removed from %s"
 
 msgid "Rst059"
-msgstr ""
-"Cannot remove constraint from table %s table does not exist" 
+msgstr "Cannot remove constraint from table %s table does not exist"
 
 msgid "Rst060"
-msgstr ""
-"Cannot remove constraint %s from table %s constraint does not exist" 
+msgstr "Cannot remove constraint %s from table %s constraint does not exist"
 
 msgid "Rst061"
-msgstr ""
-"Field specified as NOT NULL must have a non-null default value" 
+msgstr "Field specified as NOT NULL must have a non-null default value"
 
 msgid "Rst062"
-msgstr ""
-"You cannot specify a default for an auto-increment field" 
+msgstr "You cannot specify a default for an auto-increment field"
 
 msgid "Rst063"
-msgstr ""
-"Only integer fields can have auto-increment enabled" 
+msgstr "Only integer fields can have auto-increment enabled"
 
 msgid "Rst064"
-msgstr ""
-"Cannot remove auto-increment form field %s it does not currently have an auto-increment." 
+msgstr "Cannot remove auto-increment form field %s it does not currently have an auto-increment."
 
 msgid "Rst065"
-msgstr ""
-"Cannot add auto-increment to field %s it is already auto-incremented." 
+msgstr "Cannot add auto-increment to field %s it is already auto-incremented."
 
 msgid "Rst066"
-msgstr ""
-"Added auto-increment to field %s." 
+msgstr "Added auto-increment to field %s."
 
 msgid "Rst067"
-msgstr ""
-"Removed auto-increment from field %s." 
+msgstr "Removed auto-increment from field %s."
 
 msgid "Rst068"
-msgstr ""
-"You can only specify one local field per foreign key" 
+msgstr "You can only specify one local field per foreign key"
 
 msgid "Rst069"
-msgstr ""
-"Database %s deleted successfully"
+msgstr "Database %s deleted successfully"
 
 msgid "Rst070"
-msgstr ""
-"Comment for %s set to %s" 
+msgstr "Comment for %s set to %s"
 
 msgid "Rst071"
-msgstr ""
-"Cannot set comment for table %s table doesn't exist."
+msgstr "Cannot set comment for table %s table doesn't exist."
 
 msgid "Rst072"
-msgstr ""
-"Cannot set comment for field %s field doesn't exist in table %s" 
+msgstr "Cannot set comment for field %s field doesn't exist in table %s"
 
 msgid "Rst073"
-msgstr ""
-"Cannot set comment for field %s in table %s table doesn't exist" 
+msgstr "Cannot set comment for field %s in table %s table doesn't exist"
 
 msgid "Rst074"
-msgstr ""
-"Cannot get comment for field %s field doesn't exist in table %s" 
+msgstr "Cannot get comment for field %s field doesn't exist in table %s"
 
 msgid "Rst075"
-msgstr ""
-"A working copy of your database could not be created for editing" 
+msgstr "A working copy of your database could not be created for editing"
