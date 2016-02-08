@@ -57,7 +57,7 @@ ords.controller('newMemberController', function ($rootScope, $scope, $location, 
 			$scope.member,
 			function(){
 				growl.success( gettextCatalog.getString("MemPost200") );
-				$location.path("#/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId);
 			},
 			function(response){
 				
@@ -67,7 +67,7 @@ ords.controller('newMemberController', function ($rootScope, $scope, $location, 
 				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };
 				if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 				
-				$location.path("#/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId);
 			}
 	
 		);
