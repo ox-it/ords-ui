@@ -13,7 +13,7 @@
         <input ng-model="contactRequest.name" required type="text" id="requestorName" name="requestorName">
     </div>
 	
-    <div ng-messages="contactForm.requestorName.$error" class="formItem" role="alert">
+    <div ng-messages="contactForm.requestorName.$error" ng-if="contactForm.requestorName.$touched" class="formItem" role="alert">
       <div ng-message="required" class="alert alert-warning">You need to provide a name</div>
     </div>
 	
@@ -24,7 +24,7 @@
         <textarea ng-model="contactRequest.message" required rows="8" cols="40" id="contactMessage" name="contactMessage"></textarea>
     </div>
 	
-    <div ng-messages="contactForm.contactMessage.$error" class="formItem" role="alert">
+    <div ng-messages="contactForm.contactMessage.$error" ng-if="contactForm.contactMessage.$touched" class="formItem" role="alert">
       <div ng-message="required" class="alert alert-warning">You need to provide a message</div>
     </div>
 	
@@ -35,10 +35,12 @@
         <input ng-model="contactRequest.emailAddress" required type="email" id="emailAddress" name="emailAddress">
     </div>
 	
-    <div ng-messages="contactForm.emailAddress.$error" class="formItem" role="alert">
+    <div ng-messages="contactForm.emailAddress.$error" ng-if="contactForm.emailAddress.$touched" class="formItem" role="alert">
       <div ng-message="required" class="alert alert-warning">You need to provide an email address</div>
       <div ng-message="email" class="alert alert-warning">You need to provide a valid email address</div>
     </div>
     
-	<input name="sendContact" type="submit" value="Send">
+	<div class="form-buttons">
+		<button name="sendContact" ng-disabled="contactForm.$invalid" type="submit" value="Send">Send</button>
+	</div>
 </form>

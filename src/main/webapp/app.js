@@ -117,6 +117,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                templateUrl : 'project/views/editmember.html',
 	                controller  : 'editMemberController'				
 				})
+                
+                // Edit Pending Member Form
+				.when('/project/:projectId/invite/:inviteId/edit', {
+	                templateUrl : 'project/views/editinvitation.html',
+	                controller  : 'inviteController'				
+				})
 								
 				// New Member Form
 				.when('/project/:id/newmember', {

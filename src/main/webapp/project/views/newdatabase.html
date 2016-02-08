@@ -17,7 +17,7 @@
 	    <input ng-model="group.dbName" required type="text" id="dbName" name="dbName" value="">       
 	</div>
 	
-	<div ng-messages="newDatabaseForm.dbName.$error" class="formItem" role="alert">
+	<div ng-messages="newDatabaseForm.dbName.$error" ng-if="newDatabaseForm.dbName.$touched"  class="formItem" role="alert">
 	  <div ng-message="required" class="alert alert-warning">You must provide a name</div>
 	</div>
 	
@@ -27,7 +27,7 @@
 	    <textarea ng-model="group.dbDescription" required rows="5" id="dbDescription" name="dbDescription"></textarea>
 	</div>
 	
-	<div ng-messages="newDatabaseForm.dbDescription.$error" class="formItem" role="alert">
+	<div ng-messages="newDatabaseForm.dbDescription.$error" ng-if="newDatabaseForm.dbDescription.$touched" class="formItem" role="alert">
 	  <div ng-message="required" class="alert alert-warning">You must provide a description</div>
 	</div>
 	
@@ -50,6 +50,6 @@
                     
 	<div class="form-buttons">
 	 <button name="cancel" type="submit">Cancel</button>
-	 <button name="submit" class="go-go-go" type="submit">Add</button>
+	 <button name="submit" class="go-go-go" type="submit" ng-disabled="newDatabaseForm.$invalid">Add</button>
 	</div>
 </form>
