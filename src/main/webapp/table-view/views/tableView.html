@@ -21,7 +21,7 @@
 		<table width="875" class="data-table" style="table-layout: fixed;">
 			<thead>
 				<tr>
-					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex" ng-click="orderKey(column)">{{column.columnName}}</td>
+					<td class="tdFixed" ng-repeat="column in getColumns()" dynamic="column"></td>
 					<td class="tdFixed" style="width:100px;">Functions</td>
 				</tr>
 			</thead>
@@ -32,7 +32,7 @@
 		<table>
 			<tbody>
 				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy">
-					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex"><input type="text" value="{{row.cell[column.columnName].value}}"/></td>
+					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex"><input type="text" ng-value="getColumnDataForRow(column, row)"/></td>
 					<td class="tdScroll" style="min-width:100px; width:100px;"><img src="images/delete_icon.png" alt="Delete Row" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)"/>&nbsp;&nbsp;<a href="#/row/{{project.projectId}}/{{project.projectDatabaseId}}/{{dbId}}/{{instance}}/{{tableName}}/{{primaryKey}}/{{row.cell[primaryKey].value}}"><img src="images/pencil.png" alt="Edit Row"/></a></td>
 				</tr>
 			</tbody>
