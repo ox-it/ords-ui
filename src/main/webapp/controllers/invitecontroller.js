@@ -1,10 +1,35 @@
 ords.controller('inviteController', function($rootScope, $scope, $routeParams, $location, $http, growl, gettextCatalog, User, Project, Invitation, AuthService) {
 		
 	//
-	// Conduct auth check - we need the user to log in before we can complete sign-up
+	// Conduct auth check - we need the user to log in before we can complete sign-up in an SSO setup.
+    // Comment this out when allowing self-registration and password-based access control
 	//
-	AuthService.check();
-	
+	// AuthService.check();
+    
+    //
+    // An invitation can be followed in a number of ways
+    //
+    // 1. A non-user follows the invite link. They have never registered. 
+    // 2. A user follows the invite link. They are logged in.
+    // 3. A user follows the invite link. They aren't logged in.
+    //
+    // If password generation is on, in the case of (1) we have to show a password field
+    //
+   
+    if ($routeParams.code){
+            User.lookup(
+                {code:  $routeParams.code},
+                function(){
+                    $scope.needsPassword = false;
+                },
+                function(response){
+                    $scope.needsPassword = true;
+                }
+            );
+    } else {
+            $scope.needsPassword = false;
+    }
+    
 	//
 	// Complete signup process
 	//
@@ -84,7 +109,9 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
 	//
 	if ($routeParams.inviteId) {
 		$scope.invite = Invitation.get(
-			{id: $routeParams.id, inviteId: $routeParams.inviteId}
-		);
+			{id: $routeParams.id, inviteId: $routeParams.code}
+		)
+        $scope.invite.$promise.then($scope.getUser);
 	};
+    
 });

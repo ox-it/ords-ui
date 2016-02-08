@@ -2,7 +2,7 @@
 
 var ordsServices = angular.module('ords.services',['ngResource'])
 
-		//
+	//
 	// Project REST Resources
 	//
 	.factory('Project', function( $resource ) {		
