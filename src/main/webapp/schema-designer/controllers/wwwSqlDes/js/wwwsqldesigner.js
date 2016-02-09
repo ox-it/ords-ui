@@ -1686,7 +1686,9 @@ SQL.IO.prototype.clientload = function() {
 SQL.IO.prototype.serversave = function(e) {
     var positionRequest;
     var positionURL;
-	this.owner.confirm(_('saveconfirm')).then(
+    var url;
+	this.owner.confirm(_('saveconfirm')
+	).then(
         function() {
             currently_saving = true;
             this.owner.showOverlay();
@@ -1703,11 +1705,12 @@ SQL.IO.prototype.serversave = function(e) {
             }
             positionRequest = {"positions": positions};
             positionURL = dbURL()+"/positions";
-            var url = dbURL() + "/staging";
+            url = dbURL() + "/staging";
 
             // Save the changes to the database
             return this.owner.request.Promise(url, SQL.Request.PUT);        
-        }.bind(this)
+        }.bind(this),
+        this.owner.error
     ).then(
         function() {
             // Create a new working copy of the database for further changes
