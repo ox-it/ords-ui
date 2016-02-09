@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, $sce, Project, ProjectDatabase, TableList, DoQuery,  TableRow, ReferenceColumnData, AuthService, growl, gettextCatalog){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, AuthService, growl, gettextCatalog){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -46,7 +46,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		var pKeyValue = row.cell[pKey].value;
 		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:$scope.tableName, primaryKey:pKey, primaryKeyValue:pKeyValue};
 		
-		TableRow.delete ( 
+		TableList.delete ( 
 			params,
 			function(results) {
 				$scope.tableList($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
