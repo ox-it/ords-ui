@@ -51,6 +51,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                templateUrl : 'project/views/home.html',
 	                controller  : 'projectsController'
 	            })
+                
+                // Admin page
+	            .when('/admin', {
+	                templateUrl : 'views/admin.html',
+	                controller  : 'adminController'
+	            })
 			
 	            // Search results
 	            .when('/search', {

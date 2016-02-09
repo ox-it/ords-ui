@@ -1,0 +1,72 @@
+<h1>ORDS Administration</h1>
+
+
+<h2>Statistics</h2>
+
+<div>
+<p>ORDS has {{statistics.numberOfFullProjects}} full projects.</p>
+<p>ORDS has {{statistics.numberOfTrialProjects}} trial projects.</p>
+</div>
+
+<h2>Projects</h2>
+
+<div ng-hide="projects.$resolved">
+	<i class=“icon-loader spin”>Loading…</i>
+</div>	
+
+<div ng-show="projects.$resolved">
+		
+	<table id="dsData" class="data-table">
+		<thead>
+			<tr>
+                <th>Project Id</th>
+				<th>Project Name</th>
+				<th>Project Server</th>
+				<th>Owner</th>
+				<th>Trial or Full</th>
+				<th>Deleted</th>
+				<th>Audit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-show="project.canDelete" dir-paginate="project in projects | orderBy:'name' | itemsPerPage: 10  track by project.projectId ">
+                
+                <td>{{project.projectId}}</td>	
+				<td><a href="#/project/{{project.projectId}}">{{project.name}}</a></td>
+				<td>{{project.dbServerPublicAddress}}</td>
+				<td>
+                    
+                    <p>{{project.owner}}</p>
+                    <!--
+					<form>
+					<input style="width:250px" name="newOwner" type="text"></input>
+					<a class="button update" ng-really-message="Are you sure you want to set a new owner for this project?" ng-really-click="update(project)">Change Owner</a>
+					</form>
+                    -->
+                                        
+                </td>			
+				<td>	
+                    <div ng-show="project.trialProject">
+					   <a class="button update" ng-really-message="Are you sure you want to upgrade this project?" ng-really-click="upgrade(project)">Trial Project - Upgrade to Full</a>
+			         </div>
+                     <div ng-hide="project.trialProject">
+					   <a class="button delete" ng-really-message="Are you sure you want to downgrade this project?" ng-really-click="downgrade(project)">Full Project - Downgrade to Trial</a>
+			         </div>
+            	</td>		
+				
+				<td>
+                    <a ng-hide="project.deleted" class="button delete" ng-really-message="Are you sure you want to delete this project?" ng-really-click="delete(project)">Delete</a>
+					<a ng-show="project.deleted" class="button update" ng-really-message="Are you sure you want to restore this project?" ng-really-click="restore(project)">Restore</a>
+					<!--<a ng-show="project.deleted" class="button delete" ng-really-message="Are you sure you want to purge this project?" ng-really-click="purge(project)">Purge</a>-->
+				</td>
+                
+                <td>
+                    <a class="button" href="#/project/{{project.projectId}}/audit">View Audit</a>
+                </td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<div ng-show="projects.$resolved"><dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls></div>
