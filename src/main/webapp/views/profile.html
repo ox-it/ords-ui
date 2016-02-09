@@ -23,6 +23,20 @@
 		      <div ng-message="required" class="alert alert-warning">You need to provide an email address</div>
 		      <div ng-message="email" class="alert alert-warning">You need to provide a valid email address</div>
 	    </div>
+        
+        <!-- Only include if we aren't supporting SSO -->        
+        <div class="formItem">
+            <label for="passwordRequest">Change your password </label>
+            <input type="password" id="passwordRequest" name="passwordRequest" ng-model="user.passwordRequest">
+        </div>
+        
+        <div class="formItem">
+            <label for="passwordRequest2">Confirm change of password </label>
+            <input type="password" id="passwordRequest2" name="passwordRequest2" compare-to="user.passwordRequest" ng-model="passwordRequest2">
+        </div>	
+        <div ng-messages="profileForm.passwordRequest2.$error" ng-if="profileForm.passwordRequest2.$touched">
+            <div ng-message="compareTo" class="alert alert-warning">Passwords must match</div>
+        </div>
 		
         <div class="formItem">
             <label for="addip">Add your current IP address for ODBC access</label>

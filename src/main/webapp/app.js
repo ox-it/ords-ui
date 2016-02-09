@@ -30,7 +30,28 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	        }
 	    }
 	}])
-	
+ 
+	//
+    // "CompareTo" directive
+    //  See http://stackoverflow.com/questions/31671221/angular-ng-messages-how-to-check-password-confirmation
+    .directive("compareTo", [function() {
+        return {
+            require: "ngModel",
+            scope: {
+                otherModelValue: "=compareTo"
+            },
+            link: function(scope, element, attributes, ngModel) {
+
+                ngModel.$validators.compareTo = function(modelValue) {
+                    return modelValue == scope.otherModelValue;
+                };
+
+                scope.$watch("otherModelValue", function() {
+                    ngModel.$validate();
+                });
+            }
+        }
+    }])
 	
 	//
 	// Configure alerts
