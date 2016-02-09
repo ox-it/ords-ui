@@ -715,9 +715,9 @@ padding: 0 0.3em ;
 
 
 
-.contDiv {width:874px;}
-.headerDiv {width:875px; overflow: hidden;}
-.bottomDiv {width:875px; height: 400px; overflow: scroll; }
+.contDiv {width:auto;}
+.headerDiv {overflow: hidden;}
+.bottomDiv {height: 400px; overflow: scroll; }
 .bottomDiv tbody:nth-child(odd) {background: #aaaaaa}
 
 

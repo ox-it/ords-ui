@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, Project, ProjectDatabase, TableList, DoQuery,  TableRow, AuthService, growl, gettextCatalog){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, Project, ProjectDatabase, TableList, DoQuery,  TableRow, ReferenceColumnData, AuthService, growl, gettextCatalog){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -13,6 +13,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 	$scope.startRow = 0;
 	$scope.numberOfRows = 50;
 	$scope.lastRow = 49;
+	$scope.changeModel;
 	
 	
 	
@@ -33,6 +34,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 		}
 
 	};
+	
+	
 	//'/api/1.0/database/:databaseId/:instance/tabledata/:tableName/:primaryKey/:primaryKeyValue'
 	$scope.deleteRow = function(row) {
 		var pKey = $scope.tableData.primaryKeys[0];
@@ -73,8 +76,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 	};
 	
 	$scope.orderKey = function( column ) {
-		$scope.orderProp = column.columnName;
-	}
+		$scope.orderProp = column;
+	};
 	
 	$scope.sortBy = function ( input ) {
 		if ( isNumeric(input.cell[$scope.orderProp].value) ) {
@@ -133,8 +136,88 @@ ords.controller('tableViewController', function ($scope, $routeParams, Project, 
 		$scope.filterField = op;
 		$scope.filterValue = "";
 		$scope.filterType = "is";
-		$scope.primaryKey = results.primaryKeys[0];		
-	}
+		$scope.primaryKey = results.primaryKeys[0];	
+		$scope.referencedColumn = [];
+		$scope.referencedColumnData = [];
+	};
+	
+	
+	$scope.selectTableReference = function ( refColumnName, refTableName ) {
+		var selected = $("#"+refColumnName+"___referencedTableColumnSelect option:selected").html();
+		$scope.referencedColumn[refTableName] = selected;
+		// get the column data
+		//return $resource('/api/1.0/database/:databaseId/:instance/table/:tableName/column/:columnName/related')
+
+		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:refTableName, columnName:selected};
+		ReferenceColumnData.get (
+			params,
+			function(results) {
+				$scope.referencedColumnData[refTableName] = results;
+			},
+			function(error) {
+				$scope.handleError(error);
+			}
+		);
+		
+	};
+	
+	$scope.getColumnDataForRow = function ( column, row ) {
+		if ( column.referencedTable ) {
+			// see if it's set
+			var ref = $scope.referencedColumn[column.referencedTable];
+			if ( ref ) {
+				var refData = $scope.referencedColumnData[column.referencedTable];
+				if ( refData ) {
+					var ref = findRefInData ( refData, column, row);
+					return ref;
+				}
+			}
+		}	
+		return row.cell[column.columnName].value;
+	};
+	
+
+	
+	
+//	$scope.getColumnDataForRow = function ( column, row ) {
+//		return row.cell[column.columnName].value;
+//	}
+	
+	$scope.getColumns = function ( ) {
+		if ( !$scope.tableData ) {
+			return null;
+		}
+		var columns = $scope.tableData.columnsByIndex;
+		var columnsHtml = [];
+		for ( var i in columns ) {
+			var column = columns[i];
+			if ( column.referencedTable ) {
+				// build the html for the chooser
+				var selectedValue = $scope.referencedColumn[column.referencedTable];
+				var chooser = "<p class=\"referenceSelect\">Links to table: "+column.referencedTable+"</br>";
+				chooser += "<select class=\"changeReferencedColumnData\" id=\""+column.columnName+"___referencedTableColumnSelect\" name=\""+column.columnName+"__referencedTableColumnSelect\" ng-model=\"referencedColumn[column.referencedTable]\" ng-change=\"selectTableReference(\'"+column.columnName+"\',\'"+column.referencedTable+"\')\">";
+				for (var si in column.alternateColumns) {
+					var s = column.alternateColumns[si];
+		           if (selectedValue && selectedValue == s) {
+		        	   chooser += "<option name=\"tableDataColumnName\" selected=\"selected\" id=\"" + column.columnName + "\">" + s + "</option>";
+		                // Even though it is "invalid" (i.e. does not validate, I need the name attribute in the option tag
+		            }
+		            else {
+		            	chooser += "<option>" + s + "</option>";
+		            }
+				}
+				chooser += "</select></p>";
+				columnsHtml.push(chooser);
+			}
+			else {
+				var span = "<div ng-click=\"orderKey(\'"+column.columnName+"\')\">"+column.columnName+"</div>";
+				columnsHtml.push(span);
+			}
+		}
+		return columnsHtml;
+	};
+	
+	
 
 
 	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
@@ -199,7 +282,30 @@ ords.directive("fixOnScroll", function () {
       };
   });
   
+ords.directive('dynamic', function ($compile) {
+  return {
+    restrict: 'A',
+    replace: true,
+    link: function (scope, ele, attrs) {
+      scope.$watch(attrs.dynamic, function(html) {
+        ele.html(html);
+        $compile(ele.contents())(scope);
+      });
+    }
+  };
+});  
   
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function findRefInData ( refData, column, row) {
+	var columnValue = row.cell[column.columnName].value;
+	for ( var id in refData.rows ) {
+		var refRow = refData.rows[id];
+		if ( refRow.cell.value.value == columnValue ) {
+			return refRow.cell.label.value;
+		}
+	}
+	return columnValue;
 }
