@@ -84,7 +84,10 @@
     	<tr><th>End date</th><td>{{project.endDate | date:'longDate'}}</td></tr>
         <tr>
             <th>Details included in public ORDS project list?</th>
-            <td>No TODO</td>
+            <td>
+            	<span ng-hide="project.privateProject">Yes</span>
+            	<span ng-show="project.privateProject">No</span>
+            </td>
         </tr>
     	</tbody>
 	</table>
