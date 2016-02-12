@@ -26,10 +26,17 @@
     <input ng-model="project.startDate" type="date" id="startDate" name="startDate" class="tcal tcalInput" value="">
 </div>
 
+<div ng-messages="projectForm.startDate.$error" ng-if="projectForm.startDate.$touched" class="formItem" role="alert">
+  <div ng-message="date" class="alert alert-warning">You need to provide a valid date</div>
+</div>
 
 <div class="formItem">
     <label for="endDate">End date<span class="explanation">The actual or anticipated end date of the project</span></label>
     <input ng-model="project.endDate" type="date" id="endDate" name="endDate" class="tcal tcalInput" value="">
+</div>
+
+<div ng-messages="projectForm.endDate.$error" ng-if="projectForm.endDate.$touched" class="formItem" role="alert">
+  <div ng-message="date" class="alert alert-warning">You need to provide a valid date</div>
 </div>
 
 <div class="formItem">
