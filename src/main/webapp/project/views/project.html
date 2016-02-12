@@ -80,8 +80,8 @@
     <table class="project-details">
         <tbody>
 		<tr><th>Description</th><td>{{project.description}}</td></tr>
-        <tr><th>Start date</th><td>{{project.startData}}</td></tr>
-    	<tr><th>End date</th><td>{{project.endDate}}</td></tr>
+        <tr><th>Start date</th><td>{{project.startDate | date:'longDate'}}</td></tr>
+    	<tr><th>End date</th><td>{{project.endDate | date:'longDate'}}</td></tr>
         <tr>
             <th>Details included in public ORDS project list?</th>
             <td>No TODO</td>

@@ -14,6 +14,11 @@ ords.controller('projectFormController', function ($rootScope, $scope, $http, $l
 		$scope.project = Project.get({ id: $routeParams.id },
 			
 			function(){
+                //
+                // Convert the date strings in the Project model into actual Date objects
+                //
+                $scope.project.startDate = new Date( Date.parse($scope.project.startDate) );
+                $scope.project.endDate = new Date ( Date.parse($scope.project.endDate) );
 			},
 			
 			function(response){
