@@ -48,7 +48,7 @@
 	 
 		 <div ng-show="main">
 			 <p><label>Original file name</label>: {{main.fileName}}</p>
-		     <p><label>Original file size</label>: {{main.fileSize}}</p>
+		     <p><label>Original file size</label>: {{main.fileSize | bytes}}</p>
 			 
 			 <!-- <div ng-show="main.databaseType == 'CSV'">
 		        <a class="ovalbutton" href="">Upload another CSV file as a new table</a>

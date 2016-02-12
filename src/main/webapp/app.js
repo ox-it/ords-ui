@@ -11,7 +11,19 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 		//gettextCatalog.showTranslatedMarkers = true;
 	})
 
-	
+	//
+    // A filter for showing nicely formatted file sizes
+    //
+    .filter('bytes', function() {
+	return function(bytes, precision) {
+		if (bytes==0 || isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '-';
+		if (typeof precision === 'undefined') precision = 1;
+		var units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
+			number = Math.floor(Math.log(bytes) / Math.log(1024));
+		return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
+	}
+    })
+
 	//
 	// A "really?" handler to confirm actions
 	// Usage: Add attributes: ng-really-message="Are you sure"? ng-really-click="takeAction()" function
