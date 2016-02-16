@@ -39,6 +39,19 @@ The language file needs to be converted into JavaScript (en.js) to be used in th
 The simplest way to do this is to upload it to https://localise.biz/free/converter. Select JavaScript > Angular.getText to convert
 it for use in ORDS. (Note, we expect the default locale to be "en" - the converter may change this to "en-GB".)
 
+Note that when you need to use variables within localisation files ("interpolation"), then you need to use the following approach:
+
+*In JavaScript:*
+
+    gettextCatalog.getString("UserPost409 {{email}}", { email: $scope.user.email });
+
+*In en.po:*
+
+    msgid: "UserPost409 {{email}}"
+    msgstr: "There was a problem with your registration details: there is already a registered user with the email address {{email}}."
+
+Note how this is different from the usual approach in gettext of using %s and sprintf.
+
 ## Translating ORDS
 
 ORDS uses angular-gettext for localisation. See the documentation here:
