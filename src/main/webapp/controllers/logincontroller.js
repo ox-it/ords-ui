@@ -53,7 +53,7 @@ ords.controller('loginController', function($rootScope, $scope, $http, $location
 					
 					if (response.status === 400) { growl.error( gettextCatalog.getString("UserPost400") ) };
 					if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
-					if (response.status === 409) { growl.error( gettextCatalog.getString("UserPost409") ) };
+					if (response.status === 409) { growl.error( gettextCatalog.getString("UserPost409 {{email}}", {email: $scope.user.email} ) ) };
 					if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 					
 					$location.path("/");

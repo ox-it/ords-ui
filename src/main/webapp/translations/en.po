@@ -54,8 +54,8 @@ msgstr "You have successfully registered to use the ORDS. An email has been sent
 msgid "UserPost400"
 msgstr "Problem occurred during registration."
 
-msgid "UserPost409"
-msgstr "There was a problem with your registration details: there is already a registered user with the email address %s."
+msgid "UserPost409 {{email}}"
+msgstr "There was a problem with your registration details: there is already a registered user with the email address {{email}}."
 
 #
 # User Email Verification
