@@ -23,7 +23,7 @@ in
 
     /components
 
-## Editing the language file
+## Editing the default language file
 
 Apart from the HTML files, the only other source of on-screen text are messages returned by scripts; these
 are all defined within the *language file*.
@@ -38,6 +38,14 @@ The language file needs to be converted into JavaScript (en.js) to be used in th
 
 The simplest way to do this is to upload it to https://localise.biz/free/converter. Select JavaScript > Angular.getText to convert
 it for use in ORDS. (Note, we expect the default locale to be "en" - the converter may change this to "en-GB".)
+
+## Translating ORDS
+
+ORDS uses angular-gettext for localisation. See the documentation here:
+
+https://angular-gettext.rocketeer.be/dev-guide/getting-started/
+
+Note that currently only script-generated text is translated; however all interface text within HTML views can also be marked for translation.
 
 ## Customising the appearance of ORDS
 
