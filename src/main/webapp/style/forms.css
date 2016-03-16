@@ -37,9 +37,8 @@ div.form-buttons {
 
 
 .main form.process{
-    :#ebf4fb;
-        margin:0 auto;
-
+    background-color:#ebf4fb;
+    margin:0 auto;
     padding:14px;
 
 }
@@ -47,6 +46,7 @@ div.form-buttons {
     color:#fbb302;
     font-size: 2em;
 }
+
 .main form.process h1 {
     font-weight:bold;
     margin-bottom:8px;
@@ -98,9 +98,6 @@ width: 20em;
     border:solid 1px #aacfe4;
     margin:2px 0 20px 10px;
     width: 30em;
-    
-  
-    
 }
 
 .main form.process select{
@@ -111,6 +108,7 @@ width: 20em;
     width: 30em;
     margin:2px 0 20px 10px;
 }
+
 .main form.process textarea{
     float:left;
     font-size:12px;
@@ -119,6 +117,7 @@ width: 20em;
     width: 30em;
     margin:2px 0 20px 10px;
 }
+
 .main form.process button{
 /*    clear:both;
     width:125px;
@@ -138,14 +137,12 @@ width: 20em;
     border: solid 1px red;
 }
 
-
-
 .main form.process input[type="checkbox"] {
+	width: 1em;
+}
 
-
-width: 1em;
-
-
+.table-data-form input.ng-dirty  {
+	background-color:#ebf4fb;
 }
 
 

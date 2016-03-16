@@ -29,17 +29,37 @@
 		</table>
 	</div>
 	<div class="bottomDiv" fix-on-scroll fixed-div=".headerDiv">
+		<form class="table-data-form" name="dataForm">
 		<table>
 			<tbody>
-				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy">
-					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex"><input type="text" ng-value="getColumnDataForRow(column, row)"/></td>
-					<td class="tdScroll" style="min-width:100px; width:100px;"><img src="images/delete_icon.png" alt="Delete Row" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)"/>&nbsp;&nbsp;<a href="#/row/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{dbId}}/{{instance}}/{{tableName}}/{{primaryKey}}/{{row.cell[primaryKey].value}}"><img src="images/pencil.png" alt="Edit Row"/></a></td>
+				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy" repeat-end="tableLoaded()">
+					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
+					<span ng-if="!column.referencedTable">
+						<input type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
+							ng-if="!checkPrimaryColumn(column)" 
+							ng-model="row.cell[column.columnName].value"
+							ng-change="valueChanged(row.cell[column.columnName])"/>
+						<span ng-if="checkPrimaryColumn(column)">{{row.cell[column.columnName].value}}</span>
+					</span>
+					<big-select ng-if="column.referencedTable" 
+						type="text" 
+						reference-key="{{row.cell[primaryKey].value}}"
+						class="selectedDataItem {{column.columnName}} bigdrop"
+						id="selectedDataItemForTableRow_{{row.cell[primaryKey].value}}_{{column.columnName}}"
+						referenced-column="referencedColumn[column.referencedTable]"
+						referenced-table="{{column.referencedTable}}"
+						referenced-label="null"/>
+					</td>
+					<td class="tdScroll" style="min-width:100px; width:100px;">
+						<a href="#" class="button delete" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
+		</form>
 	</div>
 </div>
-
+<p><div><a class="button" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div></p>
 <p><div><a class="button"  href="#/row/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{dbId}}/{{instance}}/{{tableName}}/{{primaryKey}}">Add Row</a></div></p>
 <div class=filterArea>Filter: 
 <select ng-model="filterField">

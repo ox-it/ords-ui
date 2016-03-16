@@ -740,11 +740,7 @@ padding: 0 0.3em ;
 
 table.data-table td,
 table.data-table th{
-  
-
-text-align: left;
-
-
+	text-align: left;
 }
 
 /* scrollable data tables

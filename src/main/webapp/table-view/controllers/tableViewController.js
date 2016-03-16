@@ -57,6 +57,16 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		);
 	};
 	
+	$scope.checkPrimaryColumn = function ( column ) {
+		for ( var key in $scope.tableData.primaryKeys ) {
+			var pKeyVal = $scope.tableData.primaryKeys[key];
+			if (pKeyVal == column.columnName ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	
 	$scope.loadNext = function ( ) {
@@ -137,51 +147,103 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		$scope.filterValue = "";
 		$scope.filterType = "is";
 		$scope.primaryKey = results.primaryKeys[0];	
-		$scope.referencedColumn = [];
-		$scope.referencedColumnData = [];
+		if ( !$scope.referencedColumn ) {
+			$scope.referencedColumn = [];
+		}
+		if (!$scope.referencedColumnData ) $scope.referencedColumnData = [];
+		if (!$scope.selectedReferenced) $scope.selectedReferences = [];
+		
+		// here we need to set up the referencedColumns for any relations
+		for ( var i in results.columns ) {
+			var column = results.columns[i];
+			if ( column.referencedTable ) {
+				// only do this if not already set
+				if ( !$scope.referencedColumn[column.referencedTable] ) {
+					var reference = {referencedColumn:column.referencedColumn, localColumn:column.columnName};
+					$scope.referencedColumn[column.referencedTable] = reference;
+				}
+			}
+		}
 	};
 	
 	
-	$scope.selectTableReference = function ( refColumnName, refTableName ) {
-		var selected = $("#"+refColumnName+"___referencedTableColumnSelect option:selected").html();
-		$scope.referencedColumn[refTableName] = selected;
-		// get the column data
-		//return $resource('/api/1.0/database/:databaseId/:instance/table/:tableName/column/:columnName/related')
-
-		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:refTableName, columnName:selected};
+	
+	$scope.tableLoaded = function() {
+		//growl.success("table loaded");
+		// grab any related data for referenced columns
+		// loop through the reference column keys, the keys are the tablename
+		for (var tableName in $scope.referencedColumn ) {
+			var reference = $scope.referencedColumn[tableName];
+			$scope.getReferencedDatasetForColumn(reference, tableName);
+		}
+	}
+	
+	
+	$scope.getReferencedDatasetForColumn = function ( reference, tableName ) {
+		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:tableName, columnName:reference.referencedColumn};
 		ReferenceColumnData.get (
 			params,
 			function(results) {
-				$scope.referencedColumnData[refTableName] = results;
+				setTimeout(function() {
+					$scope.$apply( function() {
+						$scope.referencedColumnData[tableName]=results;
+						var newReferences = [];
+						for (var i in $scope.tableData.rows ) {
+							var row = $scope.tableData.rows[i];
+							var ref = findRefInDataWithColumnName ( results, reference.localColumn, row );
+							var pkeyVal = row.cell[$scope.primaryKey].value;
+							newReferences[pkeyVal] = ref;
+						}
+						$scope.selectedReferences = newReferences;
+					});
+				});
 			},
 			function(error) {
 				$scope.handleError(error);
 			}
 		);
-		
 	};
 	
-	$scope.getColumnDataForRow = function ( column, row ) {
-		if ( column.referencedTable ) {
-			// see if it's set
-			var ref = $scope.referencedColumn[column.referencedTable];
-			if ( ref ) {
-				var refData = $scope.referencedColumnData[column.referencedTable];
-				if ( refData ) {
-					var ref = findRefInData ( refData, column, row);
-					return ref;
+	
+	
+	$scope.selectTableReference = function ( localColumnName, refTableName ) {
+		var selected = $("#"+localColumnName+"___referencedTableColumnSelect option:selected").html();
+		var reference = {referencedColumn:selected, localColumn:localColumnName};
+		$scope.referencedColumn[refTableName] = reference;
+		$scope.getReferencedDatasetForColumn ( reference, refTableName );
+	};
+	
+	
+	$scope.checkReferenceAndRow = function ( column, row ) {
+		if ( column.referenceTable ) {
+			var refData = $scope.referencedColumnData[column.referencedTable];
+			if ( refData ) {
+				// get the direct reference
+				var ref = findRefInData ( refData, column, row);
+				// get the primary key value for the row
+				var pkeyVal = row.cell[$scope.primaryKey].value
+				// to set up the model for this select, but only if it's not been set
+				if ( !$scope.selectedReferences[pkeyVal] ) {
+					$scope.selectedReferences[pkeyVal] = ref;
 				}
+				return true;
 			}
-		}	
-		return row.cell[column.columnName].value;
-	};
+		}
+		return false;	
+	}
 	
+	$scope.getReferencedColumnData = function ( tableName ) {
+		var refData = $scope.referencedColumnData;
+		if (refData && refData.length > 0 ) {
+			var thisReferenceData = refData[tableName];
+			if ( thisReferenceData ) {
+				return thisReferenceData.rows;
+			}
+		}
+		return null;
+	}
 
-	
-	
-//	$scope.getColumnDataForRow = function ( column, row ) {
-//		return row.cell[column.columnName].value;
-//	}
+		
 	
 	$scope.getColumns = function ( ) {
 		if ( !$scope.tableData ) {
@@ -195,7 +257,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 				// build the html for the chooser
 				var selectedValue = $scope.referencedColumn[column.referencedTable];
 				var chooser = "<p class=\"referenceSelect\">Links to table: "+column.referencedTable+"</br>";
-				chooser += "<select class=\"changeReferencedColumnData\" id=\""+column.columnName+"___referencedTableColumnSelect\" name=\""+column.columnName+"__referencedTableColumnSelect\" ng-model=\"referencedColumn[column.referencedTable]\" ng-change=\"selectTableReference(\'"+column.columnName+"\',\'"+column.referencedTable+"\')\">";
+				chooser += "<select class=\"changeReferencedColumnData\" id=\""+column.columnName+"___referencedTableColumnSelect\" name=\""+column.columnName+"__referencedTableColumnSelect\" ng-model=\"referencedColumn[column.referencedTable]\" ng-change=\"selectTableReference('"+column.columnName+"','"+column.referencedTable+"')\">";
 				for (var si in column.alternateColumns) {
 					var s = column.alternateColumns[si];
 		           if (selectedValue && selectedValue == s) {
@@ -218,8 +280,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	};
 	
 	
-
-
+	
+	
 	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
 		var params = {databaseId:dbId, instance:inst, tableName: name, startIndex:startRow,rowsPerPage:numberOfRows};
 		TableList.get(
@@ -234,7 +296,67 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		)
 	};
 	
+	
+	$scope.saveChangedRows = function( ) {
+		var td = $scope.tableData;
+		var pkey = $scope.primaryKey;
+		var saveRows = [];
+		for ( var rId in td.rows ) {
+			var row = td.rows[rId];
+			var colNames = [];
+			var colValues = [];
+			var pKeyVal = row.cell[pkey].value;
 
+			for ( var cId in td.columnsByIndex ) {
+				var column = td.columnsByIndex[cId];
+				if ( column.referencedTable ) {
+					var ref = $scope.selectedReferences[pKeyVal];
+					if ( ref.dirty ) {
+						colNames.push(column.columnName);
+						colValues.push(ref.value);
+					}
+					
+				}
+				else {
+					if ( row.cell[column.columnName].dirty) {
+						colNames.push(column.columnName);
+						colValues.push(row.cell[column.columnName].value);
+					}					
+				}
+			}
+			if ( colNames.length > 0 ) {
+				var saveRow = { 
+						lookupColumn:pkey,
+						lookupValue:pKeyVal,
+						columnNames:colNames,
+						values:colValues
+						};
+				saveRows.push(saveRow);
+			}
+		}
+		if ( saveRows.length > 0 ) {
+			var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:$scope.tableName};
+
+			TableList.update (
+					params,
+					saveRows,
+					function(result) {
+						growl.success("Saved");
+						$scope.dataForm.$setPristine();
+					},
+					function(error) {
+						$scope.handleError(error);
+					}
+				);
+
+		}
+	}
+	
+	
+	$scope.valueChanged = function(cell) {
+		cell.dirty=true;
+	}
+	
 	$scope.databasequery = function (dbId, inst, query, startRow, numberOfRows ) {
 		var params = {databaseId:dbId, instance:inst,q:query,startIndex:startRow,rowsPerPage:numberOfRows };
 		DoQuery.get(
@@ -293,19 +415,136 @@ ords.directive('dynamic', function ($compile) {
       });
     }
   };
-});  
+});
+
+
+ords.directive('reference', function($compile){
+	return {
+		restrict:'A',
+		replace:true,
+		link: function(scope, ele, attrs ) {
+			scope.$watch(attrs.reference, function(html){
+				ele.html(html);
+				$compile(ele.contents())(scope);
+			});
+		}
+	};
+});
+
+
+ords.directive("repeatEnd", function(){
+	return {
+		restrict: "A",
+		link: function (scope, element, attrs) {
+			if (scope.$last) {
+				scope.$eval(attrs.repeatEnd);
+			}
+		}
+	};
+});
+
+
+ords.directive('bigSelect', function ($parse) {
+	return {
+		restrict: "E",
+		replace: true,
+		transclude: false,
+		compile: function (element, attrs) {
+			var getReferencedColumn = $parse(attrs.referencedColumn);
+			var html = '<input type="text" id="'+attrs.id+'" ' +
+				'reference-key="'+attrs.referenceKey+'" '+
+				'class="'+attrs.class+'" '+
+				'referenced-column="'+attrs.referencedColumn+'"' +
+				'referenced-table="'+attrs.referencedTable+'"' +
+				'referenced-label="'+attrs.referencedLabel+'"/>';
+			var newElem = $(html);
+			element.replaceWith(newElem);
+			
+			return function (scope, element, attrs, controller ) {
+				var getColumn = function () {
+					var column = getReferencedColumn(scope);
+					return column.referencedColumn;
+				};
+				
+				var getId = function(r) {
+					var tid = r.value;
+					return tid;
+				};
+				element.select2({
+					placeholder: "Search",
+					minimumInputLength: 1,
+					id: function(result){return getId(result)},
+					ajax: { 
+						url: function() { return "/api/1.0/database/"+scope.dbId+"/"+scope.instance+"/table/"+attrs.referencedTable+"/column/"+getColumn()+"/related" },
+						dataType: 'json',
+						quietMillis: 250,
+						data: function (term, page) {
+							return {
+								term: term, // search term
+							};
+						},
+						results: function (data, page) { 
+							var resultSet = [];
+							$.each(data.rows, function(index, row) {
+								resultSet.push({
+									'label':row.cell.label.value,
+									'value':row.cell.value.value
+								});
+							});
+							return { results: resultSet };
+						},
+						cache: true
+					},
+					initSelection: function(element, callback) {
+						var id = $(element).val();
+						var label = $(element).attr("referenced-label");
+						var result = {};
+						result.label = label;
+						result.value = id;
+						callback(result);
+					},
+					formatResult: function(result){return result.label}, // format the result to display in the list
+					formatSelection: function(result){return result.label},  // format the selected item
+					dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller				
+				});
+				
+				element.on("change", function(e) {
+					var changeRef = {value:e.added.value, label:e.added.label, dirty:true};
+					scope.selectedReferences[attrs.referenceKey] = changedRef;
+				});
+				
+				scope.$watch('selectedReferences', function() {
+					var newVal = scope.selectedReferences[attrs.referenceKey];
+					if ( newVal ) {
+						var ds = {value:newVal.value, label:newVal.label};
+						element.select2("data", ds);
+					}
+				});
+			};
+		}
+	};
+});
+
+
+
+// some utility functions
   
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 function findRefInData ( refData, column, row) {
-	var columnValue = row.cell[column.columnName].value;
+	return findRefInDataWithColumnName ( refData, column.columnName, row );
+}
+
+function findRefInDataWithColumnName ( refData, columnName, row ) {
+	var columnValue = row.cell[columnName].value;
 	for ( var id in refData.rows ) {
 		var refRow = refData.rows[id];
 		if ( refRow.cell.value.value == columnValue ) {
-			return refRow.cell.label.value;
+			return {label:refRow.cell.label.value, value:refRow.cell.value.value};
 		}
 	}
 	return columnValue;
+
 }
