@@ -21,7 +21,25 @@
 		<table width="875" class="data-table" style="table-layout: fixed;">
 			<thead>
 				<tr>
-					<td class="tdFixed" ng-repeat="column in getColumns()" dynamic="column"></td>
+					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex">
+						<div ng-if="!column.referencedTable"
+							class="colHead"
+							ng-click="orderKey(column.columnName)">
+							{{column.columnName}}
+							<span ng-show="orderProp == column.columnName && !sortReverse">&nbsp;&darr;</span>
+							<span ng-show="orderProp == column.columnName && sortReverse">&nbsp;&uarr;</span>
+						</div>
+						<p ng-if="column.referencedTable" class="referenceSelect">
+							<select class="changeReferencedColumnData"
+								id="{{column.columnName}}___referencedTableColumnSelect"
+								name="{{column.columnName}}___referencedTableColumnSelect"
+								ng-model="columnSelection[column.referencedTable]"
+								ng-change="selectTableReference(column.columnName, column.referencedTable)"
+								>
+								<option ng-repeat="alternate in column.alternateColumns" value="{{alternate}}">{{alternate}}</option>
+							</select>
+						</p>
+					</td>
 					<td class="tdFixed" style="width:100px;">Functions</td>
 				</tr>
 			</thead>
@@ -32,7 +50,7 @@
 		<form class="table-data-form" name="dataForm">
 		<table>
 			<tbody>
-				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy" repeat-end="tableLoaded()">
+				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy:sortReverse" repeat-end="tableLoaded()">
 					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
 					<span ng-if="!column.referencedTable">
 						<input type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
