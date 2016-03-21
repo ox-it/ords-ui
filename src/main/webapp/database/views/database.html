@@ -68,8 +68,13 @@
 				<a class="ovalbutton" ng-click="setAsMilestoneVersion()" >Set as milestone version</a>
 			</div>
 			
+			<div>
+			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this main database version. This action cannot be undone. Please note that any test and milestone versions you have created for this database will be deleted at the same time." ng-really-click="deleteMainDatabase()">Delete</a>
+			</div>
+			
+			<h3>ODBC connection details</h3>
+			
 			<div ng-show="odbc">
-				<h3>ODBC connection details</h3>
 				<p>Make a note of the following connection details; you can use these in Microsoft Access and other tools to
 				access this database.</p>
 				
@@ -81,11 +86,9 @@
 				<a class="ovalbutton" ng-click="clearOdbc()">Clear ODBC details</a>
 			</div>
 			<div ng-hide="odbc">
+				<p>Click the button below to request ODBC connection details for this database. Note that
+				<em>this will replace the existing password for connecting to this database</em>.</p>
 				<a class="ovalbutton" ng-click="requestODBCAccess()">Request ODBC connection details</a>
-			</div>
-	
-			<div>
-			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this main database version. This action cannot be undone. Please note that any test and milestone versions you have created for this database will be deleted at the same time." ng-really-click="deleteMainDatabase()">Delete</a>
 			</div>
 		</div>
 	</div>

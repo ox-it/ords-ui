@@ -37,22 +37,7 @@
         <div ng-messages="profileForm.passwordRequest2.$error" ng-if="profileForm.passwordRequest2.$touched">
             <div ng-message="compareTo" class="alert alert-warning">Passwords must match</div>
         </div>
-		
-        <div class="formItem">
-            <label for="addip">Add your current IP address for ODBC access</label>
-            <input type="checkbox" name="addip" id="addip" value="">
-        </div>
-        
-        <div class="formItem">
-            <label for="odbcpassword">Change ODBC Password </label>
-            <input type="password" id="odbcpassword" name="odbcpassword">
-        </div>
-        
-        <div class="formItem">
-            <label for="odbcpasswordconfirm">Confirm ODBC Password </label>
-            <input type="password" id="confirmodbcpassword" name="confirmodbcpassword">
-        </div>
-		
+
     	<div class="form-buttons">
 	    	<button name="submit" type="submit" ng-disabled="profileForm.$invalid">Save changes</button>
 		</div>
@@ -60,32 +45,28 @@
 <div>
 	
     <h2>ODBC</h2>
-    <p>If ODBC access is enabled, it is possible for project members to view, edit, and query project data via an ODBC (Open Database Connectivity) connection. This allows users to access data stored in the ORDS via another database application (Microsoft Access, for example), or via a custom-built Web front-end. This can provide a way of combining the advantages of multiple systems. </p><p> For more information about the ORDS and ODBC connections, visit the <a href="http://help.it.ox.ac.uk/research/ords/odbc" target="_blank">IT Services help site</a>. If you need help setting up an ODBC connection, please contact the ORDS help desk by emailing <a href="mailto:ords@it.ox.ac.uk?Subject=ODBC%20connections%20in%20ORDS">ords@it.ox.ac.uk</a>.</p><p>When creating an ODBC connection using an external client, you need to ensure that SSL is set to allow (i.e. on). Your username is displayed below and your password may be reset on this page if you don't know it.</p>
+    <p>If ODBC access is enabled, it is possible for project members to view, edit, and query project data via an 
+    ODBC (Open Database Connectivity) connection. This allows users to access data stored in the ORDS via another 
+    database application (Microsoft Access, for example), or via a custom-built Web front-end. 
+    This can provide a way of combining the advantages of multiple systems. </p>
     
+    <p>For more information about the ORDS and ODBC connections, 
+    visit the <a href="http://help.it.ox.ac.uk/research/ords/odbc" target="_blank">IT Services help site</a>. 
+    If you need help setting up an ODBC connection, please contact the ORDS help desk by 
+    emailing <a href="mailto:ords@it.ox.ac.uk?Subject=ODBC%20connections%20in%20ORDS">ords@it.ox.ac.uk</a>.</p>
+    
+    <p>When creating an ODBC connection using an external client, you need to ensure that SSL is set to allow (i.e. on). 
+    Your username is displayed below and your password may be reset on this page if you don't know it.</p>
         
     <h3>ODBC Connection Information</h3>
-    <p><label>ODBC Connection userid: {{user.odbcuser}}</label></p>
-    <p>Please note that your ODBC username is based on your registered email address without any non alpha-numeric characters</p>
-    <table>
-        <tbody><tr>
-            <th style="width: 200px">Project Name</th>
-            <th style="width: 200px">Server</th>
-            <th style="width: 200px">Port</th>
-            <th style="width: 200px">ORDS Name : Database Name</th>
-        </tr>
-        
-        <tr>
-            <td>{{project.name}</td>
-            <td>ODBC access not allowed for this project</td>
-            
-        </tr>
-        
-        <tr>
-            <td>TEST - 19thC Professions</td>
-            <td>ords-application-database-04.ords.ox.ac.uk</td>
-            <td>5432</td>
-            <td></td>
-            
-        </tr>
-    </tbody>
-</table>
+    <p>In earlier versions of ORDS, your ODBC connection details were shown here. To get the ODBC connection
+    details for any database, navigate to the database details panel for the database, and click the
+    <em>Request ODBC Connection Details</em> button. Note that each database has its own unique connection information - including 
+    user name and password.</p>
+    
+    <h3>IP Addresses</h3>
+    <p>If your provider restricts ODBC access by the IP address of the client, you'll need to provide 
+    this information before you can access any databases. To submit your current IP address, click the button below.</p>
+    
+    <button>Add your current IP address for ODBC access</button>
+    <p>NOTE: TO BE IMPLEMENTED</p>
