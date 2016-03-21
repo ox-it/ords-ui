@@ -86,7 +86,13 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	};
 	
 	$scope.orderKey = function( column ) {
-		$scope.orderProp = column;
+		if ( $scope.orderProp != column ) {
+			$scope.orderProp = column;
+			$scope.sortReverse = false;
+		}
+		else {
+			$scope.sortReverse = !$scope.sortReverse;
+		}
 	};
 	
 	$scope.sortBy = function ( input ) {
@@ -143,6 +149,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		$scope.newStart = $scope.startRow;
 		var op = results.columnsByIndex[0].columnName;
 		$scope.orderProp = op;
+		$scope.sortReverse = false;
 		$scope.filterField = op;
 		$scope.filterValue = "";
 		$scope.filterType = "is";
@@ -152,14 +159,22 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		}
 		if (!$scope.referencedColumnData ) $scope.referencedColumnData = [];
 		if (!$scope.selectedReferenced) $scope.selectedReferences = [];
-		
+		$scope.columnSelection = [];
 		// here we need to set up the referencedColumns for any relations
 		for ( var i in results.columns ) {
 			var column = results.columns[i];
 			if ( column.referencedTable ) {
 				// only do this if not already set
 				if ( !$scope.referencedColumn[column.referencedTable] ) {
-					var reference = {referencedColumn:column.referencedColumn, localColumn:column.columnName};
+					var rc = null;
+					if ( !column.referencedColumn ) {
+						rc = column.alternateColumns[0];
+					}
+					else {
+						rc = column.referencedColumn;
+					}
+					var reference = {referencedColumn:rc, localColumn:column.columnName};
+					$scope.columnSelection[column.referencedTable] = rc;
 					$scope.referencedColumn[column.referencedTable] = reference;
 				}
 			}
@@ -207,7 +222,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	
 	
 	$scope.selectTableReference = function ( localColumnName, refTableName ) {
-		var selected = $("#"+localColumnName+"___referencedTableColumnSelect option:selected").html();
+		var selected = $scope.columnSelection[refTableName];
 		var reference = {referencedColumn:selected, localColumn:localColumnName};
 		$scope.referencedColumn[refTableName] = reference;
 		$scope.getReferencedDatasetForColumn ( reference, refTableName );

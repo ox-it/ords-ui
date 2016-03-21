@@ -720,6 +720,12 @@ padding: 0 0.3em ;
 .bottomDiv {height: 400px; overflow: scroll; }
 .bottomDiv tbody:nth-child(odd) {background: #aaaaaa}
 
+.colHead {
+	width:138px;
+	height:auto;
+	cursor:pointer;
+}
+
 
 .tdFixed {  
 	background-color: #f1f1f1;
