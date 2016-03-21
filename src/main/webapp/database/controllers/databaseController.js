@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, ProjectDatabase, DatabaseStructure, User, growl, gettextCatalog) {
+ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, ProjectDatabase, DatabaseStructure, ODBC, User, growl, gettextCatalog) {
 	
 	//
 	// This page doesn't make sense to view
@@ -81,6 +81,26 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 		);
 		
 	}
+    
+    //
+    // Request ODBC access
+    //
+    $scope.requestODBCAccess = function(){
+        var params = {databaseId:$scope.main.physicalDatabaseId, instance: "MAIN"};
+        var request = {};
+        
+        ODBC.save(
+            params,
+            request,
+            function(result){
+              $scope.odbc = result;
+            }  
+        );
+        
+    }
+    $scope.clearOdbc = function(){
+        $scope.odbc = null;
+    }
 	
 	//
 	// Delete phystical DBs

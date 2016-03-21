@@ -65,7 +65,23 @@
 			</div>
 	
 		    <div>
-				<a class="ovalbutton" ng-click="setAsMilestoneVersion()") >Set as milestone version</a>
+				<a class="ovalbutton" ng-click="setAsMilestoneVersion()" >Set as milestone version</a>
+			</div>
+			
+			<div ng-show="odbc">
+				<h3>ODBC connection details</h3>
+				<p>Make a note of the following connection details; you can use these in Microsoft Access and other tools to
+				access this database.</p>
+				
+				<p>Server: {{odbc.server}}</p>
+				<p>Database: {{odbc.database}}</p>
+				<p>User: {{odbc.username}}</p>
+				<p>Password: {{odbc.password}}</p>
+				
+				<a class="ovalbutton" ng-click="clearOdbc()">Clear ODBC details</a>
+			</div>
+			<div ng-hide="odbc">
+				<a class="ovalbutton" ng-click="requestODBCAccess()">Request ODBC connection details</a>
 			</div>
 	
 			<div>
