@@ -29,10 +29,10 @@ var currently_saving = false;
 
 var host = window.location.host;
 var protocol = window.location.protocol
-// dbId and dbInstance defined in schemaController
+// dbId defined in schemaController
 
 function dbURL() {
-	return protocol+"//"+host+"/api/1.0/structure/"+dbId+"/"+dbInstance;
+	return protocol+"//"+host+"/api/1.0/structure/"+dbId;
 }
 
 SQL.Request = OZ.Class();
@@ -411,7 +411,7 @@ SQL.Row.prototype.changeComment = function(e) {
 	if (c === null) { return; }
     this.owner.owner.showOverlay();
     // Create the column comment URL and request
-    //var dbURL = protocol+"//:"+host+"/api/1.0/structure/"+dbId+"/"+dbInstance;
+    //var dbURL = protocol+"//:"+host+"/api/1.0/structure/"+dbId+"/";
     var commentURL = dbURL()+'/comment/'+this.owner.getTitle()+'/'+this.getTitle()+'/staging';
     var commentRequest = {comment: c};
     this.owner.owner.request.Promise(commentURL, SQL.Request.PUT, JSON.stringify(commentRequest)).then(

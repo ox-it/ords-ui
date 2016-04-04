@@ -12,7 +12,7 @@ ords.controller('explorerController', function ($scope, $routeParams, DatabaseSt
 	$scope.instance = $routeParams.instance;
 	$scope.server = $routeParams.server;
 	
-	var pathParams = {databaseId:$routeParams.physicalDatabaseId, instance:$routeParams.instance};
+	var pathParams = {databaseId:$routeParams.physicalDatabaseId};
 	
 	DatabaseStructure.get(
 		pathParams,

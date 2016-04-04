@@ -69,7 +69,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	$scope.deleteDatabase = function(){
 		
 		for ( var dbVersion in $scope.database.databaseVersions ) {
-			var params = {databaseId:dbVersion.physicalDatabaseId, instance: dbVersion.entityType};
+			var params = {databaseId:dbVersion.physicalDatabaseId};
 			DatabaseStructure.delete(params);
 		}
 		var params = {id:$scope.project.projectId, databaseId:$scope.database.logicalDatabaseId};
@@ -86,7 +86,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
     // Request ODBC access
     //
     $scope.requestODBCAccess = function(){
-        var params = {databaseId:$scope.main.physicalDatabaseId, instance: "MAIN"};
+        var params = {databaseId:$scope.main.physicalDatabaseId};
         var request = {};
         
         ODBC.save(
@@ -106,7 +106,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	// Delete phystical DBs
 	//
 	$scope.deleteMainDatabase = function(){
-		var params = {databaseId:$scope.main.physicalDatabaseId, instance: "MAIN"};
+		var params = {databaseId:$scope.main.physicalDatabaseId};
 		DatabaseStructure.delete(
 			params,
 			function(result) {
@@ -120,7 +120,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	// Delete milestone DB
 	//
 	$scope.deleteMilestoneDatabase = function(){
-		var params = {databaseId:$scope.milestone.physicalDatabaseId, instance: "MILESTONE"};
+		var params = {databaseId:$scope.milestone.physicalDatabaseId};
 		DatabaseStructure.delete(
 			params,
 			function(result) {
@@ -138,7 +138,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	
 	
 	$scope.deleteTestDatabase = function() {
-		var params = {databaseId:$scope.test.physicalDatabaseId, instance: "TEST"};
+		var params = {databaseId:$scope.test.physicalDatabaseId};
 		DatabaseStructure.delete(
 			params,
 			function(result) {
@@ -152,9 +152,9 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	// Set current MAIN as MILESTONE
 	//
 	$scope.setAsMilestoneVersion = function(){
-		var params = {databaseId:$scope.main.physicalDatabaseId, instance: "MILESTONE"};
-		var databaseRequest = {databaseName:'not used', databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
-		DatabaseStructure.create(
+		var params = {databaseId:$scope.main.physicalDatabaseId};
+		var databaseRequest = {instance:"MILESTONE", databaseName:'not used', databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
+		DatabaseStructure.clone(
 			params,
 			databaseRequest,
 			function(result) {
@@ -168,9 +168,9 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	
 	
 	$scope.setMainAsTestVersion = function() {
-		var params = {databaseId:$scope.main.physicalDatabaseId, instance: "TEST"};
-		var databaseRequest = {databaseName:'not used', databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
-		DatabaseStructure.create(
+		var params = {databaseId:$scope.main.physicalDatabaseId};
+		var databaseRequest = {instance:"TEST",databaseName:'not used', databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
+		DatabaseStructure.clone(
 			params,
 			databaseRequest,
 			function(result) {
@@ -185,7 +185,8 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	
 	
 	$scope.mergeTestToMain = function() {
-		var params={databaseId:$scope.test.physicalDatabaseId,instance:"TEST"};
+        var params = {databaseId:$scope.main.physicalDatabaseId};
+		var databaseRequest = {instance:"TEST", cloneFrom:$scope.test.physicalDatabaseId, databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
 		DatabaseStructure.put(
 			params,
 			databaseRequest,

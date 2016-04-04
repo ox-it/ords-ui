@@ -11,13 +11,12 @@ var projectId = 0;
 ords.controller('schemaController', function ($scope, $routeParams, DatabaseStructure, DatabaseStructureStaging, AuthService, growl, gettextCatalog ) {
 
 	AuthService.check();
-	dbInstance = $routeParams.instance;
 	projectDatabaseId = $routeParams.projectDatabaseId;
 	projectId = $routeParams.projectId;
 	
 	
 	$scope.staging = function () {
-		var params = {databaseId:dbId, instance:$routeParams.instance};
+		var params = {databaseId:dbId};
 		DatabaseStructureStaging.clone(
 			params,
 			{},
@@ -43,7 +42,7 @@ ords.controller('schemaController', function ($scope, $routeParams, DatabaseStru
 		// we need to create a database
 		var databaseRequest = {databaseName:'not used', databaseServer:$routeParams.server, groupId:$routeParams.projectDatabaseId};
 		DatabaseStructure.create(
-			{databaseId:0, instance: $routeParams.instance},
+			{databaseId:0},
 			databaseRequest,
 			function(data){
 

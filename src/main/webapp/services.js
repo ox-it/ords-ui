@@ -49,10 +49,11 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 	
 	.factory('DatabaseStructure', function( $resource ) {
-		return $resource('/api/1.0/structure/:databaseId/:instance',
+		return $resource('/api/1.0/structure/:databaseId/',
 			null,
 			{
-				'create': { method: 'POST' }
+				'create': { method: 'POST' },
+                'clone': { method: 'POST' }
 			}
 		);
 	})
@@ -62,7 +63,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 		
 	.factory('DatabaseStructureStaging', function( $resource ) {
-		return $resource('/api/1.0/structure/:databaseId/:instance/staging',
+		return $resource('/api/1.0/structure/:databaseId/staging',
 			null,
 			{
 				'clone': { method: 'POST' },
