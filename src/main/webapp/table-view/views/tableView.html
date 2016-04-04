@@ -18,7 +18,7 @@
 </table>
 <div class="contDiv">
 	<div class="headerDiv">
-		<table width="875" class="data-table" style="table-layout: fixed;">
+		<table class="data-table" style="table-layout: fixed; width: 100%">
 			<thead>
 				<tr>
 					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex">
@@ -48,7 +48,7 @@
 	</div>
 	<div class="bottomDiv" fix-on-scroll fixed-div=".headerDiv">
 		<form class="table-data-form" name="dataForm">
-		<table>
+		<table style="table-layout: fixed; width: 100%">
 			<tbody>
 				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy:sortReverse" repeat-end="tableLoaded()">
 					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
