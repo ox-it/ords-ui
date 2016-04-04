@@ -123,10 +123,10 @@
 
 		<div ng-show="test">
 		    <div>
-		        <a class="ovalbutton" href="#/schema/{{project.projectId}}/{{test.logicalDatabaseId}}/{{test.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}">View and edit database structure</a>
+		        <a class="ovalbutton" href="#/schema/{{project.projectId}}/{{test.logicalDatabaseId}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}">View and edit database structure</a>
 		    </div>
 		    <div>
-		        <a class="ovalbutton" href="#/database-explorer/{{project.projectId}}/{{test.logicalDatabaseId}}/{{database.dbName}}/{{test.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+		        <a class="ovalbutton" href="#/database-explorer/{{project.projectId}}/{{test.logicalDatabaseId}}/{{database.dbName}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
 		    </div>
 			<div>
 			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this test database version. This action cannot be undone." ng-really-click="deleteTestDatabase()">Delete</a>
