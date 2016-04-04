@@ -53,7 +53,8 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 			null,
 			{
 				'create': { method: 'POST' },
-                'clone': { method: 'POST' }
+                'clone': { method: 'POST' },
+                'merge': { method: 'PUT'}
 			}
 		);
 	})

@@ -25,6 +25,11 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 			{id:$scope.id, databaseId: $scope.logicalDatabaseId },
 			function(response){	
 				$scope.database = response;
+                
+                $scope.main = null;
+                $scope.milestone = null;
+                $scope.test = null;
+                
 				//
 				// Physical Databases
 				//					
@@ -76,7 +81,8 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 		ProjectDatabase.delete(
 			params,
 			function(result) {
-				$scope.getProjectDatabases();
+                growl.success( gettextCatalog.getString("ProDbDelete200") );
+				$location.path("/project/"+$scope.project.projectId);
 			}
 		);
 		
@@ -142,6 +148,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 		DatabaseStructure.delete(
 			params,
 			function(result) {
+                $scope.test = null;
 				$scope.getProjectDatabases();
 			}
 		);
@@ -161,7 +168,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 				$scope.getProjectDatabases();
 			},
 			function(error) {
-				growl("error"); // TODO
+				growl.error("error"); // TODO
 			}
 		);
 	};
@@ -177,7 +184,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 				$scope.getProjectDatabases();
 			},
 			function(error) {
-				growl("error"); // TODO
+				growl.error("error"); // TODO
 			}
 		);
 		
@@ -187,14 +194,14 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	$scope.mergeTestToMain = function() {
         var params = {databaseId:$scope.main.physicalDatabaseId};
 		var databaseRequest = {instance:"TEST", cloneFrom:$scope.test.physicalDatabaseId, databaseServer:$scope.main.databaseServer, groupId:$scope.logicalDatabaseId};
-		DatabaseStructure.put(
+		DatabaseStructure.merge(
 			params,
 			databaseRequest,
 			function(result) {
 				$scope.getProjectDatabases();
 			},
 			function(error) {
-				growl("error"); // TODO
+				growl.error("error"); // TODO
 			}	
 		);
 	};
