@@ -42,7 +42,7 @@ ords.controller('schemaController', function ($scope, $routeParams, DatabaseStru
 		// we need to create a database
 		var databaseRequest = {databaseName:'not used', databaseServer:$routeParams.server, groupId:$routeParams.projectDatabaseId};
 		DatabaseStructure.create(
-			{databaseId:0},
+			{},
 			databaseRequest,
 			function(data){
 

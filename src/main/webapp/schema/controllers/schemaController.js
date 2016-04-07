@@ -8,11 +8,9 @@ var designer = null;
 
 ords.controller('schemaController', function ($scope, $routeParams, Database, Staging, AuthService, growl, gettextCatalog ) {
 
-	AuthService.check();
-	dbInstance = $routeParams.instance;
-	
+	AuthService.check();	
 	$scope.staging = function () {
-		var params = {databaseId:dbId, instance:$routeParams.instance};
+		var params = {databaseId:dbId};
 		Staging.clone(
 			params,
 			{},
@@ -36,9 +34,14 @@ ords.controller('schemaController', function ($scope, $routeParams, Database, St
 	
 	if ( $routeParams.physicalDatabaseId == 0 ) {
 		// we need to create a database
-		var databaseRequest = {databaseName:'not used', databaseServer:$routeParams.server, groupId:$routeParams.projectDatabaseId};
+		var databaseRequest = {
+            databaseName:'not used', 
+            databaseServer:$routeParams.server, 
+            groupId:$routeParams.projectDatabaseId,
+            instance: $routeParams.instance
+        };
 		Database.create(
-			{databaseId:0, instance: $routeParams.instance},
+            {},
 			databaseRequest,
 			function(data){
 
