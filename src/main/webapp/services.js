@@ -60,7 +60,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
     
     .factory('ODBC', function( $resource ) {		
-		return $resource('/api/1.0/structure/:databaseId/:instance/odbc')
+		return $resource('/api/1.0/structure/:databaseId/odbc')
 	})
 		
 	.factory('DatabaseStructureStaging', function( $resource ) {
