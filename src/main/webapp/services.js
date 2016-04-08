@@ -74,7 +74,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 	
 	.factory('TableList', function( $resource ) {
-		return $resource('/api/1.0/database/:databaseId/:instance/tabledata/:tableName',
+		return $resource('/api/1.0/database/:databaseId/tabledata/:tableName',
 			null,
 			{
 				'update':{ method: 'PUT' }
@@ -83,11 +83,11 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 	
 	.factory('DoQuery', function( $resource ) {
-		return $resource('/api/1.0/database/:databaseId/:instance/query')
+		return $resource('/api/1.0/database/:databaseId/query')
 	})
 	
 	.factory('ReferenceColumnData', function( $resource ) {
-		return $resource('/api/1.0/database/:databaseId/:instance/table/:tableName/column/:columnName/related')
+		return $resource('/api/1.0/database/:databaseId/table/:tableName/column/:columnName/related')
 	})
 	
 	.factory('Member', function( $resource, User ) {

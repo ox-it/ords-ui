@@ -49,7 +49,7 @@ ords.controller('importController', ['$scope', '$routeParams', 'Project','fileUp
         console.log('file is ' );
         console.dir(file);
         
-		var path = "/api/1.0/database/"+$routeParams.projectDatabaseId+"/MAIN/data/"+$routeParams.server;
+		var path = "/api/1.0/database/"+$routeParams.projectDatabaseId+"/data/"+$routeParams.server;
         fileUpload.uploadFileToUrl(file, path, $routeParams.projectId, $routeParams.projectDatabaseId );
      };
 

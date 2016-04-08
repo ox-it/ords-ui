@@ -16,9 +16,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	$scope.changeModel;
 	
 	
-	
-	
-	
 	$scope.handleError = function ( error ) {
 		if (error.status === 500){ 
 			growl.error(  gettextCatalog.getString("Gen500") );
@@ -44,7 +41,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 			return;
 		}
 		var pKeyValue = row.cell[pKey].value;
-		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:$scope.tableName, primaryKey:pKey, primaryKeyValue:pKeyValue};
+		var params = {databaseId:$scope.dbId, tableName:$scope.tableName, primaryKey:pKey, primaryKeyValue:pKeyValue};
 		
 		TableList.delete ( 
 			params,
@@ -195,7 +192,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	
 	
 	$scope.getReferencedDatasetForColumn = function ( reference, tableName ) {
-		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:tableName, columnName:reference.referencedColumn};
+		var params = {databaseId:$scope.dbId, tableName:tableName, columnName:reference.referencedColumn};
 		ReferenceColumnData.get (
 			params,
 			function(results) {
@@ -298,7 +295,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	
 	
 	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
-		var params = {databaseId:dbId, instance:inst, tableName: name, startIndex:startRow,rowsPerPage:numberOfRows};
+		var params = {databaseId:dbId, tableName: name, start:startRow,length:numberOfRows};
 		TableList.get(
 			params,
 			function(results) {
@@ -350,7 +347,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 			}
 		}
 		if ( saveRows.length > 0 ) {
-			var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:$scope.tableName};
+			var params = {databaseId:$scope.dbId, tableName:$scope.tableName};
 
 			TableList.update (
 					params,
@@ -373,7 +370,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	}
 	
 	$scope.databasequery = function (dbId, inst, query, startRow, numberOfRows ) {
-		var params = {databaseId:dbId, instance:inst,q:query,startIndex:startRow,rowsPerPage:numberOfRows };
+		var params = {databaseId:dbId,q:query,start:startRow,length:numberOfRows };
 		DoQuery.get(
 			params,
 			function(results) {
