@@ -86,6 +86,10 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		return $resource('/api/1.0/database/:databaseId/query')
 	})
 	
+	.factory('Dataset', function( $resource ) {
+		return $resource('/api/1.0/database/dataset')
+	})
+	
 	.factory('ReferenceColumnData', function( $resource ) {
 		return $resource('/api/1.0/database/:databaseId/table/:tableName/column/:columnName/related')
 	})

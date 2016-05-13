@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('searchController', function ($scope, $location, Project, User, Contact, $routeParams, growl, gettextCatalog) {
+ords.controller('searchController', function ($scope, $location, Project, Dataset, User, Contact, $routeParams, growl, gettextCatalog) {
 	
 	//
 	// Search for projects
@@ -14,6 +14,12 @@ ords.controller('searchController', function ($scope, $location, Project, User, 
 				}
 			}
 		);
+		
+		//
+		// Also search for datasets
+		//
+		$scope.datasetResults = Dataset.query({ q: $scope.searchForm.query.$modelValue });
+		
 		if ($location.path() != "/search")
 			$location.path("/search");
 	}
