@@ -3,6 +3,8 @@
 	<span class="breadcrumbs youarehere">{{project.name}}</span>
 </div>
 
+<div ng-show="project.$resolved">
+
 <h1>Project: {{project.name}}</h1>
 
 <p>{{project.description}}</p>
@@ -23,6 +25,7 @@
         </div>
 	</div>
 
+	<div ng-show="members.$resolved">
 	<h2>Project Members</h2>
 	
 	<table class="fullWidthTable">
@@ -44,7 +47,9 @@
 		    </tr>
 		</tbody>
 	</table>
+	</div>
 	
+	<div ng-show="pending.$resolved">
 	<h2>Pending Project Members</h2>
 	
 	<table class="fullWidthTable">
@@ -66,6 +71,7 @@
 		    </tr>
 		</tbody>
 	</table>
+	</div>
 </div>
 		
 
@@ -91,4 +97,6 @@
         </tr>
     	</tbody>
 	</table>
+</div>
+
 </div>
