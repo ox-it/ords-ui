@@ -3,13 +3,6 @@
 ords.controller('projectController', function ($scope, $routeParams, AuthService, Project, ProjectDatabase, User, Member, Invitation, growl, gettextCatalog) {
 	
 	//
-	// This page doesm't make sense to view
-	// without being logged in, so redirect
-	// back to the home view
-	//
-	AuthService.check();
-	
-	//
 	// Process a request to remove a project member
 	//
 	$scope.removeMember = function(id){
@@ -52,17 +45,32 @@ ords.controller('projectController', function ($scope, $routeParams, AuthService
 	//
 	// Get the current Project
 	//
-	$scope.project = Project.get({ id: $routeParams.id });
+	$scope.project = Project.get({ id: $routeParams.id }, function(){
+		
+		//
+		// When we have a project, we can check if this is a public project.
+		//
+		if ($scope.project && $scope.project.privateProject){					
+			//
+			// This page doesm't make sense to view
+			// without being logged in, so redirect
+			// back to the home view
+			//
+			AuthService.check();
+			
+		}
+		
+	});
+	
+	//
+	// Get the Invitees (pending members) of the current Project
+	//
+	$scope.pending = Invitation.query({ id: $routeParams.id });	
 	
 	//
 	// Get the Members of the current Project
 	//
 	$scope.members = Member.query({ id: $routeParams.id });
-	
-	//
-	// Get the Invitees (pending members) of the current Project
-	//
-	$scope.pending = Invitation.query({ id: $routeParams.id });
 	
 	//
 	// Get the Databases of the current Project

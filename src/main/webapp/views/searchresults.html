@@ -25,7 +25,7 @@
 				
 				<tr ng-show="results.$resolved" dir-paginate="project in results | itemsPerPage: 10 track by project.projectId">
 		    		<td>
-				        {{project.name}}
+				        <a href="#/project/{{project.projectId}}">{{project.name}}</a>
 				    </td>
 				    <td>
 				        {{project.description}}
