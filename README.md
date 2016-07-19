@@ -1,6 +1,6 @@
 # ords-ui
 
-The user interface for the Online Research Database Service (ORDS)
+The user interface for the Online Research Database Service (ORDS).
 
 ## Localisation
 
