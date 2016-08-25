@@ -31,6 +31,15 @@ msgid "Login400"
 msgstr "Invalid user name or password"
 
 #
+#  logout messages
+#
+msgid "Logout200"
+msgstr "Please close the browser window to complete logout"
+
+msgid "Logout400"
+msgstr "Couldn't log out; there try closing the browser wuindow."
+
+#
 # Generic REST messages
 #
 msgid "Gen403"
