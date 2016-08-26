@@ -3,9 +3,6 @@ body {
 	padding: 0;
 	background: #ccc;
 	background-color: #fff;
-background: #fff url("images/bg/header-bg.png") repeat-x 0px 0px;
-  background: #002147 url("images/bg/texture-bg.png") repeat 0px 0px;
-  background: #fff url("images/bg/header-bg.png") repeat-x 0px 0px;
 
 color: #555;
 	font-family: Arial, Helvetica, Tahoma, sans-serif;
@@ -20,15 +17,12 @@ color: #555;
 /* header stuff */
 .header {
 
-  background: #002147 url("images/bg/texture-bg.png") repeat 0px 0px;
-  background: #fff url("images/bg/header-bg.png") repeat-x 0px 0px;
-
+  background: #002147;
 	color: #fff;
 	margin: 0;
 	margin-bottom: 1em;
 	padding: 0px;
 	padding-top: 7px;
-	height: 80px;
 	font-size: 0.9em;
 
 }
@@ -258,25 +252,19 @@ a.signup:focus {
   }
 
 .header-panel {
-  
-
   float: left;
-  margin: 4px;
+  margin: 18px;
   padding: 0px;
-  width: 150px;
-  
 }
 
-
-
-.search-box {
-  
-  margin: 20px 0px 0px 121px;
-  width: 180px;
-
+.user-info {
+  float: right;
+  margin: 10px;
 }
 
-
+.search-box input {
+  height: 24px;
+}
 
 
 .message {

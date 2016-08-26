@@ -20,12 +20,12 @@ ords.controller('profileController', function($rootScope, $scope, $routeParams, 
 			function(response){
 				
 				if (response.status === 400) { growl.error( gettextCatalog.getString("UserPut400") ) };
-				if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
+				if (response.status === 403) { growl.error( gettextCatalog.getString("UserPut403") ) };
 				if (response.status === 404) { growl.error( gettextCatalog.getString("UserPut404") ) };
 				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };
 				if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 				
-				$location.path("#/project/");
+				//$location.path("#/project/");
 			}
 	
 		);

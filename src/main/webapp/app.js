@@ -69,7 +69,8 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	// Configure alerts
 	//
 	.config(['growlProvider', function(growlProvider) {
-	  growlProvider.globalTimeToLive(10000);
+	  //growlProvider.globalTimeToLive(10000);
+	  growlProvider.globalPosition('top-right');
 	  growlProvider.globalDisableCountDown(true);
 	}])
 

@@ -84,6 +84,9 @@ msgstr "Profile updated."
 msgid "UserPut400"
 msgstr "A problem occurred while updating your profile - please contact the ORDS help desk by emailing ords@it.ox.ac.uk."
 
+msgid "UserPut403"
+msgstr "You aren't allowed to edit this profile - you may need to log in again, or verify your account using the email sent to you."
+
 #
 # Contact a project owner
 #
