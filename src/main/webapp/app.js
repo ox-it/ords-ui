@@ -181,6 +181,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                templateUrl : 'database/views/database.html',
 	                controller  : 'databaseController'				
 				})
+
+				//  Database Edit Page
+				.when('/project/:id/:databaseId/edit', {
+	                templateUrl : 'database/views/editdatabase.html',
+	                controller  : 'databaseController'				
+				})
 				
 				
 				// New User Registration Form

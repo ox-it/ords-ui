@@ -22,7 +22,11 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 	
 	.factory('ProjectDatabase', function( $resource ) {		
-		return $resource('/api/1.0/project/:id/database/:databaseId')
+		return $resource(
+			'/api/1.0/project/:id/database/:databaseId',
+			null,
+			{'update': { method:'PUT' }}
+		)
 	})
 	
 	.factory('Audit', function( $resource ) {		

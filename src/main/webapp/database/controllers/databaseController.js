@@ -25,6 +25,11 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 			{id:$scope.id, databaseId: $scope.logicalDatabaseId },
 			function(response){	
 				$scope.database = response;
+
+				//
+                // Convert the date strings in the model into actual Date objects
+                //
+                $scope.database.creationDate = new Date( Date.parse($scope.database.creationDate) );
                 
                 $scope.main = null;
                 $scope.milestone = null;
@@ -68,6 +73,29 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	};
 	
 	
+	//
+	// Update logical DB
+	//
+	$scope.updateDatabase = function(){
+
+		var params = {id:$scope.project.projectId, databaseId:$scope.database.logicalDatabaseId};
+		ProjectDatabase.update(
+			params,
+			$scope.database,
+			function(){
+                growl.success( gettextCatalog.getString("ProDbPut200") );
+				$location.path("/project/"+$scope.project.projectId+"/"+$scope.database.logicalDatabaseId);
+			},
+			function(response) {
+					if (response.status === 400){ growl.error(  gettextCatalog.getString("ProDbPut400") ) };
+					if (response.status === 403){ growl.error(  gettextCatalog.getString("Gen403") ) };
+					if (response.status === 404){ growl.error(  gettextCatalog.getString("ProDbPut404") ) };
+					if (response.status === 410){ growl.error(  gettextCatalog.getString("Gen410") ) };
+					if (response.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };
+			}
+		);
+	}
+
 	//
 	// Delete logical DB
 	//
