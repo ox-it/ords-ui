@@ -492,7 +492,7 @@ ords.directive('bigSelect', function ($parse) {
 					minimumInputLength: 1,
 					id: function(result){return getId(result)},
 					ajax: { 
-						url: function() { return "/api/1.0/database/"+scope.dbId+"/"+scope.instance+"/table/"+attrs.referencedTable+"/column/"+getColumn()+"/related" },
+						url: function() { return "/api/1.0/database/"+scope.dbId+"/table/"+attrs.referencedTable+"/column/"+getColumn()+"/related" },
 						dataType: 'json',
 						quietMillis: 250,
 						data: function (term, page) {
@@ -526,7 +526,7 @@ ords.directive('bigSelect', function ($parse) {
 				});
 				
 				element.on("change", function(e) {
-					var changeRef = {value:e.added.value, label:e.added.label, dirty:true};
+					var changedRef = {value:e.added.value, label:e.added.label, dirty:true};
 					scope.selectedReferences[attrs.referenceKey] = changedRef;
 				});
 				
