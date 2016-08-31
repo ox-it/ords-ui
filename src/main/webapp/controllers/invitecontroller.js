@@ -60,7 +60,7 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
 				},
 				function(response){
 					
-					if (response.status === 400) { growl.error( gettextCatalog.getString("RInvitePost400") ) };
+					if (response.status === 400) { growl.error( gettextCatalog.getString("UserPost400") ) };
 					if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
 					if (response.status === 500) { growl.error( gettextCatalog.getString("Gen500") ) };
 					
@@ -79,12 +79,12 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
 		var responsePromise = $http.post("/api/1.0/project/invitation/" + $routeParams.code);
 		
 		responsePromise.success(function(data, status, headers, config){
-			growl.success( gettextCatalog.getString("RInvitePost200") );
+			growl.success( gettextCatalog.getString("UserPost200") );
 			$location.path("/projects")
 		});
 	
 		responsePromise.error(function(data, status, headers, config){				
-			if (status === 400){ growl.error(  gettextCatalog.getString("RInvitePost400") ) };
+			if (status === 400){ growl.error(  gettextCatalog.getString("UserPost400") ) };
 			if (status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
 			if (status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };	
 			$location.path("/")
