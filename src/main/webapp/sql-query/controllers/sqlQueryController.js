@@ -11,6 +11,7 @@ ords.controller('sqlQueryController', function ($scope, $sce, $routeParams, $loc
 	$scope.logicalDatabaseName = $routeParams.projectDatabaseName;
 	$scope.physicalDatabaseId = $routeParams.physicalDatabaseId;
 	$scope.instance = $routeParams.instance;
+	$scope.server = $routeParams.server;
 
 	//
 	// setup our local scope model for the fields
