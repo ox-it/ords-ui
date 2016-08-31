@@ -377,9 +377,14 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 				$scope.setupFromResults(results);
 			},
 			function(error) {
-				$scope.handleError(error);
+				if (error.status === 400){ 
+					growl.error(  gettextCatalog.getString("QueryGet400") );
+					$window.scrollTo(0, 0);
+				} else {
+					$scope.handleError(error);
+				}
 			}
-		)
+		);
 	};
 
 	$scope.queryType = $routeParams.queryType;
