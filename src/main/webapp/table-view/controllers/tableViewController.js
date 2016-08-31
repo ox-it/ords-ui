@@ -46,6 +46,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		TableList.delete ( 
 			params,
 			function() {
+				growl.success( gettextCatalog.getString("RowDelete200") );
 				$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
 			},
 			function(error) {
