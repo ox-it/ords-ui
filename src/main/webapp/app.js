@@ -204,7 +204,7 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 				
 				// Invite code verification
 				.when('/invite/:code', {
-	                templateUrl : 'views/invite.html',
+	                templateUrl : 'views/register.html',
 	                controller  : 'inviteController'				
 				})
 				

@@ -4,8 +4,18 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
 	// Conduct auth check - we need the user to log in before we can complete sign-up in an SSO setup.
     // Comment this out when allowing self-registration and password-based access control
 	//
+	//
+	// Set the intended target location to this view
+	//
+	$rootScope.targetLocation = $location.absUrl();
+
 	AuthService.check();
     
+	//
+	// Get the invite code
+	//
+	$scope.code = $routeParams.code;
+
     //
     // An invitation can be followed in a number of ways
     //
@@ -14,8 +24,9 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
     // 3. A user follows the invite link. They aren't logged in.
     //
     // If password generation is on, in the case of (1) we have to show a password field
-    //
-   
+    // 
+	//
+	/*
     if ($routeParams.code){
             User.lookup(
                 {code:  $routeParams.code},
@@ -29,7 +40,13 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
     } else {
             $scope.needsPassword = false;
     }
-    
+	*/
+
+	//
+	// If we're just supporting Shibboleth logins, we can just do this instead:
+	//
+	$scope.needsPassword = false;
+
 	//
 	// Complete signup process
 	//

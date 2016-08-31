@@ -12,7 +12,8 @@
             <a class="button" href="#/signup">Sign up to use ORDS</a>
 			<a class="button" href="#/login">Log in using a user name and password</a>
             -->
-            <a class="button" href="/Shibboleth.sso/Login">Log in</a>
+            <a ng-show="targetLocation" class="button" href="/Shibboleth.sso/Login?target={{targetLocation}}">Log in</a>
+            <a ng-hide="targetLocation" class="button" href="/Shibboleth.sso/Login">Log in</a>
     
     </div><!-- .inner-child closes -->
 </div>
