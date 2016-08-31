@@ -45,8 +45,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		
 		TableList.delete ( 
 			params,
-			function(results) {
-				$scope.tableList($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
+			function() {
+				$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
 			},
 			function(error) {
 				$scope.handleError(error);
