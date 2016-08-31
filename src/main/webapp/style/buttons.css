@@ -13,7 +13,6 @@
 
 
 button,
-a.ovalbutton,
 a.button,
 a.disabledButton {
 
@@ -110,10 +109,6 @@ button.js_enabled {
 display: inline-block !important;
 }
 
-a:link.ovalbutton,a:visited.ovalbutton,a:active.ovalbutton {
-	color: #fff; /*button text color*/
-}
-
 /* Gives a "click" effect for otherwise flat buttons when pressed */
 a:active.button, button:active {
 	border: 1px solid white;
@@ -123,10 +118,6 @@ a:active.button, button:active {
 a:hover, button:hover{
 	cursor: pointer;
 	cursor: hand;
-}
-
-a.ovalbutton:hover { /* Hover state CSS */
-	background-position: bottom left;
 }
 
 .buttonwrapper {
@@ -161,15 +152,6 @@ a.round:hover {
 a.round:hover ins {
 	background-position: left -155px;
 }
-
-/*.helpButton {
-	float:right;
-}*/
-
-.formItem {
-
-}
-
 
 .slideSign{
 	color:red;

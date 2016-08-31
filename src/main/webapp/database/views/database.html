@@ -51,21 +51,21 @@
 		     <p><label>Original file size</label>: {{main.fileSize | bytes}}</p>
 			 
 			 <!-- <div ng-show="main.databaseType == 'CSV'">
-		        <a class="ovalbutton" href="">Upload another CSV file as a new table</a>
+		        <a class="button" href="">Upload another CSV file as a new table</a>
 			 </div> -->
                         
 		    <div>
-		        <a class="ovalbutton" href="#/schema/{{project.projectId}}/{{main.logicalDatabaseId}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View and edit database structure</a>
+		        <a class="button" href="#/schema/{{project.projectId}}/{{main.logicalDatabaseId}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View and edit database structure</a>
 		    </div>
 		    <div>
-		        <a class="ovalbutton" href="#/database-explorer/{{project.projectId}}/{{main.logicalDatabaseId}}/{{database.dbName}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{main.logicalDatabaseId}}/{{database.dbName}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
 		    </div>
 		    <div>
 				<a class="disabledButton" href="">Export database</a>
 			</div>
 	
 		    <div>
-				<a class="ovalbutton" ng-click="setAsMilestoneVersion()" >Set as milestone version</a>
+				<a class="button" ng-click="setAsMilestoneVersion()" >Set as milestone version</a>
 			</div>
 			
 			<div>
@@ -83,12 +83,12 @@
 				<p>User: {{odbc.username}}</p>
 				<p>Password: {{odbc.password}}</p>
 				
-				<a class="ovalbutton" ng-click="clearOdbc()">Clear ODBC details</a>
+				<a class="button" ng-click="clearOdbc()">Clear ODBC details</a>
 			</div>
 			<div ng-hide="odbc">
 				<p>Click the button below to request ODBC connection details for this database. Note that
 				<em>this will replace the existing password for connecting to this database</em>.</p>
-				<a class="ovalbutton" ng-click="requestODBCAccess()">Request ODBC connection details</a>
+				<a class="button" ng-click="requestODBCAccess()">Request ODBC connection details</a>
 			</div>
 		</div>
 	</div>
@@ -103,10 +103,10 @@
 		<p> A milestone database version may be considered to be the "best so far" within this part of your project, or a snapshot of the data at a particular point.</p>
 		<div ng-show="milestone">
 		    <div>
-		        <a class="ovalbutton" href="#/schema/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View and edit database structure</a>
+		        <a class="button" href="#/schema/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View and edit database structure</a>
 		    </div>
 		    <div>
-		        <a class="ovalbutton" href="#/database-explorer/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{database.dbName}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{database.dbName}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
 		    </div>
 			<div>
 			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this milestone database version. This action cannot be undone." ng-really-click="deleteMilestoneDatabase()">Delete</a>
@@ -123,16 +123,16 @@
 
 		<div ng-show="test">
 		    <div>
-		        <a class="ovalbutton" href="#/schema/{{project.projectId}}/{{test.logicalDatabaseId}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}">View and edit database structure</a>
+		        <a class="button" href="#/schema/{{project.projectId}}/{{test.logicalDatabaseId}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}">View and edit database structure</a>
 		    </div>
 		    <div>
-		        <a class="ovalbutton" href="#/database-explorer/{{project.projectId}}/{{test.logicalDatabaseId}}/{{database.dbName}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{test.logicalDatabaseId}}/{{database.dbName}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
 		    </div>
 			<div>
 			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this test database version. This action cannot be undone." ng-really-click="deleteTestDatabase()">Delete</a>
 			</div>
 		    <div>
-		        <a class="ovalbutton" ng-click="mergeTestToMain()">Make this the main database</a>
+		        <a class="button" ng-click="mergeTestToMain()">Make this the main database</a>
 		    </div>
 		</div>
 		
