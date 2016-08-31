@@ -2,8 +2,16 @@
 
 
 ords.controller('sqlQueryController', function ($scope, $sce, $routeParams, $location, Project, DoQuery, AuthService, growl, gettextCatalog){
-	AuthService.check();
 	
+	AuthService.check();
+
+	$scope.project = Project.get({ id: $routeParams.projectId});
+
+	$scope.logicalDatabaseId = $routeParams.projectDatabaseId;
+	$scope.logicalDatabaseName = $routeParams.projectDatabaseName;
+	$scope.physicalDatabaseId = $routeParams.physicalDatabaseId;
+	$scope.instance = $routeParams.instance;
+
 	//
 	// setup our local scope model for the fields
 	//
