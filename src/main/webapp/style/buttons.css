@@ -55,7 +55,7 @@ border-color: #354503;
 	
 }
 
-a.disabledButton {
+a.disabledButton, a.button[disabled], button[disabled] {
 	color: #ccc;
 	background-color: #D4DABF;
 	/* IE10 Consumer Preview */ 
@@ -114,17 +114,20 @@ a:link.ovalbutton,a:visited.ovalbutton,a:active.ovalbutton {
 	color: #fff; /*button text color*/
 }
 
-a.ovalbutton span {
+/* Gives a "click" effect for otherwise flat buttons when pressed */
+a:active.button, button:active {
+	border: 1px solid white;
+}
 
-
+/* Ensure active buttons provide feedback */
+a:hover, button:hover{
+	cursor: pointer;
+	cursor: hand;
 }
 
 a.ovalbutton:hover { /* Hover state CSS */
 	background-position: bottom left;
 }
-
-
-
 
 .buttonwrapper {
 	/* Container you can use to surround a CSS button to clear float */
