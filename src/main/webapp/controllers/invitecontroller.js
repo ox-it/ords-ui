@@ -4,7 +4,7 @@ ords.controller('inviteController', function($rootScope, $scope, $routeParams, $
 	// Conduct auth check - we need the user to log in before we can complete sign-up in an SSO setup.
     // Comment this out when allowing self-registration and password-based access control
 	//
-	// AuthService.check();
+	AuthService.check();
     
     //
     // An invitation can be followed in a number of ways
