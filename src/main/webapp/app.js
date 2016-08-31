@@ -244,6 +244,11 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 					templateUrl : 'table-view/row-editor/views/rowEditor.html',
 					controller  : 'rowEditorController'
 				})
+				// Table row editor for new row
+				.when('/row/:projectId/:projectDatabaseId/:physicalDatabaseId/:instance/:tableName/',{
+					templateUrl : 'table-view/row-editor/views/rowEditor.html',
+					controller  : 'rowEditorController'
+				})
 				
 				
 								
