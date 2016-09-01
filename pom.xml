@@ -3,7 +3,7 @@
   <groupId>uk.ac.ox.it.ords</groupId>
   <artifactId>ords-ui</artifactId>
   <packaging>war</packaging>
-  <version>0.0.6</version>
+  <version>0.0.7-SNAPSHOT</version>
 
 
   <name>${project.groupId}:${project.artifactId}</name>
@@ -122,7 +122,7 @@
 	<url>https://github.com/ox-it/ords-ui</url>
 	<connection>scm:git:git://github.com/ox-it/ords-ui.git</connection>
 	<developerConnection>scm:git:git@github.com:ox-it/ords-ui.git</developerConnection>
-  <tag>ords-ui-0.0.6</tag>
+  <tag>HEAD</tag>
 </scm>
 
 
