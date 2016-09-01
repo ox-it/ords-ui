@@ -24,7 +24,7 @@
 		      <div ng-message="email" class="alert alert-warning">You need to provide a valid email address</div>
 	    </div>
         
-        <!-- Only include if we aren't supporting SSO -->        
+        <!-- Only include if we aren't supporting SSO       
         <div class="formItem">
             <label for="passwordRequest">Change your password </label>
             <input type="password" id="passwordRequest" name="passwordRequest" ng-model="user.passwordRequest">
@@ -37,6 +37,7 @@
         <div ng-messages="profileForm.passwordRequest2.$error" ng-if="profileForm.passwordRequest2.$touched">
             <div ng-message="compareTo" class="alert alert-warning">Passwords must match</div>
         </div>
+        -->
 
     	<div class="form-buttons">
 	    	<button name="submit" type="submit" ng-disabled="profileForm.$invalid">Save changes</button>
@@ -61,12 +62,14 @@
     <h3>ODBC Connection Information</h3>
     <p>In earlier versions of ORDS, your ODBC connection details were shown here. To get the ODBC connection
     details for any database, navigate to the database details panel for the database, and click the
-    <em>Request ODBC Connection Details</em> button. Note that each database has its own unique connection information - including 
-    user name and password.</p>
+    <em>Request ODBC Connection Details</em> button. Note that each database has its own unique connection information 
+    - including user name and password.</p>
     
+    <!-- This is only applicable to ORDS1 ODBC connections
     <h3>IP Addresses</h3>
     <p>If your provider restricts ODBC access by the IP address of the client, you'll need to provide 
     this information before you can access any databases. To submit your current IP address, click the button below.</p>
     
     <button>Add your current IP address for ODBC access</button>
     <p>NOTE: TO BE IMPLEMENTED</p>
+    -->

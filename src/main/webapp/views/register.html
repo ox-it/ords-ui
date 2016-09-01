@@ -5,6 +5,18 @@
 	<div id="ordsFormStyle" class="ordsForm">
         <h1>Register to Use the ORDS</h1>
         <p>Please enter your details below to register for the ORDS</p>
+
+		
+		<div class="message">
+			<h3>Important notice</h3>
+			<p>Note that this is a database service hosted in the public cloud. While we take very precaution to secure
+				your data, it is not appropriate for storing sensitive information. By registering below and 
+				agreeing to the terms and conditions of service you agree not to use this service for storing 
+				sensitive personal information or any other types of data that would contravene the data protection policies of your 
+				organisation.
+			</p>
+		</div>
+
         <form ng-submit="register()" name="registrationForm" id="registrationForm">
 
 			<div class="formItem">
@@ -23,7 +35,7 @@
 
 
 			<div class="formItem">
-			    <label for="description">
+			    <label for="signupEmail">
 					Email address  <span class="important">*</span>
 					<span class="explanation">This is where notifications relating to your ORDS account will be sent. For members of the University of Oxford, this should normally be your Oxford email address. </span>
 				</label>
@@ -33,6 +45,17 @@
 		    <div ng-messages="registrationForm.signupEmail.$error" ng-if="registrationForm.signupEmail.$touched" class="formItem" role="alert">
 		      <div ng-message="required" class="alert alert-warning">You need to provide an email address</div>
 		      <div ng-message="email" class="alert alert-warning">You need to provide a valid email address</div>
+		    </div>
+
+			<div class="formItem">
+				<label for="terms"><span class="important">*</span>
+					<span class="explanation">I agree to abide by the terms and conditions of this service</span>
+				</label>
+				<input name="terms" id="terms" type="checkbox" required>
+			</div>
+
+			<div ng-messages="registrationForm.terms.$error" ng-if="registrationForm.submit.$touched" class="formItem" role="alert">
+		      <div ng-message="required" class="alert alert-warning">You need to agree to the terms and conditions to complete registration</div>
 		    </div>
 
 			<div class="form-buttons">

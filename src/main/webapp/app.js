@@ -69,7 +69,8 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	// Configure alerts
 	//
 	.config(['growlProvider', function(growlProvider) {
-	  growlProvider.globalTimeToLive(10000);
+	  //growlProvider.globalTimeToLive(10000);
+	  growlProvider.globalPosition('top-right');
 	  growlProvider.globalDisableCountDown(true);
 	}])
 
@@ -180,6 +181,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                templateUrl : 'database/views/database.html',
 	                controller  : 'databaseController'				
 				})
+
+				//  Database Edit Page
+				.when('/project/:id/:databaseId/edit', {
+	                templateUrl : 'database/views/editdatabase.html',
+	                controller  : 'databaseController'				
+				})
 				
 				
 				// New User Registration Form
@@ -197,7 +204,7 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 				
 				// Invite code verification
 				.when('/invite/:code', {
-	                templateUrl : 'views/invite.html',
+	                templateUrl : 'views/register.html',
 	                controller  : 'inviteController'				
 				})
 				
@@ -234,6 +241,11 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 				// Table row editor
 				
 				.when('/row/:projectId/:projectDatabaseId/:physicalDatabaseId/:instance/:tableName/:primaryKey/:primaryKeyValue?',{
+					templateUrl : 'table-view/row-editor/views/rowEditor.html',
+					controller  : 'rowEditorController'
+				})
+				// Table row editor for new row
+				.when('/row/:projectId/:projectDatabaseId/:physicalDatabaseId/:instance/:tableName/',{
 					templateUrl : 'table-view/row-editor/views/rowEditor.html',
 					controller  : 'rowEditorController'
 				})

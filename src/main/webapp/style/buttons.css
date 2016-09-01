@@ -13,7 +13,6 @@
 
 
 button,
-a.ovalbutton,
 a.button,
 a.disabledButton {
 
@@ -55,7 +54,7 @@ border-color: #354503;
 	
 }
 
-a.disabledButton {
+a.disabledButton, a.button[disabled], button[disabled] {
 	color: #ccc;
 	background-color: #D4DABF;
 	/* IE10 Consumer Preview */ 
@@ -79,7 +78,7 @@ a.disabledButton {
 }
 
 
-a.delete
+a.delete, button.delete
 {
 
 background-color: #bb3e27;
@@ -110,21 +109,16 @@ button.js_enabled {
 display: inline-block !important;
 }
 
-a:link.ovalbutton,a:visited.ovalbutton,a:active.ovalbutton {
-	color: #fff; /*button text color*/
+/* Gives a "click" effect for otherwise flat buttons when pressed */
+a:active.button, button:active {
+	border: 1px solid white;
 }
 
-a.ovalbutton span {
-
-
+/* Ensure active buttons provide feedback */
+a:hover, button:hover{
+	cursor: pointer;
+	cursor: hand;
 }
-
-a.ovalbutton:hover { /* Hover state CSS */
-	background-position: bottom left;
-}
-
-
-
 
 .buttonwrapper {
 	/* Container you can use to surround a CSS button to clear float */
@@ -158,15 +152,6 @@ a.round:hover {
 a.round:hover ins {
 	background-position: left -155px;
 }
-
-/*.helpButton {
-	float:right;
-}*/
-
-.formItem {
-
-}
-
 
 .slideSign{
 	color:red;

@@ -3,43 +3,44 @@
 	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
 	<a href="#/project/{{project.projectId}}/{{logicalDatabaseId}}">{{logicalDatabaseName}}</a>
 	<a href="#/database-explorer/{{project.projectId}}/{{logicalDatabaseId}}/{{logicalDatabaseName}}/{{physicalDatabaseId}}/{{instance}}/{{server}}">View, Edit, Query Data</a>
-	<span class="breadcrumbs youarehere">Create Query</span>
+
+    <span class="breadcrumbs youarehere">Create Query</span>
 </div>
 <h1>{{pageHeading}}{{logicalDatabaseName}}</h1>
 <p ng-bind-html="queryAdvice"/>
 <form>
 	<fieldset id="sqlFields">
         <label class="sqllabel" for="select">SELECT</label>
-        <textarea class="sqlinput" name="select" id="selectinput"></textarea>
+        <textarea class="sqlinput" name="select" id="selectinput" ng-model="query.selectPart"></textarea>
         <p class="sqlhelp">{{selectAdvice}}</p>
         
         <label class="sqllabel" for="from">FROM</label>
-        <textarea class="sqlinput" name="from" id="frominput"></textarea>
+        <textarea class="sqlinput" name="from" id="frominput" ng-model="query.fromPart"></textarea>
         <p class="sqlhelp">{{fromAdvice}}</p>
         
         <label class="sqllabel" for="where">WHERE</label>
-        <textarea class="sqlinput" name="where" id="whereinput"></textarea>
+        <textarea class="sqlinput" name="where" id="whereinput" ng-model="query.wherePart"></textarea>
         <p class="sqlhelp">{{whereAdvice}}</p>
         
         <label class="sqllabel" for="groupby">GROUP BY</label>
-        <textarea class="sqlinput" name="groupby" id="groupbyinput"></textarea>
+        <textarea class="sqlinput" name="groupby" id="groupbyinput" ng-model="query.groupByPart"></textarea>
         <p class="sqlhelp">{{groupByAdvice}}</p>
         
         <label class="sqllabel" for="orderby">ORDER BY</label>
-        <textarea class="sqlinput" name="orderby" id="orderbyinput"></textarea>
+        <textarea class="sqlinput" name="orderby" id="orderbyinput" ng-model="query.orderByPart"></textarea>
         <p class="sqlhelp">{{orderByAdvice}}</p>
         
         <label class="sqllabel" for="limit">LIMIT</label>
-        <textarea class="sqlinput" name="limit" id="limitinput"></textarea>
+        <textarea class="sqlinput" name="limit" id="limitinput" ng-model="query.limitPart"></textarea>
         <p class="sqlhelp">{{limitAdvice}}</p>
         
         <label class="sqllabel" for="offset">OFFSET</label>
-        <textarea class="sqlinput" name="offset" id="offsetinput"></textarea>
+        <textarea class="sqlinput" name="offset" id="offsetinput" ng-model="query.offsetPart"></textarea>
         <p class="sqlhelp">{{offsetAdvice}}</p>
 
     </fieldset>
 </form>
 <p>
-<button class="button" ng-click="submitQuery()">Submit</button>
+<button class="button" ng-click="runQuery()">Submit</button>
 <button class="button" ng-click="clearQuery()">Clear</button>
 </p>

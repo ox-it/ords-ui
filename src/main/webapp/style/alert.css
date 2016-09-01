@@ -1,8 +1,17 @@
 .alerts {
-	height: 80px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
 }
+
 .alert button {
-	display:none;
+
+    float: right;
+    background: transparent;
+    border: 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    display: block;
 }
 .alert {
   padding: 15px;
@@ -35,6 +44,7 @@
   right: -21px;
   color: inherit;
 }
+
 .alert-success {
   background-color: #dff0d8;
   border-color: #d6e9c6;

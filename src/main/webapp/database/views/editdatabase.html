@@ -1,59 +1,56 @@
 <div class="breadcrumbs-wrapper">
 	<a href="#/">My Projects</a>
 	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
-	<span class="breadcrumbs youarehere">Add database</span>
+	<a href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}">{{database.dbName}}</a>
+	<span class="breadcrumbs youarehere">edit</span>
 </div>
+              
+<h1>Database Name: {{database.dbName}}</h1>
 
-
-<h1>Add Database to Project</h1>
-
-<p>Please enter details of the database below. Once you have done this, you will be able to create your database's tables, or upload an existing database. </p> 
-<p>The fields on this page can be used to store contextual information about the database and the data it contains. You will be able to edit or add to this information later if you wish.</p>
-					
-<form name="newDatabaseForm" class="process" ng-submit="newDatabase()">
+<form name="databaseForm" class="process" ng-submit="updateDatabase()">
 
 	<div class="formItem ">
 	    <label for="dbName">Name <span class="important">*</span><span class="small">A name for the database. <br> This will appear on the project and database pages.</span></label>
-	    <input ng-model="group.dbName" required type="text" id="dbName" name="dbName" value="">       
+	    <input ng-model="database.dbName" required type="text" id="dbName" name="dbName" value="">       
 	</div>
 	
-	<div ng-messages="newDatabaseForm.dbName.$error" ng-if="newDatabaseForm.dbName.$touched"  class="formItem" role="alert">
+	<div ng-messages="databaseForm.dbName.$error" ng-if="databaseForm.dbName.$touched"  class="formItem" role="alert">
 	  <div ng-message="required" class="alert alert-warning">You must provide a name</div>
 	</div>
 	
 
 	<div class="formItem ">
 	    <label for="dbDescription">Description <span class="important">*</span><span class="small">Please give a brief description of the database. <br> This will appear on the project and database pages. <br> This field can be used to describe the content and scope of the database, or to supply any other information that may be useful to project members, or to other researchers who might use the data in the future. </span></label>
-	    <textarea ng-model="group.dbDescription" required rows="5" id="dbDescription" name="dbDescription"></textarea>
+	    <textarea ng-model="database.dbDescription" required rows="5" id="dbDescription" name="dbDescription"></textarea>
 	</div>
 	
-	<div ng-messages="newDatabaseForm.dbDescription.$error" ng-if="newDatabaseForm.dbDescription.$touched" class="formItem" role="alert">
+	<div ng-messages="databaseForm.dbDescription.$error" ng-if="databaseForm.dbDescription.$touched" class="formItem" role="alert">
 	  <div ng-message="required" class="alert alert-warning">You must provide a description</div>
 	</div>
 	
 
 	<div class="formItem">
 	    <label for="logicalDbStartDate">Created on <span class="small">The date when this database was created.</span></label>
-	    <input ng-model="group.creationDate" type="date" id="logicalDbStartDate" name="creationDate" class="tcal tcalInput" value="">       
+	    <input ng-model="database.creationDate" type="date" id="logicalDbStartDate" name="creationDate" class="tcal tcalInput" value="">       
 	</div>
 
-		<div ng-messages="databaseForm.logicalDbStartDate.$error" ng-if="databaseform.logicalDbStartDate.$touched" class="formItem" role="alert">
+	<div ng-messages="databaseForm.logicalDbStartDate.$error" ng-if="databaseform.logicalDbStartDate.$touched" class="formItem" role="alert">
   		<div ng-message="date" class="alert alert-warning">You need to provide a valid date</div>
 	</div>
 
 	<div class="formItem">
 	    <label for="dataSources">Data sources <span class="small">This field can be used to record where the data in the database came from. This might include details of print material that has been digitized, or of multiple sources that have been combined to produce the current dataset.</span></label>
-	    <textarea ng-model="group.dataSources" rows="5" id="dataSources" name="dataSources"></textarea>
+	    <textarea ng-model="database.dataSources" rows="5" id="dataSources" name="dataSources"></textarea>
 	</div>
 
 	<div class="formItem">
 	    <label for="dataGatheringProcess">Data gathering process <span class="small">This field can be used to record the methods used to collect the data. This might include, for example, details of experiments, interviews, or selection and digitization of print materials.</span></label>
-	    <textarea ng-model="group.dataGatheringProcess" rows="5" id="dataGatheringProcess" name="dataGatheringProcess"></textarea>
+	    <textarea ng-model="database.dataGatheringProcess" rows="5" id="dataGatheringProcess" name="dataGatheringProcess"></textarea>
 	</div>
 
                     
 	<div class="form-buttons">
-	 <button name="cancel" type="submit">Cancel</button>
-	 <button name="submit" class="go-go-go" type="submit" ng-disabled="newDatabaseForm.$invalid">Add</button>
+     <a class="button" href="#/project/{{project.projectId}}" name="cancel">Cancel</a>
+	 <button name="submit" class="go-go-go" type="submit" ng-disabled="databaseForm.$invalid">Add</button>
 	</div>
 </form>

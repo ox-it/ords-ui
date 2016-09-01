@@ -11,7 +11,7 @@
 	    <label for="{{column.columnName}}">{{column.columnName}}</label>
 	    <input ng-model="fields[column.columnName]" ng-minlength="2" ng-maxlength="255" id="{{column.columnName}}" name="{{column.columnName}}">
 	</div>
-	<div ng-if="!haveRow" class="formItem" ng-repeat="column in tableData.columnsByIndex">
+	<div ng-if="!haveRow" class="formItem" ng-repeat="column in tableData.columnsByIndex | filter:{columnName:'!'+primaryKey}">
 	    <label for="{{column.columnName}}">{{column.columnName}}</label>
 	    <input ng-model="fields[column.columnName]" ng-minlength="2" ng-maxlength="255" id="{{column.columnName}}" name="{{column.columnName}}">
 	</div>

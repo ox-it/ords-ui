@@ -22,7 +22,11 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 	
 	.factory('ProjectDatabase', function( $resource ) {		
-		return $resource('/api/1.0/project/:id/database/:databaseId')
+		return $resource(
+			'/api/1.0/project/:id/database/:databaseId',
+			null,
+			{'update': { method:'PUT' }}
+		)
 	})
 	
 	.factory('Audit', function( $resource ) {		
@@ -124,6 +128,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project, growl, gettextCatalog){
 		var svc = {};
 		svc.check = function(){
+
 			if ($rootScope.loggedIn !== "yes"){
 				$rootScope.user = User.get(
 					 function successCallback() { 
@@ -137,7 +142,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 			 	 				$rootScope.projects = data;
 			 	 			});
 							
-			 				$location.path("/projects"); 
+							$location.path("/projects"); 
 						 }
 					 }, 
 					 function errorCallback(response) {
@@ -156,7 +161,13 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 						 //
 						 if (response.status === 404){
 							 $rootScope.loggedIn="no";
-							 if (!$routeParams.code){
+							 //
+							 // If we have an invite code, use that
+							 //
+							 if ($routeParams.code) {
+								$location.path("/invite/"+$routeParams.code);  							 	
+							 }
+							 else {
  							 	$location.path("/register");  							 	
 							 }
 						 }

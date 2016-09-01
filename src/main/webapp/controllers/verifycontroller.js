@@ -7,6 +7,7 @@ ords.controller('verifyController', function($rootScope, $scope, $routeParams, $
 		
 	responsePromise.success(function(data, status, headers, config){
 		growl.success( gettextCatalog.getString("Verify200") );
+		$rootScope.user.status = "VERIFIED";
 		$location.path("/projects")
 	});
 	

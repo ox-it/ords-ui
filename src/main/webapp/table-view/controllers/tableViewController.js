@@ -45,8 +45,9 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		
 		TableList.delete ( 
 			params,
-			function(results) {
-				$scope.tableList($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
+			function() {
+				growl.success( gettextCatalog.getString("RowDelete200") );
+				$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
 			},
 			function(error) {
 				$scope.handleError(error);
@@ -377,9 +378,14 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 				$scope.setupFromResults(results);
 			},
 			function(error) {
-				$scope.handleError(error);
+				if (error.status === 400){ 
+					growl.error(  gettextCatalog.getString("QueryGet400") );
+					$window.scrollTo(0, 0);
+				} else {
+					$scope.handleError(error);
+				}
 			}
-		)
+		);
 	};
 
 	$scope.queryType = $routeParams.queryType;
@@ -487,7 +493,7 @@ ords.directive('bigSelect', function ($parse) {
 					minimumInputLength: 1,
 					id: function(result){return getId(result)},
 					ajax: { 
-						url: function() { return "/api/1.0/database/"+scope.dbId+"/"+scope.instance+"/table/"+attrs.referencedTable+"/column/"+getColumn()+"/related" },
+						url: function() { return "/api/1.0/database/"+scope.dbId+"/table/"+attrs.referencedTable+"/column/"+getColumn()+"/related" },
 						dataType: 'json',
 						quietMillis: 250,
 						data: function (term, page) {
@@ -521,7 +527,7 @@ ords.directive('bigSelect', function ($parse) {
 				});
 				
 				element.on("change", function(e) {
-					var changeRef = {value:e.added.value, label:e.added.label, dirty:true};
+					var changedRef = {value:e.added.value, label:e.added.label, dirty:true};
 					scope.selectedReferences[attrs.referenceKey] = changedRef;
 				});
 				
