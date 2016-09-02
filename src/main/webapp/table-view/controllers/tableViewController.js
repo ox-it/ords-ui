@@ -50,7 +50,11 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 				$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
 			},
 			function(error) {
-				$scope.handleError(error);
+				if (error.status === 409){ 
+					growl.error(  gettextCatalog.getString("RowDelete409") );
+				} else {
+					$scope.handleError(error);
+				}
 			}
 		);
 	};

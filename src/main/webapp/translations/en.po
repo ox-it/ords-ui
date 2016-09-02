@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ORDS UI\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-25 13:49+0100\n"
-"PO-Revision-Date: 2016-08-31 22:41+0100\n"
+"PO-Revision-Date: 2016-09-02 15:32+0100\n"
 "Last-Translator: scottbw\n"
 "Language-Team: English (UK)\n"
 "Language: en-GB\n"
@@ -1432,3 +1432,10 @@ msgstr "There was an error in your query"
 #: loco:57c74ea514d7253b418b4567
 msgid "RowDelete200"
 msgstr "Row deleted"
+
+#. Source text: You can't delete this row as it is still being referenced from another row in the database.
+#: loco:57c98d6214d725374e8b4574
+msgid "RowDelete409"
+msgstr ""
+"You can't delete this row as it is still being referenced from another row "
+"in the database."
