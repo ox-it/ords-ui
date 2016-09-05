@@ -1,0 +1,57 @@
+<div class="contDiv">
+	<div class="headerDiv">
+		<table class="data-table" style="table-layout: fixed; width: 100%">
+			<thead>
+				<tr>
+					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex">
+						<div ng-if="!column.referencedTable"
+							class="colHead">
+							{{column.columnName}}
+						</div>
+						<p ng-if="column.referencedTable" class="referenceSelect">
+							<select class="changeReferencedColumnData"
+								id="{{column.columnName}}___referencedTableColumnSelect"
+								name="{{column.columnName}}___referencedTableColumnSelect"
+								ng-model="columnSelection[column.referencedTable]"
+								ng-change="selectTableReference(column.columnName, column.referencedTable)"
+								>
+								<option ng-repeat="alternate in column.alternateColumns" value="{{alternate}}">{{alternate}}</option>
+							</select>
+						</p>
+					</td>
+					<td class="tdFixed" style="width:100px;">Functions</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+		<div class="contDiv" fix-on-scroll fixed-div=".headerDiv">
+		<form class="table-data-form" name="addDataForm">
+		<table style="table-layout: fixed; width: 100%">
+			<tbody>
+				<tr>
+					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
+					<span ng-if="!column.referencedTable">
+						<input type="text" name="input_{{newRow.cell[newRowKey].value}}_{{column.columnName}}" 
+							ng-if="!isAutonumber(column)" 
+							ng-model="newRow.cell[column.columnName].value"/>
+						<em ng-if="isAutonumber(column)">generated automatically</em>
+					</span>
+					<big-select ng-if="column.referencedTable" 
+						type="text" 
+						reference-key="{{newRowKey}}"
+						class="selectedDataItem {{column.columnName}} bigdrop"
+						id="selectedDataItemForTableRow_{{newRow.cell[newRowKey].value}}_{{column.columnName}}"
+						referenced-column="referencedColumn[column.referencedTable]"
+						referenced-table="{{column.referencedTable}}"
+						referenced-label="null"/>
+					</td>
+					<td class="tdScroll" style="min-width:100px; width:100px;">
+						<p><div><a class="button" ng-disabled="addDataForm.$invalid" ng-click="addRow()">Add New Row</a></div></p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>

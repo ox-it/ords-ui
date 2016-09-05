@@ -79,7 +79,7 @@
 </div>
 <p><div><a class="button" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div></p>
 
-<p><div><a class="button"  ng-show="queryType=='table'" href="#/row/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{dbId}}/{{instance}}/{{tableName}}/{{primaryKey}}">Add Row</a></div></p>
+<addrow ng-show="queryType=='table'"></addrow>
 
 <div class=filterArea>Filter: 
 <select ng-model="filterField">

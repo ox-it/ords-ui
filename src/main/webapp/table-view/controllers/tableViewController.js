@@ -14,6 +14,13 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	$scope.numberOfRows = 50;
 	$scope.lastRow = 49;
 	$scope.changeModel;
+
+	//
+	// This is an empty model for adding a new row to a table
+	//
+	$scope.newRow = {};
+	$scope.newRow.cell = [];
+	$scope.newRowKey = "ORDS.NEWROW.KEY";
 	
 	
 	$scope.handleError = function ( error ) {
@@ -58,6 +65,18 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 			}
 		);
 	};
+
+	//
+	// Checks whether the column has an autonumber sequence associated with it
+	//
+	$scope.isAutonumber = function ( column ) {
+		for ( var sequence in $scope.sequences) {
+			if ($scope.sequences[sequence] === column.columnName){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	$scope.checkPrimaryColumn = function ( column ) {
 		for ( var key in $scope.tableData.primaryKeys ) {
@@ -156,6 +175,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		$scope.filterValue = "";
 		$scope.filterType = "is";
 		$scope.primaryKey = results.primaryKeys[0];	
+		$scope.sequences = results.sequences;
 		if ( !$scope.referencedColumn ) {
 			$scope.referencedColumn = [];
 		}
@@ -312,6 +332,76 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 			}
 		)
 	};
+
+	//
+	// Adds a new row to a table
+	//
+	$scope.addRow = function() {
+
+		var params = {databaseId:$scope.dbId, instance:$scope.instance, tableName:$scope.tableName};
+		var colNames = [];
+		var colValues = [];
+
+		//
+		// Construct the object to POST
+		//
+		for ( var cId in $scope.tableData.columnsByIndex ) {
+			var column = $scope.tableData.columnsByIndex[cId];
+
+			//
+			// Lookup values from referenced columns
+			//
+			if ( column.referencedTable ) {
+				var ref = $scope.selectedReferences[$scope.newRowKey];
+				if ( typeof ref !== "undefined" && ref.dirty ) {
+					colNames.push(column.columnName);
+					colValues.push(ref.value);
+				}
+			}
+			//
+			// Add regular columns
+			//
+			else {
+				if ( typeof $scope.newRow.cell[column.columnName] !== "undefined"){
+					colNames.push(column.columnName);
+					colValues.push($scope.newRow.cell[column.columnName].value);
+				}				
+			}
+		}
+
+		//
+		// Build the object, and POST to API
+		//
+		if ( colNames.length > 0 ) {
+			var saveRow = { 
+				columnNames:colNames,
+				values:colValues
+			};
+			TableList.save ( 
+				params,
+				saveRow,
+				function(result){
+					//
+					// Display success message and reload the table
+					//
+					growl.success("Saved");
+					$scope.newRow = {};
+					$scope.newRow.cell = [];
+					$scope.tableName = $routeParams.query;
+					$scope.tablelist($routeParams.physicalDatabaseId, 
+						$routeParams.instance, 
+						$routeParams.query, 
+						$scope.startRow, 
+						$scope.numberOfRows
+					);
+				},
+				function(error) {
+					growl.error("There was an error: "+error);
+				}
+			);
+		}
+
+	}
 	
 	
 	$scope.saveChangedRows = function( ) {
