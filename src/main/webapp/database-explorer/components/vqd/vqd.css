@@ -1,0 +1,60 @@
+	._jsPlumb_connector {
+		z-index: 1500;
+	}
+	
+	.vqd_tableview {
+		/*
+		float:left;
+		z-index: 1000;
+		top: 0px;
+		left: 0px;
+		width: 800px;
+		*/
+		z-index: 0;
+		position: relative;
+		height: 400px;
+		margin: 10px;
+		background: url(../../../images/back.gif) fixed;
+		resize: both;
+		overflow:auto;
+	}
+	
+	.vqd_sql {
+		height: 100px;
+	}
+	
+	.vqd_table table {
+		border-collapse: collapse;
+	}
+	
+	.vqd_table {
+		position: absolute;
+		z-index: 2000;
+		min-width:150px;
+		font-size: 13px;
+		border: 1px black solid;
+		border-radius: 3px;
+		background-color: #ddd;
+		-moz-box-shadow: 4px 4px 8px #888; /* FF 3.5+ */
+		-webkit-box-shadow: 4px 4px 8px #888; /* Safari 3.0+, Chrome */
+		box-shadow: 4px 4px 8px #888; /* Opera 10.5, IE 9.0 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#888888'); /* IE 6, IE 7 */
+		-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#888888'); /* IE 8 */
+	}
+	
+	.vqd_table thead {
+		text-align: center;
+		padding: 3px 30px;
+		width: 100%;
+	}
+	
+	.vqd_table thead tr {
+
+	}
+	
+	.vqd_column {
+		width:100%;
+		border-top: 1px dotted #888;
+		padding: 3px;
+		background-color: rgb(238, 238, 170)
+	}

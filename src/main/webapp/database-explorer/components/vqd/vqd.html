@@ -1,0 +1,24 @@
+<div>
+<p ng-show="!showVQD"><a class="button" ng-click="showVQD = true">Show visual query designer</a></p>
+<p ng-show="showVQD"><a class="button" ng-click="showVQD = false">Hide visual query designer</a></p>
+</div>
+
+<div ng-show="showVQD" class = "vqd">
+	<div class="vqd_tableview"></div>
+	<div class="vqd_tableselect">
+		<h3>Select tables</h3>
+		<p><em>Select the tables to include in the query</em></p>
+	</div>
+</div>
+	
+<div style="display:none" class = "message" id = "vqd-unjoined"><p>		
+Some of the tables you've chosen for this query are not connected by any relationships. 
+This means that the query will be interpreted as a 
+CROSS JOIN with the unjoined tables, which is rarely what's intended (it will result in 
+the <a href="https://en.wikipedia.org/wiki/Cartesian_product" target="_blank">Cartesian product</a> of all 
+the records of the selected tables). To fix this, you may need to select additional tables from the 
+list above so that all tables are connected, add relationships to the database in the schema designer, 
+or manually add a WHERE clause to the SQL below. </p>
+</div>
+
+<p></p>

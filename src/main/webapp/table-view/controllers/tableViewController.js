@@ -91,7 +91,11 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	
 	
 	$scope.loadNext = function ( ) {
-		$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows );
+		if ( $routeParams.queryType == "table" ) {
+			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows );
+		} else {
+			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows);
+		}
 	};
 	
 	$scope.loadPrevious = function ( ) {
@@ -99,11 +103,20 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		if ( $scope.startRow - $scope.numberOfRows > 0 ) {
 			start = $scope.startRow - $scope.numberOfRows;
 		}
-		$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, start, $scope.numberOfRows );
+
+		if ( $routeParams.queryType == "table" ) {
+			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, start, $scope.numberOfRows );
+		} else {
+			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, start, $scope.numberOfRows);
+		}
 	};
 	
 	$scope.startFrom = function( ) {
-		$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
+		if ( $routeParams.queryType == "table" ) {
+			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows );
+		} else {
+			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.newStart, $scope.numberOfRows);
+		}
 	};
 	
 	$scope.orderKey = function( column ) {
