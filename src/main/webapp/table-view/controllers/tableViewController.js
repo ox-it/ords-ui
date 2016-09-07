@@ -111,7 +111,13 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		}
 	};
 	
+	//
+	// Handle "go to record"
+	//
 	$scope.startFrom = function( ) {
+
+		if ($scope.newStart > $scope.maxRows){ $scope.newStart = $scope.maxRows };
+
 		if ( $routeParams.queryType == "table" ) {
 			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows );
 		} else {

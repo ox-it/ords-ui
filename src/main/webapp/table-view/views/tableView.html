@@ -13,7 +13,7 @@
 	<td>Records #:{{startRow}} to {{lastRow}} of {{maxRows}}</td>
 	<td ng-if="lastRow < maxRows"><button class="button" ng-click="loadNext()">Next</button></td>
 	<td>Page: {{pagePosition}} of {{pages}}</td>
-	<td>Go to record: <input type="text" ng-model="newStart"  ng-keyup="$event.keyCode == 13 && startFrom()"/></td>
+	<td>Go to record: <input type="number" ng-model="newStart"  ng-keyup="$event.keyCode == 13 && startFrom()"/></td>
 </tr>
 </table>
 <div class="contDiv">
