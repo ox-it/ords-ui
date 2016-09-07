@@ -596,6 +596,7 @@ ords.directive('bigSelect', function ($parse) {
 					return tid;
 				};
 				element.select2({
+					readonly: attrs.readonly,
 					placeholder: "Search",
 					minimumInputLength: 1,
 					id: function(result){return getId(result)},
