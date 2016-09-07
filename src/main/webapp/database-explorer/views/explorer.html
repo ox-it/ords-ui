@@ -4,16 +4,39 @@
 	<a href="#/project/{{project.projectId}}/{{logicalDatabaseId}}">{{logicalDatabaseName}}</a>
 	<span class="breadcrumbs youarehere">View, Edit and Query Data</span>
 </div>
-<div class="panel two-up db-list">
-<ul>
-	<li ng-repeat="(key,val) in tableList.tables">
-		<p><a href="#/table/{{project.projectId}}/{{logicalDatabaseId}}/{{physicalDatabaseId}}/{{instance}}/table/{{key}}">{{key}}</a></p>
-	</li>
-</ul>
+
+<div class="two-up db-list">
+	<div class="panel db-list">
+		<h2>Tables</h2>
+    	<ul>
+	    	<li ng-repeat="(key,val) in tableList.tables">
+		 	  	<p><a href="#/table/{{project.projectId}}/{{logicalDatabaseId}}/{{physicalDatabaseId}}/{{instance}}/table/{{key}}">{{key}}</a></p>
+	   		</li>
+    	</ul>
+	</div>
+	<div class="panel db-list">
+		<h2>Datasets</h2>
+	</div>
 </div>
 
-<div class=" two-up options">
+<div class="panel two-up options">
+
+	<h2>Run a Query</h2>
+	<!---
 <div><a class="disabledButton" href="">View previously saved datasets</a></div>
 <div><a class="disabledButton" href="">Query data using query builder</a></div>
 <div><a class="button" href="#/sql-query/{{project.projectId}}/{{logicalDatabaseId}}/{{logicalDatabaseName}}/{{physicalDatabaseId}}/{{instance}}/{{server}}">Query data using SQL</a></div>
+-->
+	<vqd ng-show="tableList.$resolved" schema="tableList" sql="sql"></vqd>
+
+	<div>
+		<form>
+			<div class = "vqd_query">
+				<h3>Query</h3>
+				<textarea name="query" class="vqd_sql" placeholder="No data selected"></textarea>
+				<a class="button" ng-click="runQuery()">Run Query</a>
+			</div>
+		</form>
+	</div>
+
 </div>

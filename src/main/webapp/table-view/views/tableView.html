@@ -13,7 +13,7 @@
 	<td>Records #:{{startRow}} to {{lastRow}} of {{maxRows}}</td>
 	<td ng-if="lastRow < maxRows"><button class="button" ng-click="loadNext()">Next</button></td>
 	<td>Page: {{pagePosition}} of {{pages}}</td>
-	<td>Go to record: <input type="text" ng-model="newStart"  ng-keyup="$event.keyCode == 13 && startFrom()"/></td>
+	<td>Go to record: <input type="number" ng-model="newStart"  ng-keyup="$event.keyCode == 13 && startFrom()"/></td>
 </tr>
 </table>
 <div class="contDiv">
@@ -40,7 +40,7 @@
 							</select>
 						</p>
 					</td>
-					<td class="tdFixed" style="width:100px;">Functions</td>
+					<td ng-if="queryType == 'table'" class="tdFixed" style="width:100px;">Functions</td>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -52,23 +52,27 @@
 			<tbody>
 				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy:sortReverse" repeat-end="tableLoaded()">
 					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
+
 					<span ng-if="!column.referencedTable">
 						<input type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
-							ng-if="!checkPrimaryColumn(column)" 
+							ng-if="!checkPrimaryColumn(column) && queryType == 'table'" 
 							ng-model="row.cell[column.columnName].value"
 							ng-change="valueChanged(row.cell[column.columnName])"/>
-						<span ng-if="checkPrimaryColumn(column)">{{row.cell[column.columnName].value}}</span>
+						<span ng-if="checkPrimaryColumn(column) || queryType!=='table'">{{row.cell[column.columnName].value}}</span>
 					</span>
+
 					<big-select ng-if="column.referencedTable" 
 						type="text" 
+						readonly="{{queryType == 'table'}}"
 						reference-key="{{row.cell[primaryKey].value}}"
 						class="selectedDataItem {{column.columnName}} bigdrop"
 						id="selectedDataItemForTableRow_{{row.cell[primaryKey].value}}_{{column.columnName}}"
 						referenced-column="referencedColumn[column.referencedTable]"
 						referenced-table="{{column.referencedTable}}"
 						referenced-label="null"/>
+
 					</td>
-					<td class="tdScroll" style="min-width:100px; width:100px;">
+					<td ng-if="queryType == 'table'" class="tdScroll" style="min-width:100px; width:100px;">
 						<button class="button delete" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)">Delete</button>
 					</td>
 				</tr>
@@ -77,7 +81,7 @@
 		</form>
 	</div>
 </div>
-<p><div><a class="button" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div></p>
+<p><div><a class="button" ng-if="queryType=='table'" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div></p>
 
 <addrow ng-show="queryType=='table'"></addrow>
 

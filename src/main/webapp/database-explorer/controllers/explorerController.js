@@ -1,9 +1,14 @@
 'use strict';
 
 
-ords.controller('explorerController', function ($scope, $routeParams, DatabaseStructure, Project, ProjectDatabase,  AuthService, growl, gettextCatalog){
+ords.controller('explorerController', function ($scope, $routeParams, $location, DatabaseStructure, Project, ProjectDatabase, DoQuery, AuthService, growl, gettextCatalog){
 	AuthService.check();
 	
+	//
+	// Don't show VQD by default
+	//
+	$scope.showVQD = false;
+
 	$scope.project = Project.get({ id: $routeParams.projectId});
 	
 	$scope.logicalDatabaseId = $routeParams.projectDatabaseId;
@@ -34,6 +39,38 @@ ords.controller('explorerController', function ($scope, $routeParams, DatabaseSt
 			}
 		}
 	);
+
+	    //
+	// Run the query using the form fields
+	//	
+	$scope.runQuery = function() {
+		var sql = $(".vqd_sql").val();
+		//
+		// Before we go to the results, lets first check the query actually works
+		//
+		var params = {databaseId:$routeParams.physicalDatabaseId, q:sql, start:"0", length:"0" };
+		DoQuery.get(
+			params,
+			function(results) {
+		
+				//
+				// Construct the path to the resource that will show the query
+				//
+				var tablePath = "/table/"+$routeParams.projectId+"/"+$routeParams.projectDatabaseId+"/"+$routeParams.physicalDatabaseId+"/"+$routeParams.instance+"/SQL/"+sql
+
+        		//
+				// Load the view
+				//
+				$location.path(tablePath);
+
+			},
+			function(error) {
+				if (error.status === 400){ 
+					growl.error(  gettextCatalog.getString("QueryGet400") );
+				}
+			}
+		);
+	};
 	
 	
 });
