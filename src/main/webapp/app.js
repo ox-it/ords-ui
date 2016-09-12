@@ -1,6 +1,6 @@
 'use strict';
 
-var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext'])
+var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext', 'ngDialog'])
 
 	//
 	// Setup the gettext() function
@@ -249,6 +249,7 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 					templateUrl : 'table-view/row-editor/views/rowEditor.html',
 					controller  : 'rowEditorController'
 				})
+				
 				
 				
 								

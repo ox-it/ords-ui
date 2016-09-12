@@ -6,6 +6,7 @@
 </div>
 <h1 ng-if="queryType=='table'">Table Name: {{tableName}}</h1>
 <h1 ng-if="queryType=='SQL'">Query: {{theQuery}}</h1>
+<h1 ng-if="queryType=='dataset'">Dataset: {{tableView.viewName}}</h1>
 <!-- pagination -->
 <table>
 <tr>
@@ -81,7 +82,8 @@
 		</form>
 	</div>
 </div>
-<p><div><a class="button" ng-if="queryType=='table'" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div></p>
+<p ng-show="queryType=='SQL'" ><div><a class="button" ng-click="saveAsView()">Save As Dataset</a></div>
+<p ng-show="queryType=='table'" ><div><a class="button" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div></p>
 
 <addrow ng-show="queryType=='table'"></addrow>
 

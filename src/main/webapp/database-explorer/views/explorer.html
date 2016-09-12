@@ -16,6 +16,22 @@
 	</div>
 	<div class="panel db-list">
 		<h2>Datasets</h2>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Authorization</th>
+				<th>Edit Dataset</th>
+				<th>Delete</th>
+			</tr>
+			<tr ng-repeat="dataset in datasetList">
+				<td><a href="#/table/{{project.projectId}}/{{logicalDatabaseId}}/{{physicalDatabaseId}}/{{instance}}/dataset/{{dataset.id}}">{{dataset.viewName}}</a></td>
+				<td>{{dataset.viewDescription}}</td>
+				<td>{{dataset.viewAuthorization}}</td>
+				<td><button class="button" ng-click="editDataset(dataset.id)">Edit</button></td>
+				<td><button class="button" ng-really-message="Are you sure you want to delete this dataset?" ng-really-click="deleteDataset(dataset.id)">Delete</button></td>
+			</tr>
+		</table>
 	</div>
 </div>
 

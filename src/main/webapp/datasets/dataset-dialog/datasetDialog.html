@@ -1,0 +1,34 @@
+<div>
+	<table>
+		<tr>
+			<td>Dataset Name:</td>
+			<td><input type="text" placeholder="Dataset Name" ng-model="ngDialogData.newTableView.viewName"/></td>
+		</tr>
+		<tr>
+			<td>Table:</td>
+			<td><input type="text" placeholder="Dataset table" ng-model="ngDialogData.newTableView.viewTable"/></td>
+		</tr>
+		<tr>
+			<td>Dataset Description:</td>
+			<td><textarea name="description" ng-model="ngDialogData.newTableView.viewDescription"></textarea></td>
+		</tr>
+		<tr>
+			<td>Query:</td>
+			<td><textarea name="sqlQuery" ng-model="ngDialogData.newTableView.viewQuery"></textarea></td>
+		</tr>
+		<tr>
+			<td>Private:</td>
+			<td>
+				<select name="authSelect" ng-model="ngDialogData.newTableView.viewAuthorization">
+					<option value="public">public</option>
+					<option value="private">private</option>
+				</select>
+			</td>
+		</tr>
+		
+	</table>
+	<div class="ngdialog-buttons">
+		<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+		<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>Save</button>
+	</div>
+</div>

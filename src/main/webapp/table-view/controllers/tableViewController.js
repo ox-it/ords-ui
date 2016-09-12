@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, $sce, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, AuthService, growl, gettextCatalog){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $window, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, growl, gettextCatalog, ngDialog){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -338,19 +338,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 	
 	
 	
-	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
-		var params = {databaseId:dbId, tableName: name, start:startRow,length:numberOfRows};
-		TableList.get(
-			params,
-			function(results) {
-				$scope.setupFromResults(results);
-				
-			},
-			function(error) {
-				$scope.handleError(error);
-			}
-		)
-	};
 
 	//
 	// Adds a new row to a table
@@ -483,6 +470,50 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 		cell.dirty=true;
 	}
 	
+	
+	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
+		var params = {databaseId:dbId, tableName: name, start:startRow,length:numberOfRows};
+		TableList.get(
+			params,
+			function(results) {
+				$scope.setupFromResults(results);
+				
+			},
+			function(error) {
+				$scope.handleError(error);
+			}
+		)
+	};
+	
+	$scope.getDatasetData = function ( dbId, datasetId, startRow, numberOfRows ) {
+		var params = {databaseId:dbId, datasetId: datasetId, startindex: startRow, rowsperpage: numberOfRows };
+		DatasetData.get(
+			params,
+			function(results) {
+				$scope.setupFromResults(results);
+			},
+			function(error) {
+				growl.error( gettextCatalog.getString("Tvs006"));
+			}
+		);
+		
+	}
+	
+	
+	$scope.getDataset = function ( dbId, datasetId ) {
+		var params = {databaseId:dbId, datasetId:datasetId};
+		Dataset.get(
+			params,
+			function(results) {
+				$scope.tableView = results;
+			},
+			function(error) {
+				growl.error("Unable to get dataset metadata");
+			}
+		);
+	}
+
+	
 	$scope.databasequery = function (dbId, inst, query, startRow, numberOfRows ) {
 		var params = {databaseId:dbId,q:query,start:startRow,length:numberOfRows };
 		DoQuery.get(
@@ -510,6 +541,15 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 				$scope.startRow, 
 				$scope.numberOfRows);
 	}
+	if ( $routeParams.queryType == "dataset") {
+		$scope.viewId = $routeParams.query;
+		$scope.getDatasetData($routeParams.physicalDatabaseId, 
+				$routeParams.query, 
+				$scope.startRow, 
+				$scope.numberOfRows);
+		
+		$scope.getDataset($routeParams.physicalDatabaseId, $routeParams.query);
+	}
 	else {
 		$scope.theQuery = $routeParams.query;
 		$scope.databasequery($routeParams.physicalDatabaseId, 
@@ -518,6 +558,59 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, Pro
 				$scope.startRow, 
 				$scope.numberOfRows);
 		
+	}
+	
+	
+	
+	$scope.saveAsView = function ( ) {
+		var tableView = new Object();
+		tableView.viewName = "";
+		tableView.viewTable = "";
+		tableView.viewDescription = "";
+		tableView.viewQuery = $scope.theQuery;
+		tableView.viewAuthorization = "private";
+		
+		ngDialog.openConfirm({
+			template: 'datasets/dataset-dialog/datasetDialog.html', 
+			controller: 'datasetDialogController', 
+			data: { newTableView: tableView }
+				}
+		).then(
+				function(value){
+					
+					// create new dataset
+					var params = {databaseId:$scope.dbId};
+					Dataset.create(
+						params,
+						tableView,
+						function(results) {
+							growl.success(gettextCatalog.getString("Tvs010"));
+							var explorerPath = "/database-explorer/"
+							+$scope.project.projectId+
+							"/"+$scope.projectDatabase.logicalDatabaseId+
+							"/"+$scope.projectDatabase.dbName+
+							"/"+$scope.dbId+
+							"/MAIN/"+$scope.project.dbServerPublicAddress
+							$location.path(explorerPath);
+						},
+						function(error) {
+							if (error.status ==400) {
+								growl.error(  gettextCatalog.getString("Tvs008") );
+							}
+							else if ( error.status == 406 ) {
+								growl.error(gettextCatalog.getString("Tvs014"));
+							}
+							else {
+								growl.error(gettextCatalog.getString("Tvs011"));
+							}
+							$window.scrollTo(0, 0);
+
+						}
+					);
+				},
+				function(value){}
+			);
+
 	}
 	
 });

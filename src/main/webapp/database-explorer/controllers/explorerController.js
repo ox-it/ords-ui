@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('explorerController', function ($scope, $routeParams, $location, DatabaseStructure, Project, ProjectDatabase, DoQuery, AuthService, growl, gettextCatalog){
+ords.controller('explorerController', function ($scope, $routeParams, $location, DatabaseStructure, ListDatasets, Dataset, Project, ProjectDatabase, DoQuery, AuthService, growl, gettextCatalog, ngDialog){
 	AuthService.check();
 	
 	//
@@ -39,6 +39,22 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 			}
 		}
 	);
+	
+	$scope.updateDatasetList = function ( ) {
+		ListDatasets.query(
+			pathParams,
+			function(inDatasetList) {
+				$scope.datasetList = inDatasetList;
+			},
+			function(error) {
+				growl.error( "Unable to get dataset list for database");
+			}
+		);		
+	};
+	
+	$scope.updateDatasetList();
+	
+	
 
 	    //
 	// Run the query using the form fields
@@ -73,4 +89,73 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 	};
 	
 	
+	$scope.editDataset = function(datasetId) {
+		//get the selected dataset info so we can pass it to the datasetDialog and subsequently update
+		// any edits created.
+		var params = {databaseId:$routeParams.physicalDatabaseId, datasetId: datasetId};
+		Dataset.get(
+			params,
+			function(results) {
+				var tableView = results;
+				$scope.openDatasetDialogForEdit(tableView);
+			},
+			function(error) {
+				growl.error(gettextCatalog.getString("Tvs006"));
+			}
+		);
+	};
+	
+	$scope.openDatasetDialogForEdit = function(tableView) {
+		ngDialog.openConfirm({
+			template: 'datasets/dataset-dialog/datasetDialog.html', 
+			controller: 'datasetDialogController', 
+			data: { newTableView: tableView }
+		}).then(
+			function(value){
+				// update dataset
+				$scope.updateDataset(tableView);
+			},
+			function(value) {
+				//do nothing
+			}
+		);
+	};
+	
+	$scope.updateDataset = function ( tableView ) {
+		var params = {databaseId:$routeParams.physicalDatabaseId, datasetId: tableView.id};
+		Dataset.update(
+			params,
+			tableView,
+			function(results) {
+				growl.success(gettextCatalog.getString("Tvs013"));
+				$scope.updateDatasetList();
+			},
+			function(error) {
+				if (error.status ==400) {
+					growl.error(  gettextCatalog.getString("Tvs008") );
+				}
+				else if ( error.status == 406 ) {
+					growl.error(gettextCatalog.getString("Tvs014"));
+				}
+				else {
+					growl.error(gettextCatalog.getString("Tvs012"));
+				}
+				$window.scrollTo(0, 0);
+			}
+		);
+	};
+	
+	$scope.deleteDataset = function ( datasetId ) {
+		var params = {databaseId:$routeParams.physicalDatabaseId, datasetId:datasetId};
+		Dataset.delete(
+			params,
+			function(results) {
+				growl.success(gettextCatalog.getString("Tvs015"));
+				$scope.updateDatasetList();
+			},
+			function(error) {
+				growl.error("Unable to delete dataset, please contact support");
+			}
+		);
+	}
 });

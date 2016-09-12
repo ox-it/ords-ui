@@ -90,8 +90,25 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		return $resource('/api/1.0/database/:databaseId/query')
 	})
 	
-	.factory('Dataset', function( $resource ) {
+	.factory('ListPublicDatasets', function( $resource ) {
 		return $resource('/api/1.0/database/dataset')
+	})
+	
+	.factory('ListDatasets', function( $resource ) {
+		return $resource('/api/1.0/database/:databaseId/datasets')
+	})
+	
+	.factory('Dataset', function( $resource ) {
+		return $resource('/api/1.0/database/:databaseId/dataset/:datasetId',
+				null,
+				{
+					'create': { method: 'POST'},
+					'update': { method: 'PUT'}
+				})
+	})
+	
+	.factory('DatasetData', function($resource) {
+		return $resource('/api/1.0/database/:databaseId/datasetdata/:datasetId')
 	})
 	
 	.factory('ReferenceColumnData', function( $resource ) {
