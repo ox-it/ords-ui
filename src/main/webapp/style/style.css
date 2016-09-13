@@ -929,3 +929,10 @@ form .progress {
     background: orange;
     width: 0;
 }
+
+/*
+  Shows the API URL in forms
+*/
+#apilink {
+    width:100%;
+}

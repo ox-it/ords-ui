@@ -1,6 +1,6 @@
 'use strict';
 
-var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext', 'ngDialog'])
+var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext', 'ngDialog','ngTextTruncate'])
 
 	//
 	// Setup the gettext() function

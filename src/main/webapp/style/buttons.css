@@ -11,6 +11,15 @@
     text-decoration: none;
 }
 
+.btn-link {
+	cursor: pointer;
+	text-decoration: underline;
+    font-style: italic;
+    font-size: smaller;
+    display: inline-block;
+    float: right;
+}
+
 
 button,
 a.button,

@@ -54,9 +54,17 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 	
 	$scope.updateDatasetList();
 	
-	
+	$scope.getAPILink = function(id){
+		$scope.datasetId = id;
 
-	    //
+		ngDialog.openConfirm({
+			template: 'database-explorer/components/apidialog/apidialog.html', 
+			controller: 'apidialog', 
+			scope: $scope
+		});
+	}
+
+	//
 	// Run the query using the form fields
 	//	
 	$scope.runQuery = function() {
