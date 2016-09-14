@@ -93,6 +93,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.loadNext = function ( ) {
 		if ( $routeParams.queryType == "table" ) {
 			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows );
+		} else if ( $routeParams.queryType == "dataset" ) {
+			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows );
 		} else {
 			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows);
 		}
@@ -106,6 +108,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 
 		if ( $routeParams.queryType == "table" ) {
 			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, start, $scope.numberOfRows );
+		} else if ( $routeParams.queryType == "dataset" ) {
+			$scope.getDatasetData($scope.dbId, $scope.viewId, start, $scope.numberOfRows );
 		} else {
 			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, start, $scope.numberOfRows);
 		}
@@ -120,6 +124,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 
 		if ( $routeParams.queryType == "table" ) {
 			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows );
+		} else if ( $routeParams.queryType == "dataset" ) {
+			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.newStart, $scope.numberOfRows );
 		} else {
 			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.newStart, $scope.numberOfRows);
 		}
@@ -541,7 +547,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 				$scope.startRow, 
 				$scope.numberOfRows);
 	}
-	if ( $routeParams.queryType == "dataset") {
+	else if ( $routeParams.queryType == "dataset") {
 		$scope.viewId = $routeParams.query;
 		$scope.getDatasetData($routeParams.physicalDatabaseId, 
 				$routeParams.query, 

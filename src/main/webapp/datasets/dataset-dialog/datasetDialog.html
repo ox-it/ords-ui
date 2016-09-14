@@ -38,6 +38,6 @@
 	</form>
 	<div class="ngdialog-buttons">
 		<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
-		<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>Save</button>
+		<button type="button" ng-disabled="datasetForm.$invalid" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>Save</button>
 	</div>
 </div>
