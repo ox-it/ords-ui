@@ -1,32 +1,41 @@
 <div>
-	<table>
-		<tr>
-			<td>Dataset Name:</td>
-			<td><input type="text" placeholder="Dataset Name" ng-model="ngDialogData.newTableView.viewName"/></td>
-		</tr>
-		<tr>
-			<td>Table:</td>
-			<td><input type="text" placeholder="Dataset table" ng-model="ngDialogData.newTableView.viewTable"/></td>
-		</tr>
-		<tr>
-			<td>Dataset Description:</td>
-			<td><textarea name="description" ng-model="ngDialogData.newTableView.viewDescription"></textarea></td>
-		</tr>
-		<tr>
-			<td>Query:</td>
-			<td><textarea name="sqlQuery" ng-model="ngDialogData.newTableView.viewQuery"></textarea></td>
-		</tr>
-		<tr>
-			<td>Private:</td>
-			<td>
-				<select name="authSelect" ng-model="ngDialogData.newTableView.viewAuthorization">
-					<option value="public">public</option>
-					<option value="private">private</option>
-				</select>
-			</td>
-		</tr>
-		
-	</table>
+	<form name="datasetForm">
+		<table width="100%">
+			<tr>
+				<td width="40%">Dataset Name:</td>
+				<td width="60%">
+					<input type="text" name="datasetName" ng-maxlength="40" required ng-minlength="2" placeholder="Dataset Name" ng-model="ngDialogData.newTableView.viewName"/>
+					<div ng-messages="datasetForm.datasetName.$error">
+						<div ng-message="required" class="error">Please provide a name.</div>
+						<div ng-message="minlength" class="error">Minimum 2 characters!</div>
+						<div ng-message="maxlength" class="error">Maximum 40 characters allowed!</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="40%">Dataset Description:</td>
+				<td width="60%">
+					<textarea name="description" ng-maxlength="255" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewDescription"></textarea>
+					<div ng-messages="datasetForm.description.$error">
+						<div ng-message="maxlength" class="error">Maximum 255 characters allowed!</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="40%">Query:</td>
+				<td width="60%"><textarea name="datasetQuery" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewQuery"></textarea></td>
+			</tr>
+			<tr>
+				<td width="40%">Visibility:</td>
+				<td width="60%">
+					<select name="authSelect" ng-model="ngDialogData.newTableView.viewAuthorization">
+						<option value="public">public</option>
+						<option value="private">private</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</form>
 	<div class="ngdialog-buttons">
 		<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
 		<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>Save</button>

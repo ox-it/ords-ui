@@ -134,6 +134,12 @@
   width: 100%;
 }
 
+.ngdialog.ngdialog-theme-default .ngdialo-input textarea {
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+       -moz-box-sizing: border-box; /* FF1+ */
+            box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
 .ngdialog.ngdialog-theme-default .ngdialog-input textarea:focus,
 .ngdialog.ngdialog-theme-default .ngdialog-input input[type="text"]:focus,
 .ngdialog.ngdialog-theme-default .ngdialog-input input[type="password"]:focus,
