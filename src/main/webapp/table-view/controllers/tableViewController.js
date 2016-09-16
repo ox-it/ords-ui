@@ -492,7 +492,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	};
 	
 	$scope.getDatasetData = function ( dbId, datasetId, startRow, numberOfRows ) {
-		var params = {databaseId:dbId, datasetId: datasetId, startindex: startRow, rowsperpage: numberOfRows };
+		var params = {databaseId:dbId, datasetId: datasetId, start: startRow, length: numberOfRows };
 		DatasetData.get(
 			params,
 			function(results) {

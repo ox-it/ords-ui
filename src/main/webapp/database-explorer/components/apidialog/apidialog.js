@@ -1,7 +1,7 @@
 'use strict';
 
 ords.controller('apidialog', function ($scope, $location, ngDialog) {
-	$scope.apiUrl = $location.protocol() + "://" + $location.host() + "/api/1.0/database/"+$scope.physicalDatabaseId+"/datasetdata/"+$scope.datasetId+"?rowsperpage=50&startindex=0";
+	$scope.apiUrl = $location.protocol() + "://" + $location.host() + "/api/1.0/database/"+$scope.physicalDatabaseId+"/datasetdata/"+$scope.datasetId+"?length=50&start=0";
 
 	$scope.copyLinkToClipboard = function(){
 		
