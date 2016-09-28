@@ -906,6 +906,9 @@ select.select2 {
     height: 1.5em;
 }
 
+input {
+  max-width: 100%;
+}
 
 .thumb {
     width: 24px;
