@@ -29,7 +29,7 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 				//
                 // Convert the date strings in the model into actual Date objects
                 //
-                $scope.database.creationDate = new Date( Date.parse($scope.database.creationDate) );
+                //$scope.database.creationDate = new Date( Date.parse($scope.database.creationDate) );
                 
                 $scope.main = null;
                 $scope.milestone = null;

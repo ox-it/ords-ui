@@ -25,7 +25,9 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		return $resource(
 			'/api/1.0/project/:id/database/:databaseId',
 			null,
-			{'update': { method:'PUT' }}
+			{'update' : 
+				{ method:'PUT' }
+			}
 		)
 	})
 	

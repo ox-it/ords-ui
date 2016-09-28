@@ -32,11 +32,12 @@
 
 	<div class="formItem">
 	    <label for="logicalDbStartDate">Created on <span class="small">The date when this database was created.</span></label>
-	    <input ng-model="database.creationDate" type="date" id="logicalDbStartDate" name="creationDate" class="tcal tcalInput" value="">       
+	    <input ng-model="database.creationDate" type="text" id="logicalDbStartDate" name="creationDate" class="tcal tcalInput" value="">       
 	</div>
 
-	<div ng-messages="databaseForm.logicalDbStartDate.$error" ng-if="databaseform.logicalDbStartDate.$touched" class="formItem" role="alert">
-  		<div ng-message="date" class="alert alert-warning">You need to provide a valid date</div>
+	<div ng-messages="databaseForm.logicalDbStartDate.$error"  ng-maxlength="255" ng-if="databaseform.logicalDbStartDate.$touched" class="formItem" role="alert">
+  		<!--<div ng-message="date" class="alert alert-warning">You need to provide a valid date</div>-->
+		<div ng-message="maxlength" class="alert alert-warning">Your starting date description is too long</div>
 	</div>
 
 	<div class="formItem">

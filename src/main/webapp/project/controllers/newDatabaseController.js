@@ -30,9 +30,9 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 				id:$scope.project.projectId
 			},
 			$scope.group, 
-			function(response){
+			function(response,getResponseHeaders){
 				growl.success( gettextCatalog.getString("ProDbPost201") );
-				$location.path("/project/"+$scope.project.projectId);
+				$location.path("/project/"+$scope.project.projectId+"/"+getResponseHeaders("Location").split('/').pop());
 			},
 			function(response){
 				

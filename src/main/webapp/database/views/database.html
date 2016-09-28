@@ -15,7 +15,7 @@
 			<tr><th>Name </th> <td>{{database.dbName}}</td></tr>
 	    	<tr><th>Description</th><td><div style="white-space:pre-wrap;" ng-text-truncate="database.dbDescription" ng-tt-chars-threshold="255"></div></td></tr>
 	    	<tr><th>Database type</th><td>{{database.databaseType}}</td></tr>
-	    	<tr><th>Created on</th><td>{{database.creationDate | date:'longDate'}}</td></tr>
+	    	<tr><th>Created on</th><td>{{database.creationDate}}</td></tr>
 	    	<tr><th>Data sources</th><td><div style="white-space:pre-wrap;" ng-text-truncate="database.dataSources" ng-tt-chars-threshold="255"></div></td></tr>
 	    	<tr><th>Data gathering process</th><td><div style="white-space:pre-wrap;" ng-text-truncate="database.dataGatheringProcess" ng-tt-chars-threshold="255"></div></td></tr>
 		</tbody>
