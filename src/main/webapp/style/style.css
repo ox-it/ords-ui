@@ -704,7 +704,7 @@ padding: 0 0.3em ;
 
 
 .contDiv {width:auto;}
-.headerDiv {overflow: hidden;}
+.headerDiv {overflow-y:scroll}
 .bottomDiv {height: 400px; overflow: scroll; }
 .bottomDiv tbody:nth-child(odd) {background: #aaaaaa}
 
@@ -712,21 +712,22 @@ padding: 0 0.3em ;
 	width:138px;
 	height:auto;
 	cursor:pointer;
+  word-wrap: break-word;
 }
 
 
 .tdFixed {  
 	background-color: #f1f1f1;
-	min-width:140px;
-	width: 140px;
+	/*min-width:140px;
+	width: 140px;*/
 }
 
 .tdScroll {  
 	background-color: #fafafa;
 	border: 1px solid #eaeaea;
 	padding: 0.3em;
-	min-width:140px;
-	width: 140px;
+	/*min-width:140px;
+	width: 140px;*/
 }
 
 

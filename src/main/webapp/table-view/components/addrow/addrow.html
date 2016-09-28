@@ -19,13 +19,13 @@
 							</select>
 						</p>
 					</td>
-					<td class="tdFixed" style="width:100px;">Functions</td>
+					<td class="tdFixed">Functions</td>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
-		<div class="contDiv" fix-on-scroll fixed-div=".headerDiv">
+		<div class="contDiv" fix-on-scroll fixed-div=".headerDiv" style="overflow-y:scroll">
 		<form class="table-data-form" name="addDataForm">
 		<table style="table-layout: fixed; width: 100%">
 			<tbody>
@@ -46,7 +46,7 @@
 						referenced-table="{{column.referencedTable}}"
 						referenced-label="null"/>
 					</td>
-					<td class="tdScroll" style="min-width:100px; width:100px;">
+					<td class="tdScroll">
 						<p><div><a class="button" ng-disabled="addDataForm.$invalid" ng-click="addRow()">Add New Row</a></div></p>
 					</td>
 				</tr>
