@@ -14,11 +14,12 @@
 
 <div class="formItem">
     <label for="description">Description <span class="important">*</span><span class="explanation">Please give a brief description of the project. This will appear in your project list, and on the project page. If the project is included in the public ORDS project list, the description will also appear there.</span></label>
-    <textarea ng-model="project.description" required rows="5" id="description" name="description"></textarea>
+    <textarea ng-model="project.description" ng-maxlength="255" required rows="5" id="description" name="description"></textarea>
 </div>
 
 <div ng-messages="projectForm.description.$error" ng-if="projectForm.description.$touched" class="formItem" role="alert">
   <div ng-message="required" class="alert alert-warning">You must provide a description</div>
+<div ng-message="maxlength" class="alert alert-warning">Your description is too long</div>
 </div>
 
 <div class="formItem">

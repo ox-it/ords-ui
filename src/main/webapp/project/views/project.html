@@ -7,7 +7,7 @@
 
 <h1>Project: {{project.name}}</h1>
 
-<p>{{project.description}}</p>
+<p ng-text-truncate="project.description" ng-tt-chars-threshold="255"></p>
 
 <div class="informationBubble">
 	<div class="rightFloat">

@@ -21,11 +21,12 @@
 
 	<div class="formItem ">
 	    <label for="dbDescription">Description <span class="important">*</span><span class="small">Please give a brief description of the database. <br> This will appear on the project and database pages. <br> This field can be used to describe the content and scope of the database, or to supply any other information that may be useful to project members, or to other researchers who might use the data in the future. </span></label>
-	    <textarea ng-model="database.dbDescription" required rows="5" id="dbDescription" name="dbDescription"></textarea>
+	    <textarea ng-model="database.dbDescription" ng-maxlength="65000" required rows="5" id="dbDescription" name="dbDescription"></textarea>
 	</div>
 	
 	<div ng-messages="databaseForm.dbDescription.$error" ng-if="databaseForm.dbDescription.$touched" class="formItem" role="alert">
 	  <div ng-message="required" class="alert alert-warning">You must provide a description</div>
+	  <div ng-message="maxlength" class="alert alert-warning">Your description is too long</div>
 	</div>
 	
 
@@ -40,12 +41,20 @@
 
 	<div class="formItem">
 	    <label for="dataSources">Data sources <span class="small">This field can be used to record where the data in the database came from. This might include details of print material that has been digitized, or of multiple sources that have been combined to produce the current dataset.</span></label>
-	    <textarea ng-model="database.dataSources" rows="5" id="dataSources" name="dataSources"></textarea>
+	    <textarea ng-model="database.dataSources" ng-maxlength="255" rows="5" id="dataSources" name="dataSources"></textarea>
+	</div>
+
+	<div ng-messages="databaseForm.dataSources.$error" ng-if="databaseForm.dataSources.$touched" class="formItem" role="alert">
+	  <div ng-message="maxlength" class="alert alert-warning">Your description is too long</div>
 	</div>
 
 	<div class="formItem">
 	    <label for="dataGatheringProcess">Data gathering process <span class="small">This field can be used to record the methods used to collect the data. This might include, for example, details of experiments, interviews, or selection and digitization of print materials.</span></label>
-	    <textarea ng-model="database.dataGatheringProcess" rows="5" id="dataGatheringProcess" name="dataGatheringProcess"></textarea>
+	    <textarea ng-model="database.dataGatheringProcess" ng-maxlength="255" rows="5" id="dataGatheringProcess" name="dataGatheringProcess"></textarea>
+	</div>
+
+	<div ng-messages="databaseForm.dataGatheringProcess.$error" ng-if="databaseForm.dataGatheringProcess.$touched" class="formItem" role="alert">
+	  <div ng-message="maxlength" class="alert alert-warning">Your description is too long</div>
 	</div>
 
                     

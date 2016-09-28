@@ -9,7 +9,7 @@
 	<tbody>
 		<tr ng-repeat="database in databases">
 		    <td><a href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}">{{database.dbName}}</a></td>
-		    <td>{{database.dbDescription}}</td>
+		    <td><p style="white-space:pre-wrap;" ng-text-truncate="database.dbDescription" ng-tt-chars-threshold="255"></p></td>
 		</tr>
 	</tbody>
 </table>
