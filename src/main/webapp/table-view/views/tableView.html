@@ -2,6 +2,7 @@
 	<a href="#/">My Projects</a>
 	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
 	<a href="#/project/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}">{{projectDatabase.dbName}}</a>
+	<a href="#/database-explorer/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{projectDatabase.dbName}}/{{dbId}}/MAIN/{{project.dbServerPublicAddress}}">View, Edit and Query Data</a>
 	<span class="breadcrumbs youarehere">Data Viewer</span>
 </div>
 <h1 ng-if="queryType=='table'">Table Name: {{tableName}}</h1>
