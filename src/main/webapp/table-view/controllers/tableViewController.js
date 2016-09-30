@@ -633,11 +633,11 @@ ords.directive("fixOnScroll", function () {
     return function(scope, element, attrs) {
         var fixedDiv = attrs.fixedDiv;
           element.bind("scroll", function() {
-              if(element.scrollLeft())
-              {
+              //if(element.scrollLeft())
+              //{
                   var leftPos = element.scrollLeft();
                   $(fixedDiv).scrollLeft(leftPos);
-              }
+              //}
           });
       };
   });

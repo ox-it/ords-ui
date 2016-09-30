@@ -718,16 +718,16 @@ padding: 0 0.3em ;
 
 .tdFixed {  
 	background-color: #f1f1f1;
-	/*min-width:140px;
-	width: 140px;*/
+	min-width:140px;
+	width: 140px;
 }
 
 .tdScroll {  
 	background-color: #fafafa;
 	border: 1px solid #eaeaea;
 	padding: 0.3em;
-	/*min-width:140px;
-	width: 140px;*/
+	min-width:140px;
+	width: 140px;
 }
 
 
