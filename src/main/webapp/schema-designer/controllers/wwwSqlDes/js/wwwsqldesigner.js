@@ -412,7 +412,7 @@ SQL.Row.prototype.changeComment = function(e) {
     this.owner.owner.showOverlay();
     // Create the column comment URL and request
     //var dbURL = protocol+"//:"+host+"/api/1.0/structure/"+dbId+"/";
-    var commentURL = dbURL()+'/comment/'+this.owner.getTitle()+'/'+this.getTitle()+'/staging';
+    var commentURL = dbURL()+'/table/'+this.owner.getTitle()+'/comment/staging';
     var commentRequest = {comment: c};
     this.owner.owner.request.Promise(commentURL, SQL.Request.PUT, JSON.stringify(commentRequest)).then(
         function() {
@@ -2181,12 +2181,12 @@ SQL.TableManager.prototype.save = function() {
                     // If the comment has changed too, change we need to use
                     // the new table name in the URL
                     commentRequest = {comment: this.dom.comment.value};
-                    commentUrl = dbURL()+'/comment/'+this.dom.name.value+'/staging';
+                    commentUrl = dbURL()+'/table/'+this.dom.name.value+'/comment/staging';
                     // Change the table name
-                    return this.owner.request.Promise(tableUrl, SQL.Request.PUT, JSON.stringify(tableRequest)).then(
+                    return this.owner.request.Promise(tableUrl, SQL.Request.POST, JSON.stringify(tableRequest)).then(
                         function() {
                             // Save the comment
-                            return this.owner.request.Promise(commentUrl, SQL.Request.PUT, JSON.stringify(commentRequest));
+                            return this.owner.request.Promise(commentUrl, SQL.Request.POST, JSON.stringify(commentRequest));
                         }.bind(this),
                         this.owner.error
                     );
@@ -2197,8 +2197,8 @@ SQL.TableManager.prototype.save = function() {
             } else {
                 // If the table name hasn't been changed, just save the comment
                 commentRequest = {comment: this.dom.comment.value};
-                commentUrl = dbURL()+'/comment/'+oldname+'/staging';
-                return this.owner.request.Promise(commentUrl, SQL.Request.PUT, JSON.stringify(commentRequest));
+                commentUrl = dbURL()+'/table/'+oldname+'/comment/staging';
+                return this.owner.request.Promise(commentUrl, SQL.Request.POST, JSON.stringify(commentRequest));
             }
         }.bind(this))().then(
             function() {
