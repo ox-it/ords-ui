@@ -2369,7 +2369,7 @@ SQL.RowManager.prototype.rowClick = function(e) {
     
     this.owner.showOverlay();
     var tableURL = dbURL()+"/table/"+r2.owner.getTitle()+"/staging";
-    var constraintName = "fkey_"+r2.owner.getTitle()+"_"+r2.getTitle()+"/staging";
+    var constraintName = "fkey_"+r2.owner.getTitle()+"_"+r2.getTitle()+"";
     var constraintURL = dbURL()+"/table/"+r2.owner.getTitle()+"/constraint/"+constraintName+"/staging";
 
     var constraintRequest = {
