@@ -19,6 +19,10 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 	//
 	$scope.project = Project.get({ id: $routeParams.id });
 	
+	$scope.cancel = function(){
+		$location.path("/project/"+$scope.project.projectId);		
+	}
+
 	$scope.newDatabase = function(){
 		
 		$scope.group.databaseProjectId = $scope.project.projectId;
