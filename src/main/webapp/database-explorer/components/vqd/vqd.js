@@ -1,6 +1,7 @@
 angular.module( "ords" ).directive(
 	'vqd',
-	function() {
+	['VQDState',
+	function(VQDState) {
   	  	return {
 			scope: 
 			{
@@ -8,6 +9,9 @@ angular.module( "ords" ).directive(
 				sql: "="
 			},
     		controller: function($scope) {
+				if (VQDState.data){
+					vqd.restore(VQDState.data);
+				}
 			},
 			link: function($scope, element, attrs, ctrl) {
       			$scope.$watch('schema', function(newVal) {
@@ -15,14 +19,27 @@ angular.module( "ords" ).directive(
         			//  property is undefined, so we'll
         			// check for it
         			if (newVal) {
-						vqd.init(newVal);
+						//
+						// If there is no current state data, or the schema loaded
+						// differs from that held in state, we clear the state and
+						// start again
+						//
+						if (
+							!VQDState.data || 
+							JSON.stringify(VQDState.data.schema) !== JSON.stringify(newVal)
+						){
+							VQDState.data = {};
+							VQDState.data.schema = newVal;
+							VQDState.data.tables = [];
+							vqd.restore(VQDState.data);
+						}
 					}
 				  });
           	},
     		templateUrl: 'database-explorer/components/vqd/vqd.html'
   	  	}
 	}
-);
+	]);
 
 //
 // Visual Query Designer
@@ -31,10 +48,59 @@ angular.module( "ords" ).directive(
 //
 var vqd = {};
 
+vqd.restore = function(data){
+
+	//
+	// This basically "locks" the state until we're finished
+	//
+	vqd.isLoading = true;
+
+	//
+	// Set the internal state model to the passed in value
+	//
+	vqd.state = data;
+
+	//
+	// Set up schema
+	//
+	vqd.schema = data.schema;
+	vqd.init();
+
+	//
+	// Restore tables
+	//
+	for (var table in data.tables){
+		var tableId = data.tables[table].table;
+		$("#vqd_table_checkbox_"+tableId).prop('checked', true);
+	}
+	vqd.tableListUpdated();
+
+	//
+	// Restore columns
+	//
+	for (var table in data.tables){
+		var tableId = data.tables[table].table;
+		for (var column in data.tables[table].columns){
+			var columnId = data.tables[table].columns[column];
+			$("#vqd_column_checkbox_"+ tableId + "_____"+ columnId).prop('checked', true);
+		}
+	}
+
+	//
+	// Generate query
+	//
+	vqd.queryUpdated();
+
+	//
+	// Allow state to be overwritten with new changes
+	//
+	vqd.isLoading = false;
+}
+
 //
 // Set up VQD using the supplied JSON schema data
 //
-vqd.init = function(data){
+vqd.init = function(){
 	
 	var cssId = 'vqd_css';
 	if (!document.getElementById(cssId))
@@ -49,7 +115,8 @@ vqd.init = function(data){
 	    head.appendChild(link);
 	}	
 	
-	vqd.schema = data;
+	$(".vqd_tableview").empty();
+
 	vqd.renderTableControl();
 	
 	vqd.jsplumb = jsPlumb.getInstance();
@@ -71,6 +138,7 @@ vqd.renderTableControl = function(){
 		tableControlContainer.append(table);
 		tableControls.append(tableControlContainer);
 	}
+	$("#vqd_tableselect_control").remove();
 	$(".vqd_tableselect").append(tableControls);
 }
 
@@ -88,15 +156,51 @@ vqd.getSelectedTables = function(){
 }
 
 //
+// Saves the state model to allow users to recreate the Query
+//
+vqd.saveState = function(){
+	var tables = vqd.getSelectedTables();
+
+	//
+	// Clear the state
+	//
+	vqd.state.tables = [];
+
+	for (var i = 0; i < tables.length; i++){
+		var table = tables[i];
+
+		//
+		// Create a state object for this table
+		//
+		var tableState = {};
+		tableState.table = tables[i].hashCode();
+		tableState.columns =  [];
+
+		for (column in vqd.schema.tables[vqd.getTableNameFromHashCode(table.hashCode())].columns){
+			if ($("#vqd_column_checkbox_"+table.hashCode()+"_____"+column.hashCode()).is(":checked")){
+				tableState.columns.push(column.hashCode());
+			}
+		}
+
+		//
+		// Add table to state model
+		//
+		vqd.state.tables.push(tableState);
+	}
+}
+
+//
 // Updates the SQL based on the current state of the editor
 //
 vqd.queryUpdated = function(){
+
 	var sql = "";
 	var columns = [];
 	var tables = vqd.getSelectedTables();
 
 	for (var i = 0; i < tables.length; i++){
 		var table = tables[i];
+
 		for (column in vqd.schema.tables[vqd.getTableNameFromHashCode(table.hashCode())].columns){
 			if ($("#vqd_column_checkbox_"+table.hashCode()+"_____"+column.hashCode()).is(":checked")){
 				columns.push( "\"" + table + "\".\"" + column + "\"");
@@ -160,6 +264,13 @@ vqd.queryUpdated = function(){
 
 	
 	$(".vqd_sql").val(sql);
+
+	//
+	// If we aren't currently restoring a saved query state, save the changed query
+	//
+	if (!vqd.isLoading){
+		vqd.saveState();
+	}
 }
 
 //
@@ -270,16 +381,21 @@ vqd.getAllJoins = function(){
 		var tableData = vqd.getTableData(tableName);
 		var relations = tableData.relations;
 		for (relation in relations){
-			relations[relation].table = tableName;
+			//
+			// Create a clone of the relation; we do this as we don't want to
+			// change the schema as that affects other functions
+			//
+			var join = JSON.parse(JSON.stringify(relations[relation]));
+			join.table = tableName;
 			//
 			// Check the reference table is also selected before we add the join.
 			// Both ends must be included in the query.
 			//
-			var referenceTable = relations[relation].referenceTable;
+			var referenceTable = join.referenceTable;
 			var referenceTables = vqd.getSelectedTables();
 			for (var r = 0; r < referenceTables.length; r++){
 				var ref = referenceTables[r];
-				if (ref === referenceTable) joins.push(relations[relation]);
+				if (ref === referenceTable) joins.push(join);
 			}
 		}
 	}

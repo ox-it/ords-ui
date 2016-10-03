@@ -8,6 +8,7 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 	// Don't show VQD by default
 	//
 	$scope.showVQD = false;
+	sessionStorage.restorestate == "true"
 
 	$scope.project = Project.get({ id: $routeParams.projectId});
 	

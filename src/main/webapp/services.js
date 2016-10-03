@@ -142,6 +142,32 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 
 	//
+	// State management service for the VQD
+	//
+	.factory('VQDState', ['$rootScope', function($rootScope){
+		var service = {
+			data: null,
+			SaveState: function () {
+				console.log("SAVING!");
+            	sessionStorage.VQDState = angular.toJson(service.data);
+        	},
+
+        	RestoreState: function () {
+				console.log("RESTORING!")
+            	service.data = angular.fromJson(sessionStorage.VQDState);
+        	}
+		}
+
+		if (sessionStorage.VQDState){ service.RestoreState()};
+
+		$rootScope.$on("savestate", service.SaveState);
+    	$rootScope.$on("restorestate", service.RestoreState);
+
+  	 	return service;
+	}])
+
+
+	//
 	// Service that checks if user is currently authenticated
 	//
 	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project, growl, gettextCatalog){

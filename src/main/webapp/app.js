@@ -5,10 +5,27 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	//
 	// Setup the gettext() function
 	//
-	.run(function (gettextCatalog) {
+	.run(function (gettextCatalog, $rootScope) {
 	    gettextCatalog.setCurrentLanguage('en');
 		//gettextCatalog.debug = true;
 		//gettextCatalog.showTranslatedMarkers = true;
+
+		//
+		// Stateful service handling - this is used for the VQD persistence
+		//
+		$rootScope.$on("$routeChangeStart", function (event, next, current) {
+    		if (sessionStorage.restorestate == "true") {
+        		$rootScope.$broadcast('restorestate'); //let everything know we need to restore state
+        		sessionStorage.restorestate = false;
+    		}
+		});
+
+		//let everthing know that we need to save state now.
+		window.onbeforeunload = function (event) {
+    		$rootScope.$broadcast('savestate');
+		};
+
+
 	})
 
 	//
