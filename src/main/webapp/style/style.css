@@ -709,7 +709,7 @@ padding: 0 0.3em ;
 .bottomDiv tbody:nth-child(odd) {background: #aaaaaa}
 
 .colHead {
-	width:138px;
+	/*width:138px;*/
 	height:auto;
 	cursor:pointer;
   word-wrap: break-word;
