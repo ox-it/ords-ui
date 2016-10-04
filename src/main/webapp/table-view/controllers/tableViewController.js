@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $window, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, growl, gettextCatalog, ngDialog){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, growl, gettextCatalog, ngDialog){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -216,6 +216,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		for ( var i in results.columns ) {
 			var column = results.columns[i];
 			if ( column.referencedTable ) {
+			
 				// only do this if not already set
 				if ( !$scope.referencedColumn[column.referencedTable] ) {
 					var rc = null;
@@ -228,6 +229,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 					var reference = {referencedColumn:rc, localColumn:column.columnName};
 					$scope.columnSelection[column.referencedTable] = rc;
 					$scope.referencedColumn[column.referencedTable] = reference;
+				} else {
+					$scope.columnSelection[column.referencedTable] = $scope.referencedColumn[column.referencedTable].referencedColumn;
 				}
 			}
 		}
@@ -279,8 +282,64 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		var reference = {referencedColumn:selected, localColumn:localColumnName};
 		$scope.referencedColumn[refTableName] = reference;
 		$scope.getReferencedDatasetForColumn ( reference, refTableName );
+		$scope.saveState();
 	};
-	
+
+	//
+	// Load preferences
+	//
+	$scope.loadPreferences = function(){
+		if (!$scope.referencedColumn) $scope.referencedColumn = [];
+		if (State.data.dataviewer && State.data.dataviewer.references){
+			for (var i = 0; i < State.data.dataviewer.references.length; i++){
+				var pref = State.data.dataviewer.references[i];
+				if (pref.project == $routeParams.projectId &&
+					pref.database == $scope.dbId &&
+					pref.table == $scope.tableName
+				){
+					$scope.referencedColumn[pref.referencedTable] = {referencedColumn:pref.referencedColumn, localColumn:pref.localColumn};
+				} 
+			}
+		}
+	}
+
+	//
+	// Saves the current view state so it can be restored later
+	// 
+	$scope.saveState = function(){
+		if (!State.data.dataviewer) State.data.dataviewer = {};
+		if (!State.data.dataviewer.references) State.data.dataviewer.references = [];
+
+		//
+		// Save reference prefs
+		//
+		for (var selection in $scope.referencedColumn){
+			var referencePreference = {};
+			referencePreference.project = $scope.project.projectId;
+			referencePreference.database = $scope.dbId;
+			referencePreference.table = $scope.tableName;
+			referencePreference.localColumn = $scope.referencedColumn[selection].localColumn;
+			referencePreference.referencedTable = selection;
+			referencePreference.referencedColumn = $scope.referencedColumn[selection].referencedColumn;
+
+			// if this exists, replace it, otherwise create a new item
+			var exists = false;
+			for (var i = 0; i < State.data.dataviewer.references.length; i++){
+				var pref = State.data.dataviewer.references[i];
+				if (pref.project == referencePreference.project &&
+					pref.database == referencePreference.database &&
+					pref.table == referencePreference.table &&
+					pref.localColumn == referencePreference.localColumn &&
+					pref.referencedTable == referencePreference.referencedTable
+				){
+					pref.referencedColumn = referencePreference.referencedColumn;
+					exists = true;
+				} 
+			}
+			if (!exists) State.data.dataviewer.references.push(referencePreference);
+		}
+	};
+
 	$scope.getColumns = function ( ) {
 		if ( !$scope.tableData ) {
 			return null;
@@ -515,6 +574,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.queryType = $routeParams.queryType;
 	if ( $routeParams.queryType == "table" ) {
 		$scope.tableName = $routeParams.query;
+		$scope.loadPreferences();
 		$scope.tablelist($routeParams.physicalDatabaseId, 
 				$routeParams.instance, 
 				$routeParams.query, 
