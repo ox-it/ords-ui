@@ -61,7 +61,7 @@
 		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{main.logicalDatabaseId}}/{{database.dbName}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
 		    </div>
 		    <div>
-				<a class="disabledButton" href="">Export database</a>
+				<button class="button" ng-click="exportDatabase(main.physicalDatabaseId)">Export database</button>
 			</div>
 	
 		    <div>
