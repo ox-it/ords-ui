@@ -358,9 +358,32 @@ vqd.renderTable = function(tableName, tableData){
 	//
 	// Add columns
 	//
-	for (column in tableData.columns){
-		columnsDiv.append(vqd.renderColumn(tableName, column))
+
+	//
+	// Sort the columns according to position metadata (as per Schema Designer)
+	//
+	// Note we use a clone of the column for this - we can't change the schema without invalidating
+	// the stored query session.
+	//
+	var sortedColumns = [];
+	for (var idx in tableData.columns) {
+		var column = {};
+		column.position = tableData.columns[idx].position;
+		column.name = idx;
+        sortedColumns.push(column);
+    }
+    sortedColumns.sort(function(a,b){return a.position - b.position;});
+
+	//
+	// Add columns in sort order
+	//
+	for (column in sortedColumns){
+		columnsDiv.append(vqd.renderColumn(tableName, sortedColumns[column].name))
 	}
+
+	//
+	// Assemble the final table control and attach to window
+	//
 	tableDiv.append(titleDiv);
 	tableDiv.append(columnsDiv);
 	$(".vqd_tableview").append(tableDiv);
