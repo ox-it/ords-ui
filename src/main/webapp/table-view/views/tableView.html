@@ -56,10 +56,11 @@
 					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
 
 					<span ng-if="!column.referencedTable">
-						<input type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
+						<textarea type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
+							validate="{{row.cell[column.columnName].type}}"
 							ng-if="!checkPrimaryColumn(column) && queryType == 'table'" 
 							ng-model="row.cell[column.columnName].value"
-							ng-change="valueChanged(row.cell[column.columnName])"/>
+							ng-change="valueChanged(row.cell[column.columnName])"></textarea>
 						<span ng-if="checkPrimaryColumn(column) || queryType!=='table'">{{row.cell[column.columnName].value}}</span>
 					</span>
 
@@ -85,7 +86,7 @@
 	</div>
 </div>
 <div ng-if="queryType=='SQL'"><a class="button" ng-click="saveAsView()">Save As Dataset</a></div>
-<div ng-if="queryType=='table'" ><a class="button" ng-disabled="!dataForm.$dirty" ng-click="saveChangedRows()">Save Changes</a></div>
+<div ng-if="queryType=='table'" ><button class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save Changes</button></div>
 
 <addrow ng-show="queryType=='table'"></addrow>
 

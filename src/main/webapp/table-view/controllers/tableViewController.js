@@ -18,7 +18,11 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	//
 	// This is just a holder to notify threads that we've updated the references
 	//
-	$scope.referencesUpdated = null;
+	$scope.referencesUpdated = {count:0};
+	//
+	// We use this to keep track of changes to enable the "save changes" button
+	//
+	$scope.referencesChanged = {count:0};
 
 	//
 	// This is an empty model for adding a new row to a table
@@ -267,7 +271,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 							newReferences[pkeyVal] = ref;
 						}
 						$scope.selectedReferences[reference.localColumn] = newReferences;
-						$scope.referencesUpdated = $scope.referencesUpdated+1;
+						// This triggers the Select2 control to update
+						$scope.referencesUpdated.count++;
 					});
 				});
 			},
@@ -509,7 +514,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		cell.dirty=true;
 	}
 	
-	
 	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
 		var params = {databaseId:dbId, tableName: name, start:startRow,length:numberOfRows};
 		TableList.get(
@@ -689,6 +693,28 @@ ords.directive('dynamic', function ($compile) {
   };
 });
 
+var INTEGER_REGEXP = /^\-?\d+$/;
+ords.directive('validate', function() {
+  return {
+	restrict: 'A',
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      ctrl.$validators.ords = function(modelValue, viewValue) {
+        if (ctrl.$isEmpty(modelValue)) {
+          // consider empty models to be valid
+          return true;
+        }
+        if (attrs.validate === 'INTEGER' && INTEGER_REGEXP.test(viewValue)) {
+          return true;
+        }
+		if (attrs.validate === 'VARCHAR'){
+			return true;
+		}
+        return false;
+      };
+    }
+  };
+});
 
 ords.directive('reference', function($compile){
 	return {
@@ -785,7 +811,11 @@ ords.directive('bigSelect', function ($parse) {
 				element.on("change", function(e) {
 					var changedRef = {value:e.added.value, label:e.added.label, dirty:true};
 					scope.selectedReferences[attrs.localColumn][attrs.referenceKey] = changedRef;
-					scope.referencesUpdated = scope.referencesUpdated + 1;
+					//
+					// This is all to make the "save changes" button enabled...
+					//
+					scope.referencesChanged.count++;
+					scope.$apply();
 				});
 				
 				scope.$watch('referencesUpdated', function() {

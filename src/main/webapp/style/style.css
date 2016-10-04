@@ -738,6 +738,13 @@ table.data-table th{
 	text-align: left;
 }
 
+textarea.ng-dirty.ng-invalid{
+  background-color: #f2dede;
+}
+textarea.ng-dirty.ng-valid{
+  background-color: #dff0d8;
+}
+
 /* scrollable data tables
 
 taken from a code exmaple at http://www.456bereastreet.com/archive/201309/responsive_scrollable_tables/
