@@ -735,14 +735,7 @@ padding: 0 0.3em ;
 
 table.data-table td,
 table.data-table th{
-	text-align: left;
-}
-
-textarea.ng-dirty.ng-invalid{
-  background-color: #f2dede;
-}
-textarea.ng-dirty.ng-valid{
-  background-color: #dff0d8;
+	text-align: center;
 }
 
 /* scrollable data tables

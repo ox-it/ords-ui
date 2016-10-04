@@ -145,4 +145,12 @@ width: 20em;
 	background-color:#ebf4fb;
 }
 
+textarea.ng-dirty.ng-invalid{
+  background-color: #f2dede;
+}
+
+textarea.ng-dirty.ng-valid{
+  background-color:#ebf4fb;
+}
+
 

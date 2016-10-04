@@ -32,6 +32,7 @@
 							<span ng-show="orderProp == column.columnName && sortReverse">&nbsp;&uarr;</span>
 						</div>
 						<p ng-if="column.referencedTable" class="referenceSelect">
+							<span>{{column.columnName}}</span><br>
 							<select class="changeReferencedColumnData"
 								id="{{column.columnName}}___referencedTableColumnSelect"
 								name="{{column.columnName}}___referencedTableColumnSelect"
