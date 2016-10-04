@@ -148,17 +148,15 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		var service = {
 			data: null,
 			SaveState: function () {
-				console.log("SAVING!");
-            	sessionStorage.VQDState = angular.toJson(service.data);
+            	localStorage.VQDState = angular.toJson(service.data);
         	},
 
         	RestoreState: function () {
-				console.log("RESTORING!")
-            	service.data = angular.fromJson(sessionStorage.VQDState);
+            	service.data = angular.fromJson(localStorage.VQDState);
         	}
 		}
 
-		if (sessionStorage.VQDState){ service.RestoreState()};
+		if (localStorage.VQDState){ service.RestoreState()};
 
 		$rootScope.$on("savestate", service.SaveState);
     	$rootScope.$on("restorestate", service.RestoreState);

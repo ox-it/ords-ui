@@ -14,9 +14,9 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 		// Stateful service handling - this is used for the VQD persistence
 		//
 		$rootScope.$on("$routeChangeStart", function (event, next, current) {
-    		if (sessionStorage.restorestate == "true") {
+    		if (localStorage.restorestate == "true") {
         		$rootScope.$broadcast('restorestate'); //let everything know we need to restore state
-        		sessionStorage.restorestate = false;
+        		localStorage.restorestate = false;
     		}
 		});
 
