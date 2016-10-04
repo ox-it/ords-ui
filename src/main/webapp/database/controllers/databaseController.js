@@ -1,6 +1,22 @@
 'use strict';
 
-ords.controller('databaseController', function ($rootScope, $scope, $q, $location, $routeParams, AuthService, Project, ProjectDatabase, DatabaseStructure, ODBC, User, growl, gettextCatalog) {
+ords.controller('databaseController', function (
+		$rootScope, 
+		$scope, 
+		$q, 
+		$location, 
+		$routeParams, 
+		AuthService, 
+		Project, 
+		ProjectDatabase, 
+		DatabaseStructure, 
+		ODBC, 
+		User,
+		ExportDatabase,
+		growl, 
+		gettextCatalog,
+		ngDialog,
+		FileSaver) {
 	
 	//
 	// This page doesn't make sense to view
@@ -166,9 +182,48 @@ ords.controller('databaseController', function ($rootScope, $scope, $q, $locatio
 	//
 	// Export
 	//
-	$scope.exportDatabase = function(){
-		
-	}
+	$scope.exportDatabase = function(dbId){
+		var exportInfo = {exportType: 'sql', exportName:$scope.database.dbName+".sql" }; // default export type
+		ngDialog.openConfirm({
+			template: 'database/components/export-dialog/exportDialog.html',
+			controller: 'exportDialogController',
+			data: { exportInfo: exportInfo }
+		}).then(
+			function(value) {
+				// okay
+				var params = {databaseId:dbId, exportType:exportInfo.exportType}
+				ExportDatabase.get(
+					params,
+					function(result) {
+						var mimeType;
+						switch ( exportInfo.exportType ) {
+						case "sql":
+							mimeType = "application/sql";
+							break;
+							
+						case "csv":
+							mimeType = "text/csv";
+							break;
+							
+						case "zip":
+							mimeType= "application/zip";
+							break;
+								
+						}
+						// pick up the response property setup in the service
+						var fileData = new Blob([result.response], {type:mimeType});
+						FileSaver.saveAs(fileData, exportInfo.exportName);
+					}
+				)
+				
+			},
+			function(value) {
+				// error
+				//growl.error(gettextCatalog.getString("Tvs002"));
+			}
+		)
+	};
+	
 	
 	
 	$scope.deleteTestDatabase = function() {

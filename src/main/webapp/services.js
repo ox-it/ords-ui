@@ -116,6 +116,23 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	.factory('ReferenceColumnData', function( $resource ) {
 		return $resource('/api/1.0/database/:databaseId/table/:tableName/column/:columnName/related')
 	})
+		
+	.factory('ExportDatabase', function( $resource) {
+		return $resource('/api/1.0/database/:databaseId/export/:exportType',
+				null,
+				{
+					get: {
+						method: 'GET', 
+						transformResponse: function ( data, headers ) {
+							// Stop angular doing it's transformation
+							return {response: data};
+						}
+					}
+				})
+	})
+	
+
+
 	
 	.factory('Member', function( $resource, User ) {
 		
