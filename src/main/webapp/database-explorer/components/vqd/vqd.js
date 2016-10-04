@@ -1,7 +1,7 @@
 angular.module( "ords" ).directive(
 	'vqd',
-	['VQDState',
-	function(VQDState) {
+	['State','$timeout',
+	function(State, $timeout) {
   	  	return {
 			scope: 
 			{
@@ -9,11 +9,25 @@ angular.module( "ords" ).directive(
 				sql: "="
 			},
     		controller: function($scope) {
-				if (VQDState.data){
-					vqd.restore(VQDState.data);
+				if (State.data.schema){
+					vqd.restore(State.data);
+				}
+
+				//
+				// Show the VQD
+				//
+				$scope.show = function(){
+					$scope.showVQD = true;
+					//
+					// We have to repaint when the control is shown as jsPlumb Draws
+					// connectors in the wrong place when rendered off-screen while
+					// the control is hidden
+					//
+					$timeout(function(){vqd.jsplumb.repaintEverything()},0);
 				}
 			},
 			link: function($scope, element, attrs, ctrl) {
+
       			$scope.$watch('schema', function(newVal) {
         			// the `$watch` function will fire even if the
         			//  property is undefined, so we'll
@@ -21,17 +35,18 @@ angular.module( "ords" ).directive(
         			if (newVal) {
 						//
 						// If there is no current state data, or the schema loaded
-						// differs from that held in state, we clear the state and
+						// differs from that held in state, we clear the state for the VQD and
 						// start again
 						//
 						if (
-							!VQDState.data || 
-							JSON.stringify(VQDState.data.schema) !== JSON.stringify(newVal)
+							!State.data || 
+							JSON.stringify(State.data.schema) !== JSON.stringify(newVal)
 						){
-							VQDState.data = {};
-							VQDState.data.schema = newVal;
-							VQDState.data.tables = [];
-							vqd.restore(VQDState.data);
+							if (!State.data){ State.data = {}; };
+							State.data.schema = newVal;
+							State.data.tables = [];
+							vqd.restore(State.data);
+							$timeout(function(){vqd.jsplumb.repaintEverything()},5000);
 						}
 					}
 				  });
@@ -48,12 +63,7 @@ angular.module( "ords" ).directive(
 //
 var vqd = {};
 
-vqd.restore = function(data){
-
-	//
-	// This basically "locks" the state until we're finished
-	//
-	vqd.isLoading = true;
+vqd.restore = function(data, $timeout){
 
 	//
 	// Set the internal state model to the passed in value
@@ -64,24 +74,35 @@ vqd.restore = function(data){
 	// Set up schema
 	//
 	vqd.schema = data.schema;
+
 	vqd.init();
+
+	vqd.load();	
+}
+
+vqd.load = function(){
+	//
+	// This basically "locks" the state until we're finished
+	//
+	vqd.isLoading = true;
 
 	//
 	// Restore tables
 	//
-	for (var table in data.tables){
-		var tableId = data.tables[table].table;
+	for (var table in vqd.state.tables){
+		var tableId = vqd.state.tables[table].table;
+		var tableName = vqd.state.tables[table].tableName;
 		$("#vqd_table_checkbox_"+tableId).prop('checked', true);
+		vqd.addTable(tableName);
 	}
-	vqd.tableListUpdated();
 
 	//
 	// Restore columns
 	//
-	for (var table in data.tables){
-		var tableId = data.tables[table].table;
-		for (var column in data.tables[table].columns){
-			var columnId = data.tables[table].columns[column];
+	for (var table in vqd.state.tables){
+		var tableId = vqd.state.tables[table].table;
+		for (var column in vqd.state.tables[table].columns){
+			var columnId = vqd.state.tables[table].columns[column];
 			$("#vqd_column_checkbox_"+ tableId + "_____"+ columnId).prop('checked', true);
 		}
 	}
@@ -89,6 +110,8 @@ vqd.restore = function(data){
 	//
 	// Generate query
 	//
+	vqd.jsplumb.recalculateOffsets($(".vqd_tableview"));
+	vqd.renderJoins();
 	vqd.queryUpdated();
 
 	//
@@ -174,6 +197,7 @@ vqd.saveState = function(){
 		//
 		var tableState = {};
 		tableState.table = tables[i].hashCode();
+		tableState.tableName = tables[i];
 		tableState.columns =  [];
 
 		for (column in vqd.schema.tables[vqd.getTableNameFromHashCode(table.hashCode())].columns){
@@ -343,12 +367,15 @@ vqd.renderTable = function(tableName, tableData){
 	
 	//
 	// Position it to the right of the last table added, or top left of the view if none have been added yet
-	//
+	// NOTE this doesn't work at present; the JQUERY-UI lib seems to interfere with JsPlumb.
+	/*
 	if (lastTableAdded){
 		tableDiv.position({my:"left top", at: "right", of: lastTableAdded, within:$(".vqd_tableview")});
 	} else {
 		tableDiv.position({my:"left top", at: "left top", of: $(".vqd_tableview")});	
 	}
+	*/
+
 	//
 	// Register the table as a draggable element
 	//
@@ -432,7 +459,7 @@ vqd.hideUnjoinedTablesWarning = function(){
 //
 vqd.renderJoins = function(){
 	var relations = vqd.getAllJoins();
-	jsPlumb.recalculateOffsets($(".vqd_tableview"));
+	vqd.jsplumb.recalculateOffsets($(".vqd_tableview"));
 	for (relation in relations){
 		var table = relations[relation].table;
 		var column = relations[relation].column;

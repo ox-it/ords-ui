@@ -142,21 +142,28 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 
 	//
-	// State management service for the VQD
+	// State management service
 	//
-	.factory('VQDState', ['$rootScope', function($rootScope){
+	.factory('State', ['$rootScope', function($rootScope){
 		var service = {
 			data: null,
 			SaveState: function () {
-            	localStorage.VQDState = angular.toJson(service.data);
+            	localStorage.TrunkDbState = angular.toJson(service.data);
         	},
 
         	RestoreState: function () {
-            	service.data = angular.fromJson(localStorage.VQDState);
+            	service.data = angular.fromJson(localStorage.TrunkDbState);
         	}
 		}
 
-		if (localStorage.VQDState){ service.RestoreState()};
+		//
+		// Initialise state
+		//
+		if (localStorage.TrunkDbState){ 
+			service.RestoreState()
+		} else {
+			service.data = {};
+		};
 
 		$rootScope.$on("savestate", service.SaveState);
     	$rootScope.$on("restorestate", service.RestoreState);
