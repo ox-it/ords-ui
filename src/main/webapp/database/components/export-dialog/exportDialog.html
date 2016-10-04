@@ -1,0 +1,25 @@
+<div>
+	<form name="exportForm">
+	<div>
+	<p>Please choose an export format from the drop down below.</p>
+	<select name="exportSelect" ng-model="ngDialogData.exportInfo.exportType" ng-change="changeExportFormat()">
+		<option value="sql">SQL File</option>
+		<option value="csv">Single CSV File</option>
+		<option value="zip">Zipped CSV Files</option>
+	</select>
+	</div>
+	<div>
+	<p>Please give you export file a name</p>
+		<input type="text"  name="exportName" ng-maxlength="128" required ng-minlength="2"  ng-model="ngDialogData.exportInfo.exportName"/>
+		<div ng-messages="exportForm.exportName.$error">
+			<div ng-message="required" class="error">Please provide a name.</div>
+			<div ng-message="minlength" class="error">Minimum 2 characters!</div>
+			<div ng-message="maxlength" class="error">Maximum 128 characters allowed!</div>
+		</div>
+	</div>
+	</form>
+	<div class="ngdialog-buttons">
+		<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+		<button type="button" ng-disabled="datasetForm.$invalid" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>Export</button>
+	</div>
+</div>
