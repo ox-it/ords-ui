@@ -9,6 +9,7 @@
 							{{column.columnName}}
 						</div>
 						<p ng-if="column.referencedTable" class="referenceSelect">
+							<span>{{column.columnName}}</span><br>
 							<select class="changeReferencedColumnData"
 								id="{{column.columnName}}___referencedTableColumnSelect"
 								name="{{column.columnName}}___referencedTableColumnSelect"
@@ -32,9 +33,10 @@
 				<tr>
 					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
 					<span ng-if="!column.referencedTable">
-						<input type="text" name="input_{{newRow.cell[newRowKey].value}}_{{column.columnName}}" 
+						<textarea type="text" name="input_{{newRow.cell[newRowKey].value}}_{{column.columnName}}" 
+						    validate="{{column.columnType}}"
 							ng-if="!isAutonumber(column)" 
-							ng-model="newRow.cell[column.columnName].value"/>
+							ng-model="newRow.cell[column.columnName].value"></textarea>
 						<em ng-if="isAutonumber(column)">generated automatically</em>
 					</span>
 					<big-select ng-if="column.referencedTable" 
@@ -48,7 +50,7 @@
 						referenced-label="null"/>
 					</td>
 					<td class="tdScroll">
-						<p><div><a class="button" ng-disabled="addDataForm.$invalid" ng-click="addRow()">Add New Row</a></div></p>
+						<p><div><button class="button" ng-disabled="addDataForm.$invalid" ng-click="addRow()">Add New Row</button></div></p>
 					</td>
 				</tr>
 			</tbody>
