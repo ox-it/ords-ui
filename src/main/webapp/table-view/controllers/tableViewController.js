@@ -621,15 +621,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 				}
 		).then(
 				function(value){
-					// validate
-					if ( !tableView.viewName) {
-						growl.error("Dataset name was the wrong length");
-						return;
-					}
-					else if (!tableView.viewDescription ) {
-						growl.error("Dataset description was too long");
-						return;
-					}
 					// create new dataset
 					var params = {databaseId:$scope.dbId};
 					Dataset.create(

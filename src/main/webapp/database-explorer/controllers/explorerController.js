@@ -121,17 +121,8 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 			data: { newTableView: tableView }
 		}).then(
 			function(value){
-				// validate
-				if ( !tableView.viewName) {
-					growl.error("Dataset name was the wrong length");
-				}
-				else if (!tableView.viewDescription ) {
-					growl.error("Dataset description was too long");
-				}
-				else {
-					// update dataset
-					$scope.updateDataset(tableView);
-				}
+				// update dataset
+				$scope.updateDataset(tableView);
 			},
 			function(value) {
 				//do nothing

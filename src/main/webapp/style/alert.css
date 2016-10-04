@@ -89,3 +89,11 @@
 .alert-danger .alert-link {
   color: #843534;
 }
+
+.alert-dialog {
+  padding: 1px;
+  margin-bottom: 1px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: smaller;
+}

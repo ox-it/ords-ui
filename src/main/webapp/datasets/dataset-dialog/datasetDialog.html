@@ -6,9 +6,9 @@
 				<td width="60%">
 					<input type="text" name="datasetName" ng-maxlength="40" required ng-minlength="2" placeholder="Dataset Name" ng-model="ngDialogData.newTableView.viewName"/>
 					<div ng-messages="datasetForm.datasetName.$error">
-						<div ng-message="required" class="error">Please provide a name.</div>
-						<div ng-message="minlength" class="error">Minimum 2 characters!</div>
-						<div ng-message="maxlength" class="error">Maximum 40 characters allowed!</div>
+						<div ng-message="required" class="alert-dialog alert-warning">Please provide a name.</div>
+						<div ng-message="minlength" class="alert-dialog alert-warning">Dataset name must be at least 2 characters</div>
+						<div ng-message="maxlength" class="alert-dialog alert-warning">Dataset names can be no more than 40 characters </div>
 					</div>
 				</td>
 			</tr>
@@ -17,7 +17,7 @@
 				<td width="60%">
 					<textarea name="description" ng-maxlength="255" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewDescription"></textarea>
 					<div ng-messages="datasetForm.description.$error">
-						<div ng-message="maxlength" class="error">Maximum 255 characters allowed!</div>
+						<div ng-message="maxlength" class="alert-dialog alert-warning">Maximum 255 characters allowed</div>
 					</div>
 				</td>
 			</tr>
