@@ -688,6 +688,7 @@ ords.directive('columnResizable', function($timeout) {
         elem.colResizable({
 		  resizeMode:"overflow",
 		  partialRefresh:true,
+		  postbackSafe:true,
           liveDrag: true,
           gripInnerHtml: "<div class='grip2'></div>",
           draggingClass: "dragging",
