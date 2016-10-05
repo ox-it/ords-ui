@@ -18,12 +18,13 @@
 	<td>Go to record: <input type="number" ng-model="newStart"  ng-keyup="$event.keyCode == 13 && startFrom()"/></td>
 </tr>
 </table>
-<div class="contDiv">
-	<div id="data-table-header" class="headerDiv scrollfix" fix-on-scroll fixed-div=".scrollfix">
-		<table class="data-table" style="table-layout: fixed; width: 100%">
+
+<div class="data-table-container" ng-show="tableData.$resolved">
+	<div id="data-table-header">
+		<table id="data-table-header-table" class="data-table" column-resizable>
 			<thead>
 				<tr>
-					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex">
+					<th ng-repeat="column in tableData.columnsByIndex">
 						<div ng-if="!column.referencedTable"
 							class="colHead"
 							ng-click="orderKey(column.columnName)">
@@ -42,26 +43,26 @@
 								<option ng-repeat="alternate in column.alternateColumns" value="{{alternate}}">{{alternate}}</option>
 							</select>
 						</p>
-					</td>
-					<td ng-if="queryType == 'table'" class="tdFixed">Functions</td>
+					</th>
+					<th ng-if="queryType == 'table'" >Functions</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
-	<div class="bottomDiv scrollfix" fix-on-scroll fixed-div=".scrollfix">
+	<div class="data-table-results-container">
 		<form class="table-data-form" name="dataForm">
-		<table style="table-layout: fixed; width: 100%">
+		<table id="data-table-body-table" class="data-table">
 			<tbody>
 				<tr ng-repeat="row in tableData.rows | filter:doFilter | orderBy:sortBy:sortReverse" repeat-end="tableLoaded()">
-					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
+					<td ng-repeat="column in tableData.columnsByIndex">
 
 					<span ng-if="!column.referencedTable">
-						<textarea type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
+						<input type="text" name="input_{{row.cell[primaryKey].value}}_{{column.columnName}}" 
 							validate="{{row.cell[column.columnName].type}}"
 							ng-if="!checkPrimaryColumn(column) && queryType == 'table'" 
 							ng-model="row.cell[column.columnName].value"
-							ng-change="valueChanged(row.cell[column.columnName])"></textarea>
+							ng-change="valueChanged(row.cell[column.columnName])"></input>
 						<span ng-if="checkPrimaryColumn(column) || queryType!=='table'">{{row.cell[column.columnName].value}}</span>
 					</span>
 
@@ -77,7 +78,7 @@
 						referenced-label="null"/>
 
 					</td>
-					<td ng-if="queryType == 'table'" class="tdScroll">
+					<td ng-if="queryType == 'table'">
 						<button class="button delete" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)">Delete</button>
 					</td>
 				</tr>
@@ -85,12 +86,13 @@
 		</table>
 		</form>
 	</div>
+	<addrow ng-show="queryType=='table'"></addrow>
 </div>
-<div ng-if="queryType=='SQL'"><a class="button" ng-click="saveAsView()">Save As Dataset</a></div>
-<div ng-if="queryType=='table'" ><button class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save Changes</button></div>
-
-<addrow ng-show="queryType=='table'"></addrow>
-
+<p>
+	<button ng-if="queryType=='SQL'" class="button" ng-click="saveAsView()">Save As Dataset</button>
+	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save Changes</button>
+</p>
+<!--
 <div class=filterArea>Filter: 
 <select ng-model="filterField">
 <option ng-repeat="column in tableData.columnsByIndex">{{column.columnName}}</option>
@@ -104,3 +106,4 @@
 </select>
 <input ng-model="filterValue"/>
 </div>
+-->

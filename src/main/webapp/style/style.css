@@ -702,11 +702,7 @@ padding: 0 0.3em ;
 }
 
 
-
-.contDiv {width:auto;}
-.headerDiv {overflow-y:scroll}
-.bottomDiv {height: 400px; overflow: scroll; }
-.bottomDiv tbody:nth-child(odd) {background: #aaaaaa}
+/* data tables */
 
 .colHead {
 	/*width:138px;*/
@@ -715,85 +711,59 @@ padding: 0 0.3em ;
   word-wrap: break-word;
 }
 
-
-.tdFixed {  
-	background-color: #f1f1f1;
-	min-width:140px;
-	width: 140px;
+.data-table-container{
+  overflow-x: auto;
 }
 
-.tdScroll {  
-	background-color: #fafafa;
-	border: 1px solid #eaeaea;
-	padding: 0.3em;
-	min-width:140px;
-	width: 140px;
+.data-table-results-container{
+  overflow-x: hidden;
+  height: 300px; 
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+.data-table-sub-container{
+  overflow-x:hidden;
+}
+#data-table-header-table{
+  overflow-x: visible;
 }
 
-
-/* data tables */
-
+table.data-table{
+  width: auto;
+}
 table.data-table td,
 table.data-table th{
 	text-align: center;
+  width: 140px;
+  min-width: 140px;
+  padding: 0px;
+}
+table.data-table td{
+	background-color: #fafafa;
+	border: 1px solid #eaeaea;
+}
+table.data-table th{
+  background-color: #f1f1f1;
+  height: 60px;
+}
+table.data-table td.add{
+	background-color:#ebf4fb;
+	border: 1px solid #eaeaea;
 }
 
-/* scrollable data tables
-
-taken from a code exmaple at http://www.456bereastreet.com/archive/201309/responsive_scrollable_tables/
-
-with thanks 
-
- */
-
-
-
-
-.scrollable {
-    overflow-x:auto;
-    overflow-y:auto;
+.table-data-form input.ng-dirty.ng-invalid{
+  background-color: #f2dede;
 }
 
-.scrollable.has-scroll {
-    position:relative;
-    overflow:hidden; /* Clips the shadow created with the pseudo-element in the next rule. Not necessary for the actual scrolling. */
-}
-.scrollable.has-scroll:after {
-    position:absolute;
-    top:0;
-    left:100%;
-    width:50px;
-    height:100%;
-    border-radius:10px 0 0 10px / 50% 0 0 50%;
-    box-shadow:-5px 0 10px rgba(0, 0, 0, 0.25);
-    content:'';
-}
-/* This is the element whose content will be scrolled if necessary */
-.scrollable.has-scroll > div {
-    overflow-x:auto;
-     overflow-y:auto;
-     height: 400px;
-     margin-bottom: 1em;
+.table-data-form input.ng-dirty.ng-valid{
+  background-color:#ebf4fb;
 }
 
-/* make sure the element is obviously scrollable (i.e. scrollbar tracks are visible) */
-
-
-.scrollable > div::-webkit-scrollbar {
-    height:12px;
+/* ensures that controls don't overspill their cells */
+.table-data-form input, textarea{
+  width:90%;
 }
-.scrollable > div::-webkit-scrollbar-track {
-    box-shadow:0 0 2px rgba(0,0,0,0.15) inset;
-    background:#f0f0f0;
-}
-.scrollable > div::-webkit-scrollbar-thumb {
-    border-radius:6px;
-    background:#ccc;
-}
-
-
-
-
 
 /* two carranfement for info  */
 
@@ -939,4 +909,31 @@ form .progress {
 */
 #apilink {
     width:100%;
+}
+
+/*
+   Column resizing
+*/
+.grip2{
+	width:20px;
+	height:20px;
+	margin-top:20px;
+	background-image:url('../images/colresize.png');
+	margin-left:-7px;
+	position:relative;
+	z-index:88;
+	cursor:e-resize;
+    background-repeat: no-repeat;
+}
+
+.grip2:hover{
+	background-position-x:-20px;
+}
+
+.dragging .grip2{
+	background-position-x:-40px;
+}
+.JCLRLastGrip .grip2{
+    background-position-y:-18px;
+    left:-2px;
 }

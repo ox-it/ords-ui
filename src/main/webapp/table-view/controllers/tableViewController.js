@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, growl, gettextCatalog, ngDialog){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $timeout, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, growl, gettextCatalog, ngDialog){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -344,7 +344,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			if (!exists) State.data.dataviewer.references.push(referencePreference);
 		}
 	};
-
+/*
 	$scope.getColumns = function ( ) {
 		if ( !$scope.tableData ) {
 			return null;
@@ -378,7 +378,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		}
 		return columnsHtml;
 	};
-	
+*/
 	
 	
 	
@@ -573,7 +573,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 				}
 			}
 		);
-	};
+	};	
 
 	$scope.queryType = $routeParams.queryType;
 	if ( $routeParams.queryType == "table" ) {
@@ -658,6 +658,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	
 });
 
+/*
 ords.directive("fixOnScroll", function () {
     return function(scope, element, attrs) {
         var fixedDiv = attrs.fixedDiv;
@@ -666,11 +667,52 @@ ords.directive("fixOnScroll", function () {
               //{
                   var leftPos = element.scrollLeft();
                   $(fixedDiv).scrollLeft(leftPos);
+				  // re-sync the header widths
+				  syncTableWidthWithElement($("#data-table-header-table"));
               //}
           });
       };
   });
+  */
+
+//
+// Enables dragging to resize column widths
+//
+ords.directive('columnResizable', function($timeout) {
+  return {
+    restrict: 'A',
+    link: function(scope, elem) {
+      $timeout(function() {
+		
+		// Bind
+        elem.colResizable({
+		  resizeMode:"overflow",
+		  partialRefresh:true,
+          liveDrag: true,
+          gripInnerHtml: "<div class='grip2'></div>",
+          draggingClass: "dragging",
+		  minWidth: 140,
+          onDrag: syncTableWidth
+		});
+		
+		// Set initial sync
+		syncTableWidthWithElement(elem)
+		
+
+      },1000); 
+
+	  // Bind to window resizing
+	  $( window ).resize(function(){syncTableWidthWithElement(elem)});
+
+	  // Destroy when finished
+	  scope.$on('$destroy', function() {
+        elem.colResizable({disabled:true});
+      });   
+    }
+  };
+});
   
+/*
 ords.directive('dynamic', function ($compile) {
   return {
     restrict: 'A',
@@ -683,6 +725,7 @@ ords.directive('dynamic', function ($compile) {
     }
   };
 });
+*/
 
 var INTEGER_REGEXP = /^\-?\d+$/;
 ords.directive('validate', function() {
@@ -842,5 +885,32 @@ function findRefInDataWithColumnName ( refData, columnName, row ) {
 		}
 	}
 	return columnValue;
-
 }
+
+//
+// Sync all tables with resizable columns in the first table (header)
+//
+var syncTableWidth = function(e){
+	syncTableWidthWithElement(e.currentTarget);
+}
+var syncTableWidthWithElement = function(parent){
+    $(".data-table").filter(function(){return $(this).attr("id") != $(parent).attr("id")}).each(function(){
+
+		//Match overall table width
+		$(this).parent().parent().css("min-width", $(parent).css("width"));
+		$(this).css("min-width", $(parent).css("min-width"));
+
+        //Match the width
+        $("tr td,th", this).each(function(index){
+        	$(this).css("width", $("tr th:nth-of-type("+(index+1)+")", parent).css("width"))
+        });
+        //Match the grip's position
+        $(this).prev().find(".JCLRgrip").each(function(index){
+           	$(this).css("left",$(parent).prev().find(".JCLRgrip:nth-of-type("+(index+1)+")").css("left"));
+        });
+
+    }); 
+}
+
+
+

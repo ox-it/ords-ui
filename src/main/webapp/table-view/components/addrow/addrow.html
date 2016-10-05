@@ -1,9 +1,10 @@
-<div class="contDiv">
-	<div class="headerDiv scrollfix" fix-on-scroll fixed-div=".scrollfix">
-		<table class="data-table" style="table-layout: fixed; width: 100%">
+
+	<!--
+		<div class="data-table-sub-container">
+		<table class="data-table">
 			<thead>
 				<tr>
-					<td class="tdFixed" ng-repeat="column in tableData.columnsByIndex">
+					<th ng-repeat="column in tableData.columnsByIndex">
 						<div ng-if="!column.referencedTable"
 							class="colHead">
 							{{column.columnName}}
@@ -19,24 +20,25 @@
 								<option ng-repeat="alternate in column.alternateColumns" value="{{alternate}}">{{alternate}}</option>
 							</select>
 						</p>
-					</td>
-					<td class="tdFixed">Functions</td>
+					</th>
+					<th>Functions</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
-	</div>
-		<div class="contDiv scrollfix" fix-on-scroll fixed-div=".scrollfix" style="overflow-y:scroll">
+		</div>
+		-->
+		<div class="data-table-sub-container>
 		<form class="table-data-form" name="addDataForm">
-		<table style="table-layout: fixed; width: 100%">
+		<table class="data-table">
 			<tbody>
 				<tr>
-					<td class="tdScroll" ng-repeat="column in tableData.columnsByIndex">
+					<td class="add" ng-repeat="column in tableData.columnsByIndex">
 					<span ng-if="!column.referencedTable">
-						<textarea type="text" name="input_{{newRow.cell[newRowKey].value}}_{{column.columnName}}" 
+						<input type="text" name="input_{{newRow.cell[newRowKey].value}}_{{column.columnName}}" 
 						    validate="{{column.columnType}}"
 							ng-if="!isAutonumber(column)" 
-							ng-model="newRow.cell[column.columnName].value"></textarea>
+							ng-model="newRow.cell[column.columnName].value"></input>
 						<em ng-if="isAutonumber(column)">generated automatically</em>
 					</span>
 					<big-select ng-if="column.referencedTable" 
@@ -49,7 +51,7 @@
 						referenced-table="{{column.referencedTable}}"
 						referenced-label="null"/>
 					</td>
-					<td class="tdScroll">
+					<td class="add">
 						<p><div><button class="button" ng-disabled="addDataForm.$invalid" ng-click="addRow()">Add New Row</button></div></p>
 					</td>
 				</tr>
@@ -57,4 +59,3 @@
 		</table>
 		</form>
 	</div>
-</div>
