@@ -66,6 +66,13 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 	}
 
 	//
+	// Clear the query
+	//
+	$scope.clearQuery = function(){
+		vqd.clear();
+	}
+
+	//
 	// Run the query using the form fields
 	//	
 	$scope.runQuery = function() {

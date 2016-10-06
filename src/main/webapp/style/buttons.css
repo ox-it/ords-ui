@@ -86,6 +86,9 @@ a.disabledButton, a.button[disabled], button[disabled] {
 	border-color: #465f06;
 }
 
+a.cancel, button.cancel
+{
+}
 
 a.delete, button.delete
 {

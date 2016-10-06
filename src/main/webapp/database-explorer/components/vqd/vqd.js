@@ -25,6 +25,7 @@ angular.module( "ords" ).directive(
 					//
 					$timeout(function(){vqd.jsplumb.repaintEverything()},0);
 				}
+
 			},
 			link: function($scope, element, attrs, ctrl) {
 
@@ -62,6 +63,12 @@ angular.module( "ords" ).directive(
 // @author scott wilson
 //
 var vqd = {};
+
+vqd.clear = function(){
+	$(".vqd_table_checkbox").prop('checked', false);
+	vqd.tableListUpdated();
+	vqd.queryUpdated();
+}
 
 vqd.restore = function(data, $timeout){
 
@@ -154,7 +161,7 @@ vqd.renderTableControl = function(){
 	var tableControls = $("<div id='vqd_tableselect_control'></div>");
 	for (table in vqd.schema.tables){
 		var tableControlContainer = $("<div></div>");
-		var tableControlCheckbox = $("<input id='vqd_table_checkbox_"+table.hashCode()+"' type='checkbox'></input>");
+		var tableControlCheckbox = $("<input class='vqd_table_checkbox' id='vqd_table_checkbox_"+table.hashCode()+"' type='checkbox'></input>");
 		tableControlCheckbox.on("click", vqd.tableListUpdated);
 		
 		tableControlContainer.append(tableControlCheckbox);

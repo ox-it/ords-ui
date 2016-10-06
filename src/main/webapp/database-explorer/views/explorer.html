@@ -47,7 +47,10 @@
 			<div class = "vqd_query">
 				<h3>Query</h3>
 				<textarea name="query" class="vqd_sql" placeholder="No data selected"></textarea>
-				<a class="button" ng-click="runQuery()">Run Query</a>
+				<p>
+					<button class="button" ng-click="runQuery()">Run Query</button>
+					<button class="button cancel" ng-click="clearQuery()">Clear query</button>
+				</p>
 			</div>
 		</form>
 	</div>
