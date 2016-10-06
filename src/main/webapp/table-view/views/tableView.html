@@ -89,8 +89,9 @@
 	<addrow ng-show="queryType=='table'"></addrow>
 </div>
 <p>
-	<button ng-if="queryType=='SQL'" class="button" ng-click="saveAsView()">Save As Dataset</button>
-	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save Changes</button>
+	<button ng-if="queryType=='SQL'" class="button" ng-click="saveAsView()">Save as dataset</button>
+	<a ng-if="queryType=='SQL'" class="button" href="#/database-explorer/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{projectDatabase.dbName}}/{{dbId}}/MAIN/{{project.dbServerPublicAddress}}">Edit query</a>
+	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save changes</button>
 </p>
 <!--
 <div class=filterArea>Filter: 
