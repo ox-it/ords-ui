@@ -37,7 +37,7 @@
 							<select class="changeReferencedColumnData"
 								id="{{column.columnName}}___referencedTableColumnSelect"
 								name="{{column.columnName}}___referencedTableColumnSelect"
-								ng-model="columnSelection[column.referencedTable]"
+								ng-model="columnSelection[column.columnName]"
 								ng-change="selectTableReference(column.columnName, column.referencedTable)"
 								>
 								<option ng-repeat="alternate in column.alternateColumns" value="{{alternate}}">{{alternate}}</option>
@@ -73,7 +73,7 @@
 						class="selectedDataItem {{column.columnName}} bigdrop"
 						id="selectedDataItemForTableRow_{{row.cell[primaryKey].value}}_{{column.columnName}}"
 						local-column="{{column.columnName}}"
-						referenced-column="referencedColumn[column.referencedTable]"
+						referenced-column="referencedColumn[column.columnName]"
 						referenced-table="{{column.referencedTable}}"
 						referenced-label="null"/>
 

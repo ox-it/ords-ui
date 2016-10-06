@@ -222,7 +222,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			if ( column.referencedTable ) {
 			
 				// only do this if not already set
-				if ( !$scope.referencedColumn[column.referencedTable] ) {
+				if ( !$scope.referencedColumn[column.columnName] ) {
 					var rc = null;
 					if ( !column.referencedColumn ) {
 						rc = column.alternateColumns[0];
@@ -230,11 +230,11 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 					else {
 						rc = column.referencedColumn;
 					}
-					var reference = {referencedColumn:rc, localColumn:column.columnName};
-					$scope.columnSelection[column.referencedTable] = rc;
-					$scope.referencedColumn[column.referencedTable] = reference;
+					var reference = {referencedColumn:rc, localColumn:column.columnName, referencedTable:column.referencedTable};
+					$scope.columnSelection[column.columnName] = rc;
+					$scope.referencedColumn[column.columnName] = reference;
 				} else {
-					$scope.columnSelection[column.referencedTable] = $scope.referencedColumn[column.referencedTable].referencedColumn;
+					$scope.columnSelection[column.columnName] = $scope.referencedColumn[column.columnName].referencedColumn;
 				}
 			}
 		}
@@ -246,23 +246,25 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		//growl.success("table loaded");
 		// grab any related data for referenced columns
 		// loop through the reference column keys, the keys are the tablename
-		for (var tableName in $scope.referencedColumn ) {
-			var reference = $scope.referencedColumn[tableName];
+		for (var columnName in $scope.referencedColumn ) {
+			var reference = $scope.referencedColumn[columnName];
 			$scope.selectedReferences[reference.localColumn] = [];
-			$scope.getReferencedDatasetForColumn(reference, tableName);
+			var tableName = reference.referencedTable;
+			$scope.getReferencedDatasetForColumn(reference, columnName);
 		}
 	}
 	
 	
-	$scope.getReferencedDatasetForColumn = function ( reference, tableName ) {
-		var params = {databaseId:$scope.dbId, tableName:tableName, columnName:reference.referencedColumn};
+	$scope.getReferencedDatasetForColumn = function ( reference, columnName ) {
+		var tableName = reference.referencedTable;
+		var params = {databaseId:$scope.dbId, tableName:reference.referencedTable, columnName:reference.referencedColumn};
 		ReferenceColumnData.get (
 			params,
 			function(results) {
 				setTimeout(function() {
 					$scope.$apply( function() {
-						$scope.referencedColumnData[tableName] = [];
-						$scope.referencedColumnData[tableName][reference.localColumn]=results;
+						$scope.referencedColumnData[reference.localColumn] = [];
+						$scope.referencedColumnData[reference.localColumn][reference.referencedTable]=results;
 						var newReferences = {};
 						for (var i in $scope.tableData.rows ) {
 							var row = $scope.tableData.rows[i];
@@ -283,9 +285,10 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	};	
 	
 	$scope.selectTableReference = function ( localColumnName, refTableName ) {
-		var selected = $scope.columnSelection[refTableName];
-		var reference = {referencedColumn:selected, localColumn:localColumnName};
-		$scope.referencedColumn[refTableName] = reference;
+		var selected = $scope.columnSelection[localColumnName];
+		console.log(selected);
+		var reference = {referencedColumn:selected, localColumn:localColumnName, referencedTable: refTableName};
+		$scope.referencedColumn[localColumnName] = reference;
 		$scope.getReferencedDatasetForColumn ( reference, refTableName );
 		$scope.saveState();
 	};
@@ -302,7 +305,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 					pref.database == $scope.dbId &&
 					pref.table == $scope.tableName
 				){
-					$scope.referencedColumn[pref.referencedTable] = {referencedColumn:pref.referencedColumn, localColumn:pref.localColumn};
+					$scope.referencedColumn[pref.localColumn] = {referencedColumn:pref.referencedColumn, localColumn:pref.localColumn, referencedTable:pref.referencedTable};
 				} 
 			}
 		}
@@ -324,7 +327,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			referencePreference.database = $scope.dbId;
 			referencePreference.table = $scope.tableName;
 			referencePreference.localColumn = $scope.referencedColumn[selection].localColumn;
-			referencePreference.referencedTable = selection;
+			referencePreference.referencedTable = $scope.referencedColumn[selection].referencedTable;
 			referencePreference.referencedColumn = $scope.referencedColumn[selection].referencedColumn;
 
 			// if this exists, replace it, otherwise create a new item
@@ -682,25 +685,28 @@ ords.directive('columnResizable', function($timeout) {
   return {
     restrict: 'A',
     link: function(scope, elem) {
-      $timeout(function() {
-		
-		// Bind
-        elem.colResizable({
-		  resizeMode:"overflow",
-		  partialRefresh:true,
-		  postbackSafe:true,
-          liveDrag: true,
-          gripInnerHtml: "<div class='grip2'></div>",
-          draggingClass: "dragging",
-		  minWidth: 140,
-          onDrag: syncTableWidth
-		});
-		
-		// Set initial sync
-		syncTableWidthWithElement(elem)
-		
-
-      },1000); 
+	  //
+	  // Watch data loading
+	  //
+	  scope.$watch('tableData', function(){
+		  $timeout(function() {
+			elem.colResizable({disabled:true});
+		    $(".JCLRgrips").remove();
+			// Bind
+        	elem.colResizable({
+		 	resizeMode:"overflow",
+			partialRefresh:true,
+		  	postbackSafe:true,
+          	liveDrag: true,
+          	gripInnerHtml: "<div class='grip2'></div>",
+          	draggingClass: "dragging",
+		  	minWidth: 140,
+          	onDrag: syncTableWidth
+			});
+			// Set initial sync
+			syncTableWidthWithElement(elem)
+      	},0);   
+	  });
 
 	  // Bind to window resizing
 	  $( window ).resize(function(){syncTableWidthWithElement(elem)});
@@ -708,6 +714,7 @@ ords.directive('columnResizable', function($timeout) {
 	  // Destroy when finished
 	  scope.$on('$destroy', function() {
         elem.colResizable({disabled:true});
+		$(".JCLRgrips").remove();
       });   
     }
   };
