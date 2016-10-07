@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $timeout, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, growl, gettextCatalog, ngDialog){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $timeout, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, ExportTable, ExportQuery, growl, gettextCatalog, ngDialog, FileSaver){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -658,7 +658,65 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			);
 
 	}
+
 	
+	$scope.export= function() {
+		var name = "";
+		if ( $scope.queryType == "table" ) {
+			name = $scope.projectDatabase.dbName + "_" + $scope.tableName;
+		}
+		else if ( $scope.queryType == "dataset" ) {
+			name = $scope.projectDatabase.dbName + "_" + $scope.tableView.viewName;
+		}
+		else {
+			name = $scope.projectDatabse.dbName + "_SqlQueryExport";
+		}
+		var exportInfo = {exportName:name+".csv" }; // default export type
+		ngDialog.openConfirm({
+			template: 'database/components/export-dialog/exportDialog.html',
+			controller: 'exportDialogController',
+			data: { exportInfo: exportInfo }
+		}).then(
+			function(value) {
+				// okay
+				if ( $scope.queryType == "table") {
+					var params = {databaseId:$scope.dbId, tableName:$scope.tableName};
+					ExportTable.get(
+						params,
+						function(result) {
+							// pick up the response property setup in the service
+							var fileData = new Blob([result.response], {type:"text/cdv"});
+							FileSaver.saveAs(fileData, exportInfo.exportName);
+						}
+					)
+				}
+				else if ( $scope.queryType == "sql" || $scope.queryType == "dataset" ) {
+					var theQuery = "";
+					if ( $scope.queryType == "sql" ) {
+						theQuery = $scope.theQuery;
+					}
+					else {
+						theQuery = $scope.tableView.viewQuery;
+					}
+					var params = {databaseId:$scope.dbId, q:theQuery};
+					ExportQuery.get(
+						params,
+						function(result) {
+							// pick up the response property setup in the service
+							var fileData = new Blob([result.response], {type:"text/cdv"});
+							FileSaver.saveAs(fileData, exportInfo.exportName);
+						}
+					)
+					
+				}
+			},
+			function(value) {
+				// error
+				//growl.error(gettextCatalog.getString("Tvs002"));
+			}
+		)
+	};
+
 });
 
 /*

@@ -119,21 +119,50 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		
 	.factory('ExportDatabase', function( $resource) {
 		return $resource('/api/1.0/database/:databaseId/export/:exportType',
-				null,
-				{
-					get: {
-						method: 'GET', 
-						transformResponse: function ( data, headers ) {
-							// Stop angular doing it's transformation
-							return {response: data};
-						}
+			null,
+			{
+				get: {
+					method: 'GET', 
+					transformResponse: function ( data, headers ) {
+						// Stop angular doing it's transformation
+						return {response: data};
 					}
-				})
+				}
+			}
+		)
+	})
+	
+	.factory('ExportTable', function($resource) {
+		return $resource('/api/1.0/database/:databaseId/export/table/:tableName',
+			null,
+			{
+				get: {
+					transformResponse: function ( data, headers ) {
+						// Stop angular doing it's transformation
+						return {response: data};
+					}
+					
+				}
+			}
+		)
 	})
 	
 
+		.factory('ExportQuery', function($resource) {
+		return $resource('/api/1.0/database/:databaseId/export',
+			null,
+			{
+				get: {
+					transformResponse: function ( data, headers ) {
+						// Stop angular doing it's transformation
+						return {response: data};
+					}
+					
+				}
+			}
+		)
+	})
 
-	
 	.factory('Member', function( $resource, User ) {
 		
 		var Member =  $resource('/api/1.0/project/:id/role/:roleid', null, {'update': { method:'PUT' }});
