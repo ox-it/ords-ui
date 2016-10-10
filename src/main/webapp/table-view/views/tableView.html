@@ -94,4 +94,4 @@
 	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save changes</button>
 </p>
 
-<filter></filter>
+<filter ng-show="queryType=='table'"></filter>
