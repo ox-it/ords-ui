@@ -1,6 +1,6 @@
 <div>
 	<form name="exportForm">
-	<div>
+	<div ng-if="ngDialogData.exportInfo.exportType!==undefined">
 	<p>Please choose an export format from the drop down below.</p>
 	<select name="exportSelect" ng-model="ngDialogData.exportInfo.exportType" ng-change="changeExportFormat()">
 		<option value="sql">SQL File</option>
