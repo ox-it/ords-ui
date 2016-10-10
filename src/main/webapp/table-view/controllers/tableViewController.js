@@ -143,7 +143,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	// Handle "go to record"
 	//
 	$scope.startFrom = function( ) {
-
+		$scope.startRow = $scope.newStart;
 		if ($scope.startRow > $scope.maxRows){ $scope.startRow = $scope.maxRows };
 
 		if ( $routeParams.queryType == "table" ) {
