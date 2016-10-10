@@ -1,0 +1,15 @@
+   #filter {
+      background-color: #f1f1f1;
+	  padding:10px;
+	  border-radius: 10px;
+   }
+   #filter-inner{
+   	   display:none;
+   }
+   #rqb table td {
+       border: none;
+	   background-color: transparent;
+   }
+   .rqbComparison td {
+       background-color: #888;
+   }

@@ -93,18 +93,5 @@
 	<a ng-if="queryType=='SQL'" class="button" href="#/database-explorer/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{projectDatabase.dbName}}/{{dbId}}/MAIN/{{project.dbServerPublicAddress}}">Edit query</a>
 	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save changes</button>
 </p>
-<!--
-<div class=filterArea>Filter: 
-<select ng-model="filterField">
-<option ng-repeat="column in tableData.columnsByIndex">{{column.columnName}}</option>
-</select>
-<select ng-model="filterType">
-	<option value="is">is</option>
-	<option value="is not">is not</option>
-	<option value="like">like</option>
-	<option value="contains">contains</option>
-	<option value="is NULL">is NULL</option>
-</select>
-<input ng-model="filterValue"/>
-</div>
--->
+
+<filter></filter>

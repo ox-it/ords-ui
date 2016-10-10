@@ -16,6 +16,15 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.changeModel;
 
 	//
+	// Sorting defaults for tables
+	//
+	$scope.sort = null;
+	$scope.direction = "asc";
+
+	$scope.filter = $routeParams.filter;
+	$scope.filterParams = $routeParams.params;
+
+	//
 	// This is just a holder to notify threads that we've updated the references
 	//
 	$scope.referencesUpdated = {count:0};
@@ -254,10 +263,24 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		}
 	}
 	
-	
+	//
+	// Get the reference data
+	//
 	$scope.getReferencedDatasetForColumn = function ( reference, columnName ) {
 		var tableName = reference.referencedTable;
-		var params = {databaseId:$scope.dbId, tableName:reference.referencedTable, columnName:reference.referencedColumn};
+		var params = {
+			databaseId:$scope.dbId, 
+			tableName:$scope.tableName,
+			referencedtable:reference.referencedTable, 
+			columnName:reference.localColumn,
+			referencedcolumn:reference.referencedColumn,
+			filter:$scope.filter,
+			params:$scope.filterParams,
+			start: $scope.startRow,
+			length: $scope.numberOfRows,
+			sort: $scope.sort,
+			direction: $scope.direction
+		};
 		ReferenceColumnData.get (
 			params,
 			function(results) {
@@ -282,7 +305,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 				$scope.handleError(error);
 			}
 		);
-	};	
+	};
 	
 	$scope.selectTableReference = function ( localColumnName, refTableName ) {
 		var selected = $scope.columnSelection[localColumnName];
@@ -886,8 +909,8 @@ function findRefInData ( refData, column, row) {
 
 function findRefInDataWithColumnName ( refData, columnName, row ) {
 	var columnValue = row.cell[columnName].value;
-	for ( var id in refData.rows ) {
-		var refRow = refData.rows[id];
+	for ( var i =0; i < refData.rows.length; i++) {
+		var refRow = refData.rows[i];
 		if ( refRow.cell.value.value == columnValue ) {
 			return {label:refRow.cell.label.value, value:refRow.cell.value.value};
 		}

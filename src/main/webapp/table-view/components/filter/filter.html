@@ -1,0 +1,15 @@
+<div id="filter">
+	<h3 id="filter-toggle">Filter</h3>
+	<div id="filter-inner">
+	<div id="rqb">&nbsp;</div>
+	<p>
+		<form id="filter-form">
+			<input type="hidden" id="filter-form-element" name="filter" value="">
+			<input type="hidden" id="params-form-element" name="params" value="">
+			<input type="checkbox" id="filter-case" name="filter-case" value="checked">Case sensitive<br><br>
+			<button type="button" class="button" id="filter-button" ng-click="applyFilter()"><span>Apply filter</span></button>
+			<button type="button" class="button" id="clear-filter-button" ng-click="clearFilter()"><span>Clear filter</span></button>
+	    </form>
+	</p>
+	</div>
+</div>

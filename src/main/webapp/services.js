@@ -114,7 +114,7 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	})
 	
 	.factory('ReferenceColumnData', function( $resource ) {
-		return $resource('/api/1.0/database/:databaseId/table/:tableName/column/:columnName/related')
+		return $resource('/api/1.0/database/:databaseId/table/:tableName/column/:columnName/related-values')
 	})
 		
 	.factory('ExportDatabase', function( $resource) {
