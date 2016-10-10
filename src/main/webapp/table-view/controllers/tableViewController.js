@@ -10,9 +10,9 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.dbId = $routeParams.physicalDatabaseId;
 	$scope.instance = $routeParams.instance;
 	
-	$scope.startRow = 0;
+	$scope.startRow = 1;
 	$scope.numberOfRows = 50;
-	$scope.lastRow = 49;
+	$scope.lastRow = 50;
 	$scope.changeModel;
 
 	//
@@ -21,8 +21,11 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.sort = null;
 	$scope.direction = "asc";
 
-	$scope.filter = $routeParams.filter;
-	$scope.filterParams = $routeParams.params;
+	//
+	// Filtering defaults for tables
+	//
+	$scope.filter = null;
+	$scope.filterParams = null;
 
 	//
 	// This is just a holder to notify threads that we've updated the references
@@ -72,7 +75,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			params,
 			function() {
 				growl.success( gettextCatalog.getString("RowDelete200") );
-				$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows);
+				$scope.start = $scope.newStart;
+				$scope.tablelist();
 			},
 			function(error) {
 				if (error.status === 409){ 
@@ -109,27 +113,29 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	
 	
 	$scope.loadNext = function ( ) {
+		$scope.startRow += $scope.numberOfRows;
 		if ( $routeParams.queryType == "table" ) {
-			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows );
+			$scope.tablelist();
 		} else if ( $routeParams.queryType == "dataset" ) {
-			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows );
+			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.startRow, $scope.numberOfRows );
 		} else {
-			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.startRow+$scope.numberOfRows, $scope.numberOfRows);
+			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.startRow, $scope.numberOfRows);
 		}
 	};
 	
 	$scope.loadPrevious = function ( ) {
-		var start = 0;
 		if ( $scope.startRow - $scope.numberOfRows > 0 ) {
-			start = $scope.startRow - $scope.numberOfRows;
+			$scope.startRow -= $scope.numberOfRows;
+		} else {
+			$scope.startRow = 0;
 		}
 
 		if ( $routeParams.queryType == "table" ) {
-			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, start, $scope.numberOfRows );
+			$scope.tablelist();
 		} else if ( $routeParams.queryType == "dataset" ) {
-			$scope.getDatasetData($scope.dbId, $scope.viewId, start, $scope.numberOfRows );
+			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.startRow, $scope.numberOfRows );
 		} else {
-			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, start, $scope.numberOfRows);
+			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.startRow, $scope.numberOfRows);
 		}
 	};
 	
@@ -138,14 +144,14 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	//
 	$scope.startFrom = function( ) {
 
-		if ($scope.newStart > $scope.maxRows){ $scope.newStart = $scope.maxRows };
+		if ($scope.startRow > $scope.maxRows){ $scope.startRow = $scope.maxRows };
 
 		if ( $routeParams.queryType == "table" ) {
-			$scope.tablelist($scope.dbId, $scope.instance, $scope.tableName, $scope.newStart, $scope.numberOfRows );
+			$scope.tablelist();
 		} else if ( $routeParams.queryType == "dataset" ) {
-			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.newStart, $scope.numberOfRows );
+			$scope.getDatasetData($scope.dbId, $scope.viewId, $scope.startRow, $scope.numberOfRows );
 		} else {
-			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.newStart, $scope.numberOfRows);
+			$scope.databasequery($scope.dbId, $scope.instance, $scope.theQuery, $scope.startRow, $scope.numberOfRows);
 		}
 	};
 	
@@ -168,44 +174,14 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		}
 	};
 	
-	$scope.doFilter = function ( input ) {
-		var theValue = input.cell[$scope.filterField].value;
-		var theFilterValue = $scope.filterValue;
-		if (!theFilterValue && $scope.filterType != "is NULL") return true;
-		switch ($scope.filterType) {
-		case "is":
-			return theValue == theFilterValue;
-			break;
-			
-		case "is not":
-			return theValue != theFilterValue;
-			break;
-		
-		case "like":
-		case "contains":
-			var index = theValue.indexOf(theFilterValue);
-			if ( index != -1 ) {
-				return true;
-			}
-			else {
-				return false;
-			}
-			break;
-			
-		case "is NULL":
-			return theValue == null;
-			break;
-		}
-	};
-	
 	$scope.setupFromResults = function(results) {
 		$scope.tableData = results;
 		$scope.startRow = results.currentRow;
-		if ( results.numberOfRowsInEntireTable < $scope.numberOfRows + $scope.startRow ) {
+		if ( results.numberOfRowsInEntireTable < $scope.startRow + $scope.numberOfRows - 1 ) {
 			$scope.lastRow = results.numberOfRowsInEntireTable;
 		}
 		else {
-			$scope.lastRow = $scope.startRow + $scope.numberOfRows;
+			$scope.lastRow = $scope.startRow + $scope.numberOfRows - 1;
 		}
 		$scope.maxRows = results.numberOfRowsInEntireTable;
 		$scope.pages =  Math.ceil($scope.maxRows / $scope.numberOfRows);
@@ -214,9 +190,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		var op = results.columnsByIndex[0].columnName;
 		$scope.orderProp = op;
 		$scope.sortReverse = false;
-		$scope.filterField = op;
-		$scope.filterValue = "";
-		$scope.filterType = "is";
 		$scope.primaryKey = results.primaryKeys[0];	
 		$scope.sequences = results.sequences;
 		if ( !$scope.referencedColumn ) {
@@ -309,7 +282,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	
 	$scope.selectTableReference = function ( localColumnName, refTableName ) {
 		var selected = $scope.columnSelection[localColumnName];
-		console.log(selected);
 		var reference = {referencedColumn:selected, localColumn:localColumnName, referencedTable: refTableName};
 		$scope.referencedColumn[localColumnName] = reference;
 		$scope.getReferencedDatasetForColumn ( reference, refTableName );
@@ -464,12 +436,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 					$scope.newRow = {};
 					$scope.newRow.cell = [];
 					$scope.tableName = $routeParams.query;
-					$scope.tablelist($routeParams.physicalDatabaseId, 
-						$routeParams.instance, 
-						$routeParams.query, 
-						$scope.startRow, 
-						$scope.numberOfRows
-					);
+					$scope.tablelist();
 				},
 				function(error) {
 					growl.error("There was an error: "+error);
@@ -540,8 +507,15 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 		cell.dirty=true;
 	}
 	
-	$scope.tablelist = function (dbId, inst, name, startRow, numberOfRows ) {
-		var params = {databaseId:dbId, tableName: name, start:startRow,length:numberOfRows};
+	$scope.tablelist = function () {
+		var params = {
+			databaseId:$scope.dbId, 
+			tableName: $scope.tableName, 
+			start:$scope.startRow,
+			length:$scope.numberOfRows,
+			filter: $scope.filter,
+			params: $scope.filterParams
+		};
 		TableList.get(
 			params,
 			function(results) {
@@ -605,11 +579,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	if ( $routeParams.queryType == "table" ) {
 		$scope.tableName = $routeParams.query;
 		$scope.loadPreferences();
-		$scope.tablelist($routeParams.physicalDatabaseId, 
-				$routeParams.instance, 
-				$routeParams.query, 
-				$scope.startRow, 
-				$scope.numberOfRows);
+		$scope.tablelist();
 	}
 	else if ( $routeParams.queryType == "dataset") {
 		$scope.viewId = $routeParams.query;

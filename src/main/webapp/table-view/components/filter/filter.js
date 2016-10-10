@@ -4,15 +4,22 @@ angular.module("ords").directive(
         return {
             link: function (scope, elem) {
 
-                scope.filterControl = filter;
-                scope.filter = {};
-
                 //
                 // Set up the filter. When the table metadata is loaded
                 // and the filter view is ready, make it visible.
                 //
                 scope.$watch("tableData", function () {
                     if (scope.tableData) {
+
+
+                        //
+                        // Destroy any existing filter
+                        //
+                        $("#rqb").empty();
+
+                        //
+                        // Set up the filter
+                        //
                         var initialising_filter = filter.init(scope.tableData, scope.filter, scope.filterParams);
                         $("#filter-button").click(function () { $("#filter-form").submit() });
                         $("#filter-inner").show();
@@ -24,9 +31,19 @@ angular.module("ords").directive(
                 // Filter the results
                 //
                 scope.applyFilter = function () {
-                    console.log(filter.sql);
-                    console.log(filter.params);
+                    scope.filter = filter.sql;
+                    scope.filterParams = JSON.stringify(filter.params);
+                    scope.startRow = 0;
+                    scope.tablelist();
                 };
+
+                //
+                //
+                //
+                scope.clearFilter = function() {
+                    scope.filter = null;
+                    scope.filerParams = null;
+                }
 
             },
             templateUrl: 'table-view/components/filter/filter.html'
@@ -85,7 +102,6 @@ filter.init = function (filter_metadata, req_filter, req_params) {
     // Main table
     //
     var rqtable = {};
-    console.log(filter_metadata);
     rqtable.name = filter_metadata.tableName;
     rqtable.label = filter_metadata.tableName;
     rqtable.columns = filter.getTableColumns(table);
@@ -239,47 +255,26 @@ filter.init = function (filter_metadata, req_filter, req_params) {
     }
 
     filter.rq = rq;
-    console.log(filter_metadata.tableName);
     filter.initial_query = "SELECT * FROM \"" + filter_metadata.tableName + "\" \"x0\" WHERE (\"x0\".\"" + default_column + "\" = ?)";
     filter.initial_params = [];
-    console.log( filter.initial_query);
+    
     //
     // See if we already have a filter defined for this page; if so,
     // we can load it into the filter UI.
     //
+    if (req_filter !== null && req_filter !== "null" && req_filter !== "" && typeof req_filter !== 'undefined') {
 
-    if (req_filter !== null && req_filter !== "null" && req_filter !== "" && !typeof(req_filter)==='undefined') {
+        filter.initial_query = req_filter;
+
+        //
+        // Hack to remove "x0".* as for some reason
+        // RQB doesn't like it
+        //
+        filter.initial_query = filter.initial_query.replace("SELECT \"x0\".* FROM", "SELECT * FROM");
+    }
+
+    if (req_params !== null && req_params !== "null" && req_params !== "" && typeof req_params !== 'undefined') {
         try {
-            filter.initial_query = decodeURIComponent(req_filter)
-            //
-            // Hack to remove HTML entities
-            //
-            filter.initial_query = $('<div/>').html(filter.initial_query).text();
-            $("#filter-form-element").val(filter.initial_query);
-
-            //
-            // Hack to remove "x0".* as for some reason
-            // RQB doesn't like it
-            //
-            filter.initial_query = filter.initial_query.replace("SELECT \"x0\".* FROM", "SELECT * FROM");
-
-		      } catch (err) {
-		          filter.initial_query = "SELECT * FROM \"" + filter_metadata.tableName + "\" \"x0\" WHERE (\"x0\".\"" + default_column + "\" = ?)";
-		      }
-		 	}
-    if (req_params !== null && req_params !== "null" && req_params !== "" && !typeof (req_params) === 'undefined') {
-        try {
-            //
-            // Decode query string
-            //
-            req_params = decodeURIComponent(req_params);
-            // 
-            // Hack to remove HTML entities
-            //
-            req_params = $('<div/>').html(req_params).text();
-            //
-            // Parse JSON to create an array
-            //
             var paramsJSON = JSON.parse(req_params);
             var params = [];
             for (var i in paramsJSON) {
@@ -290,14 +285,13 @@ filter.init = function (filter_metadata, req_filter, req_params) {
                 }
             }
             filter.initial_params = params;
-            filter.params = params;
-        } catch (err) {
+            filter.params = filter.initial_params;
+        }
+        catch (err) {
             filter.initial_params = [];
         }
     }
-    console.log(rq);
-    console.log(filter.initial_query);
-    console.log(filter.initial_params);
+     
     try {
         RedQueryBuilderFactory.create(rq, filter.initial_query, filter.initial_params);
     } catch (err) {
