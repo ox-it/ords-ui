@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $timeout, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, ExportTable, ExportQuery, growl, gettextCatalog, ngDialog, FileSaver){
+ords.controller('tableViewController', function ($scope, $routeParams, $sce, $location, $timeout, $window, State, Project, ProjectDatabase, TableList, DoQuery, ReferenceColumnData, Dataset, DatasetData, AuthService, TableStructure, ExportTable, ExportQuery, growl, gettextCatalog, ngDialog, FileSaver){
 	AuthService.check();
 	
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -177,13 +177,13 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.setupFromResults = function(results) {
 		$scope.tableData = results;
 		$scope.startRow = results.currentRow;
-		if ( results.numberOfRowsInEntireTable < $scope.startRow + $scope.numberOfRows - 1 ) {
-			$scope.lastRow = results.numberOfRowsInEntireTable;
+		if ( results.numberOfRowsReturnedByQuery < $scope.startRow + $scope.numberOfRows - 1 ) {
+			$scope.lastRow = results.numberOfRowsReturnedByQuery;
 		}
 		else {
 			$scope.lastRow = $scope.startRow + $scope.numberOfRows - 1;
 		}
-		$scope.maxRows = results.numberOfRowsInEntireTable;
+		$scope.maxRows = results.numberOfRowsReturnedByQuery;
 		$scope.pages =  Math.ceil($scope.maxRows / $scope.numberOfRows);
 		$scope.pagePosition = Math.ceil($scope.startRow / $scope.numberOfRows);
 		$scope.newStart = $scope.startRow;
@@ -578,8 +578,17 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	$scope.queryType = $routeParams.queryType;
 	if ( $routeParams.queryType == "table" ) {
 		$scope.tableName = $routeParams.query;
-		$scope.loadPreferences();
-		$scope.tablelist();
+		TableStructure.get(
+			{ databaseId: $scope.dbId, tableName: $scope.tableName },
+			function(results) {
+				$scope.tableMetadata = results;
+				$scope.loadPreferences();
+				$scope.tablelist();
+			},
+			function(error){
+				growl.error( "There was a problem loading information from this table." )
+			}
+		);
 	}
 	else if ( $routeParams.queryType == "dataset") {
 		$scope.viewId = $routeParams.query;

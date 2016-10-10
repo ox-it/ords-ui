@@ -9,8 +9,7 @@ angular.module("ords").directive(
                 // and the filter view is ready, make it visible.
                 //
                 scope.$watch("tableData", function () {
-                    if (scope.tableData) {
-
+                    if (scope.tableData && scope.tableMetadata) {
 
                         //
                         // Destroy any existing filter
@@ -20,7 +19,7 @@ angular.module("ords").directive(
                         //
                         // Set up the filter
                         //
-                        var initialising_filter = filter.init(scope.tableData, scope.filter, scope.filterParams);
+                        var initialising_filter = filter.init(scope.tableName, scope.tableMetadata, scope.filter, scope.filterParams);
                         $("#filter-button").click(function () { $("#filter-form").submit() });
                         $("#filter-inner").show();
                         $("#clear-filter-button").click(function () { $("#filter-form-element").val(""); $("#params-form-element").val(""); $("#filter-form").submit() });
@@ -38,11 +37,13 @@ angular.module("ords").directive(
                 };
 
                 //
-                //
+                // Clear the filter
                 //
                 scope.clearFilter = function() {
                     scope.filter = null;
-                    scope.filerParams = null;
+                    scope.filterParams = null;
+                    scope.startRow = 0;
+                    scope.tablelist();
                 }
 
             },
@@ -59,13 +60,13 @@ filter.getTableColumns = function (table) {
 
     for (column in table.columns) {
         var rqcol = {};
-        rqcol.name = table.columns[column].columnName;
-        rqcol.label = table.columns[column].columnName;
+        rqcol.name = column;
+        rqcol.label = column;
 
         //
         // Convert datatypes
         //
-        var original_type = table.columns[column].columnType;
+        var original_type = table.columns[column].datatype;
         var final_type = "";
         if (original_type.indexOf("VARCHAR") !== -1) final_type = "STRING";
         if (original_type.indexOf("TEXT") !== -1) final_type = "STRING";
@@ -90,10 +91,10 @@ filter.getTableColumns = function (table) {
     return columns;
 }
 
-filter.init = function (filter_metadata, req_filter, req_params) {
+filter.init = function (tableName, filter_metadata, req_filter, req_params) {
 
     filter.rawdata = filter_metadata;
-    var table = filter_metadata;
+    var table = filter_metadata.tables[tableName];
     var rq = {};
     rq.meta = {};
     rq.meta.tables = [];
@@ -102,8 +103,8 @@ filter.init = function (filter_metadata, req_filter, req_params) {
     // Main table
     //
     var rqtable = {};
-    rqtable.name = filter_metadata.tableName;
-    rqtable.label = filter_metadata.tableName;
+    rqtable.name = tableName;
+    rqtable.label = tableName;
     rqtable.columns = filter.getTableColumns(table);
     default_column = rqtable.columns[0].name;
 
@@ -255,7 +256,7 @@ filter.init = function (filter_metadata, req_filter, req_params) {
     }
 
     filter.rq = rq;
-    filter.initial_query = "SELECT * FROM \"" + filter_metadata.tableName + "\" \"x0\" WHERE (\"x0\".\"" + default_column + "\" = ?)";
+    filter.initial_query = "SELECT * FROM \"" + tableName + "\" \"x0\" WHERE (\"x0\".\"" + default_column + "\" = ?)";
     filter.initial_params = [];
     
     //
@@ -300,7 +301,7 @@ filter.init = function (filter_metadata, req_filter, req_params) {
         // There is a problem with the filter. Replace it with default values.
         // TODO make this work! At present the exception isn't thrown.
         //
-        filter.initial_query = "SELECT * FROM \"" + filter_metadata.tableName + "\" \"x0\" WHERE (\"x0\".\"" + default_column + "\" = ?)";
+        filter.initial_query = "SELECT * FROM \"" + tableName + "\" \"x0\" WHERE (\"x0\".\"" + default_column + "\" = ?)";
         filter.initial_params = [];
         RedQueryBuilderFactory.create(rq, filter.initial_query, filter.initial_params);
     }
