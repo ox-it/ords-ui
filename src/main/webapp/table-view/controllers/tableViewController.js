@@ -26,6 +26,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 	//
 	$scope.filter = null;
 	$scope.filterParams = null;
+	$scope.isCaseSensitive = true;
 
 	//
 	// This is just a holder to notify threads that we've updated the references
@@ -249,6 +250,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			referencedcolumn:reference.referencedColumn,
 			filter:$scope.filter,
 			params:$scope.filterParams,
+			casesensitive: $scope.isCaseSensitive,
 			start: $scope.startRow,
 			length: $scope.numberOfRows,
 			sort: $scope.sort,
@@ -514,7 +516,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			start:$scope.startRow,
 			length:$scope.numberOfRows,
 			filter: $scope.filter,
-			params: $scope.filterParams
+			params: $scope.filterParams,
+			casesensitive: $scope.isCaseSensitive
 		};
 		TableList.get(
 			params,

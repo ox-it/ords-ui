@@ -286,13 +286,12 @@ filter.init = function (tableName, filter_metadata, req_filter, req_params) {
                 }
             }
             filter.initial_params = params;
-            filter.params = filter.initial_params;
         }
         catch (err) {
             filter.initial_params = [];
         }
     }
-     
+
     try {
         RedQueryBuilderFactory.create(rq, filter.initial_query, filter.initial_params);
     } catch (err) {

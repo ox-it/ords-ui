@@ -3,9 +3,7 @@
 	<div id="filter-inner">
 	<div id="rqb">&nbsp;</div>
 	<p>
-			<!-- Not yet implemented
-			<input type="checkbox" id="filter-case" name="filter-case" value="checked">Case sensitive<br><br>
-			-->
+			<input  ng-model="isCaseSensitive" ng-true-value="true" ng-false-value="false" type="checkbox" id="filter-case" name="filter-case" value="checked">Case sensitive<br><br>
 			<a class="button" id="filter-button" ng-click="applyFilter()">Apply filter</a>
 			<a class="button" id="clear-filter-button" ng-click="clearFilter()">Clear filter</a>
 	</p>
