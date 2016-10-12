@@ -5,11 +5,12 @@
 	<a href="#/database-explorer/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{projectDatabase.dbName}}/{{dbId}}/MAIN/{{project.dbServerPublicAddress}}">View, Edit and Query Data</a>
 	<span class="breadcrumbs youarehere">Data Viewer</span>
 </div>
-<h1 ng-if="queryType=='table'">Table Name: {{tableName}}</h1>
-<h1 ng-if="queryType=='SQL'">Query: {{theQuery}}</h1>
-<h1 ng-if="queryType=='dataset'">Dataset: {{tableView.viewName}}</h1>
+
+<h1 ng-if="queryType=='table'">Table Name: {{tableName}} <i ng-hide="tableData.$resolved" class="pe-7s-refresh pe-spin"></i></h1>
+<h1 ng-if="queryType=='SQL'">Query: {{theQuery}} <i ng-hide="tableData.$resolved" class="pe-7s-refresh pe-spin"></i></h1>
+<h1 ng-if="queryType=='dataset'">Dataset: {{tableView.viewName}} <i ng-hide="tableData.$resolved" class="pe-7s-refresh pe-spin"></i></h1>
 <!-- pagination -->
-<table>
+<table ng-show="tableData.$resolved">
 <tr>
 	<td ng-if="startRow > 1"><button class="button" ng-click="loadPrevious()">Previous</button></td>
 	<td>Records #:{{startRow}} to {{lastRow}} of {{maxRows}}</td>
@@ -88,7 +89,7 @@
 	</div>
 	<addrow ng-show="queryType=='table'"></addrow>
 </div>
-<p>
+<p ng-show="tableData.$resolved">
 	<button ng-if="queryType=='SQL'" class="button" ng-click="saveAsView()">Save as dataset</button>
 	<a ng-if="queryType=='SQL'" class="button" href="#/database-explorer/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{projectDatabase.dbName}}/{{dbId}}/MAIN/{{project.dbServerPublicAddress}}">Edit query</a>
 	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save changes</button>

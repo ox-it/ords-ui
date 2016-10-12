@@ -1,0 +1,422 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #ccc;
+	background-color: #fff;
+
+color: #555;
+	font-family: Arial, Helvetica, Tahoma, sans-serif;
+	font-size: 1em;
+	overflow-y: auto;
+}
+
+.ng-cloak { display:none;}
+
+/* header stuff */
+.header {
+
+  background: #002147;
+	color: #fff;
+	margin: 0;
+	margin-bottom: 1em;
+	padding: 0px;
+	padding-top: 7px;
+	font-size: 0.9em;
+}
+
+.container {
+	width: 960px;
+	margin: 0 auto;
+	background: #f3eec6;
+}
+
+.pageContainer {
+	margin: 0 2%;
+  background: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    color: #648191;
+    display: block; 
+    font-weight: normal;
+}
+
+h1 {
+  color: #648191;
+  margin-bottom: 0.5em;
+  margin-top: 0.8em;
+}
+
+
+ul li {
+  margin-bottom: 0.5em;
+}
+
+.header a,
+.header a:link,
+.header a:visited,
+.header a:hover,
+.header a:focus,
+.header a:active {
+  
+	color: #fff;
+  text-decoration: none;  
+}
+
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+  
+	color: #002147;
+
+}
+
+
+a:hover,
+a:focus,
+.header a:focus,
+.header a:hover {
+  
+text-decoration: underline;
+
+}
+
+
+
+h1.site-title {
+
+  float: left;
+  
+  height: 77px;
+  margin: 0px;
+  margin-top: 3px;
+  padding: 0px;
+  width: 300px;
+
+}
+
+h1.site-title a{
+
+  background: transparent url("../style/images/logos/ords-logo.png") no-repeat 0px 0px;
+  display: block;
+  height: 77px;
+  margin-top: 0px;
+  text-indent: -9000px;
+  width: 200px;
+  
+  
+  }
+
+a#ox-link {
+
+  float: left;
+  display: block;
+  height: 55px;
+  margin-top: 5px;
+  margin-left:20px;
+  text-indent: -9000px;
+  width: 177px;  
+}
+
+.header-panel {
+  float: left;
+  margin: 18px;
+  padding: 0px;
+}
+
+  .user,
+  .user-actions {
+    padding:3px 5px 7px 24px;
+  }
+
+  .username {
+    color: #eff4f9;
+    font-weight: bold;
+  }
+  
+  .user-label {
+    color: #fff;
+    position: absolute;
+    top: -9000px;
+  }
+
+
+.user-info {
+  float: right;
+  margin: 10px;
+}
+
+.search-box input {
+  height: 24px;
+}
+
+
+.message {
+  
+  background: #fdf4d9;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #d1c29d;
+  clear: both;
+  color: #000;
+  padding: 1em;
+  
+}
+
+
+.selectedDataItem {
+    width: 90%;
+    height: 1.5em;
+    font-size: 0.8em;
+    font-family: Arial, sans-serif;
+}
+
+.selectedDataItem.date, .selectedDataItem.time {
+    width: 7em;
+}
+
+.selectedDataItem.timestamp {
+    width: 12em;
+}
+
+.referenceSelect {
+    font-size: .8em;
+}
+
+
+/* homepage stuff */
+
+div.intro{
+  width: 66%;
+  padding: 0px 0px 2em 0px;
+}
+
+div.login
+ {
+clear: both;
+}
+
+
+
+/* my projects listing */
+
+a.create {
+  float: right;
+  margin-right: 30px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.panel h2 a,
+.panel h3 a,
+.panel h4 a {
+  text-decoration: none;    
+}
+
+.project-piece {
+  width: 30%;
+  float: right;
+  padding: 5px;
+  margin: 5px;
+}
+
+.project-piece.description {
+  float: left;
+  width: 42%;
+}
+
+.project-piece.actions {
+  padding: 0px;
+  max-width: 140px;
+
+}
+
+
+
+/* footer stuff */
+
+.footer {
+  background: #fff;
+  clear: both;
+   color: #999;
+  font-size: 0.9em;
+  margin-top: 5em;
+  padding: 2em 5px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+
+.footer a {
+  
+  color: #999;
+  padding: 0.5em;
+  text-decoration: none;
+}
+
+.footer a:focus,
+.footer a:hover {
+  
+  color: #666;
+  text-decoration: underline;
+}
+
+
+
+.footer ul,
+.footer li {
+  
+
+list-style: none;
+display:  inline;
+
+  
+}
+
+
+.footer .copyright {
+  margin-top: 1em;
+}
+
+.footer div {  
+  margin-top: 1em;
+}
+
+.popup {
+	position: absolute;
+	display: none;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url('../images/trans10.png');
+}
+
+
+.content {
+	position: relative;
+	top: 45px;
+	background: #fff;
+	border: 0px solid #FFFFFF !important;
+	border-radius: 8px 8px 8px 8px;
+	box-shadow: 0 1px 1px white inset, 0 3px 3px rgba(0, 0, 0, 0.4);
+	padding: 0px 0px 0px 0px;
+	width: 450px;
+	margin: 0px auto 30px auto;
+	z-index: 50;
+}
+
+.content2 {
+width:400px;
+padding:10px;
+border:5px solid gray;
+margin:0px;
+}
+
+.spacer {
+	height: 10px;
+}
+
+.padding {
+	padding: 5px 5px 5px 15px;
+}
+
+#dialogbuttons {
+	width: 95%;
+	position: relative;
+	bottom: 0;
+	padding: 15px 8px 0 0;
+	text-align: right;
+}
+
+.error {
+	font-weight: bold;
+	color: #CC0000;
+}
+
+.helpItem {
+	font-style: italic;
+}
+
+.info {
+	font-weight: bold;
+	color: green;
+}
+
+input.button
+	{
+	color: #fff;
+	background: #0034D0;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border: solid 1px #ffcf31;
+}
+
+.select2 {
+    width: 10em;
+    font-size: .99em;
+}
+
+select.select2 {
+    height: 1.5em;
+}
+
+.ajax-loader {
+    display:none;
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+
+.newline {
+	clear:both;
+}
+
+.invisibleElement {
+	display: none;
+}
+
+.rightFloat {
+	float:right;
+}
+
+.leftFloat {
+	float:left;
+}
+
+.clear {
+  clear: both;
+}
+
+/*
+  Shows the API URL in forms
+*/
+#apilink {
+    width:100%;
+}
+

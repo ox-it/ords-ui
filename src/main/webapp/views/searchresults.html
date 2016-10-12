@@ -2,84 +2,79 @@
 	<span class="breadcrumbs youarehere">Search Results</span>
 </div>
 
-<h1>Projects</h1>
-	<p><span ng-show="results.$resolved">There are {{results.length}} project(s) that have been marked as open and completely satisfy your search criteria (if entered)</span><span ng-hide="results.$resolved">Loading…</span></p>
+<div class="panel">
+	<h2>Projects</h2>
+	<p>
+		<span ng-show="results.$resolved">There are {{results.length}} project(s) that have been marked as open and completely satisfy your search criteria (if entered)</span>
+		<span ng-hide="results.$resolved">Loading…</span>
+	</p>
+	<table class="table-wide">
+		<tbody>
+			<tr>
+				<th>Project Name</th>
+				<th>Description</th>
+				<th>Project Owner</th>
+				<th>Contact</th>
+			</tr>
 
- <div class="homepage">
-	
+			<tr ng-hide="results.$resolved">
+				<td colspan="5" class=“icon-loader spin”>Loading…</td>
+			</tr>
 
-	
-	<div class="informationBubble">
-	     <table class="fullWidthTable">
-            <tbody>
-				<tr>
-				    <th style="width: 200px">Project Name</th>
-				    <th style="width: 200px">Description</th>
-				    <th style="width: 200px">Project Owner</th>
-				    <th style="width: 80px">Contact</th>
-				</tr>
-				
-				<tr ng-hide="results.$resolved">
-					<td colspan="5" class=“icon-loader spin”>Loading…</td>
-				</tr>
-				
-				<tr ng-show="results.$resolved" dir-paginate="project in results | itemsPerPage: 10 track by project.projectId">
-		    		<td>
-				        <a href="#/project/{{project.projectId}}">{{project.name}}</a>
-				    </td>
-				    <td>
-				        {{project.description}}
-				    </td>
-				    <td>
-				        {{project.user.name}}
-				    </td>
-				    <td>
-				            <div>
-				                <a href="#/contact/{{project.projectId}}">Contact {{project.user.name}}</a>
-				            </div>
-				    </td>
-				</tr>
-			</tbody>
-		</table>
+			<tr ng-show="results.$resolved" dir-paginate="project in results | itemsPerPage: 10 track by project.projectId">
+				<td>
+					<a href="#/project/{{project.projectId}}">{{project.name}}</a>
+				</td>
+				<td>
+					{{project.description}}
+				</td>
+				<td>
+					{{project.user.name}}
+				</td>
+				<td>
+					<div>
+						<a href="#/contact/{{project.projectId}}">Contact {{project.user.name}}</a>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div ng-show="results.$resolved">
+		<dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls>
 	</div>
-	
-	<div ng-show="results.$resolved"><dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls></div>
+</div>
 
 
-<h1>Datasets</h1>
-	<p><span ng-show="datasetResults.$resolved">There are {{datasetResults.length}} dataset(s) that have been marked as open and completely satisfy your search criteria (if entered)</span><span ng-hide="datasetResults.$resolved">Loading…</span></p>
-
- <div class="homepage">
-	
-
-	
-	<div class="informationBubble">
-	     <table class="fullWidthTable">
-            <tbody>
+	<div class="panel">
+		<h2>Datasets</h2>
+		<p>
+			<span ng-show="datasetResults.$resolved">There are {{datasetResults.length}} dataset(s) that have been marked as open and completely satisfy your search criteria (if entered)</span>
+			<span ng-hide="datasetResults.$resolved">Loading…</span>
+		</p>
+		<table class="table-wide">
+			<tbody>
 				<tr>
-				    <th style="width: 200px">Dataset Name</th>
-				    <th style="width: 200px">Description</th>
+					<th style="width: 200px">Dataset Name</th>
+					<th style="width: 200px">Description</th>
 				</tr>
-				
+
 				<tr ng-hide="datasetResults.$resolved">
 					<td colspan="5" class=“icon-loader spin”>Loading…</td>
 				</tr>
-				
+
 				<tr ng-show="datasetResults.$resolved" dir-paginate="dataset in datasetResults | itemsPerPage: 10 track by dataset.viewName">
-		    		<td>
-				        {{dataset.viewName}}
-				    </td>
-				    <td>
-				        {{dataset.viewDescription}}
-				    </td>
+					<td>
+						{{dataset.viewName}}
+					</td>
+					<td>
+						{{dataset.viewDescription}}
+					</td>
 				</tr>
 			</tbody>
 		</table>
+	<div ng-show="datasetResults.$resolved">
+		<dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls>
 	</div>
-	
-	<div ng-show="datasetResults.$resolved"><dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls></div>
-	
-		
-	<stats></stats>
+	</div>
 
-</div> <!-- .homepage closes -->
+	<stats></stats>

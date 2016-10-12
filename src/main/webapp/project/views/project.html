@@ -3,100 +3,122 @@
 	<span class="breadcrumbs youarehere">{{project.name}}</span>
 </div>
 
-<div ng-show="project.$resolved">
+<h1>Project: {{project.name}} <i ng-hide="project.$resolved" class="pe-7s-refresh pe-spin"></i></h1>
 
-<h1>Project: {{project.name}}</h1>
-
-<p ng-text-truncate="project.description" ng-tt-chars-threshold="255"></p>
-
-<div class="informationBubble">
-	<div class="rightFloat">
-		<a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/newdatabase">Add new database</a>
+<div class="row">
+	<div class="col-6">
+		<div class="panel">
+			<h2>Project Details</h2>
+			<table class="table-narrow">
+				<tbody>
+					<tr>
+						<th>Description</th>
+						<td>
+							<p ng-text-truncate="project.description" ng-tt-chars-threshold="255"></p>
+						</td>
+					</tr>
+					<tr>
+						<th>Start date</th>
+						<td>{{project.startDate | date:'longDate'}}</td>
+					</tr>
+					<tr>
+						<th>End date</th>
+						<td>{{project.endDate | date:'longDate'}}</td>
+					</tr>
+					<tr>
+						<th>Details included in public project list?</th>
+						<td>
+							<span ng-hide="project.privateProject">Yes</span>
+							<span ng-show="project.privateProject">No</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+				<a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/edit">Edit project details</a>
+				<a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/audit">View audit record</a>
+			</p>
+		</div>
 	</div>
-    <h2>Databases</h2>
-    <databases></databases>
-</div>
 
-<!-- Project Members -->
-<div class="informationBubble">
-    <div class="rightFloat">
-        <div>
-            <a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/newmember">Add new member</a>
-        </div>
-	</div>
-
-	<div ng-show="members.$resolved">
-	<h2>Project Members</h2>
-	
-	<table class="fullWidthTable">
-    	<tbody>
-			<tr>
-		        <th style="width: 200px">Member name</th>
-		        <th style="width: 200px">Role</th>
-		        <th style="width: 200px">Edit</th>
-		        <th style="width: 200px">Delete</th>
-    		</tr>
-
-		    <tr ng-repeat="member in members track by member.id">
-		        <td>{{member.getName()}}</td>
-		        <td>{{member.role}}</td>
-
-		        <!-- Buttons -->
-		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" href="#/project/{{project.projectId}}/member/{{member.id}}">Edit project member</a></td>
-		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" ng-really-message="Are you sure you want to remove this member?" ng-really-click="removeMember(member.id)">Remove member</a></td>
-		    </tr>
-		</tbody>
-	</table>
-	</div>
-	
-	<div ng-show="pending.$resolved">
-	<h2>Pending Project Members</h2>
-	
-	<table class="fullWidthTable">
-    	<tbody>
-			<tr>
-		        <th style="width: 200px">Member name</th>
-		        <th style="width: 200px">Role</th>
-		        <th style="width: 200px">Edit</th>
-		        <th style="width: 200px">Delete</th>
-    		</tr>
-
-		    <tr ng-repeat="pendingMember in pending track by pendingMember.email">
-		        <td>{{pendingMember.email}}</td>
-		        <td>{{pendingMember.roleRequired}}</td>
-
-		        <!-- Buttons -->
-		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" href="#/project/{{project.projectId}}/invite/{{pendingMember.id}}/edit">Edit project member</a></td>
-		        <td><a ng-show="project.canEdit && member.role!=='owner'" class="button" ng-really-message="Are you sure you want to remove this member?" ng-really-click="removePendingMember(pendingMember.id)">Remove member</a></td>
-		    </tr>
-		</tbody>
-	</table>
+	<div class="col-6">
+		<div class="bs-callout bs-callout-info">
+			<h4>Projects</h4>
+			<p>A project may be thought of as a container for one or more databases. The project owner is the ORDS user with primary
+				responsibility for a project. By default, the user who creates a project is its owner. There may also be other project
+				members, who have some level of access to the databases within the project.</p>
+			<p>Anyone can be invited to join a project, however they must have an account with a member of the UK Access Management Federation
+				in order to log in.</p>
+		</div>
 	</div>
 </div>
-		
 
-<div class="informationBubble">
-    <div class="rightFloat">
-        <a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/edit">Edit project details</a>
-        <a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/audit">View audit record</a>
-    </div>
-    
-    <h2>Project Details</h2>
-	
-    <table class="project-details">
-        <tbody>
-		<tr><th>Description</th><td>{{project.description}}</td></tr>
-        <tr><th>Start date</th><td>{{project.startDate | date:'longDate'}}</td></tr>
-    	<tr><th>End date</th><td>{{project.endDate | date:'longDate'}}</td></tr>
-        <tr>
-            <th>Details included in public project list?</th>
-            <td>
-            	<span ng-hide="project.privateProject">Yes</span>
-            	<span ng-show="project.privateProject">No</span>
-            </td>
-        </tr>
-    	</tbody>
-	</table>
-</div>
+<div class="row">
 
+	<div class="col-6">
+		<div class="panel">
+			<h2>Databases
+				<a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/newdatabase"></span>Add new database</a>
+			</h2>
+			<databases></databases>
+			<p>
+
+			</p>
+		</div>
+	</div>
+
+	<!-- Project Members -->
+	<div class="col-6">
+		<div class="panel">
+			<h2>Project Members
+				<a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/newmember">Add new member</a>
+			</h2>
+			<div ng-show="members.$resolved">
+				<table class="table-wide">
+					<tbody>
+						<tr>
+							<th style="width: 200px">Member name</th>
+							<th style="width: 200px">Role</th>
+							<th style="width: 200px">Edit</th>
+							<th style="width: 200px">Delete</th>
+						</tr>
+
+						<tr ng-repeat="member in members track by member.id">
+							<td>{{member.getName()}}</td>
+							<td>{{member.role}}</td>
+
+							<!-- Buttons -->
+							<td><a ng-show="project.canEdit && member.role!=='owner'" class="button" href="#/project/{{project.projectId}}/member/{{member.id}}">Edit project member</a></td>
+							<td><a ng-show="project.canEdit && member.role!=='owner'" class="button" ng-really-message="Are you sure you want to remove this member?"
+									ng-really-click="removeMember(member.id)">Remove member</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div ng-show="pending.$resolved">
+				<h3>Pending Project Members</h3>
+				<table class="table-wide">
+					<tbody>
+						<tr>
+							<th style="width: 200px">Member name</th>
+							<th style="width: 200px">Role</th>
+							<th style="width: 200px">Edit</th>
+							<th style="width: 200px">Delete</th>
+						</tr>
+
+						<tr ng-repeat="pendingMember in pending track by pendingMember.email">
+							<td>{{pendingMember.email}}</td>
+							<td>{{pendingMember.roleRequired}}</td>
+
+							<!-- Buttons -->
+							<td><a ng-show="project.canEdit && member.role!=='owner'" class="button" href="#/project/{{project.projectId}}/invite/{{pendingMember.id}}/edit">Edit project member</a></td>
+							<td><a ng-show="project.canEdit && member.role!=='owner'" class="button" ng-really-message="Are you sure you want to remove this member?"
+									ng-really-click="removePendingMember(pendingMember.id)">Remove member</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>

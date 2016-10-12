@@ -1,14 +1,17 @@
-	 <div class="user-info">
-		 <div ng-switch on="loggedIn">
-			<div ng-switch-when="yes">			
-				 <div class="user">
-				 	<span class="user-label">You are logged in as:</span> <a href="#/profile"><span class="username">{{user.name}}</span></a>
-				 </div>
-				<div class="user-actions">
-					<a class="logout" ng-click="logout()"><span>Log out</span></a>
-				</div>
-		   	</div>
-			<div ng-switch-default>
+<div class="user-info">
+	<div ng-switch on="loggedIn">
+		<div ng-switch-when="yes">
+			<div class="user">
+				<span class="user-label">You are logged in as:</span>
+				<i class="pe-7s-user pe-va"></i>
+				<a href="#/profile"><span class="username">{{user.name}}</span></a>
 			</div>
-   		</div>
-   </div>
+			<div class="user-actions">
+				<i class="pe-7s-upload pe-va fa-rotate-90"></i>
+				<a class="logout" ng-click="logout()"><span>Log out</span></a>
+			</div>
+		</div>
+		<div ng-switch-default>
+		</div>
+	</div>
+</div>

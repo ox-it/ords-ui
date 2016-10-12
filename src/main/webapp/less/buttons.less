@@ -1,0 +1,92 @@
+.redirectLink a {
+    border-bottom: 1px solid #777777;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #333333;
+    border-top: 1px solid #000000;
+    color: #000000;
+    display: block;
+    height: 2em;
+    padding: 0 1em;
+    width: 5em;
+    text-decoration: none;
+}
+
+.btn-link {
+	cursor: pointer;
+	text-decoration: underline;
+    font-style: italic;
+    font-size: smaller;
+    display: inline-block;
+    float: right;
+}
+
+/*
+ Buttons embedded in the top of panel elements
+*/
+.panel h2 .button {
+    font-size: small;
+    float: right;
+    color: white;
+}
+
+
+button,
+a.button,
+a.disabledButton {
+
+	display: inline-block ;
+	border: 1px solid #333333;
+	border-radius: 3px ;
+	-webkit-border-radius: 3px ;
+	-moz-border-radius: 3px ;
+	color: #fff;
+	font-size: small;
+	margin: 0px 10px 10px 0px;
+	padding: 7px 12px;
+	background-color: #648191;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-decoration: none;
+}
+
+a.disabledButton, a.button[disabled], button[disabled] {
+	color: #ccc;
+}
+
+a.warning, button.warning
+{
+	background-color: #aa6708;	
+}
+
+a.cancel, button.cancel
+{
+	background-color: #DEDEDF;
+    color: #333333;
+	border-color: #999999;
+}
+
+a.delete, button.delete
+{
+	background-color: #ce4844;
+}
+
+button.js_enabled {
+display: inline-block !important;
+}
+
+/* Gives a "click" effect for otherwise flat buttons when pressed */
+a:active.button, button:active {
+	border: 1px solid white;
+}
+
+/* Ensure active buttons provide feedback */
+a:hover, button:hover{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.buttonwrapper {
+	/* Container you can use to surround a CSS button to clear float */
+	overflow: hidden; /*See: http://www.quirksmode.org/css/clearing.html */
+	width: 100%;
+}

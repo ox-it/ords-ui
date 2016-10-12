@@ -1,11 +1,17 @@
-<div id="filter">
+<div class="panel" id="filter" ng-show="tableData.$resolved">
 	<h3 id="filter-toggle">Filter</h3>
 	<div id="filter-inner">
 	<div id="rqb">&nbsp;</div>
+	<p><input  ng-model="isCaseSensitive" ng-true-value="true" ng-false-value="false" type="checkbox" id="filter-case" name="filter-case" value="checked">Case sensitive</p>
 	<p>
-			<input  ng-model="isCaseSensitive" ng-true-value="true" ng-false-value="false" type="checkbox" id="filter-case" name="filter-case" value="checked">Case sensitive<br><br>
-			<a class="button" id="filter-button" ng-click="applyFilter()">Apply filter</a>
-			<a class="button" id="clear-filter-button" ng-click="clearFilter()">Clear filter</a>
+		Note that the case-sensitivity checkbox will only apply to LIKE and CONTAINS filters. 
+		For LIKE filters you can use the '%' symbol as a wildcard.
+	</p>
+	<p>
+		<a class="button cancel" id="clear-filter-button" ng-click="clearFilter()">Clear filter</a>
+		<a class="button" id="filter-button" ng-click="applyFilter()">Apply filter</a>
 	</p>
 	</div>
 </div>
+
+

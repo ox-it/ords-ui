@@ -26,20 +26,31 @@
 }
 
 .gwt-Button {
+
+	border: 1px solid #bbb;
+	border-radius: 25px ;
+	-webkit-border-radius: 25px ;
+	-moz-border-radius: 25px ;
+	color: #fff;
+	background-color: #bbb;
+	text-decoration: none;
+  width: 25px;
+  height: 25px;
+
   margin: 0;
   padding: 3px 5px;
   text-decoration: none;
   font-size: small;
   cursor: pointer;
   cursor: hand;
-  background: url("images/hborder.png") repeat-x 0px -27px;
-  border: 1px outset #000;
+  /*background: url("images/hborder.png") repeat-x 0px -27px;*/
+  /*border: 1px outset #000;*/
 }
 .gwt-Button:active {
-  border: 1px inset #000;
+  border: 1px #000000;
 }
 .gwt-Button:hover {
-  border: 1px outset #24d3ff;
+  border: 1px #999999;
 }
 .gwt-Button[disabled] {
   cursor: default;

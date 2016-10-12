@@ -8,28 +8,30 @@
 
 <p>{{project.description}}</p>
 
-<div class="informationBubble">
-	    <table>
-			
+<div class="panel">
+	<table class="table-wide">
+
 		<thead>
-		    <tr>
-		        <th>Audit Operation</th>
-		        <th>Time</th>
-		        <th>Actor</th>
-		        <th>Message</th>
-		    </tr>
-		</thead>     
+			<tr>
+				<th>Audit Operation</th>
+				<th>Time</th>
+				<th>Actor</th>
+				<th>Message</th>
+			</tr>
+		</thead>
 
 		<tbody ng-show="audits.$resolved">
 			<tr dir-paginate="audit in audits | orderBy:'auditId' | itemsPerPage: 20  track by audit.auditId ">
-			    <td>{{audit.auditType}}</td>
-			    <td>{{audit.timeOfOperation | date:'medium'}}</td>
-			    <td>{{audit.userId}}</td>
-			    <td>{{audit.message}}</td>
+				<td>{{audit.auditType}}</td>
+				<td>{{audit.timeOfOperation | date:'medium'}}</td>
+				<td>{{audit.userId}}</td>
+				<td>{{audit.message}}</td>
 			</tr>
 		</tbody>
 	</table>
-	
-	<div ng-show="projects.$resolved"><dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls></div>
-	
+
+	<div ng-show="projects.$resolved">
+		<dir-pagination-controls template-url="lib/pagination.tpl.html"></dir-pagination-controls>
+	</div>
+
 </div>

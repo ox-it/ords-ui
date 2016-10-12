@@ -1,15 +1,24 @@
-   #filter {
-      background-color: #f1f1f1;
-	  padding:10px;
-	  border-radius: 10px;
-   }
-   #filter-inner{
-   	   display:none;
-   }
+
    #rqb table td {
        border: none;
 	   background-color: transparent;
    }
-   .rqbComparison td {
-       background-color: #888;
+   .rqbComparison {
+        background-color: #eaeef2;
+        border-style: solid;
+        border-color: #dddddd;
+        border-width: 1px;
+        border-radius: 10px;
+   }
+   
+   .rqbAndOrOp {
+        background-color: #eaeef2;
+        border-style: solid;
+        border-color: #dddddd;
+        border-width: 5px;
+        border-radius: 10px;   
+   }
+
+   .rqbAndOrOpUpper {
+       z-index: 0 !important;
    }

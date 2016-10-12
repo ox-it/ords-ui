@@ -1,15 +1,11 @@
-<table class="db-list">
-	<thead>
-	    <tr>
-	        <th>Name </th>
-	        <th>Description</th>
-	    </tr>
-	</thead>
-
-	<tbody>
-		<tr ng-repeat="database in databases">
-		    <td><a href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}">{{database.dbName}}</a></td>
-		    <td><p style="white-space:pre-wrap;" ng-text-truncate="database.dbDescription" ng-tt-chars-threshold="255"></p></td>
-		</tr>
-	</tbody>
-</table>
+<div>
+	<p></p>
+	<div ng-repeat="database in databases">
+		<h4>
+			<i class="pe-7s-server pe-va"></i>
+			<a href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}">{{database.dbName}}</a>
+			<i class="pe-7s-angle-right pe-va"></i>
+		</h4>
+		<p style="white-space:pre-wrap;" ng-text-truncate="database.dbDescription" ng-tt-chars-threshold="255"></p>
+	</div>	
+</div>

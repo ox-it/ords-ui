@@ -1,0 +1,143 @@
+
+table tr th,
+table tr td {
+  background-color: #fafafa;
+  border: 1px solid #eaeaea;
+  padding: 0.3em;  
+}
+
+table tr th {
+  background-color: #f1f1f1;
+}
+
+/* 
+
+We have two main types of table for displaying details:
+
+Wide tables with headers across the top row 
+Narrow tables with headers down the first column
+
+*/
+
+table.table-narrow tr td,
+table.table-narrow tr th 
+{
+    vertical-align: top;
+    background-color: inherit;
+    border: none;
+}
+
+table.table-narrow tr th
+{
+  text-align: right;
+}
+
+table.table-wide tr
+{
+    vertical-align: top;
+}
+
+table.table-narrow tr td 
+{
+  width: 100%
+}
+
+table.table-narrow, table.table-wide {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;  
+}
+
+/* 
+
+Data tables are only used in the TableView component
+
+ */
+
+.colHead {
+	/*width:138px;*/
+	height:auto;
+	cursor:pointer;
+  word-wrap: break-word;
+}
+
+.data-table-container{
+  overflow-x: auto;
+}
+
+.data-table-results-container{
+  overflow-x: hidden;
+  height: 300px; 
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+.data-table-sub-container{
+  overflow-x:hidden;
+}
+#data-table-header-table{
+  overflow-x: visible;
+}
+
+table.data-table{
+  width: auto;
+}
+table.data-table td,
+table.data-table th{
+	text-align: center;
+  width: 140px;
+  min-width: 140px;
+  padding: 0px;
+}
+table.data-table td{
+	background-color: #fafafa;
+	border: 1px solid #eaeaea;
+}
+table.data-table th{
+  background-color: #f1f1f1;
+  height: 60px;
+}
+table.data-table td.add{
+	background-color:#ebf4fb;
+	border: 1px solid #eaeaea;
+}
+
+.table-data-form input.ng-dirty.ng-invalid{
+  background-color: #f2dede;
+}
+
+.table-data-form input.ng-dirty.ng-valid{
+  background-color:#ebf4fb;
+}
+
+/* ensures that controls don't overspill their cells */
+.table-data-form input, textarea{
+  width:90%;
+}
+
+/*
+   Column resizing in data tables
+*/
+.grip2{
+	width:20px;
+	height:20px;
+	margin-top:20px;
+	background-image:url('../style/images/colresize.png');
+	margin-left:-7px;
+	position:relative;
+	z-index:88;
+	cursor:e-resize;
+    background-repeat: no-repeat;
+}
+
+.grip2:hover{
+	background-position-x:-20px;
+}
+
+.dragging .grip2{
+	background-position-x:-40px;
+}
+.JCLRLastGrip .grip2{
+    background-position-y:-18px;
+    left:-2px;
+}

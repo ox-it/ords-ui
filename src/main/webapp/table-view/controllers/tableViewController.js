@@ -809,13 +809,25 @@ ords.directive('validate', function() {
           // consider empty models to be valid
           return true;
         }
-        if (attrs.validate === 'INTEGER' && INTEGER_REGEXP.test(viewValue)) {
-          return true;
+        if ((attrs.validate === 'INTEGER' || attrs.validate === 'BIGINT') && !INTEGER_REGEXP.test(viewValue)) {
+          return false;
         }
-		if (attrs.validate === 'VARCHAR'){
+		if (attrs.validate === 'VARCHAR' || attrs.validate === 'TEXT' || attrs.validate === 'CHAR'){
 			return true;
 		}
-        return false;
+		//
+		// TODO
+		//
+		// Boolean
+		// Decimal
+		// Double
+		// Double Precision
+		// Real
+		// Time Without Timezone
+		// Date
+		// Timestamp
+		//
+        return true;
       };
     }
   };

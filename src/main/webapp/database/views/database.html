@@ -3,143 +3,185 @@
 	<a href="#/project/{{project.projectId}}">{{project.name}}</a>
 	<span class="breadcrumbs youarehere">{{database.dbName}}</span>
 </div>
-              
-<h1>Database Name: {{database.dbName}}</h1>
+
+<h1>Database: {{database.dbName}}</h1>
+
+<div class="row">
+	<div class="col-6">
+		<div class="panel"> 
+			<h2>Database Details</h2>
+			<table class="table-narrow">
+				<tbody>
+					<tr>
+						<th>Description</th>
+						<td>
+							<div style="white-space:pre-wrap;" ng-text-truncate="database.dbDescription" ng-tt-chars-threshold="255"></div>
+						</td>
+					</tr>
+					<tr>
+						<th>Database type</th>
+						<td>{{database.databaseType}}</td>
+					</tr>
+					<tr>
+						<th>Created on</th>
+						<td>{{database.creationDate}}</td>
+					</tr>
+					<tr>
+						<th>Data sources</th>
+						<td>
+							<div style="white-space:pre-wrap;" ng-text-truncate="database.dataSources" ng-tt-chars-threshold="255"></div>
+						</td>
+					</tr>
+					<tr>
+						<th>Data gathering process</th>
+						<td>
+							<div style="white-space:pre-wrap;" ng-text-truncate="database.dataGatheringProcess" ng-tt-chars-threshold="255"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p>
+				<a class="button" href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}/edit">Edit database details</a>
+				<a class="button delete" ng-really-message="Are you sure you want to delete this database? Please note that this action cannot be undone: once the database has been deleted, there is no way to restore it. In addition to the main database version, any test or milestone versions you have created will also be deleted at the same time, as will any datasets created for this database."
+					ng-really-click="deleteDatabase()">Delete database</a>
+			</p>
+		</div>
+	</div>
 
 
-<h2>Database Details</h2>
+	<div class="col-6">
+		<div class=" bs-callout bs-callout-info">
+			<h4>Database Help</h4>
+			<p>This page allows you to manage your ORDS database.</p>
+			<p> You can have up to three copies of each database: the main or live version, a milestone version (to preserve a snapshot
+				of the database as it was at a particular point), and a test version (which allows you to try out changes before making
+				these in the live version). </p>
+			<p> Use the buttons below to upload, create, or edit a database version.</p>
+		</div>
+	</div>
 
-<div class="two-up">
-	<table class="project-billing-info">
-	    <tbody>
-			<tr><th>Name </th> <td>{{database.dbName}}</td></tr>
-	    	<tr><th>Description</th><td><div style="white-space:pre-wrap;" ng-text-truncate="database.dbDescription" ng-tt-chars-threshold="255"></div></td></tr>
-	    	<tr><th>Database type</th><td>{{database.databaseType}}</td></tr>
-	    	<tr><th>Created on</th><td>{{database.creationDate}}</td></tr>
-	    	<tr><th>Data sources</th><td><div style="white-space:pre-wrap;" ng-text-truncate="database.dataSources" ng-tt-chars-threshold="255"></div></td></tr>
-	    	<tr><th>Data gathering process</th><td><div style="white-space:pre-wrap;" ng-text-truncate="database.dataGatheringProcess" ng-tt-chars-threshold="255"></div></td></tr>
-		</tbody>
-	</table>
-
-	<a class="button delete" ng-really-message="Are you sure you want to delete this database? Please note that this action cannot be undone: once the database has been deleted, there is no way to restore it. In addition to the main database version, any test or milestone versions you have created will also be deleted at the same time, as will any datasets created for this database." ng-really-click="deleteDatabase()">Delete database</a>              
-	<a class="button" href="#/project/{{project.projectId}}/{{database.logicalDatabaseId}}/edit">Edit database details</a>
 </div>
 
 
-<div class="two-up message">
-    <p>This page allows you to manage your ORDS database.</p>
-	<p> You can have up to three copies of each database: the main or live version, a milestone version (to preserve a snapshot of the database as it was at a particular point), and a test version (which allows you to try out changes before making these in the live version). </p><p> Use the buttons below to upload, create, or edit a database version.</p>
-</div>
+<div class="row" ng-show="allLoaded">
 
-<!-- Main Database Section -->
-<div ng-show="allLoaded">
-	<div class="clear dbs"></div>   
-             
-	<div class="panel three-up">
- 
-	     <h2>Main database version information</h2>
-	     <p>This area provides details of the main version of your database.</p>
-	 
-		 <div ng-hide="main">
-			 <p>You haven't uploaded a database yet.</p>
-			 <div><a class="button" href="#/import/{{project.projectId}}/{{database.logicalDatabaseId}}/{{project.dbServerPublicAddress}}">Upload existing database</a></div>
-			 <div><a class="button" href="#/schema/{{project.projectId}}/{{database.logicalDatabaseId}}/0/MAIN/{{project.dbServerPublicAddress}}">Create new database</a></div>
-	 	</div>
-	 
-		 <div ng-show="main">
-			 <p><label>Original file name</label>: {{main.fileName}}</p>
-		     <p><label>Original file size</label>: {{main.fileSize | bytes}}</p>
-			 
-			 <!-- <div ng-show="main.databaseType == 'CSV'">
+	<!-- Main Database Section -->
+
+	<div class="col-4">
+		<div class="panel">
+
+			<h2>Main database version information</h2>
+			<p>This area provides details of the main version of your database.</p>
+
+			<div ng-hide="main">
+				<p>You haven't uploaded a database yet.</p>
+				<div><a class="button" href="#/import/{{project.projectId}}/{{database.logicalDatabaseId}}/{{project.dbServerPublicAddress}}">Upload existing database</a></div>
+				<div><a class="button" href="#/schema/{{project.projectId}}/{{database.logicalDatabaseId}}/0/MAIN/{{project.dbServerPublicAddress}}">Create new database</a></div>
+			</div>
+
+			<div ng-show="main">
+				<p><label>Original file name</label>: {{main.fileName}}</p>
+				<p><label>Original file size</label>: {{main.fileSize | bytes}}</p>
+
+				<!-- <div ng-show="main.databaseType == 'CSV'">
 		        <a class="button" href="">Upload another CSV file as a new table</a>
 			 </div> -->
-                        
-		    <div>
-		        <a class="button" href="#/schema/{{project.projectId}}/{{main.logicalDatabaseId}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View and edit database structure</a>
-		    </div>
-		    <div>
-		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{main.logicalDatabaseId}}/{{database.dbName}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
-		    </div>
-		    <div>
-				<button class="button" ng-click="exportDatabase(main.physicalDatabaseId)">Export database</button>
-			</div>
-	
-		    <div>
-				<a class="button" ng-click="setAsMilestoneVersion()" >Set as milestone version</a>
-			</div>
-			
-			<div>
-			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this main database version. This action cannot be undone. Please note that any test and milestone versions you have created for this database will be deleted at the same time." ng-really-click="deleteMainDatabase()">Delete</a>
-			</div>
-			
-			<h3>ODBC connection details</h3>
-			
-			<div ng-show="odbc">
-				<p>Make a note of the following connection details; you can use these in Microsoft Access and other tools to
-				access this database.</p>
-				
-				<p>Server: {{odbc.server}}</p>
-				<p>Database: {{odbc.database}}</p>
-				<p>User: {{odbc.username}}</p>
-				<p>Password: {{odbc.password}}</p>
-				
-				<a class="button" ng-click="clearOdbc()">Clear ODBC details</a>
-			</div>
-			<div ng-hide="odbc">
-				<p>Click the button below to request ODBC connection details for this database. Note that
-				<em>this will replace the existing password for connecting to this database</em>.</p>
-				<a class="button" ng-click="requestODBCAccess()">Request ODBC connection details</a>
+
+				<div>
+					<a class="button" href="#/schema/{{project.projectId}}/{{main.logicalDatabaseId}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View and edit database structure</a>
+				</div>
+				<div>
+					<a class="button" href="#/database-explorer/{{project.projectId}}/{{main.logicalDatabaseId}}/{{database.dbName}}/{{main.physicalDatabaseId}}/MAIN/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+				</div>
+				<div>
+					<button class="button" ng-click="exportDatabase(main.physicalDatabaseId)">Export database</button>
+				</div>
+
+				<div>
+					<a class="button" ng-click="setAsMilestoneVersion()">Set as milestone version</a>
+				</div>
+
+				<div>
+					<a class="button delete" ng-really-message="Please confirm that you wish to delete this main database version. This action cannot be undone. Please note that any test and milestone versions you have created for this database will be deleted at the same time."
+						ng-really-click="deleteMainDatabase()">Delete</a>
+				</div>
+
+				<h3>ODBC connection details</h3>
+
+				<div ng-show="odbc">
+					<p>Make a note of the following connection details; you can use these in Microsoft Access and other tools to access this
+						database.
+					</p>
+
+					<p>Server: {{odbc.server}}</p>
+					<p>Database: {{odbc.database}}</p>
+					<p>User: {{odbc.username}}</p>
+					<p>Password: {{odbc.password}}</p>
+
+					<a class="button" ng-click="clearOdbc()">Clear ODBC details</a>
+				</div>
+				<div ng-hide="odbc">
+					<p>Click the button below to request ODBC connection details for this database. Note that
+						<em>this will replace the existing password for connecting to this database</em>.</p>
+					<a class="button" ng-click="requestODBCAccess()">Request ODBC connection details</a>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Milestone Database Section -->
-                        
 
-	<div class="panel three-up">
+	<div class="col-4">
+		<div class="panel">
 
-		<h2>Milestone database version information</h2>
-		<p> You can set your main database version to become a milestone database version at any time. </p>
-		<p> A milestone database version may be considered to be the "best so far" within this part of your project, or a snapshot of the data at a particular point.</p>
-		<div ng-show="milestone">
-		    <div>
-		        <a class="button" href="#/schema/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View and edit database structure</a>
-		    </div>
-		    <div>
-		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{database.dbName}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
-		    </div>
-			<div>
-			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this milestone database version. This action cannot be undone." ng-really-click="deleteMilestoneDatabase()">Delete</a>
+			<h2>Milestone database version information</h2>
+			<p> You can set your main database version to become a milestone database version at any time. </p>
+			<p> A milestone database version may be considered to be the "best so far" within this part of your project, or a snapshot
+				of the data at a particular point.</p>
+			<div ng-show="milestone">
+				<div>
+					<a class="button" href="#/schema/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View and edit database structure</a>
+				</div>
+				<div>
+					<a class="button" href="#/database-explorer/{{project.projectId}}/{{milestone.logicalDatabaseId}}/{{database.dbName}}/{{milestone.physicalDatabaseId}}/MILESTONE/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+				</div>
+				<div>
+					<a class="button delete" ng-really-message="Please confirm that you wish to delete this milestone database version. This action cannot be undone."
+						ng-really-click="deleteMilestoneDatabase()">Delete</a>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Test Database Section -->
 
-	<div class="panel three-up">
-		<h2>Test database version information</h2>
-		<p>You can create a test version of the database to work on. This allows you to try out potential changes (to the database structure, for example) without risking compromising the integrity of your main database. </p>
-		<p> Once you have finished working with the test database version, you can either set it to be the main database version, or simply delete it.</p>
+	<div class="col-4">
+		<div class="panel">
+			<h2>Test database version information</h2>
+			<p>You can create a test version of the database to work on. This allows you to try out potential changes (to the database
+				structure, for example) without risking compromising the integrity of your main database. </p>
+			<p> Once you have finished working with the test database version, you can either set it to be the main database version,
+				or simply delete it.</p>
 
-		<div ng-show="test">
-		    <div>
-		        <a class="button" href="#/schema/{{project.projectId}}/{{test.logicalDatabaseId}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}">View and edit database structure</a>
-		    </div>
-		    <div>
-		        <a class="button" href="#/database-explorer/{{project.projectId}}/{{test.logicalDatabaseId}}/{{database.dbName}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
-		    </div>
-			<div>
-			    <a class="button delete" ng-really-message="Please confirm that you wish to delete this test database version. This action cannot be undone." ng-really-click="deleteTestDatabase()">Delete</a>
+			<div ng-show="test">
+				<div>
+					<a class="button" href="#/schema/{{project.projectId}}/{{test.logicalDatabaseId}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}">View and edit database structure</a>
+				</div>
+				<div>
+					<a class="button" href="#/database-explorer/{{project.projectId}}/{{test.logicalDatabaseId}}/{{database.dbName}}/{{test.physicalDatabaseId}}/TEST/{{project.dbServerPublicAddress}}">View, edit, and query data</a>
+				</div>
+				<div>
+					<a class="button warning" ng-click="mergeTestToMain()">Make this the main database</a>
+				</div>
+				<div>
+					<a class="button delete" ng-really-message="Please confirm that you wish to delete this test database version. This action cannot be undone."
+						ng-really-click="deleteTestDatabase()">Delete</a>
+				</div>
 			</div>
-		    <div>
-		        <a class="button" ng-click="mergeTestToMain()">Make this the main database</a>
-		    </div>
-		</div>
-		
-		<div ng-show="!test && main">
-			<button class="create" ng-click="setMainAsTestVersion()">Create new test version</button>
-		</div>
-                    
 
+			<div ng-show="!test && main">
+				<button class="create" ng-click="setMainAsTestVersion()">Create new test version</button>
+			</div>
+		</div>
 	</div>
 </div>
