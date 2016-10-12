@@ -91,10 +91,12 @@ table.data-table th{
 }
 table.data-table td{
 	background-color: @background-info;
-	border: 1px solid @border-color;
+  border: 0px; // this hack is needed because of Select2's way of resizing
+/*	border: 1px solid @border-color;*/
 }
 table.data-table th{
   background-color: @background-info-headings;
+  word-break: break-word;
   height: 60px;
 }
 table.data-table td.add{

@@ -67,7 +67,7 @@
 						<span ng-if="checkPrimaryColumn(column) || queryType!=='table'">{{row.cell[column.columnName].value}}</span>
 					</span>
 
-					<big-select ng-if="column.referencedTable" 
+					<big-select ng-if="column.referencedTable"
 						type="text" 
 						readonly="{{queryType == 'table'}}"
 						reference-key="{{row.cell[primaryKey].value}}"
@@ -77,8 +77,8 @@
 						referenced-column="referencedColumn[column.columnName]"
 						referenced-table="{{column.referencedTable}}"
 						referenced-label="null"/>
-
 					</td>
+					
 					<td ng-if="queryType == 'table'">
 						<button class="button delete" ng-really-message="Are you sure you want to delete this row?" ng-really-click="deleteRow(row)">Delete</button>
 					</td>

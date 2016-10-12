@@ -891,6 +891,7 @@ ords.directive('bigSelect', function ($parse) {
 					placeholder: "Search",
 					minimumInputLength: 1,
 					id: function(result){return getId(result)},
+					width: "inherit",
 					ajax: { 
 						url: function() { return "/api/1.0/database/"+scope.dbId+"/table/"+attrs.referencedTable+"/column/"+getColumn()+"/related" },
 						dataType: 'json',
@@ -985,11 +986,12 @@ var syncTableWidthWithElement = function(parent){
 
         //Match the width
         $("tr td,th", this).each(function(index){
-        	$(this).css("width", $("tr th:nth-of-type("+(index+1)+")", parent).css("width"))
+        	$(this).css("width", $("tr th:nth-of-type("+($(this).index()+1)+")", parent).css("width"));
         });
-        //Match the grip's position
+		
+		//Match the grip's position
         $(this).prev().find(".JCLRgrip").each(function(index){
-           	$(this).css("left",$(parent).prev().find(".JCLRgrip:nth-of-type("+(index+1)+")").css("left"));
+    		$(this).css("left",$(parent).prev().find(".JCLRgrip:nth-of-type("+(index+1)+")").css("left"));
         });
 
     }); 

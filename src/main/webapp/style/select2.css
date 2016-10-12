@@ -10,6 +10,7 @@ Version: 3.4.8 Timestamp: Thu May  1 09:50:32 EDT 2014
     *display: inline;
     vertical-align: middle;
     font-size: .9em;
+    width: inherit;
 }
 
 .select2-container,
