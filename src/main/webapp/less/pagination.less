@@ -16,7 +16,7 @@
   text-decoration: none;
   color: #002147;
   background-color: #ffffff;
-  border: 1px solid #dddddd;
+  border: 1px solid @border-color;
   margin-left: -1px;
 }
 .pagination > li:first-child > a,
@@ -37,7 +37,7 @@
   z-index: 3;
   color: #23527c;
   background-color: #eeeeee;
-  border-color: #dddddd;
+  border-color: @border-color;
 }
 .pagination > .active > a,
 .pagination > .active > span,
@@ -46,7 +46,7 @@
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
   z-index: 2;
-  color: #ffffff;
+  color: @text-color;
   background-color: #002147;
   border-color: #002147;
   cursor: default;
@@ -59,7 +59,7 @@
 .pagination > .disabled > a:focus {
   color: #777777;
   background-color: #ffffff;
-  border-color: #dddddd;
+  border-color: @border-color;
   cursor: not-allowed;
 }
 .pagination-lg > li > a,

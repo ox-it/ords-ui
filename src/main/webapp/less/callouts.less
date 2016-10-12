@@ -21,7 +21,7 @@
 /* Common styles for all types */
 .bs-callout {
   padding: 20px;
-  border: 1px solid #eee;
+  border: 1px solid @border-color;
   border-left-width: 5px;
   border-radius: 3px;
 }
@@ -43,20 +43,20 @@
 
 /* Variations */
 .bs-callout-danger {
-  border-left-color: #ce4844;
+  border-left-color:@danger-color;
 }
 .bs-callout-danger h4 {
-  color: #ce4844;
+  color: @danger-color;
 }
 .bs-callout-warning {
-  border-left-color: #aa6708;
+  border-left-color: @warning-color;
 }
 .bs-callout-warning h4 {
-  color: #aa6708;
+  color: @warning-color;
 }
 .bs-callout-info {
-  border-left-color: #648191;
+  border-left-color: @accent-color;
 }
 .bs-callout-info h4 {
-  color: #648191;
+  color: @accent-color;
 }

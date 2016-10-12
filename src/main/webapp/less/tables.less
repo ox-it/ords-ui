@@ -1,13 +1,13 @@
 
 table tr th,
 table tr td {
-  background-color: #fafafa;
-  border: 1px solid #eaeaea;
+  background-color: @background-info;
+  border: 1px solid @border-color;
   padding: 0.3em;  
 }
 
 table tr th {
-  background-color: #f1f1f1;
+  background-color: @background-info-headings;
 }
 
 /* 
@@ -90,24 +90,47 @@ table.data-table th{
   padding: 0px;
 }
 table.data-table td{
-	background-color: #fafafa;
-	border: 1px solid #eaeaea;
+	background-color: @background-info;
+	border: 1px solid @border-color;
 }
 table.data-table th{
-  background-color: #f1f1f1;
+  background-color: @background-info-headings;
   height: 60px;
 }
 table.data-table td.add{
-	background-color:#ebf4fb;
-	border: 1px solid #eaeaea;
+	background-color:@background-editing;
+	border: 1px solid @border-color;
 }
 
 .table-data-form input.ng-dirty.ng-invalid{
-  background-color: #f2dede;
+  background-color: @warning-color;
 }
 
 .table-data-form input.ng-dirty.ng-valid{
-  background-color:#ebf4fb;
+  background-color:@background-editing;
+}
+
+/*
+ * bigdrop selector
+ */
+
+.selectedDataItem {
+    width: 90%;
+    height: 1.5em;
+    font-size: 0.8em;
+    font-family: Arial, sans-serif;
+}
+
+.selectedDataItem.date, .selectedDataItem.time {
+    width: 7em;
+}
+
+.selectedDataItem.timestamp {
+    width: 12em;
+}
+
+.referenceSelect {
+    font-size: .8em;
 }
 
 /* ensures that controls don't overspill their cells */

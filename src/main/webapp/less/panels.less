@@ -2,29 +2,34 @@
  The panel is a common interfaces element for grouping controls and content together
  for a related feature.
 */
+
+.panel h2 a,
+.panel h3 a,
+.panel h4 a {
+  text-decoration: none;    
+}
+
 .panel{
-  border: #ddd  1px solid;
+  border: @border-color 1px solid;
   border-radius: 3px ;
   -webkit-border-radius: 3px ;
   -moz-border-radius: 3px ;
   padding: 0px;
   margin-bottom: 1em;
-  background-color: #f6f6f6;  
-  background-color: #f5f7fa;
+  background-color: @background-general;
 }
 .panel h2,
 .panel h3,
 .panel h4{
-  background-color: #f3f3f3;  
-  background-color: #eaeef2;
+  background-color: @background-headings;
   margin-top: 0px;
   margin-bottom: 2px;
   padding: 0.3em;
-  border-bottom: #ddd  1px solid;
+  border-bottom: @border-color 1px solid;
 }
 
 .panel h2 a{
-color: #000;
+color: @link-color;
 }
 
 .panel p,

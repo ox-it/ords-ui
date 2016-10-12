@@ -1,10 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #ccc;
 	background-color: #fff;
-
-color: #555;
+  color: #555;
 	font-family: Arial, Helvetica, Tahoma, sans-serif;
 	font-size: 1em;
 	overflow-y: auto;
@@ -14,9 +12,8 @@ color: #555;
 
 /* header stuff */
 .header {
-
-  background: #002147;
-	color: #fff;
+  background: @brand-color;
+	color: @text-color;
 	margin: 0;
 	margin-bottom: 1em;
 	padding: 0px;
@@ -37,13 +34,12 @@ color: #555;
 
 h1, h2, h3, h4, h5, h6 {
     clear: both;
-    color: #648191;
+    color: @accent-color;
     display: block; 
     font-weight: normal;
 }
 
 h1 {
-  color: #648191;
   margin-bottom: 0.5em;
   margin-top: 0.8em;
 }
@@ -71,49 +67,35 @@ a:visited,
 a:hover,
 a:focus,
 a:active {
-  
 	color: #002147;
-
 }
-
 
 a:hover,
 a:focus,
 .header a:focus,
 .header a:hover {
-  
-text-decoration: underline;
-
+  text-decoration: underline;
 }
 
-
-
 h1.site-title {
-
   float: left;
-  
   height: 77px;
   margin: 0px;
   margin-top: 3px;
   padding: 0px;
   width: 300px;
-
 }
 
 h1.site-title a{
-
   background: transparent url("../style/images/logos/ords-logo.png") no-repeat 0px 0px;
   display: block;
   height: 77px;
   margin-top: 0px;
   text-indent: -9000px;
   width: 200px;
-  
-  
-  }
+}
 
 a#ox-link {
-
   float: left;
   display: block;
   height: 55px;
@@ -129,22 +111,21 @@ a#ox-link {
   padding: 0px;
 }
 
-  .user,
-  .user-actions {
-    padding:3px 5px 7px 24px;
-  }
+.user,
+.user-actions {
+  padding:3px 5px 7px 24px;
+}
 
-  .username {
-    color: #eff4f9;
-    font-weight: bold;
-  }
+.username {
+  color: #eff4f9;
+  font-weight: bold;
+}
   
-  .user-label {
-    color: #fff;
-    position: absolute;
-    top: -9000px;
-  }
-
+.user-label {
+  color: @text-color;
+  position: absolute;
+  top: -9000px;
+}
 
 .user-info {
   float: right;
@@ -157,7 +138,6 @@ a#ox-link {
 
 
 .message {
-  
   background: #fdf4d9;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -165,29 +145,7 @@ a#ox-link {
   clear: both;
   color: #000;
   padding: 1em;
-  
 }
-
-
-.selectedDataItem {
-    width: 90%;
-    height: 1.5em;
-    font-size: 0.8em;
-    font-family: Arial, sans-serif;
-}
-
-.selectedDataItem.date, .selectedDataItem.time {
-    width: 7em;
-}
-
-.selectedDataItem.timestamp {
-    width: 12em;
-}
-
-.referenceSelect {
-    font-size: .8em;
-}
-
 
 /* homepage stuff */
 
@@ -201,8 +159,6 @@ div.login
 clear: both;
 }
 
-
-
 /* my projects listing */
 
 a.create {
@@ -210,12 +166,6 @@ a.create {
   margin-right: 30px;
   padding-left: 18px;
   padding-right: 18px;
-}
-
-.panel h2 a,
-.panel h3 a,
-.panel h4 a {
-  text-decoration: none;    
 }
 
 .project-piece {
@@ -236,48 +186,35 @@ a.create {
 
 }
 
-
-
 /* footer stuff */
 
 .footer {
-  background: #fff;
   clear: both;
-   color: #999;
+  color: @text-muted;
   font-size: 0.9em;
   margin-top: 5em;
   padding: 2em 5px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid @border-color;
   text-align: center;
 }
 
-
 .footer a {
-  
-  color: #999;
+  color: @text-muted;
   padding: 0.5em;
   text-decoration: none;
 }
 
 .footer a:focus,
 .footer a:hover {
-  
-  color: #666;
+  color: @text-dark-muted;
   text-decoration: underline;
 }
 
-
-
 .footer ul,
 .footer li {
-  
-
-list-style: none;
-display:  inline;
-
-  
+  list-style: none;
+  display:  inline;
 }
-
 
 .footer .copyright {
   margin-top: 1em;
@@ -295,7 +232,6 @@ display:  inline;
 	width: 100%;
 	background-image: url('../images/trans10.png');
 }
-
 
 .content {
 	position: relative;
@@ -365,18 +301,6 @@ select.select2 {
     height: 1.5em;
 }
 
-.ajax-loader {
-    display:none;
-}
-
-.thumb {
-    width: 24px;
-    height: 24px;
-    float: none;
-    position: relative;
-    top: 7px;
-}
-
 form .progress {
     line-height: 15px;
 }
@@ -391,14 +315,6 @@ form .progress {
     font-size: smaller;
     background: orange;
     width: 0;
-}
-
-.newline {
-	clear:both;
-}
-
-.invisibleElement {
-	display: none;
 }
 
 .rightFloat {

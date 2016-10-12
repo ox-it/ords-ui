@@ -1,10 +1,3 @@
-
-
-.invisibleElement {
-/*	display: none;
-*/
-}
-
 input {
   max-width: 100%;
 }
@@ -39,13 +32,13 @@ div.form-buttons {
 
 
 .main form.process{
-    background-color:#ebf4fb;
+    background-color: @background-editing;
     margin:0 auto;
     padding:14px;
 
 }
 .main form.process .important{
-    color:#fbb302;
+    color:@warning-color;
     font-size: 2em;
 }
 
@@ -55,13 +48,13 @@ div.form-buttons {
 }
 .main form.process p{
     font-size:11px;
-    color:#666666;
+    color:@text-dark-muted;
     margin-bottom:20px;
-    border-bottom:solid 1px #b7ddf2;
+    border-bottom:solid 1px @border-editing;
     padding-bottom:10px;
 }
 .main form label{
-    color: #333;
+    color: @text-dark;
     display:block;
     text-align:right;
     width: 47%;
@@ -82,7 +75,7 @@ font-size: 0.8em;
 
 
 .main form .explanation{
-    color: #666;
+    color: @text-dark-muted;
     display:block;
     float: right;
     font-size:0.9em;
@@ -97,7 +90,7 @@ width: 20em;
     float:left;
     font-size:12px;
     padding:4px 2px;
-    border:solid 1px #aacfe4;
+    border:solid 1px @border-editing;
     margin:2px 0 20px 10px;
     width: 30em;
 }
@@ -106,7 +99,7 @@ width: 20em;
     float:left;
     font-size:12px;
     padding:4px 2px;
-    border:solid 1px #aacfe4;
+    border:solid 1px @border-editing;
     width: 30em;
     margin:2px 0 20px 10px;
 }
@@ -115,7 +108,7 @@ width: 20em;
     float:left;
     font-size:12px;
     padding:4px 2px;
-    border:solid 1px #aacfe4;
+    border:solid 1px @border-editing;
     width: 30em;
     margin:2px 0 20px 10px;
 }
@@ -136,7 +129,7 @@ width: 20em;
 .main form.process .invalid input,
 .main form.process .invalid select,
 .main form.process .invalid textarea {
-    border: solid 1px red;
+    border: solid 1px @border-editing;
 }
 
 .main form.process input[type="checkbox"] {
