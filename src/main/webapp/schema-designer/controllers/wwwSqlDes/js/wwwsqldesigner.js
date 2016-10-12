@@ -27,6 +27,9 @@ var SQL = {};
 var loaded = false;
 var currently_saving = false;
 
+var unsavedStateRequiredOnSuccess = false;
+
+
 var host = window.location.host;
 var protocol = window.location.protocol
 // dbId defined in schemaController
@@ -93,11 +96,16 @@ SQL.Request.prototype.Promise = function(url, method, data, type) {
                 		response = JSON.parse(this.responseText);
                 		resolve(response);
                 	}
+        			if ( unsavedStateRequiredOnSuccess ) {
+        				owner.setUnsavedChanges();
+        				unsavedStateRequiredOnSuccess = false;
+        			}
                 	break;
                 
                 case SQL.Request.created:
-            		if (owner.io) {
+            		if (unsavedStateRequiredOnSuccess) {
                     	owner.setUnsavedChanges();
+                    	unsavedStateRequiredOnSuccess = false;
                 	}
                 	resolve();
                 	break;
@@ -414,6 +422,7 @@ SQL.Row.prototype.changeComment = function(e) {
     //var dbURL = protocol+"//:"+host+"/api/1.0/structure/"+dbId+"/";
     var commentURL = dbURL()+'/table/'+this.owner.getTitle()+'/comment/staging';
     var commentRequest = {comment: c};
+    unsavedStateRequiredOnSuccess = true;
     this.owner.owner.request.Promise(commentURL, SQL.Request.PUT, JSON.stringify(commentRequest)).then(
         function() {
             // Once saved, update the interface
@@ -1292,6 +1301,7 @@ SQL.Table.prototype.move = function(e) { /* mousemove */
 		var x = t.x[i] + event.clientX;
 		var y = t.y[i] + event.clientY;
 		t.active[i].moveTo(x,y);
+	    this.owner.setUnsavedChanges();
 	}
 }
 
@@ -1307,7 +1317,6 @@ SQL.Table.prototype.up = function(e) {
 	t.active = false;
 	OZ.Event.remove(this.documentMove);
 	OZ.Event.remove(this.documentUp);
-    this.owner.setUnsavedChanges();
 	this.owner.sync();
 }
 
@@ -1916,6 +1925,7 @@ SQL.TableManager.prototype.addRow = function(e) {
     };
     var columnURL = dbURL()+"/table/"+this.selection[0].getTitle()+"/column/"+_("newrow")+"/staging";
     this.owner.showOverlay();
+    unsavedStateRequiredOnSuccess = true;
     this.owner.request.Promise(columnURL, SQL.Request.POST, JSON.stringify(columnRequest)).then(
         function() {
             var newrow = this.selection[0].addRow(_("newrow"));
@@ -2027,6 +2037,7 @@ SQL.TableManager.prototype.click = function(e) { /* finish adding new table */
             columns: [r.getTitle()]
         }
         // Create the table
+        unsavedStateRequiredOnSuccess = true;
         this.owner.request.Promise(tableURL, SQL.Request.POST).then(
             function(response) {
                 // Adding table succeeds, create the column
@@ -2108,6 +2119,7 @@ SQL.TableManager.prototype.remove = function(e) {
                 var table = sel[i];
                 var deleteURL = dbURL()+"/table/"+table.getTitle()+"/staging";
                 // Delete the table from the database
+                unsavedStateRequiredOnSuccess = true;
                 this.owner.request.Promise(deleteURL, SQL.Request.DELETE).then(
                     function() {
                         // Remove the table from the interface
@@ -2172,6 +2184,7 @@ SQL.TableManager.prototype.save = function() {
         // copy on the server
         this.owner.showOverlay();
         (function() {
+            unsavedStateRequiredOnSuccess = true;
             if (namechange) {
                 // If the name has changed, create the URL and request to
                 // save the change
@@ -2183,7 +2196,7 @@ SQL.TableManager.prototype.save = function() {
                     commentRequest = {comment: this.dom.comment.value};
                     commentUrl = dbURL()+'/table/'+this.dom.name.value+'/comment/staging';
                     // Change the table name
-                    return this.owner.request.Promise(tableUrl, SQL.Request.POST, JSON.stringify(tableRequest)).then(
+                    return this.owner.request.Promise(tableUrl, SQL.Request.PUT, JSON.stringify(tableRequest)).then(
                         function() {
                             // Save the comment
                             return this.owner.request.Promise(commentUrl, SQL.Request.POST, JSON.stringify(commentRequest));
@@ -2310,7 +2323,7 @@ SQL.RowManager.prototype.tableClick = function(e) {
     // Generate a new constraint name and URLs for adding a new column and constraint
     var tableURL = dbURL()+"/table/"+t2.getTitle()+"/staging";
     var columnURL = dbURL()+"/table/"+t2.getTitle()+"/column/"+p+"/staging";
-    var constraintName = "fkey_"+t2.getTitle()+"_"+p+"/staging";
+    var constraintName = "fkey_"+t2.getTitle()+"_"+p;
     var constraintURL = dbURL()+"/table/"+t2.getTitle()+"/constraint/"+constraintName+"/staging";
 
     // Create requests for adding a new column (with the same data type as the
@@ -2327,7 +2340,7 @@ SQL.RowManager.prototype.tableClick = function(e) {
         reftable: r1.owner.getTitle(),
         refcolumn: r1.getTitle()
     };
-
+    unsavedStateRequiredOnSuccess = true;
     // Add the new foreign key column to the table
     this.owner.request.Promise(columnURL, SQL.Request.POST, JSON.stringify(columnRequest)).then(
         function() {
@@ -2379,6 +2392,7 @@ SQL.RowManager.prototype.rowClick = function(e) {
         refcolumn: r1.getTitle()
     };
 
+    unsavedStateRequiredOnSuccess = true;
     this.owner.request.Promise(constraintURL, SQL.Request.POST, JSON.stringify(constraintRequest)).then(
         function() {
             rel = this.owner.addRelation(r1, r2);
@@ -2454,7 +2468,7 @@ SQL.RowManager.prototype.remove = function(e) {
             var tableName = t.getTitle();
             var colName = this.selected.getTitle();
             var columnURL = dbURL()+"/table/"+tableName+"/column/"+colName+"/staging";
-
+            unsavedStateRequiredOnSuccess = true;
             return this.owner.request.Promise(columnURL, SQL.Request.DELETE);
         }.bind(this)
     ).then(
@@ -2631,6 +2645,7 @@ SQL.KeyManager.prototype.remove = function(e) {
     var tableURL = dbURL()+"/table/"+this.table.getTitle()+"/staging";
     var indexURL = dbURL()+"/table/"+this.table.getTitle()+"/index/"+r.name+"/staging";
     // Send the request to remove the key
+    unsavedStateRequiredOnSuccess = true;
     this.owner.request.Promise(indexURL, SQL.Request.DELETE).then(
         function() {
             // Remove the key from the interface
@@ -2702,6 +2717,7 @@ SQL.KeyManager.prototype.save = function() {
                     requestEntity.primary = true;    
                 }
                 // Create the key
+                unsavedStateRequiredOnSuccess = true;
                 this.owner.request.Promise(url, SQL.Request.POST, JSON.stringify(requestEntity)).then(
                     function() {
                         this.owner.hideOverlay();
@@ -3219,6 +3235,7 @@ SQL.Designer.prototype.removeRelationDirect = function(r) {
 	if (idx == -1) { return; }
     this.showOverlay();
     constraintURL = dbURL()+"/table/"+r.row2.owner.getTitle()+"/constraint/"+r.data.title+"/staging";
+    unsavedStateRequiredOnSuccess = true;
     this.request.Promise(constraintURL, SQL.Request.DELETE).then(
         function() {
             // Once we've deleted the constraint form the database, update the interface
