@@ -15,7 +15,7 @@
 		height: 400px;
 		margin: 10px;
 		background: url(../../../style/images/back.gif) fixed;
-		resize: both;
+		resize: vertical;
 		overflow:auto;
 	}
 	
