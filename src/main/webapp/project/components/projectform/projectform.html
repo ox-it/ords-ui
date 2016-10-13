@@ -13,7 +13,7 @@
 
 
 <div class="formItem">
-    <label for="description">Description <span class="important">*</span><span class="explanation">Please give a brief description of the project. This will appear in your project list, and on the project page. If the project is included in the public ORDS project list, the description will also appear there.</span></label>
+    <label for="description">Description <span class="important">*</span><span class="explanation">Please give a brief description of the project. This will appear in your project list, and on the project page. If the project is included in the public project list, the description will also appear there.</span></label>
     <textarea ng-model="project.description" ng-maxlength="255" required rows="5" id="description" name="description"></textarea>
 </div>
 
@@ -41,13 +41,13 @@
 </div>
 
 <div class="formItem">
-    <label for="privateProject">Exclude from public ORDS project list<span class="explanation">By default, basic details (project name, description, and owner) about all full ORDS projects are included in the public version of the ORDS project list. Check this box to exclude this project from the list.<br> (Leaving this box unchecked will <i>not</i> give members of the public access to any data stored in ORDS, unless a project member specifically chooses to make this available.)</span></label>
+    <label for="privateProject">Exclude from public project list<span class="explanation">By default, basic details (project name, description, and owner) about all full projects are included in the public version of the project list. Check this box to exclude this project from the list.<br> (Leaving this box unchecked will <i>not</i> give members of the public access to any data stored in ORDS, unless a project member specifically chooses to make this available.)</span></label>
     <input ng-model="project.privateProject" type="checkbox" name="privateProject" id="privateProject" value="private">
 </div>
 
            
 <div class="formItem">
-    <label for="odbcSet">Enable ODBC access for project<span class="small">If this box is checked, project members will be able to access project data via ODBC (Open Database Connectivity), potentially bypassing the ORDS interface. <br> <a href="http://help.it.ox.ac.uk/research/ords/odbc" target="_blank">More information about ORDS and ODBC connections</a>.</span></label>
+    <label for="odbcSet">Enable ODBC access for project<span class="small">If this box is checked, project members will be able to access project data via ODBC (Open Database Connectivity), potentially bypassing the TrunkDB interface. <br> <a href="http://help.it.ox.ac.uk/research/ords/odbc" target="_blank">More information about ODBC connections</a>.</span></label>
     <input ng-model="project.odbcSet" type="checkbox" name="odbcSet" id="odbcSet">
 </div>
             <div class="form-buttons">

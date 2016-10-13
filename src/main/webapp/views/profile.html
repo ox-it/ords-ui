@@ -4,7 +4,7 @@
 	<form ng-submit="updateProfile()" name="profileForm" id="profileForm">
 		
 	    <div class="formItem">
-	        <label for="username">Your name in the form you would like it to appear within the ORDS system <span class="important">*</span></label>
+	        <label for="username">Your name in the form you would like it to appear within the site <span class="important">*</span></label>
 	        <input type="text" ng-minlength="2" ng-maxlength="200" required id="username" name="username" ng-model="user.name">
 	    </div>
 		
@@ -50,26 +50,9 @@
     ODBC (Open Database Connectivity) connection. This allows users to access data stored in the ORDS via another 
     database application (Microsoft Access, for example), or via a custom-built Web front-end. 
     This can provide a way of combining the advantages of multiple systems. </p>
-    
-    <p>For more information about the ORDS and ODBC connections, 
-    visit the <a href="http://help.it.ox.ac.uk/research/ords/odbc" target="_blank">IT Services help site</a>. 
-    If you need help setting up an ODBC connection, please contact the ORDS help desk by 
-    emailing <a href="mailto:ords@it.ox.ac.uk?Subject=ODBC%20connections%20in%20ORDS">ords@it.ox.ac.uk</a>.</p>
-    
-    <p>When creating an ODBC connection using an external client, you need to ensure that SSL is set to allow (i.e. on). 
-    Your username is displayed below and your password may be reset on this page if you don't know it.</p>
         
     <h3>ODBC Connection Information</h3>
-    <p>In earlier versions of ORDS, your ODBC connection details were shown here. To get the ODBC connection
+    <p>In the previous ORDS system, your ODBC connection details were shown here. To get the ODBC connection
     details for any database, navigate to the database details panel for the database, and click the
     <em>Request ODBC Connection Details</em> button. Note that each database has its own unique connection information 
     - including user name and password.</p>
-    
-    <!-- This is only applicable to ORDS1 ODBC connections
-    <h3>IP Addresses</h3>
-    <p>If your provider restricts ODBC access by the IP address of the client, you'll need to provide 
-    this information before you can access any databases. To submit your current IP address, click the button below.</p>
-    
-    <button>Add your current IP address for ODBC access</button>
-    <p>NOTE: TO BE IMPLEMENTED</p>
-    -->

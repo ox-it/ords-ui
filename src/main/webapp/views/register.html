@@ -1,13 +1,10 @@
 <div class="homepage">
-	<welcome></welcome>
-
 
 	<div id="ordsFormStyle" class="ordsForm">
-        <h1>Register to Use the ORDS</h1>
-        <p>Please enter your details below to register for the ORDS</p>
-
+        <h1>Register to use TrunkDB</h1>
+        <p>Please enter your details below to register for TrunkDB</p>
 		
-		<div class="message">
+		<div class="bs-callout bs-callout-danger">
 			<h3>Important notice</h3>
 			<p>Note that this is a database service hosted in the public cloud. While we take very precaution to secure
 				your data, it is not appropriate for storing sensitive information. By registering below and 
@@ -22,7 +19,7 @@
 			<div class="formItem">
 			    <label for="signupName">
 					Name <span class="important">*</span>
-					<span class="explanation">Your name in the form you would like it to appear within the ORDS system</span>
+					<span class="explanation">Your name in the form you would like it to appear on the site</span>
 				</label>
 			    <input ng-model = "user.name" ng-minlength="2" ng-maxlength="200" required type="text" id="signupName" name="signupName">
 			</div>
@@ -37,7 +34,7 @@
 			<div class="formItem">
 			    <label for="signupEmail">
 					Email address  <span class="important">*</span>
-					<span class="explanation">This is where notifications relating to your ORDS account will be sent.</span>
+					<span class="explanation">This is where notifications relating to your account will be sent.</span>
 				</label>
 			    <input ng-model = "user.email" required type="email" id="signupEmail" name="signupEmail">
 			</div>
