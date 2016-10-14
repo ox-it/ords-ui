@@ -1,10 +1,19 @@
 <div>
 	<form name="datasetForm">
-		<table width="100%">
+		<table class="table-narrow">
 			<tr>
-				<td width="40%">Dataset Name:</td>
-				<td width="60%">
-					<input type="text" name="datasetName" ng-maxlength="40" required ng-minlength="2" placeholder="Dataset Name" ng-model="ngDialogData.newTableView.viewName"/>
+				<th>Dataset Name:</th>
+				<td>
+					<input 
+					type="text" 
+					class="ngdialog-input" 
+					name="datasetName" 
+					ng-maxlength="40" 
+					required 
+					ng-minlength="2" 
+					placeholder="Dataset Name" 
+					ng-model="ngDialogData.newTableView.viewName"
+					/>
 					<div ng-messages="datasetForm.datasetName.$error">
 						<div ng-message="required" class="alert-dialog alert-warning">Please provide a name.</div>
 						<div ng-message="minlength" class="alert-dialog alert-warning">Dataset name must be at least 2 characters</div>
@@ -13,22 +22,22 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="40%">Dataset Description:</td>
-				<td width="60%">
-					<textarea name="description" ng-maxlength="255" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewDescription"></textarea>
+				<th>Dataset Description:</th>
+				<td>
+					<textarea name="description" class="ngdialog-input" ng-maxlength="255" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewDescription"></textarea>
 					<div ng-messages="datasetForm.description.$error">
 						<div ng-message="maxlength" class="alert-dialog alert-warning">Maximum 255 characters allowed</div>
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="40%">Query:</td>
-				<td width="60%"><textarea name="datasetQuery" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewQuery"></textarea></td>
+				<th>Query:</th>
+				<td><textarea name="datasetQuery" class="ngdialog-input" cols="24" rows="4" ng-model="ngDialogData.newTableView.viewQuery"></textarea></td>
 			</tr>
 			<tr>
-				<td width="40%">Visibility:</td>
-				<td width="60%">
-					<select name="authSelect" ng-model="ngDialogData.newTableView.viewAuthorization">
+				<th>Visibility:</th>
+				<td>
+					<select name="authSelect" class="ngdialog-input" ng-model="ngDialogData.newTableView.viewAuthorization">
 						<option value="public">public</option>
 						<option value="private">private</option>
 					</select>

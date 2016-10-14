@@ -70,12 +70,10 @@
   background: #f0f0f0;
   border-radius: 5px;
   color: #444;
-  font-family: 'Helvetica',sans-serif;
-  font-size: 1.1em;
-  line-height: 1.5em;
+  font-family: Arial, Helvetica, Tahoma, sans-serif;
   margin: 0 auto;
   max-width: 100%;
-  padding: 1em;
+  padding: 25px;
   position: relative;
   width: 450px;
 }
@@ -113,45 +111,15 @@
   margin-bottom: .5em;
 }
 
-.ngdialog.ngdialog-theme-default .ngdialog-input {
-  margin-bottom: 1em;
-}
-
-.ngdialog.ngdialog-theme-default .ngdialog-input textarea,
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="text"],
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="password"],
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="email"],
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="url"] {
-  background: #fff;
-  border: 0;
-  border-radius: 3px;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  margin: 0 0 .25em;
-  min-height: 2.5em;
-  padding: .25em .67em;
-  width: 100%;
-}
-
-.ngdialog.ngdialog-theme-default .ngdialo-input textarea {
-    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
-       -moz-box-sizing: border-box; /* FF1+ */
-            box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
-}
-
-.ngdialog.ngdialog-theme-default .ngdialog-input textarea:focus,
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="text"]:focus,
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="password"]:focus,
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="email"]:focus,
-.ngdialog.ngdialog-theme-default .ngdialog-input input[type="url"]:focus {
-  box-shadow: inset 0 0 0 2px #8dbdf1;
-  outline: none;
-}
+/*
+    Dialog buttons
+*/
 
 .ngdialog.ngdialog-theme-default .ngdialog-buttons {
-	margin: 10px 0px 0px 0px;
-  *zoom: 1;
+	margin: 10px 0 10px 0;
+    *zoom: 1;
+	text-align: right;
+    width: 100%;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-buttons:after {
@@ -161,21 +129,18 @@
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button {
-  border: 0;
-  border-radius: 3px;
-  cursor: pointer;
-  float: right;
-font-size: 0.9em;
-font-weight: bold;
-margin: 0px 10px 10px 0px;
-padding: 7px 12px;
-padding-left: 10px;
-padding-right: 10px;
-text-decoration: none;
-border: 1px solid #79550d;
-border-radius: 3px ;
--webkit-border-radius: 3px ;
--moz-border-radius: 3px ;
+	display: inline-block ;
+	border: 1px solid @border-dark;
+	border-radius: 3px ;
+	-webkit-border-radius: 3px ;
+	-moz-border-radius: 3px ;
+	color: @text-color;
+	font-size: small;
+	margin: 0px 10px 10px 0px;
+	background-color: @accent-color;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-decoration: none;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button:focus {
@@ -192,37 +157,60 @@ border-radius: 3px ;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary {
-
-
-color: #fff;
-background-color: #A2CE18;
-
-
-
-/* IE10 Consumer Preview */ 
-background-image: -ms-linear-gradient(top, #A2CE18 0%, #749802 100%);
-
-/* Mozilla Firefox */ 
-background-image: -moz-linear-gradient(top, #A2CE18 0%, #749802 100%);
-
-/* Opera */ 
-background-image: -o-linear-gradient(top, #A2CE18 0%, #749802 100%);
-
-/* Webkit (Safari/Chrome 10) */ 
-background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #A2CE18), color-stop(1, #749802));
-
-/* Webkit (Chrome 11+) */ 
-background-image: -webkit-linear-gradient(top, #A2CE18 0%, #749802 100%);
-
-/* W3C Markup, IE10 Release Preview */ 
-background-image: linear-gradient(to bottom, #A2CE18 0%, #749802 100%);
-border-color: #354503;
-
-	
-
+    color: @text-color;
+    margin: 10px 0 10px 10px;
+    background-color: @accent-color;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary {
-  background: #e0e0e0;
-  color: #777;
+  background: @disabled-color;
+  margin: 10px 0 10px 10px;
+  color: @text-dark;
+}
+
+/* Gives a "click" effect for otherwise flat buttons when pressed */
+.ngdialog-button:active {
+	border: 1px solid @border-highlight;
+}
+
+/*
+Dialog tables
+*/
+.ngdialog .table-narrow th {
+    font-weight: lighter;
+}
+.ngdialog .table-narrow td {
+
+}
+
+/*
+ Dialog forms
+*/
+.ngdialog form {
+    font-size: smaller;
+}
+
+.ngdialog.ngdialog-theme-default textarea {
+  border-color: @border-color;
+  border-radius: 3px;
+  min-height: 2.5em;
+  padding: .25em .67em;
+  width: 100%;
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+       -moz-box-sizing: border-box; /* FF1+ */
+            box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+                resize: vertical;
+}
+
+.ngdialog.ngdialog-theme-default input:focus,{
+  box-shadow: inset 0 0 0 2px @border-editing;
+  outline: none;
+}
+
+.ngdialog.ngdialog-theme-default input {
+  border-color: @border-color;
+  border-radius: 3px;
+  min-height: 2.5em;
+  padding: .25em .67em;
+  width: 100%;
 }
