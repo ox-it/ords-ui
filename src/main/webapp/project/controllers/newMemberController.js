@@ -19,6 +19,10 @@ ords.controller('newMemberController', function ($rootScope, $scope, $location, 
 	//
 	$scope.isInvite = false;
 	
+	$scope.cancel = function(){
+		$location.path("/project/"+$scope.project.projectId);		
+	}
+	
 	//
 	// Process the POST to create the Member
 	//
