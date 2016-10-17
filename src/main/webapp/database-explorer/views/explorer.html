@@ -35,7 +35,7 @@
 
 				<p>
 					<a class="button" href="#/table/{{project.projectId}}/{{logicalDatabaseId}}/{{physicalDatabaseId}}/{{instance}}/dataset/{{dataset.id}}">View</a>
-					<button ng-if="dataset.viewAuthorization=='public'" class="button" ng-click="getAPILink(dataset.id)">API</button>
+					<apidialog ng-if="dataset.viewAuthorization=='public'" database="{{physicalDatabaseId}}" dataset="{{dataset.id}}"/>
 					<button class="button" ng-click="editDataset(dataset.id)">Edit</button>
 					<button class="button delete" ng-really-message="Are you sure you want to delete this dataset?" ng-really-click="deleteDataset(dataset.id)">Delete</button>
 				</p>
