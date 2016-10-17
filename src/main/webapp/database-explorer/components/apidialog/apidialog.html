@@ -1,9 +1,17 @@
 <div>
 	<div>
-		<p>Anyone can use the following link to get access to the data from this dataset from our API.</p>
+		<p>Anyone can use the following link to get access to the data from this dataset from our API in JSON format.</p>
 		<input id="apilink" type="text" readonly value="{{apiUrl}}">
 	</div>
 	<div class="ngdialog-buttons">
-		<button class="ngdialog-button ngdialog-button-primary" ng-click="copyLinkToClipboard()" alt="Copy API URL for this dataset to the clipboard" aria-label="Copy API URL for this dataset to the clipboard">Copy link to clipboard</a>
+		<button class="ngdialog-button ngdialog-button-primary" ng-click="copyLinkToClipboard(apiUrl)" alt="Copy API URL for this dataset to the clipboard" aria-label="Copy API URL for this dataset to the clipboard">Copy link to clipboard</a>
+	</div>
+
+	<div>
+		<p>Alternatively, anyone can use the following link to download the entire dataset in CSV format.</p>
+		<input id="apilink" type="text" readonly value="{{csvUrl}}">
+	</div>
+	<div class="ngdialog-buttons">
+		<button class="ngdialog-button ngdialog-button-primary" ng-click="copyLinkToClipboard(csvUrl)" alt="Copy API URL for this dataset to the clipboard" aria-label="Copy API URL for this dataset to the clipboard">Copy link to clipboard</a>
 	</div>
 </div>

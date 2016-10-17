@@ -2,8 +2,9 @@
 
 ords.controller('apidialog', function ($scope, $location, ngDialog) {
 	$scope.apiUrl = $location.protocol() + "://" + $location.host() + "/api/1.0/database/"+$scope.physicalDatabaseId+"/datasetdata/"+$scope.datasetId+"?length=50&start=0";
+	$scope.csvUrl = $location.protocol() + "://" + $location.host() + "/api/1.0/database/"+$scope.physicalDatabaseId+"/dataset/"+$scope.datasetId+"/csv";
 
-	$scope.copyLinkToClipboard = function(){
+	$scope.copyLinkToClipboard = function(url){
 		
 		//
 		// This hack works in most browsers
@@ -11,7 +12,7 @@ ords.controller('apidialog', function ($scope, $location, ngDialog) {
 
 		var input = document.createElement('textarea');
 		document.body.appendChild(input);
-		input.value = ($scope.apiUrl);
+		input.value = url;
 		input.focus();
 		input.select();
 		document.execCommand('Copy');
