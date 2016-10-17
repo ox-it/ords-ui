@@ -522,6 +522,7 @@ SQL.Row.prototype.collapse = function() {
                 var columnURL = dbURL()+"/table/"+tableName+"/column/"+colName+"/staging";
                 this.owner.owner.showOverlay();
                 // Send the request to save the changes
+                unsavedStateRequiredOnSuccess = true;
                 return this.owner.owner.request.Promise(columnURL, SQL.Request.PUT, JSON.stringify(columnRequest));        
             }.bind(this),
             function(){return new Promise(function(resolve, reject){reject(false);});}
