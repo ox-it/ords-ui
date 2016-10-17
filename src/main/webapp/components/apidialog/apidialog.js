@@ -19,7 +19,7 @@ angular.module("ords").directive(
 
 					$scope.openApiDialog = function () {
 						ngDialog.openConfirm({
-							template: 'database-explorer/components/apidialog/apidialog.html',
+							template: 'components/apidialog/apidialog.html',
 							controller: function(){},
 							scope: $scope
 						});
