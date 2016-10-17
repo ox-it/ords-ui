@@ -46,6 +46,7 @@ angular.module( "ords" ).directive(
 							if (!State.data){ State.data = {}; };
 							State.data.schema = newVal;
 							State.data.tables = [];
+							State.data.constraints = [];
 							vqd.restore(State.data);
 							$timeout(function(){vqd.jsplumb.repaintEverything()},5000);
 						}
@@ -115,6 +116,11 @@ vqd.load = function(){
 	}
 
 	//
+	// Restore constraints
+	//
+	vqd.renderConstraintList();
+
+	//
 	// Generate query
 	//
 	vqd.jsplumb.recalculateOffsets($(".vqd_tableview"));
@@ -148,10 +154,93 @@ vqd.init = function(){
 	$(".vqd_tableview").empty();
 
 	vqd.renderTableControl();
+
+	//
+	// Constraint editor
+	// 
+	$("#vqd_add_constraint_button").on("click", vqd.addConstraint);
+	vqd.renderConstraintOptions();
+	vqd.renderConstraintList();
 	
 	vqd.jsplumb = jsPlumb.getInstance();
 	vqd.jsplumb.setContainer($(".vqd_tableview"));
-	
+}
+
+//
+// Adds a constraint
+//
+vqd.addConstraint = function(){
+	var constraint = {};
+	constraint.columnValue = $("#vqd_constraint_column_select_control").val();
+	constraint.column = $("#vqd_constraint_column_select_control option:selected").text();
+	constraint.operator = $("#vqd_constraint_operator_select_control option:selected").text();
+	constraint.value = $("#vqd_constraint_value_input").val();
+
+	//
+	// Wrap non-numeric values
+	//
+	var datatype = vqd.getColumnType(constraint.column.split(".")[0], constraint.column.split(".")[1]);
+	if (
+		datatype !== "BIGINT" && 
+		datatype !== "INTEGER" && 
+		datatype !== "FLOAT" && 
+		datatype !== "REAL" && 
+		datatype !== "DOUBLE"){
+		constraint.value = "'" + constraint.value + "'";
+	}
+
+	vqd.state.constraints.push(constraint);
+	vqd.renderConstraintList();
+	vqd.queryUpdated();
+}
+
+vqd.removeConstraint = function(obj){
+	var index = $(obj).parent().parent().index();
+	vqd.state.constraints.splice(index, 1);
+	vqd.renderConstraintList();	
+	vqd.queryUpdated();
+}
+
+//
+// Update constraint list
+//
+vqd.renderConstraintList = function(){
+	var constraintList = $("#vqd_constraint_list");
+	constraintList.empty();
+	for (i in vqd.state.constraints){
+		var constraint = vqd.state.constraints[i];
+		var el = $("<p></p>");
+		var removeControl = $("<button class='button delete micro' onclick='vqd.removeConstraint(this)'>&times;</button>");
+		var constraintElement = $("<span>"+constraint.column+" "+constraint.operator+" "+constraint.value+"</span> ");
+		el.append(removeControl);
+		el.append(constraintElement);
+		constraintList.append(el);
+	}
+}
+
+//
+// Get the data type of the column
+//
+vqd.getColumnType = function(table, column){
+	return vqd.schema.tables[table].columns[column].datatype;
+}
+
+//
+// Updates the selector with currently available fields
+//
+vqd.renderConstraintOptions = function(){
+	var constraintControls = $("#vqd_constraint_column_select_control");
+	constraintControls.empty();
+	var tables =  vqd.getSelectedTables()
+	for (t in tables){
+		var table = tables[t];
+		for (column in vqd.schema.tables[table].columns){
+			var optionText = table + "." + column;
+			var optionValue = '\"'+table+'\"' + "." + '\"' + column + '\"';
+			var optionElement = $("<option value='"+optionValue+"'>"+optionText+"</option>");
+			constraintControls.append(optionElement);
+		}
+	}
 }
 
 //
@@ -270,6 +359,16 @@ vqd.queryUpdated = function(){
 			var clause = "\"" + joinData.table + "\".\"" + joinData.column + "\" = \"" + joinData.referenceTable + "\".\"" + joinData.referenceColumn + "\"";
 			clauses.push(clause);
 		}
+
+		//
+		// Other conditions?
+		//
+		for (var i = 0; i < vqd.state.constraints.length; i++){
+			var constraint = vqd.state.constraints[i];
+			var clause = constraint.columnValue + " " + constraint.operator + " " + constraint.value;
+			clauses.push(clause);
+		}
+
 		
 		//
 		// Conditions
@@ -337,6 +436,7 @@ vqd.tableListUpdated = function(){
 vqd.removeTable = function(tableName){
 	vqd.jsplumb.empty($("#vqd_table_box_"+tableName.hashCode()));
 	vqd.jsplumb.remove($("#vqd_table_box_"+tableName.hashCode()));
+	vqd.renderConstraintOptions();
 }
 
 //
@@ -345,6 +445,7 @@ vqd.removeTable = function(tableName){
 vqd.addTable = function(tableName){
 	var tableData = vqd.getTableData(tableName);
 	vqd.renderTable(tableName, tableData);	
+	vqd.renderConstraintOptions();
 }
 
 //

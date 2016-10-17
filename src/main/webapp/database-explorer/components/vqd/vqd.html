@@ -9,6 +9,27 @@
 		<h3>Select tables</h3>
 		<p><em>Select the tables to include in the query</em></p>
 	</div>
+
+	<p></p>
+
+	<div class="vqd_constraintview">
+		<h3>Add constraints</h3>
+		<div id = 'vqd_constraint_list'></div>
+		<p>
+		<select id='vqd_constraint_column_select_control'></select>
+		<select id='vqd_constraint_operator_select_control'>
+			<option>ILIKE</option>
+			<option>LIKE</option>
+			<option>=</option>
+			<option>></option>
+			<option><</option>
+			<option>IS</option>
+			<option>IS NOT</option>
+		</select>
+		<input id='vqd_constraint_value_input'></select>
+		<button id='vqd_add_constraint_button'>Add constraint</button>
+		</p>
+	</div>
 </div>
 	
 <div style="display:none" class = "message" id = "vqd-unjoined"><p>		
@@ -20,6 +41,5 @@ the records of the selected tables). To fix this, you may need to select additio
 list above so that all tables are connected, add relationships to the database in the schema designer, 
 or manually add a WHERE clause to the SQL below. </p>
 </div>
-
 
 <p></p>
