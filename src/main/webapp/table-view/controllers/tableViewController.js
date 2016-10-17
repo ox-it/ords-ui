@@ -448,7 +448,6 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 
 	}
 	
-	
 	$scope.saveChangedRows = function( ) {
 		var td = $scope.tableData;
 		var pkey = $scope.primaryKey;
@@ -517,6 +516,8 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			length:$scope.numberOfRows,
 			filter: $scope.filter,
 			params: $scope.filterParams,
+			sort: $scope.sort,
+			direction: $scope.direction,
 			casesensitive: $scope.isCaseSensitive
 		};
 		TableList.get(
@@ -674,7 +675,7 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 			name = $scope.projectDatabase.dbName + "_" + $scope.tableView.viewName;
 		}
 		else {
-			name = $scope.projectDatabse.dbName + "_SqlQueryExport";
+			name = $scope.projectDatabase.dbName + "_SqlQueryExport";
 		}
 		var exportInfo = {exportName:name+".csv" }; // default export type
 		ngDialog.openConfirm({
@@ -690,25 +691,29 @@ ords.controller('tableViewController', function ($scope, $routeParams, $sce, $lo
 						params,
 						function(result) {
 							// pick up the response property setup in the service
-							var fileData = new Blob([result.response], {type:"text/cdv"});
+							var fileData = new Blob([result.response], {type:"text/csv"});
 							FileSaver.saveAs(fileData, exportInfo.exportName);
 						}
 					)
 				}
-				else if ( $scope.queryType == "sql" || $scope.queryType == "dataset" ) {
-					var theQuery = "";
-					if ( $scope.queryType == "sql" ) {
-						theQuery = $scope.theQuery;
-					}
-					else {
-						theQuery = $scope.tableView.viewQuery;
-					}
-					var params = {databaseId:$scope.dbId, q:theQuery};
+				else if ( $scope.queryType == "dataset") {
+					var params = {databaseId:$scope.dbId, q:$scope.tableView.viewQuery};
 					ExportQuery.get(
 						params,
 						function(result) {
 							// pick up the response property setup in the service
-							var fileData = new Blob([result.response], {type:"text/cdv"});
+							var fileData = new Blob([result.response], {type:"text/csv"});
+							FileSaver.saveAs(fileData, exportInfo.exportName);
+						}
+					)
+				}
+				else if ( $scope.queryType == "SQL") {
+					var params = {databaseId:$scope.dbId, q:$scope.theQuery};
+					ExportQuery.get(
+						params,
+						function(result) {
+							// pick up the response property setup in the service
+							var fileData = new Blob([result.response], {type:"text/csv"});
 							FileSaver.saveAs(fileData, exportInfo.exportName);
 						}
 					)

@@ -93,6 +93,7 @@
 	<button ng-if="queryType=='SQL'" class="button" ng-click="saveAsView()">Save as dataset</button>
 	<a ng-if="queryType=='SQL'" class="button" href="#/database-explorer/{{project.projectId}}/{{projectDatabase.logicalDatabaseId}}/{{projectDatabase.dbName}}/{{dbId}}/MAIN/{{project.dbServerPublicAddress}}">Edit query</a>
 	<button ng-if="queryType=='table'" class="button" ng-disabled="(!dataForm.$dirty && referencesChanged.count === 0) || !dataForm.$valid" ng-click="saveChangedRows()">Save changes</button>
+	<button class="button" ng-click="export()">Export data</button>
 </p>
 
 <filter ng-show="queryType=='table'"></filter>
