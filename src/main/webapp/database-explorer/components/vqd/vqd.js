@@ -185,7 +185,10 @@ vqd.addConstraint = function(){
 		datatype !== "INTEGER" && 
 		datatype !== "FLOAT" && 
 		datatype !== "REAL" && 
-		datatype !== "DOUBLE"){
+		datatype !== "DOUBLE" &&
+		!((constraint.operator == "IS" || constraint.operator == "IS NOT" ) && constraint.value == "NULL")
+		)	
+	{
 		constraint.value = "'" + constraint.value + "'";
 	}
 
