@@ -197,8 +197,13 @@ vqd.addConstraint = function(){
 	vqd.queryUpdated();
 }
 
+//
+// Remove a constraint
+//
 vqd.removeConstraint = function(obj){
-	var index = $(obj).parent().parent().index();
+	var constraint = $(obj).parent().get(0);
+	var list = $(constraint).parent().get(0);
+	var index = $(list).children().index(constraint);
 	vqd.state.constraints.splice(index, 1);
 	vqd.renderConstraintList();	
 	vqd.queryUpdated();
