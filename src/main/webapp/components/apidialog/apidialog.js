@@ -1,7 +1,7 @@
 angular.module("ords").directive(
 	'apidialog',
-	['$location', 'ngDialog',
-		function ($location, ngDialog) {
+	['$location', 'ngDialog', 'growl',
+		function ($location, ngDialog, growl) {
 			return {
 				scope: {
 					database: "@",
@@ -38,6 +38,8 @@ angular.module("ords").directive(
 						input.select();
 						document.execCommand('Copy');
 						input.remove();
+
+						growl.success("Link copied to clipboard");
 
 						//
 						// This is the standards-compliant way, but doesn't work in most browsers :(
