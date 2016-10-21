@@ -168,6 +168,14 @@
   color: @text-dark;
 }
 
+.ngdialog.ngdialog-theme-default  .ngdialog-button.ngdialog-button-primary:hover{
+	background-color: darken(@accent-color, 10%);
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary:hover{
+	background-color: darken(@disabled-color, 10%);
+}
+
 /* Gives a "click" effect for otherwise flat buttons when pressed */
 .ngdialog-button:active {
 	border: 1px solid @border-highlight;

@@ -66,7 +66,7 @@ a.delete, button.delete
 }
 
 button.js_enabled {
-display: inline-block !important;
+	display: inline-block !important;
 }
 
 /* Gives a "click" effect for otherwise flat buttons when pressed */
@@ -75,9 +75,23 @@ a:active.button, button:active {
 }
 
 /* Ensure active buttons provide feedback */
+
 a:hover, button:hover{
 	cursor: pointer;
 	cursor: hand;
+}
+
+a.button:hover, button:hover{
+	background-color: darken(@accent-color, 10%);
+}
+a.cancel:hover, button.cancel:hover{
+	background-color: darken(@disabled-color, 10%);
+}
+a.warning:hover, button.warning:hover{
+	background-color: darken(@warning-color, 10%);
+}
+a.delete:hover, button.delete:hover{
+	background-color: darken(@danger-color, 10%);
 }
 
 .buttonwrapper {
