@@ -118,6 +118,7 @@ vqd.load = function(){
 	//
 	// Restore constraints
 	//
+	if (!vqd.state.constraints) vqd.state.constraints  = [];
 	vqd.renderConstraintList();
 
 	//
