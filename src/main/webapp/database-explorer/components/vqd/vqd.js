@@ -471,6 +471,11 @@ vqd.renderTable = function(tableName, tableData){
 	var tableDiv = $("<table id='vqd_table_box_"+tableName.hashCode()+"' class='vqd_table'></table>");
 	var titleDiv = $("<thead><tr><td class='vqd_tablename'>"+tableName+"</td></tr></thead>");
 	var columnsDiv = $("<tbody class='vqd_columns'></tbody>");
+
+	//
+	// Add toggle control
+	//
+	columnsDiv.append(vqd.renderToggleControl("#vqd_table_box_"+tableName.hashCode()));
 	
 	//
 	// Add columns
@@ -520,6 +525,27 @@ vqd.renderTable = function(tableName, tableData){
 	// Register the table as a draggable element
 	//
 	vqd.jsplumb.draggable(tableDiv, { containment: "parent"});
+}
+
+//
+// Adds a toggle-all switch to a table editor control
+//
+vqd.renderToggleControl = function(tableDiv){
+	var controlRow = $("<tr></tr>");
+	var controlDiv = $("<td></td>");
+	var control = $("<input type='checkbox'></input>");
+	control.on("click",
+		function(){
+			var checkboxes = $(tableDiv).find(".vqd_column").find("input");
+			checkboxes.prop("checked", $(this).prop("checked"));
+			vqd.queryUpdated();
+
+		}
+	);
+	controlDiv.append(control);
+	controlDiv.append("<em>all columns</em>");
+	controlRow.append(controlDiv);
+	return controlRow;
 }
 
 //
