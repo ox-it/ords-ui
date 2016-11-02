@@ -40,25 +40,6 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 		return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
 	}
     })
-
-	//
-	// A "really?" handler to confirm actions
-	// Usage: Add attributes: ng-really-message="Are you sure"? ng-really-click="takeAction()" function
-	// See: https://gist.github.com/asafge/7430497
-	//
-	.directive('ngReallyClick', [function() {
-	    return {
-	        restrict: 'A',
-	        link: function(scope, element, attrs) {
-	            element.bind('click', function() {
-	                var message = attrs.ngReallyMessage;
-	                if (message && confirm(message)) {
-	                    scope.$apply(attrs.ngReallyClick);
-	                }
-	            });
-	        }
-	    }
-	}])
  
 	//
     // "CompareTo" directive
