@@ -1,43 +1,7 @@
 'use strict';
 
-ords.directive('fileModel', ['$parse', function ($parse) {
-    return {
-       restrict: 'A',
-       link: function(scope, element, attrs) {
-          var model = $parse(attrs.fileModel);
-          var modelSetter = model.assign;
-          
-          element.bind('change', function(){
-             scope.$apply(function(){
-                modelSetter(scope, element[0].files[0]);
-             });
-          });
-       }
-    };
- }]);
 
-
-ords.service('fileUpload', ['$http', '$location', function ($http, $location) {
-    this.uploadFileToUrl = function(file, uploadUrl, projectId, projectDatabaseId){
-       var fd = new FormData();
-       fd.append('databaseFile', file);
-    
-       $http.post(uploadUrl, fd, {
-          transformRequest: angular.identity,
-          headers: {'Content-Type': undefined}
-       })
-    
-       .success(function(){
-           $location.path('/project/'+projectId+'/'+projectDatabaseId);
-       })
-    
-       .error(function(){
-    	   //$scope.errorMsg = "There was an error uploading the file";
-       });
-    }
- }]);
-
-ords.controller('importController', ['$scope', '$routeParams', 'Project','fileUpload',function($scope, $routeParams, Project, fileUpload) {
+ords.controller('importController', ['$scope', '$routeParams','$location', 'Project','FileUpload', 'growl', function($scope, $routeParams, $location, Project, FileUpload, growl) {
 	$scope.project = Project.get({ id: $routeParams.projectId});
 	
 	$scope.logicalDatabaseId = $routeParams.projectDatabaseId;
@@ -50,8 +14,14 @@ ords.controller('importController', ['$scope', '$routeParams', 'Project','fileUp
         console.dir(file);
         
 		var path = "/api/1.0/database/"+$routeParams.projectDatabaseId+"/data/"+$routeParams.server;
-        fileUpload.uploadFileToUrl(file, path, $routeParams.projectId, $routeParams.projectDatabaseId );
+        FileUpload.uploadFileToUrl(file, path, $scope.success, $scope.error );
      };
-
-	
+     
+     $scope.success = function() {
+    	 $location.path('/project/'+$routeParams.projectId+'/'+$routeParams.projectDatabaseId);
+     };
+     
+     $scope.error = function(theError) {
+    	 growl.error("There was an error upload in the database." +theError.statusText);
+     }
 }]);

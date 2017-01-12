@@ -223,6 +223,32 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 
 
 	//
+	// Service for file upload
+	//
+	
+	.factory('FileUpload',['$http', function($http) {
+		var svc = {};
+		svc.uploadFileToUrl = function(file, uploadUrl, successAction, errorAction){
+			var fd = new FormData();
+			fd.append('dataFile', file);
+
+			$http.post(uploadUrl, fd, {
+				transformRequest: angular.identity,
+				headers: {'Content-Type': undefined}
+			}).then (
+					function successCallback(response) {
+						successAction();
+					},
+					function errorCallback(response) {
+						errorAction(response);
+					}
+			);
+		}
+		return svc;
+	}])
+
+
+	//
 	// Service that checks if user is currently authenticated
 	//
 	.factory('AuthService', function ($rootScope, $location, $routeParams, User, Project, growl, gettextCatalog){
@@ -285,3 +311,32 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 		};
 		return svc;
 	});
+
+
+
+//
+//ords.service('fileUpload', ['$http', function ($http, $location) {
+//    this.uploadFileToUrl = function(file, uploadUrl, successAction, errorAction){
+//       var fd = new FormData();
+//       fd.append('databaseFile', file);
+//    
+//       $http.post(uploadUrl, fd, {
+//          transformRequest: angular.identity,
+//          headers: {'Content-Type': undefined}
+//       }).then (function successCallback(response) {
+//    	   successAction();
+//       }, function errorCallback(response) {
+//    	   errorAction(response);
+//       });
+//    
+////       .success(function(){
+////           successAction();
+////       })
+////    
+////       .error(function(){
+////    	   //$scope.errorMsg = "There was an error uploading the file";
+////    	   // TODO: Find way to get the result of the error and pass it to the user
+////    	   errorAction("There was an error uploading the file");
+////       });
+//    }
+// }]);

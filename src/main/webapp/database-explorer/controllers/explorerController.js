@@ -1,7 +1,20 @@
 'use strict';
 
 
-ords.controller('explorerController', function ($scope, $routeParams, $location, DatabaseStructure, ListDatasets, Dataset, Project, ProjectDatabase, DoQuery, AuthService, growl, gettextCatalog, ngDialog){
+ords.controller('explorerController', function ($scope,
+												$routeParams, 
+												$location, 
+												DatabaseStructure, 
+												ListDatasets, 
+												Dataset, 
+												Project, 
+												ProjectDatabase, 
+												DoQuery, 
+												AuthService,
+												FileUpload,
+												growl, 
+												gettextCatalog, 
+												ngDialog){
 	AuthService.check();
 	
 	//
@@ -20,26 +33,28 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 	
 	var pathParams = {databaseId:$routeParams.physicalDatabaseId};
 	
-	DatabaseStructure.get(
-		pathParams,
-		function(tableList) {
-			$scope.tableList = tableList;
-		},
-		function(error) {
-			if (error.status === 500){ 
-				growl.error(  gettextCatalog.getString("Gen500") );
-			}
-			else if (error.status === 404){
-				growl.error(  gettextCatalog.getString("Dat030") );
-			}
-			else if (error.status === 403){
-				growl.error( gettextCatalog.getString("Dat403"));
-			}
-			else{
-				growl.error("General error: " + error.message );
-			}
-		}
-	);
+	$scope.getTableList = function() {
+		DatabaseStructure.get(
+				pathParams,
+				function(tableList) {
+					$scope.tableList = tableList;
+				},
+				function(error) {
+					if (error.status === 500){ 
+						growl.error(  gettextCatalog.getString("Gen500") );
+					}
+					else if (error.status === 404){
+						growl.error(  gettextCatalog.getString("Dat030") );
+					}
+					else if (error.status === 403){
+						growl.error( gettextCatalog.getString("Dat403"));
+					}
+					else{
+						growl.error("General error: " + error.message );
+					}
+				}
+		);
+	};
 	
 	$scope.updateDatasetList = function ( ) {
 		ListDatasets.query(
@@ -137,6 +152,55 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 		);
 	};
 	
+	
+	$scope.showImport = function() {
+		// build usedNameList
+		$scope.tableNames = "";
+		for (var table in $scope.tableList.tables) {
+			$scope.tableNames += table + ",";
+		}
+		if ($scope.tableNames.length > 0 ) {
+			$scope.tableNames = $scope.tableNames.substring(0,$scope.tableNames.length-1);
+		}
+		var info = {importName:"",csvFile:null }
+		ngDialog.openConfirm({
+			template: 'database/components/import-dialog/importDialog.html',
+			scope: $scope,
+			data: {importInfo:info}
+		}).then(
+			function(value) {
+				$scope.importCSVFile(info);
+			},
+			function(value) {
+				// user cancelled do nothing
+			}
+		);
+	};
+	
+	
+	$scope.importCSVFile = function(info) {
+		if ( !info.csvFile ) {
+			growl.warning("You must select a csv file for upload");
+			return;
+		}
+		if (!info.importName) {
+			growl.warning("You must give a new table name");
+			return;
+		}
+		var url = '/api/1.0/database/'+$scope.physicalDatabaseId+'/import/'+info.importName+'/'+$scope.server;
+		FileUpload.uploadFileToUrl(info.csvFile, url, $scope.importSuccess, $scope.importError);
+	};
+	
+	
+	$scope.importSuccess = function(result) {
+		growl.success("CSV file successfully imported to database");
+		$scope.getTableList();
+	};
+	
+	$scope.importError = function(result) {
+		growl.error("CSV file import failed: "+result.statusText);
+	}
+	
 	$scope.updateDataset = function ( tableView ) {
 		var params = {databaseId:$routeParams.physicalDatabaseId, datasetId: tableView.id};
 		Dataset.update(
@@ -173,5 +237,8 @@ ords.controller('explorerController', function ($scope, $routeParams, $location,
 				growl.error("Unable to delete dataset, please contact support");
 			}
 		);
-	}
+	};
+	
+	//set off gets
+	$scope.getTableList();
 });
