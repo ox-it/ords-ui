@@ -41,6 +41,7 @@ ords.controller('newDatabaseController', function ($rootScope, $scope, $location
 			function(response){
 				
 				if (response.status === 400) { growl.error( gettextCatalog.getString("ProDbPost400") ) };
+				if (response.status === 402) { growl.error( gettextCatalog.getString("ProDbPost402") ) };
 				if (response.status === 403) { growl.error( gettextCatalog.getString("Gen403") ) };
 				if (response.status === 404) { growl.error( gettextCatalog.getString("ProDbPost404") ) };
 				if (response.status === 410) { growl.error( gettextCatalog.getString("Gen410") ) };

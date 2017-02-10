@@ -58,7 +58,8 @@
 	<div class="col-6">
 		<div class="panel">
 			<h2>Databases
-				<a ng-show="project.canEdit" class="button" href="#/project/{{project.projectId}}/newdatabase"></span>Add new database</a>
+				<a ng-show="project.canEdit &amp;&amp; user.maximumDatabasesPerProject > databases.length" class="button" href="#/project/{{project.projectId}}/newdatabase">Add new database</a>
+				<a ng-show="user.maximumDatabasesPerProject <= databases.length" class="button" href="#/upgrade">Upgrade to create more databases</a> 
 			</h2>
 			<databases></databases>
 			<p>

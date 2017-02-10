@@ -1,6 +1,6 @@
 'use strict';
 
-ords.controller('projectController', function ($scope, $routeParams, AuthService, Project, ProjectDatabase, User, Member, Invitation, growl, gettextCatalog) {
+ords.controller('projectController', function ($rootScope, $scope, $routeParams, AuthService, Project, ProjectDatabase, User, Member, Invitation, growl, gettextCatalog) {
 	
 	//
 	// Process a request to remove a project member
