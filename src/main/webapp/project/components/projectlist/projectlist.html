@@ -1,7 +1,8 @@
 <div class="panel">
 	<h2>My Projects
 		<i ng-hide="projects.$resolved" class="pe-7s-refresh pe-spin"></i>
-		<a ng-show="user.status!='PENDING_EMAIL_VERIFICATION'" class="button create" href="#/newproject">Create new project</a>
+		<a ng-show="user.status!='PENDING_EMAIL_VERIFICATION' &amp;&amp; user.maximumProjects > projects.length" class="button create" href="#/newproject">Create new project</a>
+		<a ng-show="user.maximumProjects <= projects.length" class="button info" href="#/upgrade">Upgrade to create more projects</a> 
 	</h2>
 
 	<p>You are involved in {{projects.length}} project<span ng-show="projects.length != 1">s</span></p>

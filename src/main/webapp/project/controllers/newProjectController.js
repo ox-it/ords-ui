@@ -26,6 +26,8 @@ ords.controller('newProjectController', function ($rootScope, $scope, $location,
 					if (response.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };
 					if (response.status === 400){ growl.error(  gettextCatalog.getString("ProPost400") ) };
 					if (response.status === 403){ growl.error(  gettextCatalog.getString("Gen403") ) };
+					if (response.status === 402){ growl.error(  gettextCatalog.getString("ProPost402") ) };
+
 					
 					$location.path("/projects");
 				}

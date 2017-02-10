@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ORDS UI\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-25 13:49+0100\n"
-"PO-Revision-Date: 2016-09-02 15:32+0100\n"
+"PO-Revision-Date: 2017-02-10 13:20+0000\n"
 "Last-Translator: scottbw\n"
 "Language-Team: English (UK)\n"
 "Language: en-GB\n"
@@ -14,417 +14,337 @@ msgstr ""
 "X-Generator: Loco https://localise.biz\n"
 "X-Loco-Source-Locale: en-GB\n"
 "X-Loco-Project-Id: 17474\n"
-"X-Loco-Lookup: id\n"
-"X-Loco-Api-Version: 1.0.14 20160818-1"
+"X-Loco-Api-Version: 1.0.15 20170208-1"
 
-#. Source text: You have successfully registered to use the ORDS, but still need to verify your account. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message.
 #: loco:57beea6614d7259d098b4567
-msgid "PENDING_EMAIL_VERIFICATION"
+msgid ""
+"You have successfully registered to use TrunkDB, but still need to verify "
+"your account. An email has been sent to the address you supplied. Please "
+"verify your account by clicking the link in this message."
 msgstr ""
-"You have successfully registered to use the ORDS, but still need to verify "
+"You have successfully registered to use TrunkDB, but still need to verify "
 "your account. An email has been sent to the address you supplied. Please "
 "verify your account by clicking the link in this message."
 
-#. Source text: Login successful
 #: loco:57beea6614d7259d098b4568
-msgid "Login200"
+msgid "Login successful"
 msgstr "Login successful"
 
-#. Source text: Invalid user name or password
 #: loco:57beea6614d7259d098b4569
-msgid "Login401"
+msgid "Invalid user name or password"
 msgstr "Invalid user name or password"
 
-#. Source text: Invalid user name or password
-#: loco:57beea6614d7259d098b456a
-msgid "Login400"
-msgstr "Invalid user name or password"
-
-#. Source text: Please close the browser window to complete logout
 #: loco:57beea6614d7259d098b456b
-msgid "Logout200"
+msgid "Please close the browser window to complete logout"
 msgstr "Please close the browser window to complete logout"
 
-#. Source text: Couldn't log out; there try closing the browser wuindow.
 #: loco:57beea6614d7259d098b456c
-msgid "Logout400"
+msgid "Couldn't log out; there try closing the browser wuindow."
 msgstr "Couldn't log out; there try closing the browser wuindow."
 
-#. Source text: You are not authorised to do that. The action you have just tried to perform requires a higher permission level than the one you currently have for this project. If you believe you should be able to perform this action, please contact the project owner to discuss adjusting your permissions.
 #: loco:57beea6614d7259d098b456d
-msgid "Gen403"
+msgid ""
+"You are not authorised to do that. The action you have just tried to perform "
+"requires a higher permission level than the one you currently have for this "
+"project. If you believe you should be able to perform this action, please "
+"contact the project owner to discuss adjusting your permissions."
 msgstr ""
 "You are not authorised to do that. The action you have just tried to perform "
 "requires a higher permission level than the one you currently have for this "
 "project. If you believe you should be able to perform this action, please "
 "contact the project owner to discuss adjusting your permissions."
 
-#. Source text: The project you are trying to work with has been deleted. To restore the project, please contact support.
 #: loco:57beea6614d7259d098b456e
-msgid "Gen410"
+msgid ""
+"The project you are trying to work with has been deleted. To restore the "
+"project, please contact support."
 msgstr ""
 "The project you are trying to work with has been deleted. To restore the "
 "project, please contact support."
 
-#. Source text: Internal problem while performing this action - please contact support."
 #: loco:57beea6614d7259d098b456f
-msgid "Gen500"
+msgid ""
+"Internal problem while performing this action - please contact support.\""
 msgstr ""
 "Internal problem while performing this action - please contact support.\""
 
-#. Source text: Your session has expired. Please log in again.
 #: loco:57beea6614d7259d098b4570
-msgid "Gen401"
+msgid "Your session has expired. Please log in again."
 msgstr "Your session has expired. Please log in again."
 
-#. Source text: You have successfully registered to use the ORDS. An email has been sent to the address you supplied. Please verify your account by clicking the link in this message.
 #: loco:57beea6614d7259d098b4571
-msgid "UserPost200"
+msgid ""
+"You have successfully registered to use TrunkDB. An email has been sent to "
+"the address you supplied. Please verify your account by clicking the link in "
+"this message."
 msgstr ""
-"You have successfully registered to use the ORDS. An email has been sent to "
+"You have successfully registered to use TrunkDB. An email has been sent to "
 "the address you supplied. Please verify your account by clicking the link in "
 "this message."
 
-#. Source text: Problem occurred during registration.
 #: loco:57beea6614d7259d098b4572
-msgid "UserPost400"
+msgid "Problem occurred during registration."
 msgstr "Problem occurred during registration."
 
-#. Source text: There was a problem with your registration details: there is already a registered user with the email address {{email}}.
 #: loco:57beea6614d7259d098b4573
-msgid "UserPost409 {{email}}"
+msgid ""
+"There was a problem with your registration details: there is already a "
+"registered user with the email address {{email}}."
 msgstr ""
 "There was a problem with your registration details: there is already a "
 "registered user with the email address {{email}}."
 
-#. Source text: Thanks for confirming your email address. You can now use the ORDS
 #: loco:57beea6614d7259d098b4574
-msgid "Verify200"
-msgstr "Thanks for confirming your email address. You can now use the ORDS"
+msgid "Thanks for confirming your email address. You can now use TrunkDB"
+msgstr "Thanks for confirming your email address. You can now use TrunkDB"
 
-#. Source text: There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b4575
-msgid "Verify400"
+msgid ""
+"There has been an error verifying your code - please contact the helpdesk."
 msgstr ""
-"There has been an error verifying your code - please contact the ORDS help "
-"desk by emailing ords@it.ox.ac.uk."
+"There has been an error verifying your code - please contact the helpdesk."
 
-#. Source text: Profile updated.
 #: loco:57beea6614d7259d098b4576
-msgid "UserPut200"
+msgid "Profile updated."
 msgstr "Profile updated."
 
-#. Source text: A problem occurred while updating your profile - please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b4577
-msgid "UserPut400"
+msgid ""
+"A problem occurred while updating your profile - please contact the help "
+"desk."
 msgstr ""
-"A problem occurred while updating your profile - please contact the ORDS "
-"help desk by emailing ords@it.ox.ac.uk."
+"A problem occurred while updating your profile - please contact the help "
+"desk."
 
-#. Source text: Your message has been sent to the project owner.
 #: loco:57beea6614d7259d098b4578
-msgid "ContactPost200"
+msgid "Your message has been sent to the project owner."
 msgstr "Your message has been sent to the project owner."
 
-#. Source text: The project was successfully created.
 #: loco:57beea6614d7259d098b4579
-msgid "ProPost201"
+msgid "The project was successfully created."
 msgstr "The project was successfully created."
 
-#. Source text: There has been a problem with your input. Please ensure all fields are filled in correctly.
 #: loco:57beea6614d7259d098b457a
-msgid "ProPost400"
+msgid ""
+"There has been a problem with your input. Please ensure all fields are "
+"filled in correctly."
 msgstr ""
 "There has been a problem with your input. Please ensure all fields are "
 "filled in correctly."
 
-#. Source text: Unable to get project details.
 #: loco:57beea6614d7259d098b457b
-msgid "ProGet400"
+msgid "Unable to get project details."
 msgstr "Unable to get project details."
 
-#. Source text: Unable to find original project in the database - please contact support.
 #: loco:57beea6614d7259d098b457c
-msgid "ProGet404"
+msgid ""
+"Unable to find original project in the database - please contact support."
 msgstr ""
 "Unable to find original project in the database - please contact support."
 
-#. Source text: Unable to update project details. Make sure that the name and description fields contain at least 2 characters.
 #: loco:57beea6614d7259d098b457d
-msgid "ProPut400"
+msgid ""
+"Unable to update project details. Make sure that the name and description "
+"fields contain at least 2 characters."
 msgstr ""
 "Unable to update project details. Make sure that the name and description "
 "fields contain at least 2 characters."
 
-#. Source text: The project was successfully edited.
 #: loco:57beea6614d7259d098b457e
-msgid "ProPut200"
+msgid "The project was successfully edited."
 msgstr "The project was successfully edited."
 
-#. Source text: Unable to find original project in the database - please contact support.
-#: loco:57beea6614d7259d098b457f
-msgid "ProPut404"
-msgstr ""
-"Unable to find original project in the database - please contact support."
-
-#. Source text: Project deleted successfully.
 #: loco:57beea6614d7259d098b4580
-msgid "ProDelete200"
+msgid "Project deleted successfully."
 msgstr "Project deleted successfully."
 
-#. Source text: Unable to delete project.
 #: loco:57beea6614d7259d098b4581
-msgid "ProDelete400"
+msgid "Unable to delete project."
 msgstr "Unable to delete project."
 
-#. Source text: Unable to find the project to delete it.
 #: loco:57beea6614d7259d098b4582
-msgid "ProDelete404"
+msgid "Unable to find the project to delete it."
 msgstr "Unable to find the project to delete it."
 
-#. Source text: The project had already been deleted.
 #: loco:57beea6614d7259d098b4583
-msgid "ProDelete410"
+msgid "The project had already been deleted."
 msgstr "The project had already been deleted."
 
-#. Source text: The user has been added to the project
 #: loco:57beea6614d7259d098b4584
-msgid "MemPost200"
+msgid "The user has been added to the project"
 msgstr "The user has been added to the project"
 
-#. Source text: Unable to add member.
 #: loco:57beea6614d7259d098b4585
-msgid "MemPost400"
+msgid "Unable to add member."
 msgstr "Unable to add member."
 
-#. Source text: Unable to find original project in the database - please contact support.
-#: loco:57beea6614d7259d098b4586
-msgid "MemPost404"
-msgstr ""
-"Unable to find original project in the database - please contact support."
-
-#. Source text: Member details updated. The project member's authorisation has been updated
 #: loco:57beea6614d7259d098b4587
-msgid "MemPut200"
+msgid ""
+"Member details updated. The project member's authorisation has been updated"
 msgstr ""
 "Member details updated. The project member's authorisation has been updated"
 
-#. Source text: Unable to update the members details.
 #: loco:57beea6614d7259d098b4588
-msgid "MemPut400"
+msgid "Unable to update the members details."
 msgstr "Unable to update the members details."
 
-#. Source text: Unable to find original project in the database - please contact support.
-#: loco:57beea6614d7259d098b4589
-msgid "MemPut404"
-msgstr ""
-"Unable to find original project in the database - please contact support."
-
-#. Source text: Project member removed
 #: loco:57beea6614d7259d098b458a
-msgid "MemDelete200"
+msgid "Project member removed"
 msgstr "Project member removed"
 
-#. Source text: There was a problem removing this project member
 #: loco:57beea6614d7259d098b458b
-msgid "MemDelete400"
+msgid "There was a problem removing this project member"
 msgstr "There was a problem removing this project member"
 
-#. Source text: Unable to remove member as unable to find in database - please contact support.
 #: loco:57beea6614d7259d098b458c
-msgid "MemDelete404"
+msgid ""
+"Unable to remove member as unable to find in database - please contact "
+"support."
 msgstr ""
 "Unable to remove member as unable to find in database - please contact "
 "support."
 
-#. Source text: You are not authorised to remove the user for this project.
 #: loco:57beea6614d7259d098b458d
-msgid "MemDelete403"
+msgid "You are not authorised to remove the user for this project."
 msgstr "You are not authorised to remove the user for this project."
 
-#. Source text: A full project request has already been sent for this project
 #: loco:57beea6614d7259d098b458e
-msgid "Pro025"
+msgid "A full project request has already been sent for this project"
 msgstr "A full project request has already been sent for this project"
 
-#. Source text: A full project request has been sent for this project. You will be notified in due course.
 #: loco:57beea6614d7259d098b458f
-msgid "Pro026"
+msgid ""
+"A full project request has been sent for this project. You will be notified "
+"in due course."
 msgstr ""
 "A full project request has been sent for this project. You will be notified "
 "in due course."
 
-#. Source text: This project is already a full project
 #: loco:57beea6614d7259d098b4590
-msgid "Pro027"
+msgid "This project is already a full project"
 msgstr "This project is already a full project"
 
-#. Source text: Error: You cannot use '___' in project metadata.
 #: loco:57beea6614d7259d098b4591
-msgid "Pro006"
+msgid "Error: You cannot use '___' in project metadata."
 msgstr "Error: You cannot use '___' in project metadata."
 
-#. Source text: A project with this name already exists. Pick a different name.
 #: loco:57beea6614d7259d098b4592
-msgid "Pro011"
+msgid "A project with this name already exists. Pick a different name."
 msgstr "A project with this name already exists. Pick a different name."
 
-#. Source text: ORDS has sent an invitation to this email address.
 #: loco:57beea6614d7259d098b4593
-msgid "InvPost200"
+msgid "ORDS has sent an invitation to this email address."
 msgstr "ORDS has sent an invitation to this email address."
 
-#. Source text: ORDS was unable to send an invitation to this email address.
 #: loco:57beea6614d7259d098b4594
-msgid "InvPost400"
+msgid "ORDS was unable to send an invitation to this email address."
 msgstr "ORDS was unable to send an invitation to this email address."
 
-#. Source text: ORDS was unable to send an invitation to this email address.
-#: loco:57beea6614d7259d098b4595
-msgid "InvPost404"
-msgstr "ORDS was unable to send an invitation to this email address."
-
-#. Source text: Project member successfully deleted.
 #: loco:57beea6614d7259d098b4596
-msgid "InvDelete200"
+msgid "Project member successfully deleted."
 msgstr "Project member successfully deleted."
 
-#. Source text: There was a problem removing this project member.
 #: loco:57beea6614d7259d098b4597
-msgid "InvDelete400"
+msgid "There was a problem removing this project member."
 msgstr "There was a problem removing this project member."
 
-#. Source text: You are not authorised to remove the user for this project.
-#: loco:57beea6614d7259d098b4598
-msgid "InvDelete403"
-msgstr "You are not authorised to remove the user for this project."
-
-#. Source text: Unable to remove member as unable to find in database - please contact support.
-#: loco:57beea6614d7259d098b4599
-msgid "InvDelete404"
-msgstr ""
-"Unable to remove member as unable to find in database - please contact "
-"support."
-
-#. Source text: Member details updated. The project member's authorisation has been updated
-#: loco:57beea6614d7259d098b459a
-msgid "InvPut200"
-msgstr ""
-"Member details updated. The project member's authorisation has been updated"
-
-#. Source text: Unable to update the members details.
-#: loco:57beea6614d7259d098b459b
-msgid "InvPut400"
-msgstr "Unable to update the members details."
-
-#. Source text: Unable to find original project in the database - please contact support.
-#: loco:57beea6614d7259d098b459c
-msgid "InvPut404"
-msgstr ""
-"Unable to find original project in the database - please contact support."
-
-#. Source text: Empty database added successfully.
 #: loco:57beea6614d7259d098b459d
-msgid "ProDbPost201"
+msgid "Empty database added successfully."
 msgstr "Empty database added successfully."
 
-#. Source text: Unable to add new empty database.
 #: loco:57beea6614d7259d098b459e
-msgid "ProDbPost400"
+msgid "Unable to add new empty database."
 msgstr "Unable to add new empty database."
 
-#. Source text: Unable to add new empty database.
-#: loco:57beea6614d7259d098b459f
-msgid "ProDbPost404"
-msgstr "Unable to add new empty database."
-
-#. Source text: Database successfully deleted.
 #: loco:57beea6614d7259d098b45a0
-msgid "ProDbDelete200"
+msgid "Database successfully deleted."
 msgstr "Database successfully deleted."
 
-#. Source text: You are not authorised to remove the database for this project.
 #: loco:57beea6614d7259d098b45a1
-msgid "ProDbDelete403"
+msgid "You are not authorised to remove the database for this project."
 msgstr "You are not authorised to remove the database for this project."
 
-#. Source text: ORDS could not find the database to delete it.ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened.
 #: loco:57beea6614d7259d098b45a2
-msgid "ProDbDelete404"
+msgid ""
+"We could not find the database to delete it. TrunkDB may have encountered an "
+"internal problem. Please report this to the help desk, giving as much "
+"information as possible about what happened."
 msgstr ""
-"ORDS could not find the database to delete it.ORDS may have encountered an "
-"internal problem. Please report this to the ORDS help desk by emailing "
-"ords@it.ox.ac.uk, giving as much information as possible about what happened."
+"We could not find the database to delete it. TrunkDB may have encountered an "
+"internal problem. Please report this to the help desk, giving as much "
+"information as possible about what happened."
 
-#. Source text: Unable to delete database.
 #: loco:57beea6614d7259d098b45a3
-msgid "ProDbDelete405"
+msgid "Unable to delete database."
 msgstr "Unable to delete database."
 
-#. Source text: Database information edited successfully.
 #: loco:57beea6614d7259d098b45a4
-msgid "ProDbPut200"
+msgid "Database information edited successfully."
 msgstr "Database information edited successfully."
 
-#. Source text: Unable to save changes;  please check whether the information you provided was valid.
 #: loco:57beea6614d7259d098b45a5
-msgid "ProDbPut400"
+msgid ""
+"Unable to save changes;  please check whether the information you provided "
+"was valid."
 msgstr ""
 "Unable to save changes;  please check whether the information you provided "
 "was valid."
 
-#. Source text: ORDS could not find the database to update it.ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened.
 #: loco:57beea6614d7259d098b45a6
-msgid "ProDbPut404"
+msgid ""
+"We could not find the database to update it. TrunkDB may have encountered an "
+"internal problem. Please report this to the help desk, giving as much "
+"information as possible about what happened."
 msgstr ""
-"ORDS could not find the database to update it.ORDS may have encountered an "
-"internal problem. Please report this to the ORDS help desk by emailing "
-"ords@it.ox.ac.uk, giving as much information as possible about what happened."
+"We could not find the database to update it. TrunkDB may have encountered an "
+"internal problem. Please report this to the help desk, giving as much "
+"information as possible about what happened."
 
-#. Source text: Unable to find that user in the database.
 #: loco:57beea6614d7259d098b45a7
-msgid "Pro010"
+msgid "Unable to find that user in the database."
 msgstr "Unable to find that user in the database."
 
-#. Source text: Unable to comply. Perhaps this user is already associated with the project?
 #: loco:57beea6614d7259d098b45a8
-msgid "Pro018"
+msgid ""
+"Unable to comply. Perhaps this user is already associated with the project?"
 msgstr ""
 "Unable to comply. Perhaps this user is already associated with the project?"
 
-#. Source text: There has been a problem with your request. Please ensure the email you specified is valid, and if the problem persists then contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45a9
-msgid "Pro023"
+msgid ""
+"There has been a problem with your request. Please ensure the email you "
+"specified is valid, and if the problem persists then contact the help desk."
 msgstr ""
 "There has been a problem with your request. Please ensure the email you "
-"specified is valid, and if the problem persists then contact the ORDS help "
-"desk by emailing ords@it.ox.ac.uk."
+"specified is valid, and if the problem persists then contact the help desk."
 
-#. Source text: The email address you entered is invalid. Email addresses must be in the format user@domain
 #: loco:57beea6614d7259d098b45aa
-msgid "Pro024"
+msgid ""
+"The email address you entered is invalid. Email addresses must be in the "
+"format user@domain"
 msgstr ""
 "The email address you entered is invalid. Email addresses must be in the "
 "format user@domain"
 
-#. Source text: Internal error accessing database information.
 #: loco:57beea6614d7259d098b45ab
-msgid "Dat001"
+msgid "Internal error accessing database information."
 msgstr "Internal error accessing database information."
 
-#. Source text: Unable to get table details.Null table name.
 #: loco:57beea6614d7259d098b45ac
-msgid "Dat002"
+msgid "Unable to get table details.Null table name."
 msgstr "Unable to get table details.Null table name."
 
-#. Source text: Record added successfully.
 #: loco:57beea6614d7259d098b45ad
-msgid "Dat003"
+msgid "Record added successfully."
 msgstr "Record added successfully."
 
-#. Source text: ORDS is unable to add that record. Please ensure that the data you are entering is consistent with the database schema (for example, Integer fields can only contain whole numbers, and some fields may have a maximum size specified). If the problem persists, please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45ae
-msgid "Dat004"
+msgid ""
+"ORDS is unable to add that record. Please ensure that the data you are "
+"entering is consistent with the database schema (for example, Integer fields "
+"can only contain whole numbers, and some fields may have a maximum size "
+"specified). If the problem persists, please contact the ORDS help desk by "
+"emailing ords@it.ox.ac.uk."
 msgstr ""
 "ORDS is unable to add that record. Please ensure that the data you are "
 "entering is consistent with the database schema (for example, Integer fields "
@@ -432,407 +352,375 @@ msgstr ""
 "specified). If the problem persists, please contact the ORDS help desk by "
 "emailing ords@it.ox.ac.uk."
 
-#. Source text: Error determining starting record.
 #: loco:57beea6614d7259d098b45af
-msgid "Dat005"
+msgid "Error determining starting record."
 msgstr "Error determining starting record."
 
-#. Source text: Problem with user input.
 #: loco:57beea6614d7259d098b45b0
-msgid "Dat006"
+msgid "Problem with user input."
 msgstr "Problem with user input."
 
-#. Source text: Milestone database version successfully created.
 #: loco:57beea6614d7259d098b45b1
-msgid "Dat007"
+msgid "Milestone database version successfully created."
 msgstr "Milestone database version successfully created."
 
-#. Source text: Test database version successfully created.
 #: loco:57beea6614d7259d098b45b2
-msgid "Dat008"
+msgid "Test database version successfully created."
 msgstr "Test database version successfully created."
 
-#. Source text: Empty database successfully created.
 #: loco:57beea6614d7259d098b45b3
-msgid "Dat009"
+msgid "Empty database successfully created."
 msgstr "Empty database successfully created."
 
-#. Source text: Unable to get specific internal information.
 #: loco:57beea6614d7259d098b45b4
-msgid "Dat010"
+msgid "Unable to get specific internal information."
 msgstr "Unable to get specific internal information."
 
-#. Source text: Data saved.
 #: loco:57beea6614d7259d098b45b5
-msgid "Dat011"
+msgid "Data saved."
 msgstr "Data saved."
 
-#. Source text: Problem updating data in table.
 #: loco:57beea6614d7259d098b45b6
-msgid "Dat012"
+msgid "Problem updating data in table."
 msgstr "Problem updating data in table."
 
-#. Source text: Problem obtaining database.
 #: loco:57beea6614d7259d098b45b7
-msgid "Dat013"
+msgid "Problem obtaining database."
 msgstr "Problem obtaining database."
 
-#. Source text: Too many records for trial.This is a trial project - you cannot add so many records to it.
 #: loco:57beea6614d7259d098b45b8
-msgid "Dat014"
+msgid ""
+"Too many records for trial.This is a trial project - you cannot add so many "
+"records to it."
 msgstr ""
 "Too many records for trial.This is a trial project - you cannot add so many "
 "records to it."
 
-#. Source text: Your database will be uploaded.You will be notified by email when the process has completed.
 #: loco:57beea6614d7259d098b45b9
-msgid "Dat015"
+msgid ""
+"Your database will be uploaded.You will be notified by email when the "
+"process has completed."
 msgstr ""
 "Your database will be uploaded.You will be notified by email when the "
 "process has completed."
 
-#. Source text: Test database version successfully copied to main.
 #: loco:57beea6614d7259d098b45ba
-msgid "Con001"
+msgid "Test database version successfully copied to main."
 msgstr "Test database version successfully copied to main."
 
-#. Source text: Unable to copy test database version to main due to internal error.
 #: loco:57beea6614d7259d098b45bb
-msgid "Con002"
+msgid "Unable to copy test database version to main due to internal error."
 msgstr "Unable to copy test database version to main due to internal error."
 
-#. Source text: Unable to copy test database version to main due to internal SQL error.
 #: loco:57beea6614d7259d098b45bc
-msgid "Con003"
+msgid "Unable to copy test database version to main due to internal SQL error."
 msgstr ""
 "Unable to copy test database version to main due to internal SQL error."
 
-#. Source text: Database successfully copied to milestone version.
 #: loco:57beea6614d7259d098b45bd
-msgid "Con004"
+msgid "Database successfully copied to milestone version."
 msgstr "Database successfully copied to milestone version."
 
-#. Source text: Unable to copy to milestone database version due to internal cloning error.
 #: loco:57beea6614d7259d098b45be
-msgid "Con005"
+msgid ""
+"Unable to copy to milestone database version due to internal cloning error."
 msgstr ""
 "Unable to copy to milestone database version due to internal cloning error."
 
-#. Source text: Database successfully copied to test version.
 #: loco:57beea6614d7259d098b45bf
-msgid "Con006"
+msgid "Database successfully copied to test version."
 msgstr "Database successfully copied to test version."
 
-#. Source text: Unable to copy to test database version due to internal cloning error.
 #: loco:57beea6614d7259d098b45c0
-msgid "Con007"
+msgid "Unable to copy to test database version due to internal cloning error."
 msgstr "Unable to copy to test database version due to internal cloning error."
 
-#. Source text: Internal error getting dataset id.
 #: loco:57beea6614d7259d098b45c1
-msgid "Con008"
+msgid "Internal error getting dataset id."
 msgstr "Internal error getting dataset id."
 
-#. Source text: The dataset was successfully deleted.
 #: loco:57beea6614d7259d098b45c2
-msgid "Con009"
+msgid "The dataset was successfully deleted."
 msgstr "The dataset was successfully deleted."
 
-#. Source text: Unable to find the table from which to delete records.
 #: loco:57beea6614d7259d098b45c3
-msgid "Con010"
+msgid "Unable to find the table from which to delete records."
 msgstr "Unable to find the table from which to delete records."
 
-#. Source text: The record has been successfully deleted.
 #: loco:57beea6614d7259d098b45c4
-msgid "Con011"
+msgid "The record has been successfully deleted."
 msgstr "The record has been successfully deleted."
 
-#. Source text: Unable to delete the record.
 #: loco:57beea6614d7259d098b45c5
-msgid "Con012"
+msgid "Unable to delete the record."
 msgstr "Unable to delete the record."
 
-#. Source text: Unable to find your user.
 #: loco:57beea6614d7259d098b45c6
-msgid "Con014"
+msgid "Unable to find your user."
 msgstr "Unable to find your user."
 
-#. Source text: Database version deleted from ORDS.
 #: loco:57beea6614d7259d098b45c7
-msgid "Con020"
-msgstr "Database version deleted from ORDS."
+msgid "Database version successfully deleted."
+msgstr "Database version successfully deleted."
 
-#. Source text: Unable to delete project user.
 #: loco:57beea6614d7259d098b45c8
-msgid "Con021"
+msgid "Unable to delete project user."
 msgstr "Unable to delete project user."
 
-#. Source text: Unable to copy to milestone database version due to internal error.
 #: loco:57beea6614d7259d098b45c9
-msgid "Con022"
+msgid "Unable to copy to milestone database version due to internal error."
 msgstr "Unable to copy to milestone database version due to internal error."
 
-#. Source text: Internal error creating the main database version.
 #: loco:57beea6614d7259d098b45ca
-msgid "Con023"
+msgid "Internal error creating the main database version."
 msgstr "Internal error creating the main database version."
 
-#. Source text: ORDS could not find any database versions to delete.ORDS may have encountered an internal problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened.
 #: loco:57beea6614d7259d098b45cb
-msgid "Con024"
+msgid ""
+"ORDS could not find any database versions to delete. TrunkDB may have "
+"encountered an internal problem. Please report this to the help desk, giving "
+"as much information as possible about what happened."
 msgstr ""
-"ORDS could not find any database versions to delete.ORDS may have "
-"encountered an internal problem. Please report this to the ORDS help desk by "
-"emailing ords@it.ox.ac.uk, giving as much information as possible about what "
-"happened."
+"ORDS could not find any database versions to delete. TrunkDB may have "
+"encountered an internal problem. Please report this to the help desk, giving "
+"as much information as possible about what happened."
 
-#. Source text: Unable to create test database version.
 #: loco:57beea6614d7259d098b45cc
-msgid "Con025"
+msgid "Unable to create test database version."
 msgstr "Unable to create test database version."
 
-#. Source text: Unable to get internal details. Invalid opd.
 #: loco:57beea6614d7259d098b45cd
-msgid "Con026"
+msgid "Unable to get internal details. Invalid opd."
 msgstr "Unable to get internal details. Invalid opd."
 
-#. Source text: Problem obtaining database.
-#: loco:57beea6614d7259d098b45ce
-msgid "Con027"
-msgstr "Problem obtaining database."
-
-#. Source text: The database has been deleted. However, ORDS encountered a problem. Please report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened.
 #: loco:57beea6614d7259d098b45cf
-msgid "Con028"
+msgid ""
+"The database has been deleted. However, TrunkDB encountered a problem. "
+"Please report this to the help desk, giving as much information as possible "
+"about what happened."
 msgstr ""
-"The database has been deleted. However, ORDS encountered a problem. Please "
-"report this to the ORDS help desk by emailing ords@it.ox.ac.uk, giving as "
-"much information as possible about what happened."
+"The database has been deleted. However, TrunkDB encountered a problem. "
+"Please report this to the help desk, giving as much information as possible "
+"about what happened."
 
-#. Source text: Milestone database version created.
 #: loco:57beea6614d7259d098b45d0
-msgid "Dat016"
+msgid "Milestone database version created."
 msgstr "Milestone database version created."
 
-#. Source text: Internal data error.
 #: loco:57beea6614d7259d098b45d1
-msgid "Dat017"
+msgid "Internal data error."
 msgstr "Internal data error."
 
-#. Source text: Unable to create milestone database version due to internal error.
 #: loco:57beea6614d7259d098b45d2
-msgid "Dat018"
+msgid "Unable to create milestone database version due to internal error."
 msgstr "Unable to create milestone database version due to internal error."
 
-#. Source text: Test database version created.
 #: loco:57beea6614d7259d098b45d3
-msgid "Dat019"
+msgid "Test database version created."
 msgstr "Test database version created."
 
-#. Source text: There has been an internal error creating the test database version.
 #: loco:57beea6614d7259d098b45d4
-msgid "Dat020"
+msgid "There has been an internal error creating the test database version."
 msgstr "There has been an internal error creating the test database version."
 
-#. Source text: Database updated successfully.
 #: loco:57beea6614d7259d098b45d5
-msgid "Dat021"
+msgid "Database updated successfully."
 msgstr "Database updated successfully."
 
-#. Source text: Internal error while trying to update the database.
 #: loco:57beea6614d7259d098b45d6
-msgid "Dat022"
+msgid "Internal error while trying to update the database."
 msgstr "Internal error while trying to update the database."
 
-#. Source text: Internal error while trying to upload the database.
 #: loco:57beea6614d7259d098b45d7
-msgid "Dat023"
+msgid "Internal error while trying to upload the database."
 msgstr "Internal error while trying to upload the database."
 
-#. Source text: The upload process is underway.You will be sent an email the process of uploading your database is complete.
 #: loco:57beea6614d7259d098b45d8
-msgid "Dat024"
+msgid ""
+"The upload process is underway.You will be sent an email the process of "
+"uploading your database is complete."
 msgstr ""
 "The upload process is underway.You will be sent an email the process of "
 "uploading your database is complete."
 
-#. Source text: Database problem
 #: loco:57beea6614d7259d098b45d9
-msgid "Dat025"
+msgid "Database problem"
 msgstr "Database problem"
 
-#. Source text: Unable to create database because of bad or corrupt data - please report this error to an administrator
 #: loco:57beea6614d7259d098b45da
-msgid "Dat026"
+msgid ""
+"Unable to create database because of bad or corrupt data - please report "
+"this error to an administrator"
 msgstr ""
 "Unable to create database because of bad or corrupt data - please report "
 "this error to an administrator"
 
-#. Source text: Unable to create database because of an internal naming conflict - please report this error to an administrator
 #: loco:57beea6614d7259d098b45db
-msgid "Dat027"
+msgid ""
+"Unable to create database because of an internal naming conflict - please "
+"report this error to an administrator"
 msgstr ""
 "Unable to create database because of an internal naming conflict - please "
 "report this error to an administrator"
 
-#. Source text: Unable to create staging database because of bad or corrupt data - please report this error to an administrator
 #: loco:57beea6614d7259d098b45dc
-msgid "Dat028"
+msgid ""
+"Unable to create staging database because of bad or corrupt data - please "
+"report this error to an administrator"
 msgstr ""
 "Unable to create staging database because of bad or corrupt data - please "
 "report this error to an administrator"
 
-#. Source text: Unable to create staging database becuase of an internal naming conflict - please report this error to an administrator
 #: loco:57beea6614d7259d098b45dd
-msgid "Dat029"
+msgid ""
+"Unable to create staging database becuase of an internal naming conflict - "
+"please report this error to an administrator"
 msgstr ""
 "Unable to create staging database becuase of an internal naming conflict - "
 "please report this error to an administrator"
 
-#. Source text: No database of that name found!
 #: loco:57beea6614d7259d098b45de
-msgid "Dat030"
+msgid "No database of that name found!"
 msgstr "No database of that name found!"
 
-#. Source text: Unable to log you in with those credentials. Sorry.
 #: loco:57beea6614d7259d098b45df
-msgid "Log001"
+msgid "Unable to log you in with those credentials. Sorry."
 msgstr "Unable to log you in with those credentials. Sorry."
 
-#. Source text: There has been an error verifying your code - please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45e0
-msgid "Log002"
+msgid ""
+"There has been an error verifying your code - please contact the help desk."
 msgstr ""
-"There has been an error verifying your code - please contact the ORDS help "
-"desk by emailing ords@it.ox.ac.uk."
+"There has been an error verifying your code - please contact the help desk."
 
-#. Source text: Internal error.
 #: loco:57beea6614d7259d098b45e1
-msgid "Sql001"
+msgid "Internal error."
 msgstr "Internal error."
 
-#. Source text: Schema updated successfully.
 #: loco:57beea6614d7259d098b45e2
-msgid "Sql002"
+msgid "Schema updated successfully."
 msgstr "Schema updated successfully."
 
-#. Source text: There has been an internal problem doing this. Null items.
 #: loco:57beea6614d7259d098b45e3
-msgid "Pdu001"
+msgid "There has been an internal problem doing this. Null items."
 msgstr "There has been an internal problem doing this. Null items."
 
-#. Source text: Bad file name - try again (click the -Choose File- button to select the database).
 #: loco:57beea6614d7259d098b45e4
-msgid "Pdu002"
+msgid ""
+"Bad file name - try again (click the -Choose File- button to select the "
+"database)."
 msgstr ""
 "Bad file name - try again (click the -Choose File- button to select the "
 "database)."
 
-#. Source text: Internal error trying to create the database. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45e5
-msgid "Pdu003"
+msgid ""
+"Internal error trying to create the database. Please contact the help desk."
 msgstr ""
-"Internal error trying to create the database. Please contact the ORDS help "
-"desk by emailing ords@it.ox.ac.uk."
+"Internal error trying to create the database. Please contact the help desk."
 
-#. Source text: Unable to fix the schema.
 #: loco:57beea6614d7259d098b45e6
-msgid "Pdu004"
+msgid "Unable to fix the schema."
 msgstr "Unable to fix the schema."
 
-#. Source text: General processing error. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45e7
-msgid "Pdu005"
-msgstr ""
-"General processing error. Please contact the ORDS help desk by emailing "
-"ords@it.ox.ac.uk."
+msgid "General processing error. Please contact the help desk."
+msgstr "General processing error. Please contact the help desk."
 
-#. Source text: Unable to create database. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45e8
-msgid "Pdu006"
-msgstr ""
-"Unable to create database. Please contact the ORDS help desk by emailing "
-"ords@it.ox.ac.uk."
+msgid "Unable to create database. Please contact the help desk."
+msgstr "Unable to create database. Please contact the help desk."
 
-#. Source text: Unable to configure system. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45e9
-msgid "Pdu007"
-msgstr ""
-"Unable to configure system. Please contact the ORDS help desk by emailing "
-"ords@it.ox.ac.uk."
+msgid "Unable to configure system. Please contact the help desk."
+msgstr "Unable to configure system. Please contact the help desk."
 
-#. Source text: Unable to generate data files. Please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45ea
-msgid "Pdu008"
-msgstr ""
-"Unable to generate data files. Please contact the ORDS help desk by emailing "
-"ords@it.ox.ac.uk."
+msgid "Unable to generate data files. Please contact the help desk."
+msgstr "Unable to generate data files. Please contact the help desk."
 
-#. Source text: Unable to get the required details from the database - please contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45eb
-msgid "Pdu009"
+msgid ""
+"Unable to get the required details from the database - please contact the "
+"help desk."
 msgstr ""
 "Unable to get the required details from the database - please contact the "
-"ORDS help desk by emailing ords@it.ox.ac.uk."
+"help desk."
 
-#. Source text: This has already been imported. Nothing to do. This is likely a coding error.
 #: loco:57beea6614d7259d098b45ec
-msgid "Pdu010"
+msgid ""
+"This has already been imported. Nothing to do. This is likely a coding error."
 msgstr ""
 "This has already been imported. Nothing to do. This is likely a coding error."
 
-#. Source text: Unable to get the required details of the database - please contact the ORDS help desk by emailing ords@it.ox.ac.uk, giving as much information as possible about what happened.
 #: loco:57beea6614d7259d098b45ed
-msgid "Pdu011"
+msgid ""
+"Unable to get the required details of the database - please contact the help "
+"desk, giving as much information as possible about what happened."
 msgstr ""
-"Unable to get the required details of the database - please contact the ORDS "
-"help desk by emailing ords@it.ox.ac.uk, giving as much information as "
-"possible about what happened."
+"Unable to get the required details of the database - please contact the help "
+"desk, giving as much information as possible about what happened."
 
-#. Source text: There has been a problem importing your database. Perhaps there has been some sort of data corruption, or the data format is not supported in ORDS? For help identifying the problem, please contact the ORDS help desk by emailing ords@it.ox.ac.uk
 #: loco:57beea6614d7259d098b45ee
-msgid "Pdu012"
+msgid ""
+"There has been a problem importing your database. Perhaps there has been "
+"some sort of data corruption, or the data format is not supported in ORDS? "
+"For help identifying the problem, please contact the ORDS help desk by "
+"emailing ords@it.ox.ac.uk"
 msgstr ""
 "There has been a problem importing your database. Perhaps there has been "
 "some sort of data corruption, or the data format is not supported in ORDS? "
 "For help identifying the problem, please contact the ORDS help desk by "
 "emailing ords@it.ox.ac.uk"
 
-#. Source text: There has been a problem importing the database and/or its data into ORDS. The trace is appended here to help you assess what the problems might be.
 #: loco:57beea6614d7259d098b45ef
-msgid "Pdu013"
+msgid ""
+"There has been a problem importing the database and/or its data. The trace "
+"is appended here to help you assess what the problems might be."
 msgstr ""
-"There has been a problem importing the database and/or its data into ORDS. "
-"The trace is appended here to help you assess what the problems might be."
+"There has been a problem importing the database and/or its data. The trace "
+"is appended here to help you assess what the problems might be."
 
-#. Source text: Your project is currently marked as a trial project - this database is too big for trial projects.Please select a smaller database, or contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b45f0
-msgid "Pdu014"
+msgid ""
+"Your project is currently marked as a trial project - this database is too "
+"big for trial projects.Please select a smaller database, or contact the ORDS "
+"help desk by emailing ords@it.ox.ac.uk."
 msgstr ""
 "Your project is currently marked as a trial project - this database is too "
 "big for trial projects.Please select a smaller database, or contact the ORDS "
 "help desk by emailing ords@it.ox.ac.uk."
 
-#. Source text: Build a Query Database Name:
 #: loco:57beea6614d7259d098b45f1
-msgid "Sqe001"
+msgid "Build a Query Database Name:"
 msgstr "Build a Query Database Name:"
 
-#. Source text: This page will allow you to construct database queries using SQL. 
-#. Type each clause of the SQL statement into the appropriate field below. 
-#. 
-#. There's no need to enter the SQL command that appears immediately before the field (e.g. SELECT, FROM, etc.): the ORDS will supply this automatically (and will delete it if it is entered). 
-#. 
-#. Pre-written SQL queries can be pasted into the SELECT field: the ORDS will divide the query into its component parts and distribute it appropriately. 
-#. 
-#. You can also simply start typing a complete SQL statement in the SELECT field: if the ORDS detects that you have entered a command that belongs in another field, it will move you there automatically. 
-#. 
-#. If you would like to learn more about how to construct SQL queries, there are plenty of books and online guides available. A brief overview can be found in the ORDS documentation at  http://help.it.ox.ac.uk/research/ords/howto07#Querying-using-sql, and W3schools.com offers a helpful SQL tutorial at http://www.w3schools.com/sql. 
-#. 
-#. If you would like to save a copy of the results of your query, you can export the results as a CSV file. For full projects, project owners, administrators, and contributors can also save the results as an ORDS dataset.
 #: loco:57beea6614d7259d098b45f2
-msgid "Sqe002"
+msgid ""
+"This page will allow you to construct database queries using SQL. \n"
+"Type each clause of the SQL statement into the appropriate field below. \n"
+"\n"
+"There's no need to enter the SQL command that appears immediately before the "
+"field (e.g. SELECT, FROM, etc.): the ORDS will supply this automatically "
+"(and will delete it if it is entered). \n"
+"\n"
+"Pre-written SQL queries can be pasted into the SELECT field: the ORDS will "
+"divide the query into its component parts and distribute it appropriately. \n"
+"\n"
+"You can also simply start typing a complete SQL statement in the SELECT "
+"field: if the ORDS detects that you have entered a command that belongs in "
+"another field, it will move you there automatically. \n"
+"\n"
+"If you would like to learn more about how to construct SQL queries, there "
+"are plenty of books and online guides available. A brief overview can be "
+"found in the ORDS documentation at  http://help.it.ox.ac."
+"uk/research/ords/howto07#Querying-using-sql, and W3schools.com offers a "
+"helpful SQL tutorial at http://www.w3schools.com/sql. \n"
+"\n"
+"If you would like to save a copy of the results of your query, you can "
+"export the results as a CSV file. For full projects, project owners, "
+"administrators, and contributors can also save the results as an ORDS "
+"dataset."
 msgstr ""
 "This page will allow you to construct database queries using SQL. \n"
 "Type each clause of the SQL statement into the appropriate field below. \n"
@@ -859,19 +747,25 @@ msgstr ""
 "administrators, and contributors can also save the results as an ORDS "
 "dataset."
 
-#. Source text: Enter the names of the fields you wish to display the contents of, separated by commas. Enclose field names containing spaces or upper case letters in "double quotes". An asterisk (*) can be used to represent all the fields in a table.
 #: loco:57beea6614d7259d098b45f3
-msgid "Sqe003"
+msgid ""
+"Enter the names of the fields you wish to display the contents of, separated "
+"by commas. Enclose field names containing spaces or upper case letters in "
+"\"double quotes\". An asterisk (*) can be used to represent all the fields "
+"in a table."
 msgstr ""
 "Enter the names of the fields you wish to display the contents of, separated "
 "by commas. Enclose field names containing spaces or upper case letters in "
 "\"double quotes\". An asterisk (*) can be used to represent all the fields "
 "in a table."
 
-#. Source text: Enter the table name(s). Enclose table names containing spaces or upper case letters in "double quotes".
-#.  If there are multiple tables, you will also need to include a JOIN clause. See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_join.asp for more information.
 #: loco:57beea6614d7259d098b45f4
-msgid "Sqe004"
+msgid ""
+"Enter the table name(s). Enclose table names containing spaces or upper case "
+"letters in \"double quotes\".\n"
+" If there are multiple tables, you will also need to include a JOIN clause. "
+"See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_join.asp "
+"for more information."
 msgstr ""
 "Enter the table name(s). Enclose table names containing spaces or upper case "
 "letters in \"double quotes\".\n"
@@ -879,563 +773,510 @@ msgstr ""
 "See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_join.asp "
 "for more information."
 
-#. Source text: (Optional) WHERE statements are used to specify that only records meeting certain criteria should be included. Enclose text strings in 'single quotes'. See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_where.asp for more about WHERE clauses.
 #: loco:57beea6614d7259d098b45f5
-msgid "Sqe005"
+msgid ""
+"(Optional) WHERE statements are used to specify that only records meeting "
+"certain criteria should be included. Enclose text strings in 'single quotes'."
+" See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_where."
+"asp for more about WHERE clauses."
 msgstr ""
 "(Optional) WHERE statements are used to specify that only records meeting "
 "certain criteria should be included. Enclose text strings in 'single quotes'."
 " See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_where."
 "asp for more about WHERE clauses."
 
-#. Source text: (Optional) See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_groupby.asp for more about GROUP BY clauses.
 #: loco:57beea6614d7259d098b45f6
-msgid "Sqe006"
+msgid ""
+"(Optional) See the W3Schools SQL tutorial at http://www.w3schools."
+"com/sql/sql_groupby.asp for more about GROUP BY clauses."
 msgstr ""
 "(Optional) See the W3Schools SQL tutorial at http://www.w3schools."
 "com/sql/sql_groupby.asp for more about GROUP BY clauses."
 
-#. Source text: (Optional) See the W3Schools SQL tutorial at http://www.w3schools.com/sql/sql_orderby.asp for more about ORDER BY clauses.
 #: loco:57beea6614d7259d098b45f7
-msgid "Sqe007"
+msgid ""
+"(Optional) See the W3Schools SQL tutorial at http://www.w3schools."
+"com/sql/sql_orderby.asp for more about ORDER BY clauses."
 msgstr ""
 "(Optional) See the W3Schools SQL tutorial at http://www.w3schools."
 "com/sql/sql_orderby.asp for more about ORDER BY clauses."
 
-#. Source text: (Optional) See the PostgreSQL documentation at http://www.postgresql.org/docs/9.1/static/queries-limit.html for more about LIMIT clauses.
 #: loco:57beea6614d7259d098b45f8
-msgid "Sqe008"
+msgid ""
+"(Optional) See the PostgreSQL documentation at http://www.postgresql."
+"org/docs/9.1/static/queries-limit.html for more about LIMIT clauses."
 msgstr ""
 "(Optional) See the PostgreSQL documentation at http://www.postgresql."
 "org/docs/9.1/static/queries-limit.html for more about LIMIT clauses."
 
-#. Source text: (Optional) See the PostgreSQL documentation at http://www.postgresql.org/docs/9.1/static/queries-limit.html for more about OFFSET clauses.
 #: loco:57beea6614d7259d098b45f9
-msgid "Sqe009"
+msgid ""
+"(Optional) See the PostgreSQL documentation at http://www.postgresql."
+"org/docs/9.1/static/queries-limit.html for more about OFFSET clauses."
 msgstr ""
 "(Optional) See the PostgreSQL documentation at http://www.postgresql."
 "org/docs/9.1/static/queries-limit.html for more about OFFSET clauses."
 
-#. Source text: Internal database error. 
 #: loco:57beea6614d7259d098b45fa
-msgid "Tvs001"
+msgid "Internal database error. "
 msgstr "Internal database error. "
 
-#. Source text: Unable to produce data for export.
 #: loco:57beea6614d7259d098b45fb
-msgid "Tvs002"
+msgid "Unable to produce data for export."
 msgstr "Unable to produce data for export."
 
-#. Source text: Problem getting data for the CSV file.
 #: loco:57beea6614d7259d098b45fc
-msgid "Tvs003"
+msgid "Problem getting data for the CSV file."
 msgstr "Problem getting data for the CSV file."
 
-#. Source text: Dataset exported successfully.
 #: loco:57beea6614d7259d098b45fd
-msgid "Tvs004"
+msgid "Dataset exported successfully."
 msgstr "Dataset exported successfully."
 
-#. Source text: Internal error getting project details.
 #: loco:57beea6614d7259d098b45fe
-msgid "Tvs005"
+msgid "Internal error getting project details."
 msgstr "Internal error getting project details."
 
-#. Source text: Unable to get data for dataset.
 #: loco:57beea6614d7259d098b45ff
-msgid "Tvs006"
+msgid "Unable to get data for dataset."
 msgstr "Unable to get data for dataset."
 
-#. Source text: Please enter a name for the dataset.
 #: loco:57beea6614d7259d098b4600
-msgid "Tvs007"
+msgid "Please enter a name for the dataset."
 msgstr "Please enter a name for the dataset."
 
-#. Source text: Please enter a query for the dataset.
 #: loco:57beea6614d7259d098b4601
-msgid "Tvs008"
+msgid "Please enter a query for the dataset."
 msgstr "Please enter a query for the dataset."
 
-#. Source text: Please enter a description for the dataset.
 #: loco:57beea6614d7259d098b4602
-msgid "Tvs009"
+msgid "Please enter a description for the dataset."
 msgstr "Please enter a description for the dataset."
 
-#. Source text: Your dataset has been saved.
 #: loco:57beea6614d7259d098b4603
-msgid "Tvs010"
+msgid "Your dataset has been saved."
 msgstr "Your dataset has been saved."
 
-#. Source text: Problem creating the static dataset.
 #: loco:57beea6614d7259d098b4604
-msgid "Tvs011"
+msgid "Problem creating the static dataset."
 msgstr "Problem creating the static dataset."
 
-#. Source text: Problem storing the static dataset.
 #: loco:57beea6614d7259d098b4605
-msgid "Tvs012"
+msgid "Problem storing the static dataset."
 msgstr "Problem storing the static dataset."
 
-#. Source text: Dataset edited successfully.
 #: loco:57beea6614d7259d098b4606
-msgid "Tvs013"
+msgid "Dataset edited successfully."
 msgstr "Dataset edited successfully."
 
-#. Source text: For security reasons, only SELECT queries are allowed through this interface.
 #: loco:57beea6614d7259d098b4607
-msgid "Tvs014"
+msgid ""
+"For security reasons, only SELECT queries are allowed through this interface."
 msgstr ""
 "For security reasons, only SELECT queries are allowed through this interface."
 
-#. Source text: Success.
 #: loco:57beea6614d7259d098b4608
-msgid "Tvs015"
+msgid "Success."
 msgstr "Success."
 
-#. Source text: Datasets cannot be saved for trial projects. If you would like to request an upgrade to full project status, please click the 'Request full project' button on the project page, or contact the ORDS help desk by emailing ords@it.ox.ac.uk.
 #: loco:57beea6614d7259d098b4609
-msgid "Tvs016"
+msgid ""
+"Datasets cannot be saved for trial projects. If you would like to request an "
+"upgrade to full project status, please click the 'Request full project' "
+"button on the project page, or contact the ORDS help desk by emailing "
+"ords@it.ox.ac.uk."
 msgstr ""
 "Datasets cannot be saved for trial projects. If you would like to request an "
 "upgrade to full project status, please click the 'Request full project' "
 "button on the project page, or contact the ORDS help desk by emailing "
 "ords@it.ox.ac.uk."
 
-#. Source text: Unable to access file from the database.
 #: loco:57beea6614d7259d098b460a
-msgid "Uti001"
+msgid "Unable to access file from the database."
 msgstr "Unable to access file from the database."
 
-#. Source text: File download successful.
 #: loco:57beea6614d7259d098b460b
-msgid "Uti002"
+msgid "File download successful."
 msgstr "File download successful."
 
-#. Source text: There has been a problem preparing the data.
 #: loco:57beea6614d7259d098b460c
-msgid "Uti003"
+msgid "There has been a problem preparing the data."
 msgstr "There has been a problem preparing the data."
 
-#. Source text: Unknown user.
 #: loco:57beea6614d7259d098b460d
-msgid "Fpc001"
+msgid "Unknown user."
 msgstr "Unknown user."
 
-#. Source text: Unknown user. Are you sure you have registered?
 #: loco:57beea6614d7259d098b460e
-msgid "Fpp001"
+msgid "Unknown user. Are you sure you have registered?"
 msgstr "Unknown user. Are you sure you have registered?"
 
-#. Source text: You have not yet verified your email address. A new email has been sent to you.
 #: loco:57beea6614d7259d098b460f
-msgid "Fpp005"
+msgid ""
+"You have not yet verified your email address. A new email has been sent to "
+"you."
 msgstr ""
 "You have not yet verified your email address. A new email has been sent to "
 "you."
 
-#. Source text: Database with id %s does not exist
 #: loco:57beea6614d7259d098b4610
-msgid "Rst001"
+msgid "Database with id %s does not exist"
 msgstr "Database with id %s does not exist"
 
-#. Source text: There is no %s instance for database %s
 #: loco:57beea6614d7259d098b4611
-msgid "Rst002"
+msgid "There is no %s instance for database %s"
 msgstr "There is no %s instance for database %s"
 
-#. Source text: Database deletion failed, attempted to delete the database %s, which doesn't exist.
 #: loco:57beea6614d7259d098b4612
-msgid "Rst003"
+msgid ""
+"Database deletion failed, attempted to delete the database %s, which doesn't "
+"exist."
 msgstr ""
 "Database deletion failed, attempted to delete the database %s, which doesn't "
 "exist."
 
-#. Source text: Changes to database %s saved successfully.
 #: loco:57beea6614d7259d098b4613
-msgid "Rst004"
+msgid "Changes to database %s saved successfully."
 msgstr "Changes to database %s saved successfully."
 
-#. Source text: There is no table in %s called %s
 #: loco:57beea6614d7259d098b4614
-msgid "Rst005"
+msgid "There is no table in %s called %s"
 msgstr "There is no table in %s called %s"
 
-#. Source text: Cannot create table %s a table with that name already exists
 #: loco:57beea6614d7259d098b4615
-msgid "Rst006"
+msgid "Cannot create table %s a table with that name already exists"
 msgstr "Cannot create table %s a table with that name already exists"
 
-#. Source text: Table %s created successfully
 #: loco:57beea6614d7259d098b4616
-msgid "Rst007"
+msgid "Table %s created successfully"
 msgstr "Table %s created successfully"
 
-#. Source text: Table %s renamed to %s
 #: loco:57beea6614d7259d098b4617
-msgid "Rst008"
+msgid "Table %s renamed to %s"
 msgstr "Table %s renamed to %s"
 
-#. Source text: Cannot rename table %s table does not exist
 #: loco:57beea6614d7259d098b4618
-msgid "Rst009"
+msgid "Cannot rename table %s table does not exist"
 msgstr "Cannot rename table %s table does not exist"
 
-#. Source text: Cannot rename table to %s there is already a table with that name
 #: loco:57beea6614d7259d098b4619
-msgid "Rst010"
+msgid "Cannot rename table to %s there is already a table with that name"
 msgstr "Cannot rename table to %s there is already a table with that name"
 
-#. Source text: Table %s deleted successfully
 #: loco:57beea6614d7259d098b461a
-msgid "Rst011"
+msgid "Table %s deleted successfully"
 msgstr "Table %s deleted successfully"
 
-#. Source text: Cannot delete table %s table does not exist
 #: loco:57beea6614d7259d098b461b
-msgid "Rst012"
+msgid "Cannot delete table %s table does not exist"
 msgstr "Cannot delete table %s table does not exist"
 
-#. Source text: There is no field in %s called %s
 #: loco:57beea6614d7259d098b461c
-msgid "Rst013"
+msgid "There is no field in %s called %s"
 msgstr "There is no field in %s called %s"
 
-#. Source text: There is no table in %s called %s
-#: loco:57beea6614d7259d098b461d
-msgid "Rst014"
-msgstr "There is no table in %s called %s"
-
-#. Source text: No datatype supplied for the new field
 #: loco:57beea6614d7259d098b461e
-msgid "Rst015"
+msgid "No datatype supplied for the new field"
 msgstr "No datatype supplied for the new field"
 
-#. Source text: Field %s created successfully
 #: loco:57beea6614d7259d098b461f
-msgid "Rst016"
+msgid "Field %s created successfully"
 msgstr "Field %s created successfully"
 
-#. Source text: Cannot field in table %s table doesn't exist
 #: loco:57beea6614d7259d098b4620
-msgid "Rst017"
+msgid "Cannot field in table %s table doesn't exist"
 msgstr "Cannot field in table %s table doesn't exist"
 
-#. Source text: Cannot create field %s in table %s a field with that name already exists.
 #: loco:57beea6614d7259d098b4621
-msgid "Rst018"
+msgid ""
+"Cannot create field %s in table %s a field with that name already exists."
 msgstr ""
 "Cannot create field %s in table %s a field with that name already exists."
 
-#. Source text: Field %s renamed to %s successfully
 #: loco:57beea6614d7259d098b4622
-msgid "Rst019"
+msgid "Field %s renamed to %s successfully"
 msgstr "Field %s renamed to %s successfully"
 
-#. Source text: Field %s now nullable
 #: loco:57beea6614d7259d098b4623
-msgid "Rst020"
+msgid "Field %s now nullable"
 msgstr "Field %s now nullable"
 
-#. Source text: Field %s no longer nullable
 #: loco:57beea6614d7259d098b4624
-msgid "Rst021"
+msgid "Field %s no longer nullable"
 msgstr "Field %s no longer nullable"
 
-#. Source text: Data type for %s changed to %s
 #: loco:57beea6614d7259d098b4625
-msgid "Rst022"
+msgid "Data type for %s changed to %s"
 msgstr "Data type for %s changed to %s"
 
-#. Source text: Default value removed from %s
 #: loco:57beea6614d7259d098b4626
-msgid "Rst023"
+msgid "Default value removed from %s"
 msgstr "Default value removed from %s"
 
-#. Source text: Default value for %s set to %s
 #: loco:57beea6614d7259d098b4627
-msgid "Rst024"
+msgid "Default value for %s set to %s"
 msgstr "Default value for %s set to %s"
 
-#. Source text: Request must specify at least one of newName, notnull, datatype, defaultValue or autoIncrement
 #: loco:57beea6614d7259d098b4628
-msgid "Rst025"
+msgid ""
+"Request must specify at least one of newName, notnull, datatype, "
+"defaultValue or autoIncrement"
 msgstr ""
 "Request must specify at least one of newName, notnull, datatype, "
 "defaultValue or autoIncrement"
 
-#. Source text: Cannot modify field in table %s table doesn't exist
 #: loco:57beea6614d7259d098b4629
-msgid "Rst026"
+msgid "Cannot modify field in table %s table doesn't exist"
 msgstr "Cannot modify field in table %s table doesn't exist"
 
-#. Source text: Cannot modify field %s field doesn't exist in table %s
 #: loco:57beea6614d7259d098b462a
-msgid "Rst027"
+msgid "Cannot modify field %s field doesn't exist in table %s"
 msgstr "Cannot modify field %s field doesn't exist in table %s"
 
-#. Source text: Cannot rename field to %s field with that name already exists in table %s
 #: loco:57beea6614d7259d098b462b
-msgid "Rst028"
+msgid ""
+"Cannot rename field to %s field with that name already exists in table %s"
 msgstr ""
 "Cannot rename field to %s field with that name already exists in table %s"
 
-#. Source text: Field %s successfully deleted from %s
 #: loco:57beea6614d7259d098b462c
-msgid "Rst029"
+msgid "Field %s successfully deleted from %s"
 msgstr "Field %s successfully deleted from %s"
 
-#. Source text: Cannot delete field from table %s table does not exist
 #: loco:57beea6614d7259d098b462d
-msgid "Rst030"
+msgid "Cannot delete field from table %s table does not exist"
 msgstr "Cannot delete field from table %s table does not exist"
 
-#. Source text: Cannot delete field %s from table %s field does not exist
 #: loco:57beea6614d7259d098b462e
-msgid "Rst031"
+msgid "Cannot delete field %s from table %s field does not exist"
 msgstr "Cannot delete field %s from table %s field does not exist"
 
-#. Source text: There is no index for %s called %s
 #: loco:57beea6614d7259d098b462f
-msgid "Rst032"
+msgid "There is no index for %s called %s"
 msgstr "There is no index for %s called %s"
 
-#. Source text: There is no table in %s called %s
-#: loco:57beea6614d7259d098b4630
-msgid "Rst033"
-msgstr "There is no table in %s called %s"
-
-#. Source text: Index '%s' created successfully
 #: loco:57beea6614d7259d098b4631
-msgid "Rst034"
+msgid "Index '%s' created successfully"
 msgstr "Index '%s' created successfully"
 
-#. Source text: At least one field must be specified
 #: loco:57beea6614d7259d098b4632
-msgid "Rst035"
+msgid "At least one field must be specified"
 msgstr "At least one field must be specified"
 
-#. Source text: Cannot create index on table %s table does not exist
 #: loco:57beea6614d7259d098b4633
-msgid "Rst036"
+msgid "Cannot create index on table %s table does not exist"
 msgstr "Cannot create index on table %s table does not exist"
 
-#. Source text: Cannot create index %s on table %s there is already a index with that name.
 #: loco:57beea6614d7259d098b4634
-msgid "Rst037"
+msgid ""
+"Cannot create index %s on table %s there is already a index with that name."
 msgstr ""
 "Cannot create index %s on table %s there is already a index with that name."
 
-#. Source text: newName must be specified
 #: loco:57beea6614d7259d098b4635
-msgid "Rst038"
+msgid "newName must be specified"
 msgstr "newName must be specified"
 
-#. Source text: Cannot rename index on table %s table does not exist
 #: loco:57beea6614d7259d098b4636
-msgid "Rst039"
+msgid "Cannot rename index on table %s table does not exist"
 msgstr "Cannot rename index on table %s table does not exist"
 
-#. Source text: Index %s renamed to %s
 #: loco:57beea6614d7259d098b4637
-msgid "Rst040"
+msgid "Index %s renamed to %s"
 msgstr "Index %s renamed to %s"
 
-#. Source text: Cannot rename index %s on table %s index does not exist
 #: loco:57beea6614d7259d098b4638
-msgid "Rst041"
+msgid "Cannot rename index %s on table %s index does not exist"
 msgstr "Cannot rename index %s on table %s index does not exist"
 
-#. Source text: Cannot rename index to %s a index with that name already exists on table %s
 #: loco:57beea6614d7259d098b4639
-msgid "Rst042"
+msgid ""
+"Cannot rename index to %s a index with that name already exists on table %s"
 msgstr ""
 "Cannot rename index to %s a index with that name already exists on table %s"
 
-#. Source text: Index %s removed from %s
 #: loco:57beea6614d7259d098b463a
-msgid "Rst043"
+msgid "Index %s removed from %s"
 msgstr "Index %s removed from %s"
 
-#. Source text: Cannot remove index from table %s table does not exist
 #: loco:57beea6614d7259d098b463b
-msgid "Rst044"
+msgid "Cannot remove index from table %s table does not exist"
 msgstr "Cannot remove index from table %s table does not exist"
 
-#. Source text: Cannot remove index %s from table %s index does not exist
 #: loco:57beea6614d7259d098b463c
-msgid "Rst045"
+msgid "Cannot remove index %s from table %s index does not exist"
 msgstr "Cannot remove index %s from table %s index does not exist"
 
-#. Source text: There is no constraint for %s called %s
 #: loco:57beea6614d7259d098b463d
-msgid "Rst046"
+msgid "There is no constraint for %s called %s"
 msgstr "There is no constraint for %s called %s"
 
-#. Source text: There is no table in %s called %s
-#: loco:57beea6614d7259d098b463e
-msgid "Rst047"
-msgstr "There is no table in %s called %s"
-
-#. Source text: Constraint '%s' created successfully
 #: loco:57beea6614d7259d098b463f
-msgid "Rst048"
+msgid "Constraint '%s' created successfully"
 msgstr "Constraint '%s' created successfully"
 
-#. Source text: At least one refColumn must be specified to create a foreign key
 #: loco:57beea6614d7259d098b4640
-msgid "Rst049"
+msgid "At least one refColumn must be specified to create a foreign key"
 msgstr "At least one refColumn must be specified to create a foreign key"
 
-#. Source text: refTable must be specified to create a foreign key
 #: loco:57beea6614d7259d098b4641
-msgid "Rst050"
+msgid "refTable must be specified to create a foreign key"
 msgstr "refTable must be specified to create a foreign key"
 
-#. Source text: A checkExpression must be specified when no constraint type is specified
 #: loco:57beea6614d7259d098b4642
-msgid "Rst051"
+msgid ""
+"A checkExpression must be specified when no constraint type is specified"
 msgstr ""
 "A checkExpression must be specified when no constraint type is specified"
 
-#. Source text: Cannot create constraint on table %s table does not exist
 #: loco:57beea6614d7259d098b4643
-msgid "Rst052"
+msgid "Cannot create constraint on table %s table does not exist"
 msgstr "Cannot create constraint on table %s table does not exist"
 
-#. Source text: Cannot create constraint %s on table %s there is already a constraint with that name.
 #: loco:57beea6614d7259d098b4644
-msgid "Rst053"
+msgid ""
+"Cannot create constraint %s on table %s there is already a constraint with "
+"that name."
 msgstr ""
 "Cannot create constraint %s on table %s there is already a constraint with "
 "that name."
 
-#. Source text: Constraint %s renamed to %s
 #: loco:57beea6614d7259d098b4645
-msgid "Rst054"
+msgid "Constraint %s renamed to %s"
 msgstr "Constraint %s renamed to %s"
 
-#. Source text: Cannot rename constraint on table %s table does not exist
 #: loco:57beea6614d7259d098b4646
-msgid "Rst055"
+msgid "Cannot rename constraint on table %s table does not exist"
 msgstr "Cannot rename constraint on table %s table does not exist"
 
-#. Source text: Cannot rename constraint %s on table %s constraint does not exist
 #: loco:57beea6614d7259d098b4647
-msgid "Rst056"
+msgid "Cannot rename constraint %s on table %s constraint does not exist"
 msgstr "Cannot rename constraint %s on table %s constraint does not exist"
 
-#. Source text: Cannot rename constraint to %s a constraint with that name already exists on table %s
 #: loco:57beea6614d7259d098b4648
-msgid "Rst057"
+msgid ""
+"Cannot rename constraint to %s a constraint with that name already exists on "
+"table %s"
 msgstr ""
 "Cannot rename constraint to %s a constraint with that name already exists on "
 "table %s"
 
-#. Source text: Constraint %s removed from %s
 #: loco:57beea6614d7259d098b4649
-msgid "Rst058"
+msgid "Constraint %s removed from %s"
 msgstr "Constraint %s removed from %s"
 
-#. Source text: Cannot remove constraint from table %s table does not exist
 #: loco:57beea6614d7259d098b464a
-msgid "Rst059"
+msgid "Cannot remove constraint from table %s table does not exist"
 msgstr "Cannot remove constraint from table %s table does not exist"
 
-#. Source text: Cannot remove constraint %s from table %s constraint does not exist
 #: loco:57beea6614d7259d098b464b
-msgid "Rst060"
+msgid "Cannot remove constraint %s from table %s constraint does not exist"
 msgstr "Cannot remove constraint %s from table %s constraint does not exist"
 
-#. Source text: Field specified as NOT NULL must have a non-null default value
 #: loco:57beea6614d7259d098b464c
-msgid "Rst061"
+msgid "Field specified as NOT NULL must have a non-null default value"
 msgstr "Field specified as NOT NULL must have a non-null default value"
 
-#. Source text: You cannot specify a default for an auto-increment field
 #: loco:57beea6614d7259d098b464d
-msgid "Rst062"
+msgid "You cannot specify a default for an auto-increment field"
 msgstr "You cannot specify a default for an auto-increment field"
 
-#. Source text: Only integer fields can have auto-increment enabled
 #: loco:57beea6614d7259d098b464e
-msgid "Rst063"
+msgid "Only integer fields can have auto-increment enabled"
 msgstr "Only integer fields can have auto-increment enabled"
 
-#. Source text: Cannot remove auto-increment form field %s it does not currently have an auto-increment.
 #: loco:57beea6614d7259d098b464f
-msgid "Rst064"
+msgid ""
+"Cannot remove auto-increment form field %s it does not currently have an "
+"auto-increment."
 msgstr ""
 "Cannot remove auto-increment form field %s it does not currently have an "
 "auto-increment."
 
-#. Source text: Cannot add auto-increment to field %s it is already auto-incremented.
 #: loco:57beea6614d7259d098b4650
-msgid "Rst065"
+msgid "Cannot add auto-increment to field %s it is already auto-incremented."
 msgstr "Cannot add auto-increment to field %s it is already auto-incremented."
 
-#. Source text: Added auto-increment to field %s.
 #: loco:57beea6614d7259d098b4651
-msgid "Rst066"
+msgid "Added auto-increment to field %s."
 msgstr "Added auto-increment to field %s."
 
-#. Source text: Removed auto-increment from field %s.
 #: loco:57beea6614d7259d098b4652
-msgid "Rst067"
+msgid "Removed auto-increment from field %s."
 msgstr "Removed auto-increment from field %s."
 
-#. Source text: You can only specify one local field per foreign key
 #: loco:57beea6614d7259d098b4653
-msgid "Rst068"
+msgid "You can only specify one local field per foreign key"
 msgstr "You can only specify one local field per foreign key"
 
-#. Source text: Database %s deleted successfully
 #: loco:57beea6614d7259d098b4654
-msgid "Rst069"
+msgid "Database %s deleted successfully"
 msgstr "Database %s deleted successfully"
 
-#. Source text: Comment for %s set to %s
 #: loco:57beea6614d7259d098b4655
-msgid "Rst070"
+msgid "Comment for %s set to %s"
 msgstr "Comment for %s set to %s"
 
-#. Source text: Cannot set comment for table %s table doesn't exist.
 #: loco:57beea6614d7259d098b4656
-msgid "Rst071"
+msgid "Cannot set comment for table %s table doesn't exist."
 msgstr "Cannot set comment for table %s table doesn't exist."
 
-#. Source text: Cannot set comment for field %s field doesn't exist in table %s
 #: loco:57beea6614d7259d098b4657
-msgid "Rst072"
+msgid "Cannot set comment for field %s field doesn't exist in table %s"
 msgstr "Cannot set comment for field %s field doesn't exist in table %s"
 
-#. Source text: Cannot set comment for field %s in table %s table doesn't exist
 #: loco:57beea6614d7259d098b4658
-msgid "Rst073"
+msgid "Cannot set comment for field %s in table %s table doesn't exist"
 msgstr "Cannot set comment for field %s in table %s table doesn't exist"
 
-#. Source text: Cannot get comment for field %s field doesn't exist in table %s
 #: loco:57beea6614d7259d098b4659
-msgid "Rst074"
+msgid "Cannot get comment for field %s field doesn't exist in table %s"
 msgstr "Cannot get comment for field %s field doesn't exist in table %s"
 
-#. Source text: A working copy of your database could not be created for editing
 #: loco:57beea6614d7259d098b465a
-msgid "Rst075"
+msgid "A working copy of your database could not be created for editing"
 msgstr "A working copy of your database could not be created for editing"
 
-#. Source text: There was an error in your query
 #: loco:57c72c8614d725a2318b4569
-msgid "QueryGet400"
+msgid "There was an error in your query"
 msgstr "There was an error in your query"
 
-#. Source text: Row deleted
 #: loco:57c74ea514d7253b418b4567
-msgid "RowDelete200"
+msgid "Row deleted"
 msgstr "Row deleted"
 
-#. Source text: You can't delete this row as it is still being referenced from another row in the database.
 #: loco:57c98d6214d725374e8b4574
-msgid "RowDelete409"
+msgid ""
+"You can't delete this row as it is still being referenced from another row "
+"in the database."
 msgstr ""
 "You can't delete this row as it is still being referenced from another row "
 "in the database."
+
+#: loco:589dbc5752e1a152668b4569
+msgid ""
+"Your current account doesn't allow you to create any more projects. You need "
+"to either upgrade to a different subscription, or delete an existing project."
+msgstr ""
+"Your current account doesn't allow you to create any more projects. You need "
+"to either upgrade to a different subscription, or delete an existing project."
+
+# There were errors exporting to PO file
+msgctxt "Loco"
+msgid "PO render errors"
+msgstr ""
+"Login400 is a duplicate\n"
+"ProPut404 is a duplicate\n"
+"MemPost404 is a duplicate\n"
+"MemPut404 is a duplicate\n"
+"InvPost404 is a duplicate\n"
+"InvDelete403 is a duplicate\n"
+"InvDelete404 is a duplicate\n"
+"InvPut200 is a duplicate\n"
+"InvPut400 is a duplicate\n"
+"InvPut404 is a duplicate\n"
+"ProDbPost404 is a duplicate\n"
+"Con027 is a duplicate\n"
+"Rst014 is a duplicate\n"
+"Rst033 is a duplicate\n"
+"Rst047 is a duplicate"

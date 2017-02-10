@@ -89,6 +89,12 @@ var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', '
 	                templateUrl : 'views/admin.html',
 	                controller  : 'adminController'
 	            })
+
+				 // Upgrade account page
+	            .when('/upgrade', {
+	                templateUrl : 'views/upgrade.html',
+	                controller  : 'profileController'
+	            })
 			
 	            // Search results
 	            .when('/search', {
