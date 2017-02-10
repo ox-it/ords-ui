@@ -198,7 +198,7 @@ ords.controller('explorerController', function ($scope,
 	};
 	
 	$scope.importError = function(result) {
-		growl.error("CSV file import failed: "+result.statusText);
+		growl.error("CSV file import failed: please check your csv file for errors!");
 	}
 	
 	$scope.updateDataset = function ( tableView ) {
