@@ -32,7 +32,8 @@ ords.controller('schemaController', function ($scope, $routeParams, DatabaseStru
 			function(error){
 				if (error.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };
 				if (error.status === 400){ growl.error(  gettextCatalog.getString("Dat028") ) };
-				if (error.status === 403){ growl.error(  gettextCatalog.getString("Dat029") ) };
+				if (error.status === 403){ growl.error(  gettextCatalog.getString("Gen403") ) };
+				if (error.status === 409){ growl.error(  gettextCatalog.getString("Dat029") ) };
 			}
 		);
 	};
@@ -55,7 +56,8 @@ ords.controller('schemaController', function ($scope, $routeParams, DatabaseStru
 			function(error){
 				if (error.status === 500){ growl.error(  gettextCatalog.getString("Gen500") ) };
 				if (error.status === 400){ growl.error(  gettextCatalog.getString("Dat026") ) };
-				if (error.status === 403){ growl.error(  gettextCatalog.getString("Dat027") ) };
+				if (error.status === 403){ growl.error(  gettextCatalog.getString("Gen403") ) };
+				if (error.status === 409){ growl.error(  gettextCatalog.getString("Dat029") ) };
 			}
 		);
 	}

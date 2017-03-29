@@ -62,8 +62,7 @@
 
 </div>
 
-
-<div class="row" ng-show="allLoaded">
+<div class="row" ng-show="allLoaded && (!main ||  main.importProgress == 'FINISHED')">
 
 	<!-- Main Database Section -->
 
@@ -128,6 +127,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<!-- Milestone Database Section -->
 
@@ -185,3 +185,13 @@
 		</div>
 	</div>
 </div>
+<div class="row" ng-show="main.importProgress == 'IN_PROGRESS'">
+	The database is still being imported, the project owner will be 
+	sent an email when this process has completed.
+</div>
+<div class="row" ng-show="main.importProgress == 'FAILED'">
+	Sorry, there was an error importing the database, please check
+ 	your database file for errors and then click here to re-import, you will be taken back to the upload form where you can
+  	choose the database file again or try a different one.</br>
+ 	<button class="create" ng-click="reimportDatabase()">Retry Import</button>
+ </div>

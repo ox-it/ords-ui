@@ -7,5 +7,6 @@
 <div ng-controller = "importController">
 	<input type="file" file-model="myFile"/>
 	<button ng-click="uploadFile()">Upload</button>
+	<progress-bar progress-current="{{loaded}}" progress-total="{{total}}" progress-suffix="kBs"></progress-bar>
 </div>
-<p>{{errorMsg}}</p>
+

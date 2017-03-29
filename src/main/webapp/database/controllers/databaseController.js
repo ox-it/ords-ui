@@ -129,7 +129,6 @@ ords.controller('databaseController', function (
 				$location.path("/project/"+$scope.project.projectId);
 			}
 		);
-		
 	}
     
     //
@@ -288,6 +287,19 @@ ords.controller('databaseController', function (
 			}	
 		);
 	};
+	
+	// this is only called after an import upload has failed and database status is 5
+	// so we can safely delete the main database and go back to the upload page.
+	$scope.reimportDatabase = function () {
+		var params = {databaseId:$scope.main.physicalDatabaseId};
+		DatabaseStructure.delete(
+			params,
+			function(result) {
+				$location.path("/import/"+project.projectId+"/"+database.logicalDatabaseId+"/"+project.dbServerPublicAddress);
+			}
+		);
+		
+	}
 	
 	
 	$scope.getProjectDatabases();

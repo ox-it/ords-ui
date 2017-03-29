@@ -228,21 +228,40 @@ var ordsServices = angular.module('ords.services',['ngResource'])
 	
 	.factory('FileUpload',['$http', function($http) {
 		var svc = {};
-		svc.uploadFileToUrl = function(file, uploadUrl, successAction, errorAction){
+		svc.uploadFileToUrl = function(file, uploadUrl, successAction, errorAction, progressAction){
 			var fd = new FormData();
 			fd.append('dataFile', file);
+			var xhr = new XMLHttpRequest();
+			
+			xhr.upload.onprogress = function(e) {
+				progressAction(e.loaded, e.total);
+			}
+			
+			xhr.onload = function(e) {
+				successAction(xhr);
+			}
+			
+			xhr.upload.onerror = function(e) {
+				errorAction(xhr);
+			}
+			
+			xhr.open("POST", uploadUrl);
+			xhr.send(fd);
 
-			$http.post(uploadUrl, fd, {
-				transformRequest: angular.identity,
-				headers: {'Content-Type': undefined}
-			}).then (
-					function successCallback(response) {
-						successAction();
-					},
-					function errorCallback(response) {
-						errorAction(response);
-					}
-			);
+//			$http.post(uploadUrl, fd, {
+//				transformRequest: angular.identity,
+//				headers: {'Content-Type': undefined}
+//			}).then (
+//					function successCallback(response) {
+//						successAction(response);
+//					},
+//					function errorCallback(response) {
+//						errorAction(response);
+//					},
+//					function progress(data) {
+//						progressAction(data);
+//					}
+//			);
 		}
 		return svc;
 	}])

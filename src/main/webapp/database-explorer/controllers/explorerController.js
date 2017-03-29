@@ -8,7 +8,8 @@ ords.controller('explorerController', function ($scope,
 												ListDatasets, 
 												Dataset, 
 												Project, 
-												ProjectDatabase, 
+												ProjectDatabase,
+												User,
 												DoQuery, 
 												AuthService,
 												FileUpload,
@@ -30,6 +31,21 @@ ords.controller('explorerController', function ($scope,
 	$scope.physicalDatabaseId = $routeParams.physicalDatabaseId;
 	$scope.instance = $routeParams.instance;
 	$scope.server = $routeParams.server;
+	
+	// 
+	// Upload stuff
+	User.get(
+			function (response) {
+				$scope.maxUpload = response.maximumUploadSize;
+			},
+			function (error) {
+				growl.error(gettextCatalog.getString("Fpp001"));
+			}
+		);
+
+	$scope.loaded = 0;
+	$scope.total = 0;
+	
 	
 	var pathParams = {databaseId:$routeParams.physicalDatabaseId};
 	
@@ -63,7 +79,7 @@ ords.controller('explorerController', function ($scope,
 				$scope.datasetList = inDatasetList;
 			},
 			function(error) {
-				growl.error( "Unable to get dataset list for database");
+				growl.error( gettextCatalog.getString("Tvs006"));
 			}
 		);		
 	};
@@ -162,44 +178,55 @@ ords.controller('explorerController', function ($scope,
 		if ($scope.tableNames.length > 0 ) {
 			$scope.tableNames = $scope.tableNames.substring(0,$scope.tableNames.length-1);
 		}
-		var info = {importName:"",csvFile:null }
-		ngDialog.openConfirm({
+		$scope.importInfo = {importName:"",csvFile:null }
+		$scope.importDialog = ngDialog.open({
 			template: 'database/components/import-dialog/importDialog.html',
 			scope: $scope,
 			data: {importInfo:info}
-		}).then(
-			function(value) {
-				$scope.importCSVFile(info);
-			},
-			function(value) {
-				// user cancelled do nothing
-			}
-		);
+		});
 	};
 	
 	
-	$scope.importCSVFile = function(info) {
+	$scope.importCSVFile = function() {
+	    var info = $scope.importInfo;
+        if ( ($scope.maxUpload * 1000000) < info.csvFile.size ) {
+        	growl.error(sprintf(gettextCatalog.getString("Dat031"),$scope.maxUpload+" MBs"));
+        	return;
+        }
 		if ( !info.csvFile ) {
-			growl.warning("You must select a csv file for upload");
-			return;
-		}
-		if (!info.importName) {
-			growl.warning("You must give a new table name");
+			growl.warning(gettextCatalg("Dat404"));
 			return;
 		}
 		var url = '/api/1.0/database/'+$scope.physicalDatabaseId+'/import/'+info.importName+'/'+$scope.server;
-		FileUpload.uploadFileToUrl(info.csvFile, url, $scope.importSuccess, $scope.importError);
+		FileUpload.uploadFileToUrl(info.csvFile, url, $scope.importSuccess, $scope.importError, $scope.progress);
 	};
 	
 	
 	$scope.importSuccess = function(result) {
-		growl.success("CSV file successfully imported to database");
-		$scope.getTableList();
+		$scope.importDialog.close();
+		if ( result.status == 201 ) {
+			growl.success(gettextCatalog.getString("Dat032"));
+			$scope.getTableList();
+		}
+   	 	else if (response.status == 406) {
+   	 		growl.error(gettextCatalog.getString("Dat031"));
+   	 	}
+   	 	else {
+   	 		growl.error(gettextCatalog.getString("Dat033"));
+   	 	}
 	};
 	
 	$scope.importError = function(result) {
-		growl.error("CSV file import failed: please check your csv file for errors!");
-	}
+		$scope.importDialog.close();
+		growl.error(gettextCatalog("Dat033"));
+	};
+	
+    $scope.progress = function(loaded, total) {
+   	 $scope.$apply(function() {
+   		 if ( loaded > 0 ) $scope.loaded = loaded/1000.0;
+       	 if ( total > 0 ) $scope.total = total/1000.0;
+   	 })
+    };
 	
 	$scope.updateDataset = function ( tableView ) {
 		var params = {databaseId:$routeParams.physicalDatabaseId, datasetId: tableView.id};
@@ -234,7 +261,7 @@ ords.controller('explorerController', function ($scope,
 				$scope.updateDatasetList();
 			},
 			function(error) {
-				growl.error("Unable to delete dataset, please contact support");
+				growl.error(gettextCatalog.getString("Tvs017"));
 			}
 		);
 	};

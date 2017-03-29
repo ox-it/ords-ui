@@ -1,6 +1,6 @@
 'use strict';
 
-var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext', 'ngDialog','ngTextTruncate', 'ngFileSaver'])
+var ords = angular.module('ords',['ngRoute', 'ords.services', 'angular-growl', 'ngMessages', 'angularUtils.directives.dirPagination', 'gettext', 'ngDialog','ngTextTruncate', 'ngFileSaver', 'sprintf'])
 
 	//
 	// Setup the gettext() function
@@ -282,5 +282,41 @@ ords.directive('fileModel', ['$parse', function ($parse) {
  }]);
 
 
-
-	
+ords.directive('progressBar', function() {
+	return {
+		restrict: 'E',
+		scope: {
+			progressCurrent: "@",
+			progressTotal: "@",
+			progressSuffix: "@"
+		},
+		template: '<div class="pgouter"><div class="pglegend"></div><div class="pgback"><div class="pgbar"></div></div></div>',
+		link: function (scope, element, attrs ) {
+			// inital set of  values
+			var legend_suffix = "";
+			if ( scope.progressSuffix ) {
+				legend_suffix = scope.progressSuffix;
+			}
+			// preload elements on link
+			var legend_element = angular.element(element[0].querySelector(".pglegend"));
+			var progress_element = angular.element(element[0].querySelector(".pgbar"));
+			// initial set progress
+			setProgress();
+			
+			// watch for changes to the  current attribute
+			scope.$watch('progressCurrent', setProgress);
+			scope.$watch('progressTotal', setProgress);
+			function setProgress ()  {
+				var current = scope.progressCurrent;
+				var total = scope.progressTotal;
+				legend_element.html("Progress: "+Math.round(current)+" of "+Math.round(total)+" "+legend_suffix);
+				if ( total > 0 ) {
+					// calculate percentage
+					var percent = (current / total) * 100;
+					progress_element.css("width", percent+"%");
+				}
+				
+			}
+		}
+	}
+})

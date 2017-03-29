@@ -16,8 +16,9 @@
 		<div ng-message="required" class="alert alert-warning">Please choose a file.</div>
 	</div>
 	</form>
+	<progress-bar progress-current="{{loaded}}" progress-total="{{total}}" progress-suffix="kBs"></progress-bar>
 	<div class="ngdialog-buttons">
 		<button type="button" class="button cancel" ng-click=closeThisDialog("Cancel")>Cancel</button>
-		<button type="button" ng-disabled="importForm.$invalid" class="button" ng-click=confirm("OK")>Import</button>
+		<button type="button" ng-disabled="importForm.$invalid" class="button" ng-click="importCSVFile()">Import</button>
 	</div>
 </div>
