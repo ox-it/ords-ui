@@ -1,7 +1,7 @@
 'use strict';
 
 
-ords.controller('importController', function($scope, $routeParams, $location, Project, User, AuthService, FileUpload, growl, gettextCatalog, sprintf) {
+ords.controller('importController', function($scope, $routeParams, $location, Project, User, AuthService, FileUpload, growl, gettextCatalog) {
 	AuthService.check();
 
 	$scope.project = Project.get({ id: $routeParams.projectId});
@@ -49,7 +49,7 @@ ords.controller('importController', function($scope, $routeParams, $location, Pr
     		 $location.path('/project/'+$routeParams.projectId+'/'+$routeParams.projectDatabaseId);
     	 }
     	 else {
-    		 growl.error(gettextCatalog.getString("Dat023") +" "+theError.statusText);
+    		 growl.error(gettextCatalog.getString("Dat023") +" "+response.statusText);
     	 }
      };
      
