@@ -6,10 +6,8 @@
         <p> If you are a member of a UK higher education institution, click the button below to log in via the UK Access Management Federation.</p>
         <p> If this is the first time you have used the service, you will be prompted to register after logging in. </p>
     
-			<!-- These buttons aren't enabled in shib config
             <a class="button" href="#/signup">Sign up to use ORDS</a>
-			<a class="button" href="#/login">Log in using a user name and password</a> 
-			-->
+			<a class="button" href="#/login">Log in using a user name and password</a>
            
             <a ng-show="targetLocation" class="button" href="/Shibboleth.sso/Login?target={{targetLocation}}">Log in</a>
             <a ng-hide="targetLocation" class="button" href="/Shibboleth.sso/Login">Log in</a>
