@@ -1,4 +1,4 @@
-ords.controller('verifyController', function($rootScope, $scope, $routeParams, $location, $http, growl, gettextCatalog) {
+ords.controller('verifyController', function($rootScope, $scope, $routeParams, $location, $http, User, growl, gettextCatalog) {
 	
 	//
 	// Verify email
@@ -7,7 +7,7 @@ ords.controller('verifyController', function($rootScope, $scope, $routeParams, $
 		
 	responsePromise.success(function(data, status, headers, config){
 		growl.success( gettextCatalog.getString("Verify200") );
-		$rootScope.user.status = "VERIFIED";
+		$rootScope.user = User.get();
 		$location.path("/projects")
 	});
 	
