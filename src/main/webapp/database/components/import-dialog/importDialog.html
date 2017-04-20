@@ -5,13 +5,13 @@
 	<input type="text"  
 		name="tableName"
 		ng-maxlength="63"
-		ng-model="ngDialogData.importInfo.importName"
+		ng-model="importInfo.importName"
 		name-validator="{{tableNames}}"/>
 	<div ng-messages="importForm.tableName.$error">
 		<div ng-message="maxlength" class="alert alert-warning">Maximum 63 characters allowed for a table name!</div>
 		<div ng-message="nameValidator" class="alert alert-warning">There is already a table with that name in the database.</div>
 	</div>
-	<input type="file" required file-model="ngDialogData.importInfo.csvFile" name="csvFile" />
+	<input type="file" required file-model="importInfo.csvFile" name="csvFile" />
 	<div ng-messages="importForm.csvFile.$error">
 		<div ng-message="required" class="alert alert-warning">Please choose a file.</div>
 	</div>

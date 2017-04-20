@@ -181,8 +181,7 @@ ords.controller('explorerController', function ($scope,
 		$scope.importInfo = {importName:"",csvFile:null }
 		$scope.importDialog = ngDialog.open({
 			template: 'database/components/import-dialog/importDialog.html',
-			scope: $scope,
-			data: {importInfo:info}
+			scope: $scope
 		});
 	};
 	
