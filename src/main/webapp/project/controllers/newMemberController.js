@@ -32,7 +32,7 @@ ords.controller('newMemberController', function ($rootScope, $scope, $location, 
 		// Check the user specified exists - if not, we want to show the Invite page instead
 		//
 		User.lookup(
-			{id:$scope.member.principalName},
+			{email:$scope.member.principalName},
 			function(){
 				$scope.createNewMember();
 			},

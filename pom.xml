@@ -3,7 +3,7 @@
   <groupId>uk.ac.ox.it.ords</groupId>
   <artifactId>ords-ui</artifactId>
   <packaging>war</packaging>
-  <version>0.0.36-SNAPSHOT</version>
+  <version>0.0.38-SNAPSHOT</version>
 
 
   <name>${project.groupId}:${project.artifactId}</name>
