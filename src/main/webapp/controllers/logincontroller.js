@@ -1,5 +1,7 @@
 ords.controller('loginController', function($rootScope, $scope, $http, $location, User, Project, growl, gettextCatalog) {
-		
+	
+	$rootScope.targetLocation = $location.absUrl();
+
 	$scope.login = function(){
 		
 		var obj = {};

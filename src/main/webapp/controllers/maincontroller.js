@@ -1,4 +1,6 @@
-ords.controller('mainController', function(AuthService) {
+ords.controller('mainController', function($rootScope, $location, AuthService) {
+
+	$rootScope.targetLocation = $location.absUrl();
 		
 	//
 	// Conduct auth check
