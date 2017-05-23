@@ -8,6 +8,15 @@ ords.controller('projectsController', function ($rootScope, $scope, AuthService,
 	// back to the home view
 	//
 	AuthService.check();
+
+	$scope.ownedProjects = function(){
+		if (!$rootScope.projects) return 0;
+		var owned = 0;
+		for (var i = 0; i < $rootScope.projects.length; i ++) {
+			if ($rootScope.projects[i].owner === $scope.user.principalName) owned++;
+		}
+		return owned;
+	}
 	
 	//
 	// Process a request to Delete a Project
