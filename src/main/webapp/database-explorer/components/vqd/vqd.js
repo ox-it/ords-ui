@@ -160,6 +160,7 @@ vqd.init = function(){
 	// Constraint editor
 	// 
 	$("#vqd_add_constraint_button").on("click", vqd.addConstraint);
+	$("#vqd_constraint_operator_select_control").on("change", vqd.constraintOperatorSelected);
 	vqd.renderConstraintOptions();
 	vqd.renderConstraintList();
 	
@@ -249,6 +250,20 @@ vqd.renderConstraintOptions = function(){
 			var optionElement = $("<option value='"+optionValue+"'>"+optionText+"</option>");
 			constraintControls.append(optionElement);
 		}
+	}
+}
+
+//
+// An operator is selected, update the value depending on the operator
+//
+vqd.constraintOperatorSelected = function(){
+	console.log("changed");
+	var operator = $("#vqd_constraint_operator_select_control option:selected").text();
+	if (operator === "IS" || operator === "IS NOT"){
+		$("#vqd_constraint_value_input").val("NULL");
+		$("#vqd_constraint_value_input").prop("readOnly", true);
+	} else {
+		$("#vqd_constraint_value_input").prop("readOnly", false);	
 	}
 }
 

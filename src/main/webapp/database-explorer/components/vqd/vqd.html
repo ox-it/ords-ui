@@ -4,16 +4,23 @@
 </div>
 
 <div ng-show="showVQD" class = "vqd">
-	<div class="vqd_tableview"></div>
+
 	<div class="vqd_tableselect">
 		<h3>Select tables</h3>
-		<p><em>Select the tables to include in the query</em></p>
+		<p><em>Select the tables to include in the query.</em></p>
 	</div>
+
+	<p></p>
+
+	<h3>Select columns</h3>
+	<p><em>Select columns to include from the tables.</em></p>
+	<div class="vqd_tableview"></div>
 
 	<p></p>
 
 	<div class="vqd_constraintview">
 		<h3>Add constraints</h3>
+		<p><em>Add constraints by selecting a column, operator and value, then clicking Add Constraint. (Note that the only valid value for an IS or IS NOT constraint is NULL)</em></p>
 		<div id = 'vqd_constraint_list'></div>
 		<p>
 		<select id='vqd_constraint_column_select_control'></select>
@@ -26,7 +33,9 @@
 			<option>IS</option>
 			<option>IS NOT</option>
 		</select>
-		<input id='vqd_constraint_value_input'></select>
+		<input id='vqd_constraint_value_input'></input>
+		</p>
+		<p>
 		<button id='vqd_add_constraint_button'>Add constraint</button>
 		</p>
 	</div>
