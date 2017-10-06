@@ -5,8 +5,8 @@
     angular.module( 'ngTextTruncate', [] )
 
 
-    .directive( "ngTextTruncate", [ "$compile", "ValidationServices", "CharBasedTruncation", "WordBasedTruncation",
-    	function( $compile, ValidationServices, CharBasedTruncation, WordBasedTruncation ) {
+    .directive( "ngTextTruncate", [ "$compile", "ValidationServices", "CharBasedTruncation", "WordBasedTruncation" ,"EscapeHtml",
+    	function( $compile, ValidationServices, CharBasedTruncation, WordBasedTruncation, EscapeHtml ) {
         return {
             restrict: "A",
             scope: {
@@ -33,22 +33,24 @@
 
                 $scope.$watch( "text", function() {
                     $element.empty();
+
+                    $scope.etext = EscapeHtml.escape($scope.text);
                     
                     if( CHARS_THRESHOLD ) {
-                            if( $scope.text && CharBasedTruncation.truncationApplies( $scope, CHARS_THRESHOLD ) ) {
+                            if( $scope.etext && CharBasedTruncation.truncationApplies( $scope, CHARS_THRESHOLD ) ) {
                                 CharBasedTruncation.applyTruncation( CHARS_THRESHOLD, $scope, $element );
 
                             } else {
-                                $element.append( $scope.text );
+                                $element.append( $scope.etext);
                             }
 
                     } else {
 
-                        if( $scope.text && WordBasedTruncation.truncationApplies( $scope, WORDS_THRESHOLD ) ) {
+                        if( $scope.etext && WordBasedTruncation.truncationApplies( $scope, WORDS_THRESHOLD ) ) {
                             WordBasedTruncation.applyTruncation( WORDS_THRESHOLD, $scope, $element );
 
                         } else {
-                            $element.append( $scope.text );
+                            $element.append( $scope.etext );
                         }
 
                     }
@@ -57,6 +59,23 @@
         };
     }] )
 
+    .factory('EscapeHtml', function () {
+        return {
+            escape: function(str) {
+                var entityMap = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': '&quot;',
+                    "'": '&#39;',
+                    "/": '&#x2F;'
+                };
+                return String(str).replace(/[&<>"'\/]/g, function (s) {
+                    return entityMap[s];
+                });
+            }
+        }
+    })
 
 
     .factory( "ValidationServices", function() {
@@ -74,13 +93,13 @@
     .factory( "CharBasedTruncation", [ "$compile", function( $compile ) {
         return {
             truncationApplies: function( $scope, threshould ) {
-                return $scope.text.length > threshould;
+                return $scope.etext.length > threshould;
             },
 
             applyTruncation: function( threshould, $scope, $element ) {
                 if( $scope.useToggling ) {
                     var el = angular.element(    "<span>" + 
-                                                    $scope.text.substr( 0, threshould ) + 
+                                                    ($scope.etext.substr( 0, threshould )) + 
                                                     "<span ng-show='!open'>...</span>" +
                                                     "<span class='btn-link ngTruncateToggleText' " +
                                                         "ng-click='toggleShow()'" +
@@ -88,7 +107,7 @@
                                                         " " + ($scope.customMoreLabel ? $scope.customMoreLabel : "More") +
                                                     "</span>" +
                                                     "<span ng-show='open'>" + 
-                                                        $scope.text.substring( threshould ) + 
+                                                    ($scope.etext.substring( threshould )) + 
                                                         "<span class='btn-link ngTruncateToggleText'" +
                                                               "ng-click='toggleShow()'>" +
                                                             " " + ($scope.customLessLabel ? $scope.customLessLabel : "Less") +
@@ -99,7 +118,7 @@
                     $element.append( el );
 
                 } else {
-                    $element.append( $scope.text.substr( 0, threshould ) + "..." );
+                    $element.append( $scope.etext.substr( 0, threshould ) + "..." );
 
                 }
             }
@@ -111,11 +130,11 @@
     .factory( "WordBasedTruncation", [ "$compile", function( $compile ) {
         return {
             truncationApplies: function( $scope, threshould ) {
-                return $scope.text.split( " " ).length > threshould;
+                return $scope.etext.split( " " ).length > threshould;
             },
 
             applyTruncation: function( threshould, $scope, $element ) {
-                var splitText = $scope.text.split( " " );
+                var splitText = ($scope.etext).split( " " );
                 if( $scope.useToggling ) {
                     var el = angular.element(    "<span>" + 
                                                     splitText.slice( 0, threshould ).join( " " ) + " " + 
